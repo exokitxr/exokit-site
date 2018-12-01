@@ -17,6 +17,19 @@ html{
     height: 50vh;
 }
 
+.getStarted{
+    position: relative;
+    min-height: 60vh;
+    background-image: url('../media/getStarted.png');
+    background-size: contain;
+}
+
+.verticalLine {
+    border-left: thin solid black;
+    height: 80px;
+    margin-bottom: -300px;
+  }
+
 .footer{
     padding-top: 5vh;
     color: white;

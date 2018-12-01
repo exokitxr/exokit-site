@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/modulesio/exokit-site#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.4",
+    "three": "^0.98.0"
   }
 }

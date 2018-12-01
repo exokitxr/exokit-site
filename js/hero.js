@@ -26,7 +26,7 @@ function init() {
   // scene.background = new THREE.Color(0x3B3961);
 
   camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 1.5, 3);
+  camera.position.set(-1.5, 1, 2);
   // camera.lookAt(new THREE.Vector3());
   scene.add(camera);
 
@@ -436,7 +436,7 @@ function init() {
 
     container.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
-      new THREE.Vector3(-(mouse.x-0.5)*1, (mouse.y-0.5)*1, -1).normalize()
+      new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
     );
     _updateSkin();
   });

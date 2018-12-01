@@ -55,7 +55,7 @@ function init() {
     const mesh = skin({
       limbs: true,
     });
-    {
+    /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
         new THREE.Vector3(0, 0, -1).normalize(),
         new THREE.Vector3(0, -1, -2).normalize()
@@ -84,48 +84,9 @@ function init() {
       mesh.material.uniforms.rightArmRotation.value.y = quaternion.y;
       mesh.material.uniforms.rightArmRotation.value.z = quaternion.z;
       mesh.material.uniforms.rightArmRotation.value.w = quaternion.w;
-    }
+    } */
 
     // const uniforms = THREE.UniformsUtils.clone(skin.SKIN_SHADER.uniforms);
-
-    const _applyUniformRotation = (r, t) => {
-      t.x = r.x;
-      t.y = r.y;
-      t.z = r.z;
-      t.w = r.w;
-    };
-    mesh.onBeforeRender = (onBeforeRender => function() {
-      _applyUniformRotation(
-        new THREE.Quaternion()
-          .setFromUnitVectors(
-            new THREE.Vector3(0, 0, -1),
-            new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
-          ),
-          mesh.material.uniforms.headRotation.value
-      );
-      _applyUniformRotation(
-        new THREE.Quaternion()
-          .setFromUnitVectors(
-            new THREE.Vector3(0, -1, 0),
-            new THREE.Vector3(0.5 - (mouse.x-0.5)*2, 1 - (mouse.y-0.5)*2, 2).normalize()
-          ),
-          mesh.material.uniforms.leftArmRotation.value
-      );
-      _applyUniformRotation(
-        new THREE.Quaternion()
-          .setFromUnitVectors(
-            new THREE.Vector3(0, 0, -1),
-            new THREE.Vector3(-(mouse.x-0.5)*2, -(mouse.y-0.5)*2, -1).normalize()
-          ),
-          mesh.material.uniforms.rightArmRotation.value
-      );
-
-      /* mesh.material.uniforms.theta.value = uniforms.theta.value;
-      mesh.material.uniforms.headVisible.value = uniforms.headVisible.value;
-      mesh.material.uniforms.hit.value = uniforms.hit.value; */
-
-      onBeforeRender.apply(this, arguments);
-    })(mesh.onBeforeRender);
 
     new Promise((accept, reject) => {
       const skinImg = new Image();
@@ -145,6 +106,44 @@ function init() {
     return mesh;
   })();
   container.add(avatarMesh);
+
+  const mouse = {
+    x: 0,
+    y: 0,
+  };
+  const _applyUniformRotation = (r, t) => {
+    t.x = r.x;
+    t.y = r.y;
+    t.z = r.z;
+    t.w = r.w;
+  };
+  const _updateSkin = () => {
+    _applyUniformRotation(
+      new THREE.Quaternion()
+        .setFromUnitVectors(
+          new THREE.Vector3(0, 0, -1),
+          new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
+        ),
+        avatarMesh.material.uniforms.headRotation.value
+    );
+    _applyUniformRotation(
+      new THREE.Quaternion()
+        .setFromUnitVectors(
+          new THREE.Vector3(0, -1, 0),
+          new THREE.Vector3(0.5 - (mouse.x-0.5)*2, 1 - (mouse.y-0.5)*2, 2).normalize()
+        ),
+        avatarMesh.material.uniforms.leftArmRotation.value
+    );
+    _applyUniformRotation(
+      new THREE.Quaternion()
+        .setFromUnitVectors(
+          new THREE.Vector3(0, 0, -1),
+          new THREE.Vector3(-(mouse.x-0.5)*2, -(mouse.y-0.5)*2, -1).normalize()
+        ),
+        avatarMesh.material.uniforms.rightArmRotation.value
+    );
+  };
+  _updateSkin();
 
   const boxGeometry = (() => {
     const BAG_SIZE = 1;
@@ -441,10 +440,6 @@ function init() {
 
   scene.add(container);
 
-  const mouse = {
-    x: 0,
-    y: 0,
-  };
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -453,6 +448,7 @@ function init() {
       new THREE.Vector3(0, 0, -1),
       new THREE.Vector3(-(mouse.x-0.5)*1, (mouse.y-0.5)*1, -1).normalize()
     );
+    _updateSkin();
   });
 
   focused = true;

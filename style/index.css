@@ -40,6 +40,11 @@ body {
   font-size: 40px;
 }
 
+.navbar-brand img {
+  height: 35px;
+  margin-right: 8px;
+}
+
 .navbar-nav {
     margin-left: auto;
 }

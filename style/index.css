@@ -46,6 +46,21 @@ body {
     height: 50vh;
 }
 
+#overlay {
+    position: absolute;
+    margin-top: 30vh;
+    margin-left: 50px;
+    width: 30vw; 
+    height: 100%;
+    top: 0; 
+    z-index: 1000;
+    cursor: pointer;
+}
+
+#heroPusher{
+    margin-bottom: 180px;
+}
+
 .whatIsExokit{
     color: white;
     position: relative;
@@ -139,4 +154,14 @@ body {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+@media only screen and (max-width: 600px) {
+    #overlay {
+        width: 80vw;
+    }
+    #heroPusher{
+        margin-bottom: 100px;
+    }
 }

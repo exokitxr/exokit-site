@@ -17,6 +17,7 @@ function init() {
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.sortObjects = false;
 
   // window.browser.magicleap.RequestDepthPopulation(true);
   // renderer.autoClear = false;
@@ -381,6 +382,9 @@ function init() {
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
+        transparent: true,
+        alphaTest: 0.5,
+        // depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.y = 0.7;
@@ -417,6 +421,9 @@ function init() {
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
+        transparent: true,
+        alphaTest: 0.5,
+        // depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.y = 0.7;
@@ -429,29 +436,44 @@ function init() {
   container.add(tabMesh2);
 
   const assetsMesh = (() => {
-    const geometry = new THREE.PlaneBufferGeometry(3, 3);
-    const texture = new THREE.Texture();
-    new Promise((accept, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.src = 'assets/Group 57@2x.png';
-      img.onload = () => {
-        accept(img);
-      };
-      img.onerror = err => {
-        reject(err);
-      };
-    })
-      .then(img => {
-        texture.image = img;
-        texture.needsUpdate = true;
+    const object = new THREE.Object3D();
+
+    [
+      {size: new THREE.Vector2(3, 3), position: new THREE.Vector3(0, 1, -2), src: 'assets/Group 57@2x.png'},
+      {size: new THREE.Vector2(5, 5), position: new THREE.Vector3(0, 1, -3), src: 'assets/Group 19@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
+    ].forEach(({size, position, src}) => {
+      const geometry = new THREE.PlaneBufferGeometry(size.x, size.y);
+      const texture = new THREE.Texture();
+      new Promise((accept, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.src = src;
+        img.onload = () => {
+          accept(img);
+        };
+        img.onerror = err => {
+          reject(err);
+        };
+      })
+        .then(img => {
+          texture.image = img;
+          texture.needsUpdate = true;
+        });
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        transparent: true,
+        alphaTest: 0.5,
       });
-    const material = new THREE.MeshBasicMaterial({
-      map: texture,
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.copy(position);
+      object.add(mesh);
     });
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(-1, 1, -2);
-    return mesh;
+
+    return object;
   })();
   container.add(assetsMesh);
 

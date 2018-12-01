@@ -45,6 +45,48 @@ body {
     height: 50vh;
 }
 
+.whatIsExokit{
+    color: white;
+    position: relative;
+    min-height: 100vh;
+    background: #16BFFD;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
+}
+
+.whatIsExokitPusher{
+    margin-top: 200px;
+}
+
+.whatIsExokitImg{
+    height: 600px;
+    width: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.madeWithExokit{
+    position: relative;
+    min-height: 85vh
+}
+
+.madeWithExokitPusher{
+    margin-top: 50px;
+}
+
+.madeWithExokitMainImg{
+    max-height: 80vh;
+    width: auto;
+}
+
+.madeWithExokitSubImg{
+    max-height: 20vh;
+    width: auto;
+}
+
 .quotes{
     color: white;
     position: relative;
@@ -52,8 +94,8 @@ body {
     background: #FF416C;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 25%, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 25%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
 }
 
 .quotesPusher{

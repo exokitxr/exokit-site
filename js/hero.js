@@ -25,7 +25,7 @@ function init() {
   scene.matrixAutoUpdate = false;
   // scene.background = new THREE.Color(0x3B3961);
 
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
   camera.position.set(0, 1.5, 3);
   // camera.lookAt(new THREE.Vector3());
   scene.add(camera);
@@ -442,6 +442,9 @@ function init() {
   });
   window.addEventListener('resize', e => {
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
   });
 
   focused = true;

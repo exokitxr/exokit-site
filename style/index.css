@@ -68,6 +68,25 @@ body {
     left: 0;
 }
 
+.madeWithExokit{
+    position: relative;
+    min-height: 85vh
+}
+
+.madeWithExokitPusher{
+    margin-top: 50px;
+}
+
+.madeWithExokitMainImg{
+    max-height: 80vh;
+    width: auto;
+}
+
+.madeWithExokitSubImg{
+    max-height: 20vh;
+    width: auto;
+}
+
 .quotes{
     color: white;
     position: relative;

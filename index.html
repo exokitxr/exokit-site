@@ -1,30 +1,46 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="style/index.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <title>Exokit</title>
+  <link rel="icon" href="media/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style/index.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Exokit</a>
+<nav class="navbar navbar-expand-lg navbar-light pr-5 pl-5">
+  <a class="navbar-brand" href="#"><span>Exokit</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Docs</a>
-      <a class="nav-item nav-link disabled" href="#">Blog</a>
-      <a class="nav-item nav-link disabled" href="#">Contact</a>
+      <a class="nav-item nav-link active pr-4 pl-4" href="#"><h5 class="font-weight-normal">Features</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="#"><h5 class="font-weight-normal">Docs</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="#"><h5 class="font-weight-normal">Blog</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="#"><h5 class="font-weight-normal">Contact</h2></a>
     </div>
   </div>
 </nav>
 </header>
+
 <canvas id=canvas></canvas>
+
 <script src="js/three.min.js"></script>
 <script src="js/skin.js"></script>
 <script src="js/hero.js"></script>
+
+<div id="overlay">
+    <h1>Ship XR Once,</h1>
+    <h1>Everywhere.</h1>
+    <h3 class="font-weight-light">The webXR engine you want today, with the features of tomorrow.</h1>
+    <div id=heroPusher></div>
+    <h4>Download now</h4>
+    <i class="fab fa-apple fa-2x p-2"></i>
+    <i class="fab fa-windows fa-2x p-2"></i>
+    <i class="fab fa-linux fa-2x p-2"></i>
+</div>
 
 <div class="row whatIsExokit">
   <div class="col-12 text-center whatIsExokitPusher">
@@ -84,66 +100,67 @@
   </div>
 </div>
 
-<div class="row quotes">
-  <div class="col-12 quotesPusher">
+<div class="row quotes pb-5">
+  <div class="col-12 quotesPusher pl-5 pb-5">
     <h1>Chatter #exokit</h1>
+    <h4 class="font-weight-light">What are people saying about Exokit?</h5>
   </div>
   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-2 pb-2">
-      <div class="card">
-        <div class="card-body">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+        <div class="card-body shadow">
           <div class="row">
-            <div class="col-4">
+            <div class="col-4 align-self-center">
               <img class="quotesPic" src="media/sjw.jpg"></img>
             </div>
             <div class="col-8">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text font-weight-light">Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit</p>
+              <small class="font-weight-normal">- Milo Dianosuraus Rex</small>
               </div>
             </div>
           </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-2 pb-2">
-      <div class="card">
-          <div class="card-body">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+          <div class="card-body shadow">
             <div class="row">
-              <div class="col-4">
+              <div class="col-4 align-self-center">
                 <img class="quotesPic" src="media/kylie.jpg"></img>
               </div>
               <div class="col-8">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text font-weight-light">hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit</p>
+                <small class="font-weight-normal">- Kiley Jenner</small>
                 </div>
               </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-2 pb-2">
-      <div class="card">
-          <div class="card-body">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+          <div class="card-body shadow">
             <div class="row">
-              <div class="col-4">
+              <div class="col-4 align-self-center">
                 <img class="quotesPic" src="media/dude.jpg"></img>
               </div>
               <div class="col-8">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text font-weight-light">Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit</p>
+                <small class="font-weight-normal">- Steve Harley</small>
                 </div>
               </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-2 pb-2">
-      <div class="card">
-          <div class="card-body">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+          <div class="card-body shadow">
             <div class="row">
-              <div class="col-4">
+              <div class="col-4 align-self-center">
                 <img class="quotesPic" src="media/obama.jpg"></img>
               </div>
               <div class="col-8">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text font-weight-light">During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome.</p>
+                <small class="font-weight-normal">- Barrack Obama</small>
                 </div>
               </div>
             </div>

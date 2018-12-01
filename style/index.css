@@ -33,6 +33,7 @@ body {
 
 .navbar-brand {
   font-family: Bison;
+  font-size: 40px;
 }
 
 .navbar-nav {
@@ -45,6 +46,20 @@ body {
     height: 50vh;
 }
 
+#overlay {
+    position: absolute;
+    margin-top: 30vh;
+    margin-left: 50px;
+    width: 30vw; 
+    height: 100%;
+    top: 0; 
+    z-index: 1000;
+}
+
+#heroPusher{
+    margin-bottom: 180px;
+}
+
 .whatIsExokit{
     color: white;
     position: relative;
@@ -52,7 +67,7 @@ body {
     background: #16BFFD;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
 }
 
@@ -112,6 +127,12 @@ body {
     color: black;
 }
 
+.shadow {
+    -moz-box-shadow:    100px 100px 100px 100px #ccc;
+    -webkit-box-shadow: 100px 100px 100px 100px #ccc;
+    box-shadow:         100px 100px 100px 100px #ccc;
+  }
+
 .getStarted{
     position: relative;
     min-height: 60vh;
@@ -132,4 +153,14 @@ body {
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+@media only screen and (max-width: 600px) {
+    #overlay {
+        width: 80vw;
+    }
+    #heroPusher{
+        margin-bottom: 100px;
+    }
 }

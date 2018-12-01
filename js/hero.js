@@ -428,6 +428,33 @@ function init() {
   })();
   container.add(tabMesh2);
 
+  const assetsMesh = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(3, 3);
+    const texture = new THREE.Texture();
+    new Promise((accept, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.src = 'assets/Group 57@2x.png';
+      img.onload = () => {
+        accept(img);
+      };
+      img.onerror = err => {
+        reject(err);
+      };
+    })
+      .then(img => {
+        texture.image = img;
+        texture.needsUpdate = true;
+      });
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(-1, 1, -2);
+    return mesh;
+  })();
+  container.add(assetsMesh);
+
   scene.add(container);
 
   window.addEventListener('mousemove', e => {

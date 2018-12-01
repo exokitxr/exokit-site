@@ -113,6 +113,12 @@ body {
     color: black;
 }
 
+.shadow {
+    -moz-box-shadow:    100px 100px 100px 100px #ccc;
+    -webkit-box-shadow: 100px 100px 100px 100px #ccc;
+    box-shadow:         100px 100px 100px 100px #ccc;
+  }
+
 .getStarted{
     position: relative;
     min-height: 60vh;

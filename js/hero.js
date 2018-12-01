@@ -1,3 +1,12 @@
+const SCENES = {
+  desktop: {
+    camera: new THREE.Vector3(-1.5, 1, 2),
+  },
+  mobile: {
+    camera: new THREE.Vector3(0, 1.7, 1.5),
+  },
+};
+
 let renderer, scene, camera, iframe, container;
 
 const localVector = new THREE.Vector3();
@@ -27,9 +36,17 @@ function init() {
   // scene.background = new THREE.Color(0x3B3961);
 
   camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.set(-1.5, 1, 2);
   // camera.lookAt(new THREE.Vector3());
   scene.add(camera);
+
+  const _setCamera = () => {
+    const SCENE = SCENES[window.innerWidth >= 800 ? 'desktop' : 'mobile'];
+    camera.position.copy(SCENE.camera);
+
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+  };
+  _setCamera();
 
   const ambientLight = new THREE.AmbientLight(0x808080);
   scene.add(ambientLight);
@@ -492,8 +509,7 @@ function init() {
   window.addEventListener('resize', e => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
+    _setCamera();
   });
 
   focused = true;

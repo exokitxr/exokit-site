@@ -3,7 +3,7 @@ const SCENES = {
     camera: new THREE.Vector3(-1.5, 1, 2),
   },
   mobile: {
-    camera: new THREE.Vector3(0, 1.7, 1.5),
+    camera: new THREE.Vector3(0, 1.8, 2),
   },
 };
 

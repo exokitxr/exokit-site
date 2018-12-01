@@ -374,7 +374,7 @@ function init() {
       canvas.height = 1024 * 0.2;
       // canvas.style.backgroundColor = 'red';
       const ctx = canvas.getContext('2d');
-      ctx.font = '140px Segoe UI';
+      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
       ctx.fillText('http://A-Frame', 0, 150);
       // window.document.body.appendChild(canvas);
       const texture = new THREE.Texture(canvas);
@@ -413,7 +413,7 @@ function init() {
       canvas.height = 1024 * 0.2;
       // canvas.style.backgroundColor = 'red';
       const ctx = canvas.getContext('2d');
-      ctx.font = '140px Segoe UI';
+      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
       ctx.fillText('http://Babylon.js', 0, 150);
       // window.document.body.appendChild(canvas);
       const texture = new THREE.Texture(canvas);

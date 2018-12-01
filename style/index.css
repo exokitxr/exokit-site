@@ -33,6 +33,7 @@ body {
 
 .navbar-brand {
   font-family: Bison;
+  font-size: 40px;
 }
 
 .navbar-nav {
@@ -52,7 +53,7 @@ body {
     background: #16BFFD;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
 }
 

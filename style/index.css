@@ -26,10 +26,6 @@ body {
   font-family: Bozon;
 }
 
-.overLayText{
-    z-index: 1010;
-}
-
 .row, .col {
     margin: 0;
     padding: 0;
@@ -72,6 +68,7 @@ body {
 .whatIsExokit{
     color: white;
     position: relative;
+    margin-top: -80px;
     min-height: 100vh;
     background: #16BFFD;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
@@ -168,14 +165,18 @@ body {
 @media only screen and (max-width: 800px) {
     #overlay {
         width: 80vw;
+        margin-top: 15vh;
     }
     #heroPusher{
-        margin-bottom: 100px;
+        margin-bottom: 40px;
+    }
+    #canvas{
+        margin-top:12vh
     }
 }
 
 @media only screen and (max-height: 700px) {
     #heroPusher{
-        margin-bottom: 70px;
+        margin-bottom: 40px;
     }
 }

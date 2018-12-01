@@ -26,6 +26,10 @@ body {
   font-family: Bozon;
 }
 
+.overLayText{
+    z-index: 1010;
+}
+
 .row, .col {
     margin: 0;
     padding: 0;
@@ -67,19 +71,19 @@ body {
     background: #16BFFD;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 84%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 85%, 0 100%);
 }
 
 .whatIsExokitPusher{
-    margin-top: 200px;
+    margin-top: 130px;
 }
 
 .whatIsExokitImg{
-    height: 600px;
+    height: 80%;
     width: auto;
     position: absolute;
-    bottom: 0;
+    bottom: -20;
     left: 0;
 }
 
@@ -135,15 +139,15 @@ body {
 
 .getStarted{
     position: relative;
-    min-height: 60vh;
+    height: 60vh;
+    min-height: 600px;
     background-image: url('../media/getStarted.png');
     background-size: contain;
 }
 
 .verticalLine {
-    border-left: thin solid black;
+    border-left: thin solid rgba(0, 0, 0, 0.685);
     height: 80px;
-    margin-bottom: -300px;
   }
 
 .footer{
@@ -156,11 +160,17 @@ body {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     #overlay {
         width: 80vw;
     }
     #heroPusher{
         margin-bottom: 100px;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    #heroPusher{
+        margin-bottom: 70px;
     }
 }

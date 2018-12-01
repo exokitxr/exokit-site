@@ -17,6 +17,7 @@ function init() {
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.sortObjects = false;
 
   // window.browser.magicleap.RequestDepthPopulation(true);
   // renderer.autoClear = false;
@@ -26,7 +27,7 @@ function init() {
   // scene.background = new THREE.Color(0x3B3961);
 
   camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 1.5, 3);
+  camera.position.set(-1.5, 1, 2);
   // camera.lookAt(new THREE.Vector3());
   scene.add(camera);
 
@@ -381,6 +382,9 @@ function init() {
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
+        transparent: true,
+        alphaTest: 0.5,
+        // depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.y = 0.7;
@@ -417,6 +421,9 @@ function init() {
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
+        transparent: true,
+        alphaTest: 0.5,
+        // depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.y = 0.7;
@@ -428,6 +435,48 @@ function init() {
   })();
   container.add(tabMesh2);
 
+  const assetsMesh = (() => {
+    const object = new THREE.Object3D();
+
+    [
+      {size: new THREE.Vector2(3, 3), position: new THREE.Vector3(0, 1, -2), src: 'assets/Group 57@2x.png'},
+      {size: new THREE.Vector2(5, 5), position: new THREE.Vector3(0, 1, -3), src: 'assets/Group 19@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
+      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
+    ].forEach(({size, position, src}) => {
+      const geometry = new THREE.PlaneBufferGeometry(size.x, size.y);
+      const texture = new THREE.Texture();
+      new Promise((accept, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.src = src;
+        img.onload = () => {
+          accept(img);
+        };
+        img.onerror = err => {
+          reject(err);
+        };
+      })
+        .then(img => {
+          texture.image = img;
+          texture.needsUpdate = true;
+        });
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        transparent: true,
+        alphaTest: 0.5,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.copy(position);
+      object.add(mesh);
+    });
+
+    return object;
+  })();
+  container.add(assetsMesh);
+
   scene.add(container);
 
   window.addEventListener('mousemove', e => {
@@ -436,7 +485,7 @@ function init() {
 
     container.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
-      new THREE.Vector3(-(mouse.x-0.5)*1, (mouse.y-0.5)*1, -1).normalize()
+      new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
     );
     _updateSkin();
   });

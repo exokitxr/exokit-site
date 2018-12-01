@@ -1,13 +1,41 @@
-html{
- overflow-x: hidden
+@font-face {
+  font-family: 'Bison';
+  src: url('../fonts/Bison-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bozon';
+  src: url('../fonts/ROHH - Bozon Regular.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Bozon';
+  src: url('../fonts/ROHH - Bozon Bold.otf') format('opentype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Bozon';
+  src: url('../fonts/ROHH - Bozon Light.otf') format('opentype');
+  font-weight: 300;
 }
 
-.row, .col{
+html {
+  overflow-x: hidden
+}
+
+body {
+  font-family: Bozon;
+}
+
+.row, .col {
     margin: 0;
     padding: 0;
 }
 
-.navbar-nav{
+.navbar-brand {
+  font-family: Bison;
+}
+
+.navbar-nav {
     margin-left: auto;
 }
 

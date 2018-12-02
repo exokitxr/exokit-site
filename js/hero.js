@@ -114,21 +114,23 @@ function init() {
   })();
   container.add(avatarMesh);
 
-  const tgaLoader = new THREE.TGALoader();
+  /* const tgaLoader = new THREE.TGALoader();
   tgaLoader.load = (load => function(u) {
     u = 'models/' + u;
     return load.apply(this, arguments);
   })(tgaLoader.load);
-  THREE.Loader.Handlers.add(/\.tga$/, tgaLoader);
+  THREE.Loader.Handlers.add(/\.tga$/, tgaLoader); */
   engineMesh = (() => {
     const object = new THREE.Object3D();
     object.basePosition = new THREE.Vector3(-1, 0, -1);
     object.nextUpdateTime = 0;
     object.exobotMeshes = [];
 
-    const loader = new THREE.FBXLoader();
+    const loader = new THREE.ColladaLoader();
     // loader.setResourcePath('/models/');
-    loader.load('models/car_engine.fbx', o => {
+    loader.load('models/car_engine.dae', o => {
+      o = o.scene;
+
       o.position.set(0, -0.2, 0);
       o.scale.set(0.2, 0.2, 0.2);
       object.add(o);

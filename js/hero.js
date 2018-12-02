@@ -1,4 +1,4 @@
-let renderer, scene, camera, iframe, container, engineMesh;
+let renderer, scene, camera, iframe, container, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -549,10 +549,10 @@ function init() {
     [
       {size: new THREE.Vector2(3, 3), position: new THREE.Vector3(0, 1, -2), src: 'assets/Group 57@2x.png'},
       {size: new THREE.Vector2(5, 5), position: new THREE.Vector3(0, 1, -3), src: 'assets/Group 19@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
       {size: new THREE.Vector2(1, 1), position: new THREE.Vector3(1, 2, -2.5), src: 'assets/Group 174@2x.png'},
     ].forEach(({size, position, src}) => {
       const geometry = new THREE.PlaneBufferGeometry(size.x, size.y);
@@ -588,8 +588,18 @@ function init() {
   })();
   container.add(assetsMesh);
 
+  meteorMesher = new THREE.Object3D();
+  meteorMesher.nextUpdateTime = 0;
+  meteorMesher.meteorMeshes = [];
+  container.add(meteorMesher);
+
   scene.add(container);
 
+  window.addEventListener('scroll', () => {
+    const factor = window.scrollY / window.innerHeight;
+    console.log('scroll', factor);
+    renderer.domElement.style.transform = `scale(${1 + factor})`;
+  });
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -636,6 +646,51 @@ const _makeExobotMesh = (() => {
   });
   return () => new THREE.Mesh(geometry, material);
 })();
+const _makeMeteorMaterial = src => {
+  const texture = new THREE.Texture();
+  new Promise((accept, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = src;
+    img.onload = () => {
+      accept(img);
+    };
+    img.onerror = err => {
+      reject(err);
+    };
+  })
+    .then(img => {
+      texture.image = img;
+      texture.needsUpdate = true;
+    });
+  const material = new THREE.MeshBasicMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+    transparent: true,
+    alphaTest: 0.5,
+  });
+  return material;
+};
+const METEORS = [
+  {geometry: new THREE.PlaneBufferGeometry(0.6, 0.6), material: _makeMeteorMaterial('assets/Group 17@2x.png')},
+  {geometry: new THREE.PlaneBufferGeometry(0.6, 0.6), material: _makeMeteorMaterial('assets/Group 31@2x.png')},
+];
+const _makeMeteorMesh = () => {
+  const {geometry, material} = METEORS[Math.floor(Math.random() * METEORS.length)];
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(10 - 1, 10 + (Math.random()-0.5)*3, -1 + (Math.random()-0.5)*1);
+  mesh.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    new THREE.Vector3((Math.random()-0.5)*0.2, 1, 0).normalize()
+  );
+  const scale = 0.5 + Math.random();
+  mesh.scale.set(scale, scale, scale);
+  mesh.speed = 0.3 + Math.random()*0.3;
+  // mesh.castShadow = true;
+
+  return mesh;
+};
 let lastUpdateTime = Date.now();
 let lastRattleTime = Date.now();
 let lastRattleDirection = false;
@@ -686,6 +741,27 @@ function animate() {
       return true;
     } else {
       engineMesh.remove(exobotMesh);
+      return false;
+    }
+  });
+
+  if (now > meteorMesher.nextUpdateTime) {
+    const meteorMesh = _makeMeteorMesh();
+    meteorMesher.add(meteorMesh);
+    meteorMesher.meteorMeshes.push(meteorMesh);
+
+    meteorMesher.nextUpdateTime = now + 0.3*1000;
+  }
+  meteorMesher.meteorMeshes = meteorMesher.meteorMeshes.filter(meteorMesh => {
+    meteorMesh.position.add(localVector.set(
+      1,
+      1,
+      0
+    ).multiplyScalar(-0.005 * timeDiff * meteorMesh.speed).applyQuaternion(meteorMesh.quaternion));
+    if (meteorMesh.position.y > -1/2) {
+      return true;
+    } else {
+      meteorMesher.remove(meteorMesh);
       return false;
     }
   });

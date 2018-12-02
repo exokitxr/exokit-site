@@ -80,17 +80,16 @@ THREE.Reflector = function ( geometry, options ) {
 
 		rotationMatrix.extractRotation( scope.matrixWorld );
 
-		normal.set( 0, 0, 1 );
+		normal.set( 0, 0, -1 );
 		normal.applyMatrix4( rotationMatrix );
 
 		view.subVectors( reflectorWorldPosition, cameraWorldPosition );
 
 		// Avoid rendering when reflector is facing away
 
-		if ( view.dot( normal ) > 0 ) return;
+		if ( view.dot( normal ) < 0 ) return;
 
-		view.reflect( normal ).negate();
-		view.add( reflectorWorldPosition );
+		view.copy(cameraWorldPosition);
 
 		rotationMatrix.extractRotation( camera.matrixWorld );
 

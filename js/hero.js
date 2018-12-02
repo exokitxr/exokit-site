@@ -97,6 +97,7 @@ function init() {
     const mesh = skin({
       limbs: true,
     });
+    mesh.position.y += 0.18;
     mesh.castShadow = true;
     /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(

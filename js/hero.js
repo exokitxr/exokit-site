@@ -18,6 +18,8 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.sortObjects = false;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
 
   // window.browser.magicleap.RequestDepthPopulation(true);
   // renderer.autoClear = false;
@@ -47,14 +49,47 @@ function init() {
   };
   _setCamera();
 
+  container = new THREE.Object3D();
+
   const ambientLight = new THREE.AmbientLight(0x808080);
   scene.add(ambientLight);
 
-  const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-  directionalLight.position.set(1, 1, 1);
-  scene.add(directionalLight);
+  {
+    const SHADOW_MAP_WIDTH = 1024;
+    const SHADOW_MAP_HEIGHT = 1024;
 
-  container = new THREE.Object3D();
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
+    directionalLight.position.set(-3, 3, 1);
+    directionalLight.target.position.set(0, 0, 0);
+
+    directionalLight.castShadow = true;
+
+    directionalLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 50, 1, 0.1, 1000 ) );
+    directionalLight.shadow.bias = 0.0001;
+
+    directionalLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
+    directionalLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+
+    container.add(directionalLight);
+  }
+
+  const groundMesh = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(100, 100);
+    const material = new THREE.MeshPhongMaterial({
+      color: 0xCCCCCC,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+
+    // mesh.position.set(0, 0, 0);
+    mesh.rotation.x = -Math.PI/2;
+    // mesh.scale.set( 100, 100, 100 );
+
+    // mesh.castShadow = false;
+    mesh.receiveShadow = true;
+
+    return mesh;
+  })();
+  container.add(groundMesh);
 
   const avatarMesh = (() => {
     const DEFAULT_SKIN_URL = 'img/skin.png';
@@ -62,6 +97,7 @@ function init() {
     const mesh = skin({
       limbs: true,
     });
+    // mesh.castShadow = true;
     /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
         new THREE.Vector3(0, 0, -1).normalize(),
@@ -123,6 +159,9 @@ function init() {
     const loader = new THREE.ColladaLoader();
     loader.load('models/car_engine.dae', o => {
       o = o.scene;
+      o.traverse(e => {
+        e.castShadow = true;
+      });
 
       o.position.set(0, -0.2, 0);
       o.scale.set(0.2, 0.2, 0.2);

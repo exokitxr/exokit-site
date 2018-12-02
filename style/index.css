@@ -26,6 +26,7 @@ body {
   font-family: Bozon;
   -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden
 }
 
 .row, .col {
@@ -84,8 +85,8 @@ body {
 }
 
 .whatIsExokitImg{
-    height: 80%;
-    width: auto;
+    height: auto;
+    width: 50%;
     position: absolute;
     bottom: -20;
     left: 0;
@@ -183,12 +184,16 @@ body {
         margin-bottom: 40px;
     }
     #canvas{
-        margin-top:12vh
+        margin-top: 18vh;
+    }
+    .whatIsExokitImg{
+        width: auto;
+        height: 300px;
     }
 }
 
 @media only screen and (max-height: 700px) {
     #heroPusher{
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 }

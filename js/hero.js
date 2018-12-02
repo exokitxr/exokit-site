@@ -1,13 +1,4 @@
-const SCENES = {
-  desktop: {
-    camera: new THREE.Vector3(-1.5, 1, 2),
-  },
-  mobile: {
-    camera: new THREE.Vector3(0, 1.8, 2),
-  },
-};
-
-let renderer, scene, camera, iframe, container;
+let renderer, scene, camera, iframe, container, engineMesh;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -39,6 +30,14 @@ function init() {
   // camera.lookAt(new THREE.Vector3());
   scene.add(camera);
 
+  const SCENES = {
+    desktop: {
+      camera: new THREE.Vector3(-1.5, 1, 2),
+    },
+    mobile: {
+      camera: new THREE.Vector3(0, 1.8, 2),
+    },
+  };
   const _setCamera = () => {
     const SCENE = SCENES[window.innerWidth >= 800 ? 'desktop' : 'mobile'];
     camera.position.copy(SCENE.camera);
@@ -114,6 +113,27 @@ function init() {
     return mesh;
   })();
   container.add(avatarMesh);
+
+  const tgaLoader = new THREE.TGALoader();
+  tgaLoader.load = (load => function(u) {
+    u = 'models/' + u;
+    return load.apply(this, arguments);
+  })(tgaLoader.load);
+  THREE.Loader.Handlers.add(/\.tga$/, tgaLoader);
+  engineMesh = (() => {
+    const object = new THREE.Object3D();
+    object.basePosition = new THREE.Vector3(-1, 0, -1);
+
+    const loader = new THREE.FBXLoader();
+    // loader.setResourcePath('/models/');
+    loader.load('models/car_engine.fbx', o => {
+      o.scale.set(0.2, 0.2, 0.2);
+      object.add(o);
+    });
+
+    return object;
+  })();
+  container.add(engineMesh);
 
   const mouse = {
     x: 0,
@@ -519,6 +539,13 @@ init();
 
 // let direction = true;
 function animate() {
+  engineMesh.position
+    .copy(engineMesh.basePosition)
+    .add(localVector.set(
+      Math.random() * 0.01,
+      Math.random() * 0.01,
+      Math.random() * 0.01
+    ));
   // container.rotation.y += 0.03;
   /* if (direction) {
     planeMesh.rotation.y += 0.001;

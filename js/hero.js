@@ -174,8 +174,8 @@ function init() {
   container.add(engineMesh);
 
   const mouse = {
-    x: 0,
-    y: 0,
+    x: 0.5,
+    y: 0.5,
   };
   const _applyUniformRotation = (r, t) => {
     t.x = r.x;

@@ -13,6 +13,7 @@ THREE.Reflector = function ( geometry, options ) {
 	options = options || {};
 
 	var color = ( options.color !== undefined ) ? new THREE.Color( options.color ) : new THREE.Color( 0x7F7F7F );
+	var addColor = ( options.addColor !== undefined ) ? new THREE.Color( options.addColor ) : new THREE.Color( 0x000000 );
 	var textureWidth = options.textureWidth || 512;
 	var textureHeight = options.textureHeight || 512;
 	var clipBias = options.clipBias || 0;
@@ -60,6 +61,7 @@ THREE.Reflector = function ( geometry, options ) {
 
 	material.uniforms.tDiffuse.value = renderTarget.texture;
 	material.uniforms.color.value = color;
+	material.uniforms.addColor.value = addColor;
 	material.uniforms.textureMatrix.value = textureMatrix;
 
 	this.material = material;
@@ -209,6 +211,11 @@ THREE.Reflector.ReflectorShader = {
 			value: null
 		},
 
+		'addColor': {
+			type: 'c',
+			value: null
+		},
+
 		'tDiffuse': {
 			type: 't',
 			value: null
@@ -236,6 +243,7 @@ THREE.Reflector.ReflectorShader = {
 
 	fragmentShader: [
 		'uniform vec3 color;',
+		'uniform vec3 addColor;',
 		'uniform sampler2D tDiffuse;',
 		'varying vec4 vUv;',
 
@@ -254,7 +262,9 @@ THREE.Reflector.ReflectorShader = {
 		'void main() {',
 
 		'	vec4 base = texture2DProj( tDiffuse, vUv );',
-		'	gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );',
+		'	vec3 addColorC;',
+		'	if (base.r > 0.1 || base.g > 0.1 || base.b > 0.1) {addColorC = addColor;} else {addColorC = vec3(0.0);}',
+		'	gl_FragColor = vec4( blendOverlay( base.rgb, color ) + addColorC, 1.0 );',
 
 		'}'
 	].join( '\n' )

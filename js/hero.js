@@ -597,7 +597,6 @@ function init() {
 
   window.addEventListener('scroll', () => {
     const factor = window.scrollY / window.innerHeight;
-    console.log('scroll', factor);
     renderer.domElement.style.transform = `scale(${1 + factor})`;
   });
   window.addEventListener('mousemove', e => {

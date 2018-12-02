@@ -1,12 +1,3 @@
-const SCENES = {
-  desktop: {
-    camera: new THREE.Vector3(-1.5, 1, 2),
-  },
-  mobile: {
-    camera: new THREE.Vector3(0, 1.8, 2),
-  },
-};
-
 let renderer, scene, camera, iframe, container;
 
 const localVector = new THREE.Vector3();
@@ -39,6 +30,14 @@ function init() {
   // camera.lookAt(new THREE.Vector3());
   scene.add(camera);
 
+  const SCENES = {
+    desktop: {
+      camera: new THREE.Vector3(-1.5, 1, 2),
+    },
+    mobile: {
+      camera: new THREE.Vector3(0, 1.8, 2),
+    },
+  };
   const _setCamera = () => {
     const SCENE = SCENES[window.innerWidth >= 800 ? 'desktop' : 'mobile'];
     camera.position.copy(SCENE.camera);

@@ -114,12 +114,6 @@ function init() {
   })();
   container.add(avatarMesh);
 
-  /* const tgaLoader = new THREE.TGALoader();
-  tgaLoader.load = (load => function(u) {
-    u = 'models/' + u;
-    return load.apply(this, arguments);
-  })(tgaLoader.load);
-  THREE.Loader.Handlers.add(/\.tga$/, tgaLoader); */
   engineMesh = (() => {
     const object = new THREE.Object3D();
     object.basePosition = new THREE.Vector3(-1, 0, -1);
@@ -127,7 +121,6 @@ function init() {
     object.exobotMeshes = [];
 
     const loader = new THREE.ColladaLoader();
-    // loader.setResourcePath('/models/');
     loader.load('models/car_engine.dae', o => {
       o = o.scene;
 

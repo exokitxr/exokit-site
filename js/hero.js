@@ -26,7 +26,7 @@ function init() {
 
   scene = new THREE.Scene();
   scene.matrixAutoUpdate = false;
-  // scene.background = new THREE.Color(0x3B3961);
+  // scene.background = new THREE.Color(0xFFFFFF);
 
   camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
   // camera.lookAt(new THREE.Vector3());
@@ -97,7 +97,7 @@ function init() {
     const mesh = skin({
       limbs: true,
     });
-    // mesh.castShadow = true;
+    mesh.castShadow = true;
     /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
         new THREE.Vector3(0, 0, -1).normalize(),
@@ -458,7 +458,6 @@ function init() {
         side: THREE.DoubleSide,
         transparent: true,
         alphaTest: 0.5,
-        // depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.y = 0.7;
@@ -469,6 +468,28 @@ function init() {
     return mesh;
   })();
   container.add(tabMesh1);
+
+  const innerMesh = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(1, 1);
+    const mesh = new THREE.Reflector(geometry, {
+      clipBias: 0.003,
+      textureWidth: 1024 * window.devicePixelRatio,
+      textureHeight: 1024 * window.devicePixelRatio,
+      color: 0x889999,
+      addColor: 0x300000,
+      recursion: 1
+    });
+    // mesh.position.set(-1, 1.5, -2.1);
+    mesh.position.set(-1, 1.5, -1.5 - 0.4/2);
+    /* mesh.rotation.order = 'YXZ';
+    mesh.rotation.y = Math.PI; */
+    /* const material = new THREE.MeshBasicMaterial({
+      color: 0xFF0000,
+    });
+    const mesh = new THREE.Mesh(geometry, material); */
+    return mesh;
+  })();
+  container.add(innerMesh);
 
   const tabMesh2 = (() => {
     const material = new THREE.MeshBasicMaterial({
@@ -494,7 +515,6 @@ function init() {
       texture.needsUpdate = true;
       const material = new THREE.MeshBasicMaterial({
         map: texture,
-        side: THREE.DoubleSide,
         transparent: true,
         alphaTest: 0.5,
         // depthWrite: false,
@@ -539,11 +559,13 @@ function init() {
         });
       const material = new THREE.MeshBasicMaterial({
         map: texture,
+        side: THREE.DoubleSide,
         transparent: true,
         alphaTest: 0.5,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.copy(position);
+      // mesh.castShadow = true;
       object.add(mesh);
     });
 

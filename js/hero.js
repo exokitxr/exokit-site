@@ -65,7 +65,7 @@ function init() {
     directionalLight.castShadow = true;
 
     directionalLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 50, 1, 0.1, 1000 ) );
-    directionalLight.shadow.bias = 0.0001;
+    // directionalLight.shadow.bias = 0.0001;
 
     directionalLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     directionalLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;

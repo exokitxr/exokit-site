@@ -17,16 +17,16 @@
   </asset>
   <library_images>
     <image id="file2-image" name="file2">
-      <init_from>file://Y:/projects/new_renders/car_engine/textures/belt_color.tga</init_from>
+      <init_from>belt_color.jpg</init_from>
     </image>
     <image id="file4-image" name="file4">
-      <init_from>file://Y:/projects/new_renders/car_engine/textures/belt_specular.tga</init_from>
+      <init_from>belt_specular.jpg</init_from>
     </image>
     <image id="file6-image" name="file6">
-      <init_from>file://Y:/projects/new_renders/car_engine/textures/engine_color.tga</init_from>
+      <init_from>engine_color.jpg</init_from>
     </image>
     <image id="file9-image" name="file9">
-      <init_from>file://Y:/projects/new_renders/car_engine/textures/engine_specular.tga</init_from>
+      <init_from>engine_specular.jpg</init_from>
     </image>
   </library_images>
   <library_materials>

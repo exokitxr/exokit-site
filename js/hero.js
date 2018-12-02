@@ -123,10 +123,13 @@ function init() {
   engineMesh = (() => {
     const object = new THREE.Object3D();
     object.basePosition = new THREE.Vector3(-1, 0, -1);
+    object.nextUpdateTime = 0;
+    object.exobotMeshes = [];
 
     const loader = new THREE.FBXLoader();
     // loader.setResourcePath('/models/');
     loader.load('models/car_engine.fbx', o => {
+      o.position.set(0, -0.2, 0);
       o.scale.set(0.2, 0.2, 0.2);
       object.add(o);
     });
@@ -537,30 +540,87 @@ function init() {
 
 init();
 
-// let direction = true;
+const _makeExobotMesh = (() => {
+  const geometry = new THREE.PlaneBufferGeometry(0.3, 0.3);
+  const texture = new THREE.Texture();
+  new Promise((accept, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = 'media/logo.png';
+    img.onload = () => {
+      accept(img);
+    };
+    img.onerror = err => {
+      reject(err);
+    };
+  })
+    .then(img => {
+      texture.image = img;
+      texture.needsUpdate = true;
+    });
+  const material = new THREE.MeshBasicMaterial({
+    map: texture,
+    tranansparent: true,
+    alphaTest: 0.9,
+  });
+  return () => new THREE.Mesh(geometry, material);
+})();
+let lastUpdateTime = Date.now();
+let lastRattleTime = Date.now();
+let lastRattleDirection = false;
 function animate() {
-  engineMesh.position
-    .copy(engineMesh.basePosition)
-    .add(localVector.set(
-      Math.random() * 0.01,
-      Math.random() * 0.01,
-      Math.random() * 0.01
-    ));
-  // container.rotation.y += 0.03;
-  /* if (direction) {
-    planeMesh.rotation.y += 0.001;
+  const now = Date.now();
+  const timeDiff = now - lastUpdateTime;
 
-    if (planeMesh.rotation.y >= Math.PI/8) {
-      direction = false;
+  {
+    const rattleTimeDiff = now - lastRattleTime;
+    if (rattleTimeDiff > 40) {
+      engineMesh.position
+        .copy(engineMesh.basePosition)
+        .add(localVector.set(
+          0.004 * (lastRattleDirection ? 1 : -1),
+          0,//Math.random() * 0.015,
+          0//Math.random() * 0.01,
+        ));
+      lastRattleTime = now;
+      lastRattleDirection = !lastRattleDirection;
     }
-  } else {
-    planeMesh.rotation.y -= 0.001;
+  }
 
-    if (planeMesh.rotation.y <= -Math.PI/8) {
-      direction = true;
+  if (now > engineMesh.nextUpdateTime) {
+    const exobotMesh = _makeExobotMesh();
+    exobotMesh.quaternion.setFromUnitVectors(
+      localVector.set(0, 1, 0),
+      localVector2.set((Math.random()-0.5), 1, (Math.random()-0.5)*2).normalize()
+    );
+    const baseScale = 0.5 + Math.random();
+    exobotMesh.baseScale = baseScale;
+    exobotMesh.scale.set(baseScale, baseScale, baseScale);
+    exobotMesh.startTime = now;
+    exobotMesh.endTime = exobotMesh.startTime + 3000;
+    engineMesh.add(exobotMesh);
+    engineMesh.exobotMeshes.push(exobotMesh);
+
+    engineMesh.nextUpdateTime = now + (0.2 + Math.random()*0.5)*1000;
+  }
+  engineMesh.exobotMeshes = engineMesh.exobotMeshes.filter(exobotMesh => {
+    if (now < exobotMesh.endTime) {
+      exobotMesh.position.add(localVector.set(
+        0,
+        0.0008 * timeDiff,
+        0
+      ).applyQuaternion(exobotMesh.quaternion));
+      const scale = exobotMesh.baseScale * (1 - (now - exobotMesh.startTime) / (exobotMesh.endTime - exobotMesh.startTime));
+      exobotMesh.scale.set(scale, scale, scale);
+      return true;
+    } else {
+      engineMesh.remove(exobotMesh);
+      return false;
     }
-  } */
+  });
 
   renderer.render(scene, camera);
+
+  lastUpdateTime = now;
 }
 renderer.setAnimationLoop(animate);

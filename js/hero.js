@@ -438,7 +438,7 @@ function init() {
       color: 0x000000,
       // wireframe: true,
     });
-    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0.4)), material);
+    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
     mesh.position.set(-1, 1.5, -1.5);
 
     const labelMesh = (() => {
@@ -480,7 +480,7 @@ function init() {
       recursion: 1
     });
     // mesh.position.set(-1, 1.5, -2.1);
-    mesh.position.set(-1, 1.5, -1.5 - 0.4/2);
+    mesh.position.set(-1, 1.5, -1.5);
     /* mesh.rotation.order = 'YXZ';
     mesh.rotation.y = Math.PI; */
     /* const material = new THREE.MeshBasicMaterial({

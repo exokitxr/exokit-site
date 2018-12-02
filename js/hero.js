@@ -197,17 +197,30 @@ function init() {
         .setFromUnitVectors(
           new THREE.Vector3(0, -1, 0),
           new THREE.Vector3(0.5 - (mouse.x-0.5)*2, 1 - (mouse.y-0.5)*2, 2).normalize()
+        ).premultiply(
+          new THREE.Quaternion()
+            .setFromUnitVectors(
+              new THREE.Vector3(0, 0, -1),
+              new THREE.Vector3(1, 0, 0)
+            )
         ),
         avatarMesh.material.uniforms.leftArmRotation.value
     );
     _applyUniformRotation(
       new THREE.Quaternion()
         .setFromUnitVectors(
-          new THREE.Vector3(0, 0, -1),
-          new THREE.Vector3(-(mouse.x-0.5)*2, -(mouse.y-0.5)*2, -1).normalize()
+          new THREE.Vector3(-1, 0, 0),
+          new THREE.Vector3((mouse.x-0.5)*2, 0.5-(mouse.y-0.5)*2, -2).normalize()
+        ).premultiply(
+          new THREE.Quaternion()
+            .setFromUnitVectors(
+              new THREE.Vector3(0, 0, -1),
+              new THREE.Vector3(-1, 0, 0)
+            )
         ),
         avatarMesh.material.uniforms.rightArmRotation.value
     );
+    avatarMesh.material.uniforms.theta.value = (mouse.y-0.5)*0.1*Math.PI;
   };
   _updateSkin();
 

@@ -140,4 +140,4 @@ google_analytics:
   - auto
 
 extra_css:
-  - '../stylesheets/extra.css'
+  - '/mkdocs-material/stylesheets/extra.css'

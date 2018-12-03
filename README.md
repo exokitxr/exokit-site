@@ -6,8 +6,8 @@
 - For the docs:
 ```
 pushd mkdocs-material
-rm -Rf ../site site
+rm -Rf ../docs site
 mkdocs build
-cp -R site ..
+cp -R site ../docs
 popd
 ```

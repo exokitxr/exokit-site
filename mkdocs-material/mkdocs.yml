@@ -114,9 +114,6 @@ nav:
     - Community:
       - contribute: contribute.md
       - support: support.md
-  - Legal:
-    - terms: terms.md
-    - privacy: privacy.md
   - SDK:
     - Exokit SDK:
       - sdk: sdk.md
@@ -133,6 +130,9 @@ nav:
       - nativeAPIs: nativeAPIs.md
       - MagicLeapAPI: MagicLeapAPI.md
       - nativeFutureIntegrations: nativeFutureIntegrations.md
+  - Legal:
+    - terms: terms.md
+    - privacy: privacy.md
 
 # Google Analytics
 google_analytics:

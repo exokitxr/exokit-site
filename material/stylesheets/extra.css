@@ -1,0 +1,22 @@
+.md-flex__cell {
+  vertical-align: middle;
+}
+
+.md-header-nav__button {
+  margin: 0;
+  padding: 0;
+  padding-top: 0.6rem;
+}
+
+.md-header-nav__button > img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.md-header-nav__title {
+  padding: 0 1rem;
+}
+
+.md-footer-copyright {
+  padding: 1.8rem 0;
+}

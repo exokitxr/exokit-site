@@ -34,5 +34,7 @@ nav:
       - MagicLeapAPI: MagicLeapAPI.md
       - nativeFutureIntegrations: nativeFutureIntegrations.md
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'material/'
   favicon: '../media/favicon.png'
+  logo: '../media/logo.svg'

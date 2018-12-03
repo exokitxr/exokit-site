@@ -19,18 +19,18 @@
 # IN THE SOFTWARE.
 
 # Project information
-site_name: Material for MkDocs
-site_description: A Material Design theme for MkDocs
-site_author: Martin Donath
-site_url: https://squidfunk.github.io/mkdocs-material/
+site_name: Exokit
+# site_description: A Material Design theme for MkDocs
+# site_author: Martin Donath
+# site_url: https://squidfunk.github.io/mkdocs-material/
 
 # Repository
-repo_name: squidfunk/mkdocs-material
-repo_url: https://github.com/squidfunk/mkdocs-material
-edit_uri: ""
+# repo_name: squidfunk/mkdocs-material
+# repo_url: https://github.com/squidfunk/mkdocs-material
+# edit_uri: ""
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2018 Martin Donath'
+copyright: 'Copyright &copy; 2018 Exokit Inc.'
 
 # Configuration
 theme:
@@ -50,14 +50,13 @@ theme:
   feature:
     tabs: true
   palette:
-    primary: indigo
-    accent: indigo
+    primary: white
+    accent: white
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/images/favicon.png
-  logo:
-    icon: "\uE80C"
+  favicon: '../../media/favicon.png'
+  logo: '../../media/logo.svg'
 
 # Customization
 extra:
@@ -101,24 +100,44 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Material: index.md
-  - Getting started: getting-started.md
-  - Extensions:
-    - Admonition: extensions/admonition.md
-    - CodeHilite: extensions/codehilite.md
-    - Footnotes: extensions/footnotes.md
-    - Metadata: extensions/metadata.md
-    - Permalinks: extensions/permalinks.md
-    - PyMdown: extensions/pymdown.md
-  - Specimen: specimen.md
-  - Customization: customization.md
-  - Compliance with GDPR: compliance.md
-  - Release notes: release-notes.md
-  - Author's notes: authors-notes.md
-  - Contributing: contributing.md
-  - License: license.md
+  - Home: index.md
+  - Docs:
+    - Overview:
+      - exokitEngine: exokitEngine.md
+      - benchmarks:  benchmarks.md
+      - architecture: architecture.md
+      - techIntegrations: techIntegrations.md
+    - Quickstart:
+      - installation: installation.md
+      - useExokitEngine: useExokitEngine.md
+      - exokitApps: exokitApps.md
+    - Community:
+      - contribute: contribute.md
+      - support: support.md
+  - Legal:
+    - terms: terms.md
+    - privacy: privacy.md
+  - SDK:
+    - Exokit SDK:
+      - sdk: sdk.md
+    - Using the SDK:
+      - startDevelopment: startDevelopment.md
+      - exokitCommandLine: exokitCommandLine.md
+      - exokitCommandLineFlags: exokitCommandLineFlags.md
+    - Guides:
+      - devExokitEngine: devExokitEngine.md
+    - Web APIs:
+      - webAPIs: webAPIs.md
+      - experimentalWebAPIs: experimentalWebAPIs.md
+    - Native APIs:
+      - nativeAPIs: nativeAPIs.md
+      - MagicLeapAPI: MagicLeapAPI.md
+      - nativeFutureIntegrations: nativeFutureIntegrations.md
 
 # Google Analytics
 google_analytics:
   - !!python/object/apply:os.getenv ["GOOGLE_ANALYTICS_KEY"]
   - auto
+
+extra_css:
+  - '../stylesheets/extra.css'

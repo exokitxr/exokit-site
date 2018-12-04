@@ -51,32 +51,40 @@
   }
 
   const changeCompany = (company) => {
+    const mainImg = document.getElementById('madeWithExokitMainImg');
+    const title = document.getElementById('madeWithTitle');
+    const slogan = document.getElementById('madeWithSlogan');
+    const titleSub = document.getElementById('madeWithTitleSub');
+    const project = document.getElementById('madeWithProject');
+    const year = document.getElementById('madeWithYear');
+
     switch (company){
       case 'expanse':
-        document.getElementById('madeWithExokitMainImg').src = 'media/expanse.png';
-        document.getElementById('madeWithTitle').innerHTML = 'The Expanse';
-      document.getElementById('madeWithSlogan').innerHTML = 'Build, Experince & Share the future of social VR.';
-      document.getElementById('madeWithTitleSub').innerHTML = 'The Expanse';
-      document.getElementById('madeWithProject').innerHTML = 'Project: Aurora';
-      document.getElementById('madeWithYear').innerHTML = 'Year 2018 - Now';
+        mainImg.src = 'media/expanse.png';
+        title.innerHTML = 'The Expanse';
+        slogan.innerHTML = 'Build, Experince & Share the future of social VR.';
+        titleSub.innerHTML = 'The Expanse';
+        project.innerHTML = 'Project: Aurora';
+        year.innerHTML = 'Year 2018 - Now';
       break;
       case 'active':
-      document.getElementById('madeWithExokitMainImg').src = 'media/activeDemo.png';
-      document.getElementById('madeWithTitle').innerHTML = 'Active Theory';
-      document.getElementById('madeWithSlogan').innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
-      document.getElementById('madeWithTitleSub').innerHTML = 'Active Theory';
-      document.getElementById('madeWithProject').innerHTML = 'Project: xyz';
-      document.getElementById('madeWithYear').innerHTML = 'Year 2018 - Now';
+        mainImg.src = 'media/activeDemo.png';
+        title.innerHTML = 'Active Theory';
+        slogan.innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
+        titleSub.innerHTML = 'Active Theory';
+        project.innerHTML = 'Project: xyz';
+        year.innerHTML = 'Year 2018 - Now';
 
       break;
       case 'emukit':
-      document.getElementById('madeWithExokitMainImg').src = 'media/emukitDemo.png';
-      document.getElementById('madeWithTitle').innerHTML = 'Emukit';
-      document.getElementById('madeWithSlogan').innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
-      document.getElementById('madeWithTitleSub').innerHTML = 'Emukit';
-      document.getElementById('madeWithProject').innerHTML = 'Project: Nintendo 64 VR Emulation';
-      document.getElementById('madeWithYear').innerHTML = 'Year 2018 - Now';
+        mainImg.src = 'media/emukitDemo.png';
+        title.innerHTML = 'Emukit';
+        slogan.innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
+        titleSub.innerHTML = 'Emukit';
+        project.innerHTML = 'Project: Nintendo 64 VR Emulation';
+        year.innerHTML = 'Year 2018 - Now';
       break;
+
     }
   }
 </script>
@@ -99,24 +107,46 @@
       <div class="featurePusher"></div>
       <div class="row pt-5">
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-          <p class="featureText">his book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-          <p class="featureText">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-          <p class="featureText">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+          <h2 class="featureText pb-4">Title 1</h1>
+          <p class="featureText text-left">This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+          <p class="featureText text-left">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue;</p>
+          <div class="featureTextPusher"></div>
+          <h2 class="featureText pb-4">Title 2</h1>
+          <p class="featureText text-left">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?</p>
+          <p class="featureText text-left">But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.</p>
+          <div class="featureTextPusher"></div>
+          <h2 class="featureText pb-4">Title 3</h1>
+            <p class="featureText text-left">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+            <p class="featureText text-left">But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.</p>
+          <div class="featureTextPusher"></div>
+
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-          <h3 class="featureMain">Javascript/HTML/WebXR</h3>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pb-4">
+              <i class="featureMain fab fa-js-square fa-4x p-1"></i>
+              <h3 class="featureMain">Javascript</h3>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pb-4">
+              <i class="featureMain fab fa-html5 fa-4x p-1"></i>
+              <h3 class="featureMain">HTML</h3>
+            </div>
+          </div>
+          
+          
+          
           <div class="featureArrow featureMain"></div>
           <img class="exokitImg featureMain" src="media/logo-white.svg"></img>
           <h3 class="featureMain exokitName">Exokit</h3>
           <div class="featureArrow featureMain"></div>
           <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <img class="mlImg featureMain" src="media/ML.png"></img>
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <img class="viveImg featureMain" src="media/vive.png"></img>
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <img class="oculusImg featureMain" src="media/oculus.png"></img>
             </div>
           </div>
@@ -129,10 +159,10 @@
 <div class="row madeWithExokit pt-5">
 
   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
-    <img id="madeWithExokitMainImg" class="img-fluid pb-5" src="media/expanse.png"></img>
+    <img id="madeWithExokitMainImg" class="img-fluid mb-5" src="media/expanse.png"></img>
   </div>
 
-  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 madeWithExokitMain">
     <h1>Made with Exokit</h1>
     <hr>
 
@@ -161,7 +191,7 @@
 
     <h5>Other Projects</h5>
 
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-4">
           <img onclick="changeCompany('active')" class="madeWithExokitSubImg img-fluid" src="media/activeTheory.png"></img>
         </div>

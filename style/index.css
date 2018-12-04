@@ -116,7 +116,7 @@ body {
 }
 
 .featureArrow {
-    border-right: thin solid rgba(0, 0, 0, 0.685);
+    border-right: thin solid white;
     height: 80px;
     width: 50%;
     margin-top: 80px;

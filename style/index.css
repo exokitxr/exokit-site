@@ -18,52 +18,52 @@
   font-weight: 300;
 }
 
-html {
+.home html {
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
 
-a{
+.home a{
     color: black;
 }
 
-.footerLink{
+.home .footerLink{
     color: white;
 }
 
-body {
+.home body {
   font-family: Bozon;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden
 }
 
-.row, .col {
+.home .row, .home .col {
     margin: 0;
     padding: 0;
 }
 
-.navbar-brand {
+.home .navbar-brand {
   font-family: Bison;
   font-size: 40px;
 }
 
-.navbar-brand img {
+.home .navbar-brand img {
   height: 35px;
   margin-right: 8px;
 }
 
-.navbar-nav {
+.home .navbar-nav {
     margin-left: auto;
 }
 
-#canvas {
+.home #canvas {
     position: relative;
     width: 100vw;
     height: 50vh;
 }
 
-#overlay {
+.home #overlay {
     position: absolute;
     margin-top: 30vh;
     margin-left: 50px;
@@ -73,27 +73,27 @@ body {
     z-index: 1000;
 }
 
-#heroPusher{
+.home #heroPusher{
     margin-bottom: 180px;
 }
 
-.whatIsExokit{
+.home .whatIsExokit{
     color: white;
     position: relative;
     margin-top: -80px;
     min-height: 160vh;
-    background: #16BFFD;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(135deg, rgb(20, 132, 163), #00003b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(135deg, rgb(20, 132, 163), #00003b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
 }
 
-.whatIsExokitPusher{
+.home .whatIsExokitPusher{
     margin-top: 160px;
 }
 
-.whatIsExokitImg{
+.home .whatIsExokitImg{
     height: auto;
     width: 50%;
     position: absolute;
@@ -101,21 +101,21 @@ body {
     left: 0;
 }
 
-.mlImg, .oculusImg, .viveImg{
+.home .mlImg, .home .oculusImg, .home .viveImg{
     height: 100px;
     margin-bottom: 100px;
     width: auto;
 }
-.exokitImg{
+.home .exokitImg{
     height: 60px;
     width: auto;
 }
-.exokitName{
+.home .exokitName{
     font-family: Bison;
     font-size: 60px;
 }
 
-.featureArrow {
+.home .featureArrow {
     border-right: thin solid white;
     height: 80px;
     width: 50%;
@@ -123,21 +123,21 @@ body {
     margin-bottom: 80px;
 }
 
-.featurePusher{
+.home .featurePusher{
     padding-top: 50px;
 }
-.featureText{
+.home .featureText{
     width: 75%;
     margin-left: 10vw;
 }
-.featureTextPusher{
+.home .featureTextPusher{
     height: 50px;
 }
 
-.slideTextLeft{
+.home .slideTextLeft{
     animation: moveLeft 0.5s ease-in;
 }
-.slideTextRight{
+.home .slideTextRight{
     animation: moveRight 0.5s ease-in;
 }
 
@@ -151,28 +151,28 @@ body {
     to { margin-right: 0px; }
 }
 
-.madeWithExokit{
+.home .madeWithExokit{
     position: relative;
     min-height: 90vh
 }
 
-.madeWithExokitPusher{
+.home .madeWithExokitPusher{
     margin-top: 50px;
 }
 
-#madeWithExokitMainImg{
+.home #madeWithExokitMainImg{
     max-height: 60vh;
     width: auto;
     border-radius: 30px;
 }
 
-.madeWithExokitSubImg{
+.home .madeWithExokitSubImg{
     max-height: 20vh;
     width: auto;
     cursor: pointer;
 }
 
-.quotes{
+.home .quotes{
     color: white;
     position: relative;
     min-height: 90vh;
@@ -183,21 +183,24 @@ body {
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
 }
 
-.quotesPusher{
+.home .quotesPusher{
     margin-top: 200px;
 }
 
-.quotesPic{
+.home .quotesPic{
     height: 80px;
     width: auto;
     border-radius: 100px;
 }
+.home .quoteArrow{
+    cursor: p
+}
 
-.card-body{
+.home .card-body{
     color: black;
 }
 
-.slideCardsLeft{
+.home .slideCardsLeft{
     animation: slideCardsLeft 0.5s ease-in;
 }
 
@@ -206,13 +209,13 @@ body {
     to { margin-left: 1000px; }
 }
 
-.shadow {
+.home .shadow {
     -moz-box-shadow:    100px 100px 100px 100px #ccc;
     -webkit-box-shadow: 100px 100px 100px 100px #ccc;
     box-shadow:         100px 100px 100px 100px #ccc;
   }
 
-.getStarted{
+.home .getStarted{
     position: relative;
     height: 60vh;
     min-height: 600px;
@@ -220,12 +223,12 @@ body {
     background-size: contain;
 }
 
-.verticalLine {
+.home .verticalLine {
     border-left: thin solid rgba(0, 0, 0, 0.685);
     height: 80px;
   }
 
-.footer{
+.home .footer{
     padding-top: 5vh;
     color: white;
     min-height: 30vh;
@@ -234,11 +237,11 @@ body {
     background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.emailInput{
+.home .emailInput{
     border-radius: 100px;
 }
 
-.emailButton{
+.home .emailButton{
     border-radius: 100px;
     background-color: #2096A2;
     border: none;
@@ -246,52 +249,52 @@ body {
 
 
 @media only screen and (max-width: 800px) {
-    #overlay {
+    .home #overlay {
         width: 80vw;
         margin-top: 15vh;
     }
-    #heroPusher{
+    .home #heroPusher{
         margin-bottom: 40px;
     }
-    #canvas{
+    .home #canvas{
         margin-top: 18vh;
     }
 }
 
 @media only screen and (max-height: 700px) {
-    #heroPusher{
+    .home #heroPusher{
         margin-bottom: 20px;
     }
 }
 @media only screen and (max-width: 994px) {
-    .whatIsExokitImg{
+    .home .whatIsExokitImg{
         width: auto;
         height: 300px;
     }
-    .whatIsExokit{
+    .home .whatIsExokit{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
         clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
     }
-    .quotes{
+    .home .quotes{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
         clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
     }
-    .whatIsExokitPusher{
+    .home .whatIsExokitPusher{
         margin-top: 200px;
     }
-    .featureTextPusher{
+    .home .featureTextPusher{
         height: 50px;
     }
-    .featurePusher{
+    .home .featurePusher{
         padding-top: 50px;
     }
-    .mlImg, .viveImg, .oculusImg{
+    .home .mlImg, .home .viveImg, .home .oculusImg{
         margin-bottom: 80px;
     }
-    .oculusImg{
+    .home .oculusImg{
         margin-bottom: 150px;
     }
-    .featureArrow {
+    .home .featureArrow {
         margin-top: 50px;
         margin-bottom: 50px;
     }

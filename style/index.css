@@ -197,6 +197,15 @@ body {
     color: black;
 }
 
+.slideCardsLeft{
+    animation: slideCardsLeft 0.5s ease-in;
+}
+
+@keyframes slideCardsLeft {
+    from { margin-left: 0px; }
+    to { margin-left: 1000px; }
+}
+
 .shadow {
     -moz-box-shadow:    100px 100px 100px 100px #ccc;
     -webkit-box-shadow: 100px 100px 100px 100px #ccc;

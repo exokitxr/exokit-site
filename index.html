@@ -87,6 +87,70 @@
 
     }
   }
+
+  const changeQuotes = () => {
+
+    json = {
+    "quotes": [
+        {   "picture": "media/sjw.jpg",
+            "person": "- Milo Dianosuraus Rex",
+            "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
+        },
+        {
+            "picture": "media/kylie.jpg",
+            "person": "- Kiley Jenner",
+            "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
+        },
+        {
+            "picture": "media/dude.jpg",
+            "person": "- Steve Harley",
+            "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
+        },
+        {
+            "picture": "media/obama.jpg",
+            "person": "- Barrack Obama",
+            "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
+        },
+
+        {
+            "picture": "media/emukitDemo.png",
+            "person": "- Happy Rabbit",
+            "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
+        },
+        {
+            "picture": "media/favicon.png",
+            "person": "- Bruce Reslzer",
+            "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
+        },
+        {   "picture": "media/exokit.png",
+            "person": "- Great Grandma",
+            "quote": "I remember back in my day we didnt have things like this... #exokit"
+        },
+        {   "picture": "media/whatIsExokit.png",
+            "person": "- Ted Druce",
+            "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
+        }
+      ]
+    }
+
+      let cards = document.getElementsByClassName('card');
+      for(let i = 0; i < cards.length; i++){
+        if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == json.quotes[i].picture){
+          cards = document.getElementsByClassName('card');
+          cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i+4].picture;
+          cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i+4].person;
+          cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i+4].quote;
+        }
+        else{
+          cards = document.getElementsByClassName('card');
+          cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i].picture;
+          cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i].person;
+          cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i].quote;
+          cards[i].style.hidden = true;
+        }
+      }
+    }
+
 </script>
 
 <div id="overlay">
@@ -118,8 +182,8 @@
           <h2 class="featureText pb-4">Title 3</h1>
             <p class="featureText text-left">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
             <p class="featureText text-left">But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.</p>
-          <div class="featureTextPusher"></div>
-
+          <div class="featureTextPusher "></div>
+          <div class="featureTextPusher "></div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <div class="row">
@@ -132,8 +196,6 @@
               <h3 class="featureMain">HTML</h3>
             </div>
           </div>
-          
-          
           
           <div class="featureArrow featureMain"></div>
           <img class="exokitImg featureMain" src="media/logo-white.svg"></img>
@@ -152,7 +214,6 @@
           </div>
         </div>
       </div>
-      <!-- <img class="whatIsExokitImg" src="media/whatIsExokit.png"></img> -->
   </div>
 </div>
 
@@ -220,8 +281,8 @@
               <img class="quotesPic" src="media/sjw.jpg"></img>
             </div>
             <div class="col-8">
-              <p class="card-text font-weight-light">Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit</p>
-              <small class="font-weight-normal">- Milo Dianosuraus Rex</small>
+              <p class="quoteTitle card-text font-weight-light">Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit</p>
+              <small class="quotePerson font-weight-normal">- Milo Dianosuraus Rex</small>
               </div>
             </div>
           </div>
@@ -235,8 +296,8 @@
                 <img class="quotesPic" src="media/kylie.jpg"></img>
               </div>
               <div class="col-8">
-                <p class="card-text font-weight-light">hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit</p>
-                <small class="font-weight-normal">- Kiley Jenner</small>
+                <p class="quoteTitle card-text font-weight-light">hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit</p>
+                <small class="quotePerson font-weight-normal">- Kiley Jenner</small>
                 </div>
               </div>
             </div>
@@ -250,8 +311,8 @@
                 <img class="quotesPic" src="media/dude.jpg"></img>
               </div>
               <div class="col-8">
-                <p class="card-text font-weight-light">Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit</p>
-                <small class="font-weight-normal">- Steve Harley</small>
+                <p class="quoteTitle card-text font-weight-light">Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit</p>
+                <small class="quotePerson font-weight-normal">- Steve Harley</small>
                 </div>
               </div>
             </div>
@@ -265,13 +326,23 @@
                 <img class="quotesPic" src="media/obama.jpg"></img>
               </div>
               <div class="col-8">
-                <p class="card-text font-weight-light">During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome.</p>
-                <small class="font-weight-normal">- Barrack Obama</small>
+                <p class="quoteTitle card-text font-weight-light">During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome.</p>
+                <small class="quotePerson font-weight-normal">- Barrack Obama</small>
                 </div>
               </div>
             </div>
         </div>
       </div>
+      <div class="row w-100 text-center mt-3">
+          <div class="col-3"></div>
+          <div class="col-3">
+            <i class="fas fa-arrow-left fa-2x" onclick="changeQuotes()"></i>
+          </div>
+          <div class="col-3">
+            <i class="fas fa-arrow-right fa-2x" onclick="changeQuotes()"></i>
+          </div>
+          <div class="col-3"></div>
+        </div>
   </div>
 </div>
 

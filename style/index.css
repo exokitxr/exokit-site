@@ -92,7 +92,7 @@ body {
     left: 0;
 }
 
-.mlImg{
+.mlImg, .oculusImg, .viveImg{
     height: 100px;
     width: auto;
 }
@@ -225,6 +225,14 @@ body {
     #canvas{
         margin-top: 18vh;
     }
+}
+
+@media only screen and (max-height: 700px) {
+    #heroPusher{
+        margin-bottom: 20px;
+    }
+}
+@media only screen and (max-height: 1025px) {
     .whatIsExokitImg{
         width: auto;
         height: 300px;
@@ -232,12 +240,22 @@ body {
     .whatIsExokit{
         -webkit-clip-path: polygon(0 0, 100% 10%, 100% 95%, 0 100%);
         clip-path: polygon(0 0, 100% 10%, 100% 95%, 0 100%);
-        min-height: 240vh;
+        
     }
-}
-
-@media only screen and (max-height: 700px) {
-    #heroPusher{
-        margin-bottom: 20px;
+    .whatIsExokitPusher{
+        margin-top: 300px;
+    }
+    .featureText{
+        margin-bottom: 150px;
+    }
+    .mlImg, .viveImg, .oculusImg{
+        margin-bottom: 40px;
+    }
+    .oculusImg{
+        margin-bottom: 150px;
+    }
+    .featureArrow {
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 }

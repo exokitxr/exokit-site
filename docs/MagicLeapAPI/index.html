@@ -1,0 +1,1903 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://new.webmr.io/MagicLeapAPI/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>Magic Leap  API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.11e41852.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="/mkdocs-material/stylesheets/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="white">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#classes" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://new.webmr.io/" title="Exokit" class="md-header-nav__button md-logo">
+          
+            <img src="../../../media/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exokit
+              </span>
+              <span class="md-header-nav__topic">
+                MagicLeapAPI
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../exokitEngine/" title="Docs" class="md-tabs__link">
+          Docs
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../sdk/" title="SDK" class="md-tabs__link">
+          SDK
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../terms/" title="Legal" class="md-tabs__link">
+          Legal
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://new.webmr.io/" title="Exokit" class="md-nav__button md-logo">
+      
+        <img src="../../../media/logo.svg" width="48" height="48">
+      
+    </a>
+    Exokit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Docs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Docs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exokitEngine/" title="exokitEngine" class="md-nav__link">
+      exokitEngine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../benchmarks/" title="benchmarks" class="md-nav__link">
+      benchmarks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/" title="architecture" class="md-nav__link">
+      architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../techIntegrations/" title="techIntegrations" class="md-nav__link">
+      techIntegrations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Quickstart
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Quickstart
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="installation" class="md-nav__link">
+      installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../useExokitEngine/" title="useExokitEngine" class="md-nav__link">
+      useExokitEngine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exokitApps/" title="exokitApps" class="md-nav__link">
+      exokitApps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Community
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Community
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contribute/" title="contribute" class="md-nav__link">
+      contribute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../support/" title="support" class="md-nav__link">
+      support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      SDK
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        SDK
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Exokit SDK
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Exokit SDK
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sdk/" title="sdk" class="md-nav__link">
+      sdk
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Using the SDK
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Using the SDK
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../startDevelopment/" title="startDevelopment" class="md-nav__link">
+      startDevelopment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exokitCommandLine/" title="exokitCommandLine" class="md-nav__link">
+      exokitCommandLine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exokitCommandLineFlags/" title="exokitCommandLineFlags" class="md-nav__link">
+      exokitCommandLineFlags
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../devExokitEngine/" title="devExokitEngine" class="md-nav__link">
+      devExokitEngine
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Web APIs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        Web APIs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../webAPIs/" title="webAPIs" class="md-nav__link">
+      webAPIs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../experimentalWebAPIs/" title="experimentalWebAPIs" class="md-nav__link">
+      experimentalWebAPIs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" checked>
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Native APIs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        Native APIs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nativeAPIs/" title="nativeAPIs" class="md-nav__link">
+      nativeAPIs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        MagicLeapAPI
+      </label>
+    
+    <a href="./" title="MagicLeapAPI" class="md-nav__link md-nav__link--active">
+      MagicLeapAPI
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" title="Classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlmesher" title="MLMesher" class="md-nav__link">
+    MLMesher
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlmesheronmesh-functionmlmeshupdate" title="MLMesher.onmesh : function(MLMeshUpdate[])" class="md-nav__link">
+    MLMesher.onmesh : function(MLMeshUpdate[])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdate" title="MLMeshUpdate" class="md-nav__link">
+    MLMeshUpdate
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatetype-string" title="MLMeshUpdate.type : String" class="md-nav__link">
+    MLMeshUpdate.type : String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatepositionbuffer-webglbuffer" title="MLMeshUpdate.positionBuffer : WebGLBuffer" class="md-nav__link">
+    MLMeshUpdate.positionBuffer : WebGLBuffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatepositionarray-float32array" title="MLMeshUpdate.positionArray : Float32Array" class="md-nav__link">
+    MLMeshUpdate.positionArray : Float32Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatenormalbuffer-webglbuffer" title="MLMeshUpdate.normalBuffer : WebGLBuffer" class="md-nav__link">
+    MLMeshUpdate.normalBuffer : WebGLBuffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatenormalarray-float32array" title="MLMeshUpdate.normalArray : Float32Array" class="md-nav__link">
+    MLMeshUpdate.normalArray : Float32Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdateindexbuffer-webglbuffer" title="MLMeshUpdate.indexBuffer : WebGLBuffer" class="md-nav__link">
+    MLMeshUpdate.indexBuffer : WebGLBuffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdateindexarray-uint16array" title="MLMeshUpdate.indexArray : Uint16Array" class="md-nav__link">
+    MLMeshUpdate.indexArray : Uint16Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatecount-number" title="MLMeshUpdate.count : Number" class="md-nav__link">
+    MLMeshUpdate.count : Number
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyetracker" title="MLEyeTracker" class="md-nav__link">
+    MLEyeTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mleyetrackerfixation-mltransform" title="MLEyeTracker.fixation : MLTransform" class="md-nav__link">
+    MLEyeTracker.fixation : MLTransform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyetrackereyes-mleye" title="MLEyeTracker.eyes : MLEye" class="md-nav__link">
+    MLEyeTracker.eyes : MLEye
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplanetracker" title="MLPlaneTracker" class="md-nav__link">
+    MLPlaneTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlplanetrackeronplane-functionmlplaneupdate" title="MLPlaneTracker.onplane : function(MLPlaneUpdate[])" class="md-nav__link">
+    MLPlaneTracker.onplane : function(MLPlaneUpdate[])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdate" title="MLPlaneUpdate" class="md-nav__link">
+    MLPlaneUpdate
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdateid-string" title="MLPlaneUpdate.id : String" class="md-nav__link">
+    MLPlaneUpdate.id : String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdateposition-float32array3" title="MLPlaneUpdate.position : Float32Array(3)" class="md-nav__link">
+    MLPlaneUpdate.position : Float32Array(3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdaterotation-float32array4" title="MLPlaneUpdate.rotation : Float32Array(4)" class="md-nav__link">
+    MLPlaneUpdate.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdatesize-float32array2" title="MLPlaneUpdate.size : Float32Array(2)" class="md-nav__link">
+    MLPlaneUpdate.size : Float32Array(2)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandtracker" title="MLHandTracker" class="md-nav__link">
+    MLHandTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlhandtrackeronhand-functionmlhandupdate" title="MLHandTracker.onhand : function(MLHandUpdate[])" class="md-nav__link">
+    MLHandTracker.onhand : function(MLHandUpdate[])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdate" title="MLHandUpdate" class="md-nav__link">
+    MLHandUpdate
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatehand-string" title="MLHandUpdate.hand : String" class="md-nav__link">
+    MLHandUpdate.hand : String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatepointer-mltransform" title="MLHandUpdate.pointer : MLTransform?" class="md-nav__link">
+    MLHandUpdate.pointer : MLTransform?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdategrip-mltransform" title="MLHandUpdate.grip : MLTransform?" class="md-nav__link">
+    MLHandUpdate.grip : MLTransform?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdaterotation-float32array4" title="MLHandUpdate.rotation : Float32Array(4)" class="md-nav__link">
+    MLHandUpdate.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatewrist-float32array33" title="MLHandUpdate.wrist : Float32Array[3][3]" class="md-nav__link">
+    MLHandUpdate.wrist : Float32Array[3][3]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatefingers-float32array2543" title="MLHandUpdate.fingers : Float32Array[2][5][4][3]" class="md-nav__link">
+    MLHandUpdate.fingers : Float32Array[2][5][4][3]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdategesture-string" title="MLHandUpdate.gesture : String" class="md-nav__link">
+    MLHandUpdate.gesture : String
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notes" title="Notes:" class="md-nav__link">
+    Notes:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mltransform" title="MLTransform" class="md-nav__link">
+    MLTransform
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mltransformposition-float32array3" title="MLTransform.position : Float32Array(3)" class="md-nav__link">
+    MLTransform.position : Float32Array(3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mltransformrotation-float32array4" title="MLTransform.rotation : Float32Array(4)" class="md-nav__link">
+    MLTransform.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyetracker_1" title="MLEyeTracker" class="md-nav__link">
+    MLEyeTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mleyetrackeroneye-functionmleye2" title="MLEyeTracker.oneye : function(MLEye[2])" class="md-nav__link">
+    MLEyeTracker.oneye : function(MLEye[2])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleye" title="MLEye" class="md-nav__link">
+    MLEye
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyeposition-float32array3" title="MLEye.position : Float32Array(3)" class="md-nav__link">
+    MLEye.position : Float32Array(3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyerotation-float32array4" title="MLEye.rotation : Float32Array(4)" class="md-nav__link">
+    MLEye.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyeblink-boolean" title="MLEye.blink : Boolean" class="md-nav__link">
+    MLEye.blink : Boolean
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" title="Endpoints" class="md-nav__link">
+    Endpoints
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequestmeshing-mlmesher" title="browser.magicleap.RequestMeshing() : MLMesher" class="md-nav__link">
+    browser.magicleap.RequestMeshing() : MLMesher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequestplanetracking-mlplanetracker" title="browser.magicleap.RequestPlaneTracking() : MLPlaneTracker" class="md-nav__link">
+    browser.magicleap.RequestPlaneTracking() : MLPlaneTracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequesthandtracking-mlhandtracker" title="browser.magicleap.RequestHandTracking() : MLHandTracker" class="md-nav__link">
+    browser.magicleap.RequestHandTracking() : MLHandTracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequesteyetracking-mleyetracker" title="browser.magicleap.RequestEyeTracking() : MLEyeTracker" class="md-nav__link">
+    browser.magicleap.RequestEyeTracking() : MLEyeTracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequestdepthpopulationpopulatedepth-boolean" title="browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)" class="md-nav__link">
+    browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nativeFutureIntegrations/" title="nativeFutureIntegrations" class="md-nav__link">
+      nativeFutureIntegrations
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Legal
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Legal
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terms/" title="terms" class="md-nav__link">
+      terms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../privacy/" title="privacy" class="md-nav__link">
+      privacy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" title="Classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlmesher" title="MLMesher" class="md-nav__link">
+    MLMesher
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlmesheronmesh-functionmlmeshupdate" title="MLMesher.onmesh : function(MLMeshUpdate[])" class="md-nav__link">
+    MLMesher.onmesh : function(MLMeshUpdate[])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdate" title="MLMeshUpdate" class="md-nav__link">
+    MLMeshUpdate
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatetype-string" title="MLMeshUpdate.type : String" class="md-nav__link">
+    MLMeshUpdate.type : String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatepositionbuffer-webglbuffer" title="MLMeshUpdate.positionBuffer : WebGLBuffer" class="md-nav__link">
+    MLMeshUpdate.positionBuffer : WebGLBuffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatepositionarray-float32array" title="MLMeshUpdate.positionArray : Float32Array" class="md-nav__link">
+    MLMeshUpdate.positionArray : Float32Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatenormalbuffer-webglbuffer" title="MLMeshUpdate.normalBuffer : WebGLBuffer" class="md-nav__link">
+    MLMeshUpdate.normalBuffer : WebGLBuffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatenormalarray-float32array" title="MLMeshUpdate.normalArray : Float32Array" class="md-nav__link">
+    MLMeshUpdate.normalArray : Float32Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdateindexbuffer-webglbuffer" title="MLMeshUpdate.indexBuffer : WebGLBuffer" class="md-nav__link">
+    MLMeshUpdate.indexBuffer : WebGLBuffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdateindexarray-uint16array" title="MLMeshUpdate.indexArray : Uint16Array" class="md-nav__link">
+    MLMeshUpdate.indexArray : Uint16Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlmeshupdatecount-number" title="MLMeshUpdate.count : Number" class="md-nav__link">
+    MLMeshUpdate.count : Number
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyetracker" title="MLEyeTracker" class="md-nav__link">
+    MLEyeTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mleyetrackerfixation-mltransform" title="MLEyeTracker.fixation : MLTransform" class="md-nav__link">
+    MLEyeTracker.fixation : MLTransform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyetrackereyes-mleye" title="MLEyeTracker.eyes : MLEye" class="md-nav__link">
+    MLEyeTracker.eyes : MLEye
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplanetracker" title="MLPlaneTracker" class="md-nav__link">
+    MLPlaneTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlplanetrackeronplane-functionmlplaneupdate" title="MLPlaneTracker.onplane : function(MLPlaneUpdate[])" class="md-nav__link">
+    MLPlaneTracker.onplane : function(MLPlaneUpdate[])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdate" title="MLPlaneUpdate" class="md-nav__link">
+    MLPlaneUpdate
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdateid-string" title="MLPlaneUpdate.id : String" class="md-nav__link">
+    MLPlaneUpdate.id : String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdateposition-float32array3" title="MLPlaneUpdate.position : Float32Array(3)" class="md-nav__link">
+    MLPlaneUpdate.position : Float32Array(3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdaterotation-float32array4" title="MLPlaneUpdate.rotation : Float32Array(4)" class="md-nav__link">
+    MLPlaneUpdate.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlplaneupdatesize-float32array2" title="MLPlaneUpdate.size : Float32Array(2)" class="md-nav__link">
+    MLPlaneUpdate.size : Float32Array(2)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandtracker" title="MLHandTracker" class="md-nav__link">
+    MLHandTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlhandtrackeronhand-functionmlhandupdate" title="MLHandTracker.onhand : function(MLHandUpdate[])" class="md-nav__link">
+    MLHandTracker.onhand : function(MLHandUpdate[])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdate" title="MLHandUpdate" class="md-nav__link">
+    MLHandUpdate
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatehand-string" title="MLHandUpdate.hand : String" class="md-nav__link">
+    MLHandUpdate.hand : String
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatepointer-mltransform" title="MLHandUpdate.pointer : MLTransform?" class="md-nav__link">
+    MLHandUpdate.pointer : MLTransform?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdategrip-mltransform" title="MLHandUpdate.grip : MLTransform?" class="md-nav__link">
+    MLHandUpdate.grip : MLTransform?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdaterotation-float32array4" title="MLHandUpdate.rotation : Float32Array(4)" class="md-nav__link">
+    MLHandUpdate.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatewrist-float32array33" title="MLHandUpdate.wrist : Float32Array[3][3]" class="md-nav__link">
+    MLHandUpdate.wrist : Float32Array[3][3]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdatefingers-float32array2543" title="MLHandUpdate.fingers : Float32Array[2][5][4][3]" class="md-nav__link">
+    MLHandUpdate.fingers : Float32Array[2][5][4][3]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlhandupdategesture-string" title="MLHandUpdate.gesture : String" class="md-nav__link">
+    MLHandUpdate.gesture : String
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notes" title="Notes:" class="md-nav__link">
+    Notes:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mltransform" title="MLTransform" class="md-nav__link">
+    MLTransform
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mltransformposition-float32array3" title="MLTransform.position : Float32Array(3)" class="md-nav__link">
+    MLTransform.position : Float32Array(3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mltransformrotation-float32array4" title="MLTransform.rotation : Float32Array(4)" class="md-nav__link">
+    MLTransform.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyetracker_1" title="MLEyeTracker" class="md-nav__link">
+    MLEyeTracker
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mleyetrackeroneye-functionmleye2" title="MLEyeTracker.oneye : function(MLEye[2])" class="md-nav__link">
+    MLEyeTracker.oneye : function(MLEye[2])
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleye" title="MLEye" class="md-nav__link">
+    MLEye
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyeposition-float32array3" title="MLEye.position : Float32Array(3)" class="md-nav__link">
+    MLEye.position : Float32Array(3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyerotation-float32array4" title="MLEye.rotation : Float32Array(4)" class="md-nav__link">
+    MLEye.rotation : Float32Array(4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mleyeblink-boolean" title="MLEye.blink : Boolean" class="md-nav__link">
+    MLEye.blink : Boolean
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" title="Endpoints" class="md-nav__link">
+    Endpoints
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequestmeshing-mlmesher" title="browser.magicleap.RequestMeshing() : MLMesher" class="md-nav__link">
+    browser.magicleap.RequestMeshing() : MLMesher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequestplanetracking-mlplanetracker" title="browser.magicleap.RequestPlaneTracking() : MLPlaneTracker" class="md-nav__link">
+    browser.magicleap.RequestPlaneTracking() : MLPlaneTracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequesthandtracking-mlhandtracker" title="browser.magicleap.RequestHandTracking() : MLHandTracker" class="md-nav__link">
+    browser.magicleap.RequestHandTracking() : MLHandTracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequesteyetracking-mleyetracker" title="browser.magicleap.RequestEyeTracking() : MLEyeTracker" class="md-nav__link">
+    browser.magicleap.RequestEyeTracking() : MLEyeTracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsermagicleaprequestdepthpopulationpopulatedepth-boolean" title="browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)" class="md-nav__link">
+    browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>MagicLeapAPI</h1>
+                
+                <p>The Magic Leap API is exposed to sites under the <code>window.browser.magicleap</code> endpoint. This is inspired by the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API">WebExtension API style</a>. It is not a web standard (yet).</p>
+<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
+<h3 id="mlmesher"><code>MLMesher</code><a class="headerlink" href="#mlmesher" title="Permanent link">&para;</a></h3>
+<p>Used to acquire meshing updates from the Magic Leap platform.</p>
+<h4 id="mlmesheronmesh-functionmlmeshupdate"><code>MLMesher.onmesh : function(MLMeshUpdate[])</code><a class="headerlink" href="#mlmesheronmesh-functionmlmeshupdate" title="Permanent link">&para;</a></h4>
+<p>When set, <code>onmesh</code> will be called with an array of <code>MLBufferUpdate</code>. This indicates a change to the world mesh state which should be applied to the scene.</p>
+<h3 id="mlmeshupdate"><code>MLMeshUpdate</code><a class="headerlink" href="#mlmeshupdate" title="Permanent link">&para;</a></h3>
+<p>A single update to the world mesh.</p>
+<h4 id="mlmeshupdatetype-string"><code>MLMeshUpdate.type : String</code><a class="headerlink" href="#mlmeshupdatetype-string" title="Permanent link">&para;</a></h4>
+<p>The type of update. Can be either:</p>
+<ul>
+<li><code>'new'</code>: the mesh should be added to the scene.</li>
+<li><code>'update'</code>: the mesh was previously emitted as <code>new</code> but its data has changed. No action is necessary, but may be desired.</li>
+<li><code>'remove'</code>: the mesh is no longer in scope for the meshing system and should be discarded.</li>
+</ul>
+<h4 id="mlmeshupdatepositionbuffer-webglbuffer"><code>MLMeshUpdate.positionBuffer : WebGLBuffer</code><a class="headerlink" href="#mlmeshupdatepositionbuffer-webglbuffer" title="Permanent link">&para;</a></h4>
+<p>The opaque <code>WebGLBuffer</code> for the mesh positions in world space. Represented as three <code>WebGLFloat</code> per vertex. Not in any particular order; indexed by <code>MLMeshUpdate.indexBuffer</code>. Tightly packed stride.</p>
+<h4 id="mlmeshupdatepositionarray-float32array"><code>MLMeshUpdate.positionArray : Float32Array</code><a class="headerlink" href="#mlmeshupdatepositionarray-float32array" title="Permanent link">&para;</a></h4>
+<p>The <code>Float32Array</code> buffer that was uploaded to the <code>positionBuffer</code>.</p>
+<h4 id="mlmeshupdatenormalbuffer-webglbuffer"><code>MLMeshUpdate.normalBuffer : WebGLBuffer</code><a class="headerlink" href="#mlmeshupdatenormalbuffer-webglbuffer" title="Permanent link">&para;</a></h4>
+<p>The opaque <code>WebGLBuffer</code> for the mesh normals. Represented as three <code>WebGLFloat</code> per vertex. Not in any particular order; indexed by <code>MLMeshUpdate.indexBuffer</code>. Tightly packed stride.</p>
+<h4 id="mlmeshupdatenormalarray-float32array"><code>MLMeshUpdate.normalArray : Float32Array</code><a class="headerlink" href="#mlmeshupdatenormalarray-float32array" title="Permanent link">&para;</a></h4>
+<p>The <code>Float32Array</code> buffer that was uploaded to the <code>normalBuffer</code>.</p>
+<h4 id="mlmeshupdateindexbuffer-webglbuffer"><code>MLMeshUpdate.indexBuffer : WebGLBuffer</code><a class="headerlink" href="#mlmeshupdateindexbuffer-webglbuffer" title="Permanent link">&para;</a></h4>
+<p>The opaque <code>WebGLBuffer</code> for the mesh indices for <code>MLMeshUpdate.position</code> and <code>MLMeshUpdate.normal</code>. Represented as three <code>WegGLShort</code> per triangle. Tightly packed stride.</p>
+<h4 id="mlmeshupdateindexarray-uint16array"><code>MLMeshUpdate.indexArray : Uint16Array</code><a class="headerlink" href="#mlmeshupdateindexarray-uint16array" title="Permanent link">&para;</a></h4>
+<p>The <code>Uint16Array</code> buffer that was uploaded to the <code>indexBuffer</code>.</p>
+<h4 id="mlmeshupdatecount-number"><code>MLMeshUpdate.count : Number</code><a class="headerlink" href="#mlmeshupdatecount-number" title="Permanent link">&para;</a></h4>
+<p>The number of indices in <code>MLMeshUpdate.index</code>. Indended to be passed to <code>glDrawElements(GL_TRIANGLES)</code>.</p>
+<h3 id="mleyetracker"><code>MLEyeTracker</code><a class="headerlink" href="#mleyetracker" title="Permanent link">&para;</a></h3>
+<p>Used to get the current 3D eye tracking position from the Magic Leap platform.</p>
+<h4 id="mleyetrackerfixation-mltransform"><code>MLEyeTracker.fixation : MLTransform</code><a class="headerlink" href="#mleyetrackerfixation-mltransform" title="Permanent link">&para;</a></h4>
+<p>The current location of the eye cursor, as a world transform. This is probably in front of the camera, in the negative Z.</p>
+<h4 id="mleyetrackereyes-mleye"><code>MLEyeTracker.eyes : MLEye</code><a class="headerlink" href="#mleyetrackereyes-mleye" title="Permanent link">&para;</a></h4>
+<p>The individual eye locations and statuses. Note that this does not include the eye fixation (cursor); that is contained in <code>fixation</code>.</p>
+<h3 id="mlplanetracker"><code>MLPlaneTracker</code><a class="headerlink" href="#mlplanetracker" title="Permanent link">&para;</a></h3>
+<p>Used to receive world planes detected by the Magic Leap platform.</p>
+<h4 id="mlplanetrackeronplane-functionmlplaneupdate"><code>MLPlaneTracker.onplane : function(MLPlaneUpdate[])</code><a class="headerlink" href="#mlplanetrackeronplane-functionmlplaneupdate" title="Permanent link">&para;</a></h4>
+<p>When set, <code>onplane</code> will be called with an array of <code>MLPlaneUpdate</code>. This indicates an update to the planes detected by the Magic Leap platform.</p>
+<p>An update replaces the preview plane state and may contain an entirely different set of planes than the previous update. Plane identity can be tracked via each <code>MLPlaneUpdate</code>'s <code>.id</code> property.</p>
+<h3 id="mlplaneupdate"><code>MLPlaneUpdate</code><a class="headerlink" href="#mlplaneupdate" title="Permanent link">&para;</a></h3>
+<p>A single plane detected in the world.</p>
+<h4 id="mlplaneupdateid-string"><code>MLPlaneUpdate.id : String</code><a class="headerlink" href="#mlplaneupdateid-string" title="Permanent link">&para;</a></h4>
+<p>A unique identifier for this plane. If a plane's id is the same between updates, then it is an update to a previous plane.</p>
+<h4 id="mlplaneupdateposition-float32array3"><code>MLPlaneUpdate.position : Float32Array(3)</code><a class="headerlink" href="#mlplaneupdateposition-float32array3" title="Permanent link">&para;</a></h4>
+<p>The world position of the center of this plane.</p>
+<h4 id="mlplaneupdaterotation-float32array4"><code>MLPlaneUpdate.rotation : Float32Array(4)</code><a class="headerlink" href="#mlplaneupdaterotation-float32array4" title="Permanent link">&para;</a></h4>
+<p>The world quaternion of the direction of this plane. Apply this quaternion to the vector <code>(0, 0, 1)</code> to get the plane normal.</p>
+<h4 id="mlplaneupdatesize-float32array2"><code>MLPlaneUpdate.size : Float32Array(2)</code><a class="headerlink" href="#mlplaneupdatesize-float32array2" title="Permanent link">&para;</a></h4>
+<p>The size of the plane in meters.</p>
+<ul>
+<li><code>size[0]</code> is the width (x)</li>
+<li><code>size[1]</code> is the height (y)</li>
+</ul>
+<h3 id="mlhandtracker"><code>MLHandTracker</code><a class="headerlink" href="#mlhandtracker" title="Permanent link">&para;</a></h3>
+<p>Used to acquire hand tracking updates from the Magic Leap platform.</p>
+<h4 id="mlhandtrackeronhand-functionmlhandupdate"><code>MLHandTracker.onhand : function(MLHandUpdate[])</code><a class="headerlink" href="#mlhandtrackeronhand-functionmlhandupdate" title="Permanent link">&para;</a></h4>
+<p>When set, <code>onhand</code> will be called with an array of <code>MLHandUpdate</code>. This indicates an update to the user's hand pose detected from the sensors on the Magic Leap platform.</p>
+<p>Each hand is identified as either <code>'left'</code> or <code>'right'</code>. An update replaces the previous hand state; if a hand is not present in any given update that means it has not been detected for the given update loop.</p>
+<h3 id="mlhandupdate"><code>MLHandUpdate</code><a class="headerlink" href="#mlhandupdate" title="Permanent link">&para;</a></h3>
+<p>A single update to the user's tracked hand pose state.</p>
+<h4 id="mlhandupdatehand-string"><code>MLHandUpdate.hand : String</code><a class="headerlink" href="#mlhandupdatehand-string" title="Permanent link">&para;</a></h4>
+<p>The hand direction detected for this update. Either <code>'left'</code> or <code>'right'</code>.</p>
+<h4 id="mlhandupdatepointer-mltransform"><code>MLHandUpdate.pointer : MLTransform?</code><a class="headerlink" href="#mlhandupdatepointer-mltransform" title="Permanent link">&para;</a></h4>
+<p>The pointer transform of the hand pose.</p>
+<p>This is a ray starting at the tip of the index finger and pointing in the direction of the finger, but it may be based on other pose keypoints as a substitute.</p>
+<h4 id="mlhandupdategrip-mltransform"><code>MLHandUpdate.grip : MLTransform?</code><a class="headerlink" href="#mlhandupdategrip-mltransform" title="Permanent link">&para;</a></h4>
+<p>The grip transform of the hand pose.</p>
+<p>This is usually a ray starting at the center of the wrist and pointing at the middle finger, but it may be based on other pose keypoints as a substitute.</p>
+<h4 id="mlhandupdaterotation-float32array4"><code>MLHandUpdate.rotation : Float32Array(4)</code><a class="headerlink" href="#mlhandupdaterotation-float32array4" title="Permanent link">&para;</a></h4>
+<p>The rotation of the hand pose detected in world space, as a world quaternion. The rotation is defined as pointing in the direction of the base of the middle finger.</p>
+<h4 id="mlhandupdatewrist-float32array33"><code>MLHandUpdate.wrist : Float32Array[3][3]</code><a class="headerlink" href="#mlhandupdatewrist-float32array33" title="Permanent link">&para;</a></h4>
+<p>The detected wrist bone position, each as a Float32Array(3) vector vector in world space. The order is:</p>
+<ul>
+<li><code>center</code></li>
+<li><code>radial</code></li>
+<li><code>ulnar</code></li>
+</ul>
+<h4 id="mlhandupdatefingers-float32array2543"><code>MLHandUpdate.fingers : Float32Array[2][5][4][3]</code><a class="headerlink" href="#mlhandupdatefingers-float32array2543" title="Permanent link">&para;</a></h4>
+<p>The detected hand finger bone positions. The order is right-handed, left-to-right, bottom-to-top:</p>
+<div class="codehilite"><pre><span></span>handUpdate.bones[0][0][0] // left (0) thumb (0) base (0) as a Float32Array(3) vector
+handUpdate.bones[1][0][2] // right (1) thumb (0) tip (2) as a Float32Array(3) vector
+handUpdate.bones[1][1][3] // right (1) pointer (1) tip (3) as a Float32Array(3) vector
+handUpdate.bones[0][4][3] // left (0) pinkie (4) tip (3) as a Float32Array(3) vector
+</pre></div>
+
+<h4 id="mlhandupdategesture-string"><code>MLHandUpdate.gesture : String</code><a class="headerlink" href="#mlhandupdategesture-string" title="Permanent link">&para;</a></h4>
+<p>The current gesture pose of the hand. One of:</p>
+<ul>
+<li><code>null</code> (no gesture detected)</li>
+<li><code>'finger'</code></li>
+<li><code>'fist'</code></li>
+<li><code>'pinch'</code></li>
+<li><code>'thumb'</code></li>
+<li><code>'l'</code></li>
+<li><code>'openHandBack'</code></li>
+<li><code>'ok'</code></li>
+<li><code>'c'</code></li>
+</ul>
+<h5 id="notes">Notes:<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h5>
+<ul>
+<li>A bone may be <code>null</code>, which means it is not currently detected.</li>
+<li>The thumb has one less bone than the other fingers.</li>
+</ul>
+<h3 id="mltransform"><code>MLTransform</code><a class="headerlink" href="#mltransform" title="Permanent link">&para;</a></h3>
+<p>A generic container for position/rotation data in world space.</p>
+<h4 id="mltransformposition-float32array3"><code>MLTransform.position : Float32Array(3)</code><a class="headerlink" href="#mltransformposition-float32array3" title="Permanent link">&para;</a></h4>
+<p>A three-component world position vector.</p>
+<h4 id="mltransformrotation-float32array4"><code>MLTransform.rotation : Float32Array(4)</code><a class="headerlink" href="#mltransformrotation-float32array4" title="Permanent link">&para;</a></h4>
+<p>A four-component world quaternion.</p>
+<h3 id="mleyetracker_1"><code>MLEyeTracker</code><a class="headerlink" href="#mleyetracker_1" title="Permanent link">&para;</a></h3>
+<p>Used to acquire eye tracking updates from the Magic Leap platform.</p>
+<h4 id="mleyetrackeroneye-functionmleye2"><code>MLEyeTracker.oneye : function(MLEye[2])</code><a class="headerlink" href="#mleyetrackeroneye-functionmleye2" title="Permanent link">&para;</a></h4>
+<p>When set, <code>oneye</code> will be called with an array of <code>MLEyeUpdate</code>. This indicates an update to the user's detected eye post by the Magic Leap platform.</p>
+<p>Both eyes are present in all updates.</p>
+<h3 id="mleye"><code>MLEye</code><a class="headerlink" href="#mleye" title="Permanent link">&para;</a></h3>
+<p>A single eye state as detected by the platform.</p>
+<h3 id="mleyeposition-float32array3"><code>MLEye.position : Float32Array(3)</code><a class="headerlink" href="#mleyeposition-float32array3" title="Permanent link">&para;</a></h3>
+<p>The world position of the eye origin as a vector.</p>
+<blockquote>
+<p>Do not use this for checking where the eye is looking; that is what <code>fixation</code> is for.</p>
+</blockquote>
+<h3 id="mleyerotation-float32array4"><code>MLEye.rotation : Float32Array(4)</code><a class="headerlink" href="#mleyerotation-float32array4" title="Permanent link">&para;</a></h3>
+<p>The rotation of the eye origin as a world quaternion.</p>
+<blockquote>
+<p>Do not use this for checking where the eye is looking; that is what <code>fixation</code> is for.</p>
+</blockquote>
+<h3 id="mleyeblink-boolean"><code>MLEye.blink : Boolean</code><a class="headerlink" href="#mleyeblink-boolean" title="Permanent link">&para;</a></h3>
+<p>Whether this eye is currently closed (<code>true</code>) or open (<code>false</code>).</p>
+<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
+<h4 id="browsermagicleaprequestmeshing-mlmesher"><code>browser.magicleap.RequestMeshing() : MLMesher</code><a class="headerlink" href="#browsermagicleaprequestmeshing-mlmesher" title="Permanent link">&para;</a></h4>
+<p>Returns an instance of <code>MLMesher</code>, which can be used to receive world meshing buffer updates from the Magic Leap platform.</p>
+<h4 id="browsermagicleaprequestplanetracking-mlplanetracker"><code>browser.magicleap.RequestPlaneTracking() : MLPlaneTracker</code><a class="headerlink" href="#browsermagicleaprequestplanetracking-mlplanetracker" title="Permanent link">&para;</a></h4>
+<p>Returns an instance of <code>MLPlaneTracker</code>, which can be used to receive world planes detected by the Magic Leap platform.</p>
+<h4 id="browsermagicleaprequesthandtracking-mlhandtracker"><code>browser.magicleap.RequestHandTracking() : MLHandTracker</code><a class="headerlink" href="#browsermagicleaprequesthandtracking-mlhandtracker" title="Permanent link">&para;</a></h4>
+<p>Returns an instance of <code>MLHandTracker</code>, which can be used to receive hand tracking data from the Magic Leap platform.</p>
+<h4 id="browsermagicleaprequesteyetracking-mleyetracker"><code>browser.magicleap.RequestEyeTracking() : MLEyeTracker</code><a class="headerlink" href="#browsermagicleaprequesteyetracking-mleyetracker" title="Permanent link">&para;</a></h4>
+<p>Returns an instance of <code>MLEyeTracker</code>, which can be used to receive eye tracking data from the Magic Leap platform.</p>
+<h4 id="browsermagicleaprequestdepthpopulationpopulatedepth-boolean"><code>browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)</code><a class="headerlink" href="#browsermagicleaprequestdepthpopulationpopulatedepth-boolean" title="Permanent link">&para;</a></h4>
+<p>Sets whether the render loop will populate the depth buffer by using the meshing subsystem.</p>
+<p>This is a fast way of doing world occlusion without any extra code.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../nativeAPIs/" title="nativeAPIs" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                nativeAPIs
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../nativeFutureIntegrations/" title="nativeFutureIntegrations" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                nativeFutureIntegrations
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 Exokit Inc.
+          </div>
+        
+        <!-- powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a> -->
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/squidfunk" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/squidfunk" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/squidfunk" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.905597d0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","None","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(a){a.host!=document.location.host&&a.addEventListener("click",function(){var e=a.getAttribute("data-md-action")||"follow";ga("send","event","outbound",e,a.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

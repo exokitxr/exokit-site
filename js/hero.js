@@ -1,4 +1,4 @@
-let renderer, scene, camera, iframe, container, engineMesh;
+let renderer, scene, camera, iframe, container, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -26,7 +26,7 @@ function init() {
 
   scene = new THREE.Scene();
   scene.matrixAutoUpdate = false;
-  // scene.background = new THREE.Color(0x3B3961);
+  // scene.background = new THREE.Color(0xFFFFFF);
 
   camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
   // camera.lookAt(new THREE.Vector3());
@@ -65,7 +65,7 @@ function init() {
     directionalLight.castShadow = true;
 
     directionalLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 50, 1, 0.1, 1000 ) );
-    directionalLight.shadow.bias = 0.0001;
+    // directionalLight.shadow.bias = 0.0001;
 
     directionalLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     directionalLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
@@ -97,7 +97,8 @@ function init() {
     const mesh = skin({
       limbs: true,
     });
-    // mesh.castShadow = true;
+    mesh.position.y += 0.18;
+    mesh.castShadow = true;
     /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
         new THREE.Vector3(0, 0, -1).normalize(),
@@ -173,8 +174,8 @@ function init() {
   container.add(engineMesh);
 
   const mouse = {
-    x: 0,
-    y: 0,
+    x: 0.5,
+    y: 0.5,
   };
   const _applyUniformRotation = (r, t) => {
     t.x = r.x;
@@ -196,17 +197,30 @@ function init() {
         .setFromUnitVectors(
           new THREE.Vector3(0, -1, 0),
           new THREE.Vector3(0.5 - (mouse.x-0.5)*2, 1 - (mouse.y-0.5)*2, 2).normalize()
+        ).premultiply(
+          new THREE.Quaternion()
+            .setFromUnitVectors(
+              new THREE.Vector3(0, 0, -1),
+              new THREE.Vector3(1, 0, 0)
+            )
         ),
         avatarMesh.material.uniforms.leftArmRotation.value
     );
     _applyUniformRotation(
       new THREE.Quaternion()
         .setFromUnitVectors(
-          new THREE.Vector3(0, 0, -1),
-          new THREE.Vector3(-(mouse.x-0.5)*2, -(mouse.y-0.5)*2, -1).normalize()
+          new THREE.Vector3(-1, 0, 0),
+          new THREE.Vector3((mouse.x-0.5)*2, 0.5-(mouse.y-0.5)*2, -2).normalize()
+        ).premultiply(
+          new THREE.Quaternion()
+            .setFromUnitVectors(
+              new THREE.Vector3(0, 0, -1),
+              new THREE.Vector3(-1, 0, 0)
+            )
         ),
         avatarMesh.material.uniforms.rightArmRotation.value
     );
+    avatarMesh.material.uniforms.theta.value = (mouse.y-0.5)*0.1*Math.PI;
   };
   _updateSkin();
 
@@ -438,7 +452,7 @@ function init() {
       color: 0x000000,
       // wireframe: true,
     });
-    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0.4)), material);
+    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
     mesh.position.set(-1, 1.5, -1.5);
 
     const labelMesh = (() => {
@@ -458,7 +472,6 @@ function init() {
         side: THREE.DoubleSide,
         transparent: true,
         alphaTest: 0.5,
-        // depthWrite: false,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.y = 0.7;
@@ -469,6 +482,28 @@ function init() {
     return mesh;
   })();
   container.add(tabMesh1);
+
+  const innerMesh = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(1, 1);
+    const mesh = new THREE.Reflector(geometry, {
+      clipBias: 0.003,
+      textureWidth: 1024 * window.devicePixelRatio,
+      textureHeight: 1024 * window.devicePixelRatio,
+      color: 0x889999,
+      addColor: 0x300000,
+      recursion: 1
+    });
+    // mesh.position.set(-1, 1.5, -2.1);
+    mesh.position.set(-1, 1.5, -1.5);
+    /* mesh.rotation.order = 'YXZ';
+    mesh.rotation.y = Math.PI; */
+    /* const material = new THREE.MeshBasicMaterial({
+      color: 0xFF0000,
+    });
+    const mesh = new THREE.Mesh(geometry, material); */
+    return mesh;
+  })();
+  container.add(innerMesh);
 
   const tabMesh2 = (() => {
     const material = new THREE.MeshBasicMaterial({
@@ -494,7 +529,6 @@ function init() {
       texture.needsUpdate = true;
       const material = new THREE.MeshBasicMaterial({
         map: texture,
-        side: THREE.DoubleSide,
         transparent: true,
         alphaTest: 0.5,
         // depthWrite: false,
@@ -515,10 +549,12 @@ function init() {
     [
       {size: new THREE.Vector2(3, 3), position: new THREE.Vector3(0, 1, -2), src: 'assets/Group 57@2x.png'},
       {size: new THREE.Vector2(5, 5), position: new THREE.Vector3(0, 1, -3), src: 'assets/Group 19@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
-      {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
+      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
+      // {size: new THREE.Vector2(1, 1), position: new THREE.Vector3(1, 2, -2.5), src: 'assets/Group 174@2x.png'},
+      {size: new THREE.Vector2(1, 1), position: new THREE.Vector3(1, 2, -2.5), src: 'assets/Section 1@2x.png'},
     ].forEach(({size, position, src}) => {
       const geometry = new THREE.PlaneBufferGeometry(size.x, size.y);
       const texture = new THREE.Texture();
@@ -539,11 +575,13 @@ function init() {
         });
       const material = new THREE.MeshBasicMaterial({
         map: texture,
+        side: THREE.DoubleSide,
         transparent: true,
         alphaTest: 0.5,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.copy(position);
+      // mesh.castShadow = true;
       object.add(mesh);
     });
 
@@ -551,8 +589,17 @@ function init() {
   })();
   container.add(assetsMesh);
 
+  meteorMesher = new THREE.Object3D();
+  meteorMesher.nextUpdateTime = 0;
+  meteorMesher.meteorMeshes = [];
+  container.add(meteorMesher);
+
   scene.add(container);
 
+  window.addEventListener('scroll', () => {
+    const factor = window.scrollY / window.innerHeight;
+    renderer.domElement.style.transform = `scale(${1 + factor})`;
+  });
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -599,6 +646,51 @@ const _makeExobotMesh = (() => {
   });
   return () => new THREE.Mesh(geometry, material);
 })();
+const _makeMeteorMaterial = src => {
+  const texture = new THREE.Texture();
+  new Promise((accept, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = src;
+    img.onload = () => {
+      accept(img);
+    };
+    img.onerror = err => {
+      reject(err);
+    };
+  })
+    .then(img => {
+      texture.image = img;
+      texture.needsUpdate = true;
+    });
+  const material = new THREE.MeshBasicMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+    transparent: true,
+    alphaTest: 0.5,
+  });
+  return material;
+};
+const METEORS = [
+  {geometry: new THREE.PlaneBufferGeometry(0.6, 0.6), material: _makeMeteorMaterial('assets/Group 17@2x.png')},
+  {geometry: new THREE.PlaneBufferGeometry(0.6, 0.6), material: _makeMeteorMaterial('assets/Group 31@2x.png')},
+];
+const _makeMeteorMesh = () => {
+  const {geometry, material} = METEORS[Math.floor(Math.random() * METEORS.length)];
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(10 - 1, 10 + (Math.random()-0.5)*3, -1 + (Math.random()-0.5)*1);
+  mesh.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    new THREE.Vector3((Math.random()-0.5)*0.2, 1, 0).normalize()
+  );
+  const scale = 0.5 + Math.random();
+  mesh.scale.set(scale, scale, scale);
+  mesh.speed = 0.3 + Math.random()*0.3;
+  // mesh.castShadow = true;
+
+  return mesh;
+};
 let lastUpdateTime = Date.now();
 let lastRattleTime = Date.now();
 let lastRattleDirection = false;
@@ -649,6 +741,27 @@ function animate() {
       return true;
     } else {
       engineMesh.remove(exobotMesh);
+      return false;
+    }
+  });
+
+  if (now > meteorMesher.nextUpdateTime) {
+    const meteorMesh = _makeMeteorMesh();
+    meteorMesher.add(meteorMesh);
+    meteorMesher.meteorMeshes.push(meteorMesh);
+
+    meteorMesher.nextUpdateTime = now + 0.3*1000;
+  }
+  meteorMesher.meteorMeshes = meteorMesher.meteorMeshes.filter(meteorMesh => {
+    meteorMesh.position.add(localVector.set(
+      1,
+      1,
+      0
+    ).multiplyScalar(-0.005 * timeDiff * meteorMesh.speed).applyQuaternion(meteorMesh.quaternion));
+    if (meteorMesh.position.y > -1/2) {
+      return true;
+    } else {
+      meteorMesher.remove(meteorMesh);
       return false;
     }
   });

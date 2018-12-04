@@ -1,0 +1,40 @@
+site_name: Exokit
+nav:
+  - Home: index.md
+  - Docs:
+    - Overview:
+      - exokitEngine: exokitEngine.md
+      - benchmarks:  benchmarks.md
+      - architecture: architecture.md
+      - techIntegrations: techIntegrations.md
+    - Quickstart:
+      - installation: installation.md
+      - useExokitEngine: useExokitEngine.md
+      - exokitApps: exokitApps.md
+    - Community:
+      - contribute: contribute.md
+      - support: support.md
+  - Legal:
+    - terms: terms.md
+    - privacy: privacy.md
+  - SDK:
+    - Exokit SDK:
+      - sdk: sdk.md
+    - Using the SDK:
+      - startDevelopment: startDevelopment.md
+      - exokitCommandLine: exokitCommandLine.md
+      - exokitCommandLineFlags: exokitCommandLineFlags.md
+    - Guides:
+      - devExokitEngine: devExokitEngine.md
+    - Web APIs:
+      - webAPIs: webAPIs.md
+      - experimentalWebAPIs: experimentalWebAPIs.md
+    - Native APIs:
+      - nativeAPIs: nativeAPIs.md
+      - MagicLeapAPI: MagicLeapAPI.md
+      - nativeFutureIntegrations: nativeFutureIntegrations.md
+theme:
+  name: null
+  custom_dir: 'material/'
+  favicon: '../media/favicon.png'
+  logo: '../media/logo.svg'

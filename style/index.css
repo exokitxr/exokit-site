@@ -72,12 +72,12 @@ body {
     color: white;
     position: relative;
     margin-top: -80px;
-    min-height: 100vh;
+    min-height: 150vh;
     background: #16BFFD;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 85%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 85%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
 }
 
 .whatIsExokitPusher{
@@ -90,6 +90,53 @@ body {
     position: absolute;
     bottom: -20;
     left: 0;
+}
+
+.mlImg, .oculusImg, .viveImg{
+    height: 100px;
+    width: auto;
+}
+.exokitImg{
+    height: 60px;
+    width: auto;
+}
+.exokitName{
+    font-family: Bison;
+    font-size: 60px;
+}
+
+.featureArrow {
+    border-right: thin solid rgba(0, 0, 0, 0.685);
+    height: 80px;
+    width: 50%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.featurePusher{
+    padding-top: 120px;
+}
+.featureText{
+    margin-bottom: 250px;
+    width: 75%;
+    margin-left: 10vw;
+}
+
+.slideTextLeft{
+    animation: moveLeft 0.5s ease-in;
+}
+.slideTextRight{
+    animation: moveRight 0.5s ease-in;
+}
+
+@keyframes moveLeft {
+    from { margin-left: 500px; }
+    to { margin-left: 0px; }
+}
+
+@keyframes moveRight {
+    from { margin-right: 500px; }
+    to { margin-right: 0px; }
 }
 
 .madeWithExokit{
@@ -186,14 +233,37 @@ body {
     #canvas{
         margin-top: 18vh;
     }
-    .whatIsExokitImg{
-        width: auto;
-        height: 300px;
-    }
 }
 
 @media only screen and (max-height: 700px) {
     #heroPusher{
         margin-bottom: 20px;
+    }
+}
+@media only screen and (max-height: 1025px) {
+    .whatIsExokitImg{
+        width: auto;
+        height: 300px;
+    }
+    .whatIsExokit{
+        -webkit-clip-path: polygon(0 0, 100% 10%, 100% 95%, 0 100%);
+        clip-path: polygon(0 0, 100% 10%, 100% 95%, 0 100%);
+        
+    }
+    .whatIsExokitPusher{
+        margin-top: 300px;
+    }
+    .featureText{
+        margin-bottom: 200px;
+    }
+    .mlImg, .viveImg, .oculusImg{
+        margin-bottom: 40px;
+    }
+    .oculusImg{
+        margin-bottom: 150px;
+    }
+    .featureArrow {
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 }

@@ -13,9 +13,9 @@
   <a class="navbar-brand" href="#"><img class="mb-2" src="media/logo.svg"><span>Exokit</span></a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active pr-4 pl-4" href="#"><h5 class="font-weight-normal">Features</h2></a>
+      <a class="nav-item nav-link active pr-4 pl-4" href="/"><h5 class="font-weight-normal">Features</h2></a>
       <a class="nav-item nav-link pr-4 pl-4" href="docs"><h5 class="font-weight-normal">Docs</h2></a>
-      <a class="nav-item nav-link pr-4 pl-4" href="#"><h5 class="font-weight-normal">Blog</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="https://webmr.io/blog/"><h5 class="font-weight-normal">Blog</h2></a>
       <a class="nav-item nav-link pr-4 pl-4" href="#"><h5 class="font-weight-normal">Contact</h2></a>
     </div>
   </div>
@@ -49,6 +49,36 @@
       }
     }
   }
+
+  const changeCompany = (company) => {
+    switch (company){
+      case 'expanse':
+        document.getElementById('madeWithExokitMainImg').src = 'media/expanse.png';
+        document.getElementById('madeWithTitle').innerHTML = 'The Expanse';
+      document.getElementById('madeWithSlogan').innerHTML = 'Build, Experince & Share the future of social VR.';
+      document.getElementById('madeWithTitleSub').innerHTML = 'The Expanse';
+      document.getElementById('madeWithProject').innerHTML = 'Project: Aurora';
+      document.getElementById('madeWithYear').innerHTML = 'Year 2018 - Now';
+      break;
+      case 'active':
+      document.getElementById('madeWithExokitMainImg').src = 'media/activeDemo.png';
+      document.getElementById('madeWithTitle').innerHTML = 'Active Theory';
+      document.getElementById('madeWithSlogan').innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
+      document.getElementById('madeWithTitleSub').innerHTML = 'Active Theory';
+      document.getElementById('madeWithProject').innerHTML = 'Project: xyz';
+      document.getElementById('madeWithYear').innerHTML = 'Year 2018 - Now';
+
+      break;
+      case 'emukit':
+      document.getElementById('madeWithExokitMainImg').src = 'media/emukitDemo.png';
+      document.getElementById('madeWithTitle').innerHTML = 'Emukit';
+      document.getElementById('madeWithSlogan').innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
+      document.getElementById('madeWithTitleSub').innerHTML = 'Emukit';
+      document.getElementById('madeWithProject').innerHTML = 'Project: Nintendo 64 VR Emulation';
+      document.getElementById('madeWithYear').innerHTML = 'Year 2018 - Now';
+      break;
+    }
+  }
 </script>
 
 <div id="overlay">
@@ -57,9 +87,9 @@
     <h3 class="font-weight-light">The WebXR engine you want today, with the features of tomorrow.</h1>
     <div id=heroPusher></div>
     <h4>Download now</h4>
-    <i class="fab fa-apple fa-2x p-2"></i>
-    <i class="fab fa-windows fa-2x p-2"></i>
-    <i class="fab fa-linux fa-2x p-2"></i>
+    <a href="https://get.webmr.io/mac"><i class="fab fa-apple fa-2x p-2"></i></a>
+    <a href="https://get.webmr.io/linux"><i class="fab fa-linux fa-2x p-2"></i></a>
+    <a href="https://get.webmr.io/windows"><i class="fab fa-windows fa-2x p-2"></i></a>
 </div>
 
 <div class="row whatIsExokit">
@@ -96,10 +126,10 @@
   </div>
 </div>
 
-<div class="row madeWithExokit">
+<div class="row madeWithExokit pt-5">
 
-  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-    <img class="madeWithExokitMainImg img-fluid" src="media/madeWithExokit.png"></img>
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
+    <img id="madeWithExokitMainImg" class="img-fluid pb-5" src="media/expanse.png"></img>
   </div>
 
   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -108,22 +138,22 @@
 
     <div class="row">
       <div class="col-6">
-          <h2>The Expanse</h2>
+          <h2 id="madeWithTitle">The Expanse</h2>
         </div>
         <div class="col-6">
-          <p>Build, Experince & Share the future of social VR.</p>
+          <p id="madeWithSlogan">Build, Experince & Share the future of social VR.</p>
         </div>
     </div>
 
     <div class="row pt-5">
       <div class="col-12">
-          <h5>The Expanse</h2>
+          <h5 id="madeWithTitleSub">The Expanse</h2>
       </div>
       <div class="col-12">
-          <p>Project: Aurora</p>
+          <p id="madeWithProject">Project: Aurora</p>
       </div>
       <div class="col-12">
-          <p>Year: 2018</p>
+          <p id="madeWithYear">Year: 2018</p>
       </div>
     </div>
 
@@ -133,13 +163,13 @@
 
     <div class="row">
       <div class="col-4">
-          <img class="madeWithExokitSubImg img-fluid" src="media/activeTheory.png"></img>
+          <img onclick="changeCompany('active')" class="madeWithExokitSubImg img-fluid" src="media/activeTheory.png"></img>
         </div>
       <div class="col-4">
-          <img class="madeWithExokitSubImg img-fluid" src="media/exokit.png"></img>
+          <img onclick="changeCompany('expanse')" class="madeWithExokitSubImg img-fluid" src="media/expanse.png"></img>
         </div>
       <div class="col-4">
-          <img class="madeWithExokitSubImg img-fluid" src="media/emukit.png"></img>
+          <img onclick="changeCompany('emukit')" class="madeWithExokitSubImg img-fluid" src="media/emukit.png"></img>
       </div>
     </div>
 
@@ -262,10 +292,10 @@
       <div class="row pl-5">
         <div class="col-12 pl-0">
           <p>Find us online</p>
-          <i class="fab fa-twitch pt-2 pb-2 pr-2"></i>
-          <i class="fab fa-discord p-2"></i>
-          <i class="fab fa-slack p-2"></i>
-          <i class="fab fa-twitter p-2"></i>
+          <a class="footerLink" href="https://www.twitch.tv/avaer"><i class="fab fa-twitch pt-2 pb-2 pr-2"></i></a>
+          <a class="footerLink" href="https://discordapp.com/invite/Apk6cZN"><i class="fab fa-discord p-2"></i></a>
+          <a class="footerLink" href="https://exokit.slack.com/join/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q"><i class="fab fa-slack p-2"></i></a>
+          <a class="footerLink" href="https://twitter.com/webmixedreality"><i class="fab fa-twitter p-2"></i></a>
         </div>
         <div class="col-12 pl-0">
           <div class="row pt-5">

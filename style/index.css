@@ -18,7 +18,7 @@
   font-weight: 300;
 }
 
-.home html {
+html {
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
@@ -31,14 +31,14 @@
     color: white;
 }
 
-.home body {
+body {
   font-family: Bozon;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden
 }
 
-.home .row, .home .col {
+.row, .col {
     margin: 0;
     padding: 0;
 }

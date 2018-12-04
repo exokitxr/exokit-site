@@ -92,7 +92,7 @@ body {
     left: 0;
 }
 
-.mlImg, .oculusImg, .viveImg{
+.mlImg, .oculusImg, .viveImg, .exokitImg{
     height: 100px;
     width: auto;
 }
@@ -109,7 +109,7 @@ body {
     padding-top: 120px;
 }
 .featureText{
-    margin-bottom: 220px;
+    margin-bottom: 250px;
     width: 75%;
     margin-left: 10vw;
 }

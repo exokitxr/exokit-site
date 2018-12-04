@@ -18,7 +18,7 @@
     font-weight: 300;
 }
 
-.contact html {
+html {
     overflow-x: hidden;
     text-overflow: ellipsis;
 }
@@ -38,7 +38,7 @@ body{
     overflow-x: hidden
 }
 
-.contact .row, .contact .col {
+.row, .col {
     margin: 0;
     padding: 0;
 }

@@ -92,8 +92,12 @@ body {
     left: 0;
 }
 
-.mlImg, .oculusImg, .viveImg, .exokitImg{
+.mlImg, .oculusImg, .viveImg{
     height: 100px;
+    width: auto;
+}
+.exokitImg{
+    height: 60px;
     width: auto;
 }
 

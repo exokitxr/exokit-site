@@ -76,8 +76,8 @@ body {
     background: #16BFFD;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(45deg, #CB3066, #16BFFD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 85%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 85%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
 }
 
 .whatIsExokitPusher{
@@ -110,7 +110,7 @@ body {
 }
 .featureText{
     margin-bottom: 220px;
-    width: 50%;
+    width: 75%;
     margin-left: 10vw;
 }
 
@@ -228,6 +228,11 @@ body {
     .whatIsExokitImg{
         width: auto;
         height: 300px;
+    }
+    .whatIsExokit{
+        -webkit-clip-path: polygon(0 0, 100% 10%, 100% 95%, 0 100%);
+        clip-path: polygon(0 0, 100% 10%, 100% 95%, 0 100%);
+        min-height: 240vh;
     }
 }
 

@@ -149,21 +149,23 @@ body {
 
 .madeWithExokit{
     position: relative;
-    min-height: 85vh
+    min-height: 90vh
 }
 
 .madeWithExokitPusher{
     margin-top: 50px;
 }
 
-.madeWithExokitMainImg{
-    max-height: 80vh;
+#madeWithExokitMainImg{
+    max-height: 60vh;
     width: auto;
+    border-radius: 30px;
 }
 
 .madeWithExokitSubImg{
     max-height: 20vh;
     width: auto;
+    cursor: pointer;
 }
 
 .quotes{

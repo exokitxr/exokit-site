@@ -70,6 +70,12 @@ body{
     border-radius: 100px;
 }
 
+.contact .emailButton{
+    border-radius: 100px;
+    background-color: #2096A2;
+    border: none;
+}
+
 .contact input{
     border-radius: 100px !important;
 }
@@ -79,13 +85,6 @@ body{
     background-color: #2096A2;
     border: none;
 }
-
-.contact .emailButton{
-    border-radius: 100px;
-    background-color: #2096A2;
-    border: none;
-}
-
 .contact .contactSection{
     position: relative;
     min-height: 60vh;

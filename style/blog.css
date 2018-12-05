@@ -79,3 +79,6 @@ body{
     position: relative;
     min-height: 100vh;
 }
+.blog img{
+    border-radius: 10px;
+}

@@ -766,8 +766,10 @@ function animate() {
     }
   });
 
-  renderer.render(scene, camera);
+  if(window.scrollY < window.innerHeight){
+    renderer.render(scene, camera);
+    lastUpdateTime = now;
+  }
 
-  lastUpdateTime = now;
 }
 renderer.setAnimationLoop(animate);

@@ -767,7 +767,18 @@ function animate() {
   });
 
   renderer.render(scene, camera);
-
   lastUpdateTime = now;
 }
+
 renderer.setAnimationLoop(animate);
+
+window.addEventListener("scroll", e =>{
+  if(window.scrollY > window.innerHeight){
+    renderer.setAnimationLoop(null);
+  }
+  else{
+    renderer.setAnimationLoop(animate);
+  }
+})
+
+

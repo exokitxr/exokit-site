@@ -172,7 +172,8 @@ body {
 .home .exokitFeature{
     border-radius: 25px;
     text-align: center;
-    height: 50vh;
+    height: auto;
+    min-height: 400px;
     background: rgba(238, 238, 238, 0);  /* fallback for old browsers */
     background: -webkit-linear-gradient(120deg, #EEEEEE, #EEEEEE);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(120deg, rgba(238, 238, 238, 0.70), rgba(238, 238, 238, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -306,6 +307,9 @@ body {
     .home #heroPusher{
         margin-bottom: 20px;
     }
+    .home .exokitFeature{
+        min-height: 90vh;
+    }
 }
 @media only screen and (max-width: 994px) {
     .home .whatIsExokitImg{
@@ -345,7 +349,7 @@ body {
         min-height: 230vh;
     }
     .home .exokitFeature{
-        height: 45vh;
+        min-height: 60vh;
     }
     .home .featuresSpacer{
         height: 80px;

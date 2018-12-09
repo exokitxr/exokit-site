@@ -35,7 +35,7 @@ body{
     font-family: Bozon;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
 .row, .col {
@@ -66,6 +66,17 @@ body{
     background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.contact .footer .fab:hover{
+    color: rgb(207, 207, 207);
+}
+.contact .footer a:hover{
+    color: rgb(207, 207, 207);
+}
+.contact .footer a{
+    text-decoration: none;
+    color: white;
+}
+
 .contact .emailInput{
     border-radius: 100px;
 }
@@ -76,16 +87,23 @@ body{
     border: none;
 }
 
+.contact .forms{
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
 .contact input{
     border-radius: 100px !important;
+    box-shadow: 1px 1px 1px rgb(197, 197, 197);
 }
 
 .contact .contactButton{
     border-radius: 100px;
+    width: 250px;
     background-color: #2096A2;
     border: none;
 }
 .contact .contactSection{
     position: relative;
-    min-height: 60vh;
+    min-height: 62vh;
 }

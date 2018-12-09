@@ -641,7 +641,7 @@ const _makeExobotMesh = (() => {
     });
   const material = new THREE.MeshBasicMaterial({
     map: texture,
-    tranansparent: true,
+    transparent: true,
     alphaTest: 0.9,
   });
   return () => new THREE.Mesh(geometry, material);

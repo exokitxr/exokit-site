@@ -119,8 +119,8 @@ body {
     border-right: thin solid white;
     height: 80px;
     width: 50%;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 .home .featurePusher{
@@ -283,7 +283,7 @@ body {
         margin-top: 200px;
     }
     .home .featureTextPusher{
-        height: 50px;
+        height: 20px;
     }
     .home .featurePusher{
         padding-top: 50px;
@@ -295,7 +295,7 @@ body {
         margin-bottom: 150px;
     }
     .home .featureArrow {
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 }

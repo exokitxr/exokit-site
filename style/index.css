@@ -85,8 +85,6 @@ body {
     position: relative;
     margin-top: -80px;
     min-height: 130vh;
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
 }
 
 .home .whatIsExokitPusher{
@@ -109,6 +107,7 @@ body {
     width: auto;
     filter: invert(88%);
 }
+
 .home .exokitImg{
     height: 60px;
     width: auto;
@@ -127,31 +126,32 @@ body {
 }
 
 .home .featurePusher{
-    padding-top: 50px;
+    padding-top: 35px;
 }
 .home .featureText{
     width: 75%;
     margin-left: 10vw;
+    line-height: 1.5;
 }
 .home .featureTextPusher{
-    height: 50px;
+    height: 30px;
 }
 
 .home .slideTextLeft{
-    animation: moveLeft 0.5s ease-in;
+    animation: moveLeft 1s ease-in;
 }
 .home .slideTextRight{
-    animation: moveRight 0.5s ease-in;
+    animation: moveRight 1s ease-in;
 }
 
 @keyframes moveLeft {
-    from { margin-left: 500px; }
+    from { margin-left: 1000px; }
     to { margin-left: 0px; }
 }
 
 @keyframes moveRight {
-    from { margin-right: 500px; }
-    to { margin-right: 0px; }
+    from { margin-left: 0px; }
+    to { margin-left: 1000px; }
 }
 
 .home .exokitFeatures{
@@ -316,10 +316,6 @@ body {
         width: auto;
         height: 300px;
     }
-    .home .whatIsExokit{
-        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-        clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-    }
     .home .quotes{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
         clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
@@ -337,7 +333,7 @@ body {
         margin-bottom: 80px;
     }
     .home .oculusImg{
-        margin-bottom: 150px;
+        margin-bottom: 80px;
     }
     .home .featureArrow {
         margin-top: 30px;

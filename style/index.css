@@ -73,6 +73,10 @@ body {
     z-index: 1000;
 }
 
+.home .heroDL:hover{
+    color: rgb(39, 39, 39);
+}
+
 .home #heroPusher{
     margin-bottom: 180px;
 }
@@ -216,9 +220,11 @@ body {
     border-radius: 100px;
 }
 .home .quoteArrow{
-    cursor: p
+    cursor: pointer;
 }
-
+.home .quoteArrow:hover{
+    color: rgb(207, 207, 207);
+}
 .home .card-body{
     color: black;
 }
@@ -259,6 +265,18 @@ body {
     background: -webkit-linear-gradient(to bottom, #414345, #17191a);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+.home .footer .fab:hover{
+    color: rgb(207, 207, 207);
+}
+.home .footer a:hover{
+    color: rgb(207, 207, 207);
+}
+.home .footer a{
+    text-decoration: none;
+    color: white;
+}
+
 
 .home .emailInput{
     border-radius: 100px;

@@ -66,6 +66,18 @@ body{
     background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.features .footer .fab:hover{
+    color: rgb(207, 207, 207);
+}
+.features .footer a:hover{
+    color: rgb(207, 207, 207);
+}
+.features .footer a{
+    text-decoration: none;
+    color: white;
+}
+
+
 .features .emailInput{
     border-radius: 100px;
 }
@@ -78,6 +90,17 @@ body{
 .features .featuresHero{
     position: relative;
     min-height: 100vh;
+}
+
+.features .heroDL:hover{
+    color: rgb(39, 39, 39);
+}
+
+.features .featuresHeroImg{
+    margin-top: 15vh;
+    margin-left: 5vw;
+    height: 50vh;
+    width: auto;
 }
 .features .notABrowser{
     color: white;
@@ -170,5 +193,11 @@ body{
         padding-top: 20vh;
         padding-bottom: 10vh;
         padding-left: 10vw;
+    }
+    .features .featuresHeroImg{
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 7vh;
+        height: 50vh;
     }
 }

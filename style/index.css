@@ -73,20 +73,18 @@ body {
     z-index: 1000;
 }
 
+.home .heroDL:hover{
+    color: rgb(39, 39, 39);
+}
+
 .home #heroPusher{
     margin-bottom: 180px;
 }
 
 .home .whatIsExokit{
-    color: white;
     position: relative;
     margin-top: -80px;
-    min-height: 160vh;
-    background: #000046;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(135deg, rgb(20, 132, 163), #00003b);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(135deg, rgb(20, 132, 163), #00003b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+    min-height: 130vh;
 }
 
 .home .whatIsExokitPusher{
@@ -99,13 +97,17 @@ body {
     position: absolute;
     bottom: -20;
     left: 0;
+    color: black;
+
 }
 
 .home .mlImg, .home .oculusImg, .home .viveImg{
     height: 100px;
     margin-bottom: 100px;
     width: auto;
+    filter: invert(88%);
 }
+
 .home .exokitImg{
     height: 60px;
     width: auto;
@@ -116,44 +118,70 @@ body {
 }
 
 .home .featureArrow {
-    border-right: thin solid white;
+    border-right: thin solid black;
     height: 80px;
     width: 50%;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 .home .featurePusher{
-    padding-top: 50px;
+    padding-top: 35px;
 }
 .home .featureText{
     width: 75%;
     margin-left: 10vw;
+    line-height: 1.5;
 }
 .home .featureTextPusher{
-    height: 50px;
+    height: 30px;
 }
 
 .home .slideTextLeft{
-    animation: moveLeft 0.5s ease-in;
+    animation: moveLeft 1s ease-in;
 }
 .home .slideTextRight{
-    animation: moveRight 0.5s ease-in;
+    animation: moveRight 1s ease-in;
 }
 
 @keyframes moveLeft {
-    from { margin-left: 500px; }
+    from { margin-left: 1000px; }
     to { margin-left: 0px; }
 }
 
 @keyframes moveRight {
-    from { margin-right: 500px; }
-    to { margin-right: 0px; }
+    from { margin-left: 0px; }
+    to { margin-left: 1000px; }
+}
+
+.home .exokitFeatures{
+    position: relative;
+    min-height: 90vh;
+    color: white;
+    background: #221962;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(120deg, #255B7F, #221962);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(120deg, #255B7F, #221962); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+}
+
+.home .exokitFeatures .row{
+    width: 100%;
+}
+
+.home .exokitFeature{
+    border-radius: 25px;
+    text-align: center;
+    height: auto;
+    min-height: 400px;
+    background: rgba(238, 238, 238, 0);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(120deg, #EEEEEE, #EEEEEE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(120deg, rgba(238, 238, 238, 0.70), rgba(238, 238, 238, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .home .madeWithExokit{
     position: relative;
-    min-height: 90vh
+    min-height: 70vh
 }
 
 .home .madeWithExokitPusher{
@@ -193,9 +221,11 @@ body {
     border-radius: 100px;
 }
 .home .quoteArrow{
-    cursor: p
+    cursor: pointer;
 }
-
+.home .quoteArrow:hover{
+    color: rgb(207, 207, 207);
+}
 .home .card-body{
     color: black;
 }
@@ -237,6 +267,18 @@ body {
     background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.home .footer .fab:hover{
+    color: rgb(207, 207, 207);
+}
+.home .footer a:hover{
+    color: rgb(207, 207, 207);
+}
+.home .footer a{
+    text-decoration: none;
+    color: white;
+}
+
+
 .home .emailInput{
     border-radius: 100px;
 }
@@ -265,15 +307,14 @@ body {
     .home #heroPusher{
         margin-bottom: 20px;
     }
+    .home .exokitFeature{
+        min-height: 90vh;
+    }
 }
 @media only screen and (max-width: 994px) {
     .home .whatIsExokitImg{
         width: auto;
         height: 300px;
-    }
-    .home .whatIsExokit{
-        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-        clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
     }
     .home .quotes{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
@@ -283,7 +324,7 @@ body {
         margin-top: 200px;
     }
     .home .featureTextPusher{
-        height: 50px;
+        height: 20px;
     }
     .home .featurePusher{
         padding-top: 50px;
@@ -292,10 +333,21 @@ body {
         margin-bottom: 80px;
     }
     .home .oculusImg{
-        margin-bottom: 150px;
+        margin-bottom: 80px;
     }
     .home .featureArrow {
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .home .exokitFeatures{
+        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
+        clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
+        min-height: 230vh;
+    }
+    .home .exokitFeature{
+        min-height: 60vh;
+    }
+    .home .featuresSpacer{
+        height: 80px;
     }
 }

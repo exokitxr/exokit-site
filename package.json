@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/modulesio/exokit-site#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemailer": "^4.7.0"
   }
 }

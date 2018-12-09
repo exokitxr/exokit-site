@@ -9,6 +9,35 @@
 </head>
 <body class="contact">
 <header>
+
+<script>
+
+  function sendEmail(){
+    const fName = document.getElementById('fName').value;
+    const lName = document.getElementById('lName').value;
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value;
+    const message = document.getElementById('message').value;
+
+    if(fName != '' && lName != '' && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === true && message != ''){
+      let data = JSON.stringify({fName: fName, lName: lName, email: email, company: company, message: message});
+      fetch("/sendEmail", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: data,
+      }).then(response => {
+          return response.json();
+      }).then(data =>{
+          console.log(data);
+      });
+    }
+    else{
+      console.log("invalid form inputs for sending an email")
+    }
+  }
+
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-light pr-5 pl-5">
   <a class="navbar-brand" href="index.html"><img class="mb-2" src="media/logo.svg"><span>Exokit</span></a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -23,37 +52,38 @@
 </nav>
 </header>
 
-<div class="row contactSection">
-    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 p-4 pr-5 pl-5">
+<div class="row contactSection pt-4">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pt-5 forms">
         <h1>Need Help? Send Us a Message!</h1>
+        <br>
         <form>
             <div class="row mt-4">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input type="text" class="form-control firstNameInput p-4 mb-3" aria-describedby="First Name" placeholder="First Name">
+                    <input required id="fName" type="text" class="form-control firstNameInput p-4 mb-3" aria-describedby="First Name" placeholder="First Name">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input type="text" class="form-control lastNameInput p-4" aria-describedby="Last Name" placeholder="Last Name">
+                    <input required id="lName" type="text" class="form-control lastNameInput p-4" aria-describedby="Last Name" placeholder="Last Name">
                 </div>
             </div>
             <div class="row pt-3 pb-3">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input type="email" class="form-control emailInputContact p-4 mb-3" aria-describedby="Email" placeholder="Email">
+                    <input required id="email" type="email" class="form-control emailInputContact p-4 mb-3" aria-describedby="Email" placeholder="Email">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input type="text" class="form-control companyInput p-4" aria-describedby="Company" placeholder="Company">
+                    <input id="company" type="text" class="form-control companyInput p-4" aria-describedby="Company" placeholder="Company">
                 </div>
             </div>
             <div class="row pt-3 pb-3">
                 <div class="col-12">
                     <div class="form-group">
-                        <textarea class="form-control" id="messageInput" placeholder="Message" rows="3"></textarea>
+                        <textarea required id="message" class="form-control" id="messageInput" placeholder="Message" rows="3"></textarea>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="contactButton btn btn-primary inline ml-2 mt-2 mb-2 p-3 pl-5 pr-5">Submit</button>
+            <button onClick="sendEmail()" type="submit" class="contactButton btn btn-primary inline ml-2 mt-2 mb-2 p-3 pl-5 pr-5">Submit</button>
         </form>
     </div>
-    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 p-4 pr-5 pl-5 pb-5">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 p-5">
         <h1 class="pb-5">Come visit us.</h1>
         <h3 class="font-weight-light">2576 Heather Sees Way</h3>
         <h3 class="font-weight-light">Muskogee OK</h3>
@@ -65,66 +95,80 @@
 </div>
 
 <footer>
-    <div class="row footer">
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
+  <div class="row footer">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
         <div class="row pl-4">
-          <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-            <p>Find Us</p>
-            <br/>
-            <p class="font-weight-light">101 Kensington Steet, Monteral, Canada.</p>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-              <p class="font-weight-light">Support</p>
-              <p class="font-weight-light">Careers</p>
-              <p class="font-weight-light">About</p>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-              <p class="font-weight-light">Press</p>
-              <p class="font-weight-light">Investor</p>
-          </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <p>Find Us</p>
+                <br/>
+                <p class="font-weight-light">101 Kensington Steet, Monteral, Canada.</p>
+                </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <a href="">
+                    <p class="font-weight-light">Support</p>
+                </a>
+                <a href="">
+                    <p class="font-weight-light">Careers</p>
+                </a>
+                <a href="">
+                    <p class="font-weight-light">About</p>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <a href="">
+                <p class="font-weight-light">Press</p>
+                </a>
+                <a href="">
+                <p class="font-weight-light">Investor</p>
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-5">
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-5">
         <div class="row text-center justify-content-center">
             <form>
-              <div class="form-group form-inline d-inline">
+                <div class="form-group form-inline d-inline">
                 <p class="font-weight-light">Sign up for updates.</p>
                 <input type="email" class="form-control emailInput p-3" aria-describedby="email" placeholder="Email">
                 <button type="submit" class="emailButton btn btn-primary inline ml-2 mt-2 mb-2 p-2 pl-4 pr-4">Sign up</button>
-              </div>
+                </div>
             </form>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
         <div class="row pl-5">
-          <div class="col-12 pl-0">
-            <p>Find us online</p>
-            <a class="footerLink" href="https://www.twitch.tv/avaer"><i class="fab fa-twitch pt-2 pb-2 pr-2"></i></a>
-            <a class="footerLink" href="https://discordapp.com/invite/Apk6cZN"><i class="fab fa-discord p-2"></i></a>
-            <a class="footerLink" href="https://exokit.slack.com/join/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q"><i class="fab fa-slack p-2"></i></a>
-            <a class="footerLink" href="https://twitter.com/webmixedreality"><i class="fab fa-twitter p-2"></i></a>
-          </div>
-          <div class="col-12 pl-0">
-            <div class="row pt-5">
-              <div class="col-6 pl-0">
-                <p>Social</p>
-              </div>
-              <div class="col-6">
-                <p>Community</p>
-              </div>
+            <div class="col-12 pl-0">
+                <p>Find us online</p>
+                <a class="footerLink" href="https://www.twitch.tv/avaer"><i class="fab fa-twitch pt-2 pb-2 pr-2"></i></a>
+                <a class="footerLink" href="https://discordapp.com/invite/Apk6cZN"><i class="fab fa-discord p-2"></i></a>
+                <a class="footerLink" href="https://exokit.slack.com/join/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q"><i class="fab fa-slack p-2"></i></a>
+                <a class="footerLink" href="https://twitter.com/webmixedreality"><i class="fab fa-twitter p-2"></i></a>
             </div>
-          </div>
+            <div class="col-12 pl-0">
+                <div class="row pt-5">
+                    <div class="col-6 pl-0">
+                    <a href="">
+                        <p>Social</p>
+                    </a>
+                    </div>
+                    <div class="col-6">
+                    <a href="">
+                        <p>Community</p>
+                    </a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-12 pt-4">
-          <div class="row">
+    </div>
+    <div class="col-12 pt-4">
+        <div class="row">
             <div class="col-12">
                 <p class="text-center font-weight-light">Copyright &copy; 2018 Exokit Inc.</p>
             </div>
-          </div>
         </div>
     </div>
-  </footer>
+</div>
+</footer>
 
 </body>
 </html>

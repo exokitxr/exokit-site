@@ -596,10 +596,10 @@ function init() {
 
   scene.add(container);
 
-  window.addEventListener('scroll', () => {
-    const factor = window.scrollY / window.innerHeight;
-    renderer.domElement.style.transform = `scale(${1 + factor})`;
-  });
+  // window.addEventListener('scroll', () => {
+  //   const factor = window.scrollY / window.innerHeight;
+  //   renderer.domElement.style.transform = `scale(${1 + factor})`;
+  // });
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -641,7 +641,7 @@ const _makeExobotMesh = (() => {
     });
   const material = new THREE.MeshBasicMaterial({
     map: texture,
-    tranansparent: true,
+    transparent: true,
     alphaTest: 0.9,
   });
   return () => new THREE.Mesh(geometry, material);

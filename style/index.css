@@ -78,13 +78,9 @@ body {
 }
 
 .home .whatIsExokit{
-    color: white;
     position: relative;
     margin-top: -80px;
-    min-height: 160vh;
-    background: #000046;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(135deg, rgb(20, 132, 163), #00003b);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(135deg, rgb(20, 132, 163), #00003b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-height: 130vh;
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
 }
@@ -99,12 +95,15 @@ body {
     position: absolute;
     bottom: -20;
     left: 0;
+    color: black;
+
 }
 
 .home .mlImg, .home .oculusImg, .home .viveImg{
     height: 100px;
     margin-bottom: 100px;
     width: auto;
+    filter: invert(88%);
 }
 .home .exokitImg{
     height: 60px;
@@ -116,7 +115,7 @@ body {
 }
 
 .home .featureArrow {
-    border-right: thin solid white;
+    border-right: thin solid black;
     height: 80px;
     width: 50%;
     margin-top: 70px;
@@ -151,9 +150,33 @@ body {
     to { margin-right: 0px; }
 }
 
+.home .exokitFeatures{
+    position: relative;
+    min-height: 90vh;
+    color: white;
+    background: #221962;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(120deg, #255B7F, #221962);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(120deg, #255B7F, #221962); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+}
+
+.home .exokitFeatures .row{
+    width: 100%;
+}
+
+.home .exokitFeature{
+    border-radius: 25px;
+    text-align: center;
+    height: 50vh;
+    background: rgba(238, 238, 238, 0);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(120deg, #EEEEEE, #EEEEEE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(120deg, rgba(238, 238, 238, 0.70), rgba(238, 238, 238, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .home .madeWithExokit{
     position: relative;
-    min-height: 90vh
+    min-height: 70vh
 }
 
 .home .madeWithExokitPusher{
@@ -297,5 +320,16 @@ body {
     .home .featureArrow {
         margin-top: 30px;
         margin-bottom: 30px;
+    }
+    .home .exokitFeatures{
+        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
+        clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
+        min-height: 230vh;
+    }
+    .home .exokitFeature{
+        height: 45vh;
+    }
+    .home .featuresSpacer{
+        height: 80px;
     }
 }

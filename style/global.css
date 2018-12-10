@@ -43,7 +43,7 @@ body {
     overflow-x: hidden
 }
   
-.col {
+.row, .col {
     margin: 0;
     padding: 0;
 }

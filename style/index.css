@@ -1,73 +1,3 @@
-@font-face {
-  font-family: 'Bison';
-  src: url('../fonts/Bison-Bold.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Bozon';
-  src: url('../fonts/ROHH - Bozon Regular.otf') format('opentype');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Bozon';
-  src: url('../fonts/ROHH - Bozon Bold.otf') format('opentype');
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'Bozon';
-  src: url('../fonts/ROHH - Bozon Light.otf') format('opentype');
-  font-weight: 300;
-}
-
-html {
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-}
-
-.home a{
-    color: black;
-    text-decoration: none;
-}
-
-.home .footerLink{
-    color: white;
-}
-
-body {
-  font-family: Bozon;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden
-}
-
-.row, .col {
-    margin: 0;
-    padding: 0;
-}
-
-.home .navbar-brand {
-  font-family: Bison;
-  font-size: 40px;
-  display: inline-flex;
-  align-items: center;
-}
-
-.home .navbar-brand img {
-  height: 35px;
-  margin-right: 8px;
-}
-
-.home .navbar-nav {
-    margin-left: auto;
-}
-
-.home #bigNavbar{
-    visibility: visible;
-}
-.home #littleNavbar{
-    visibility: hidden;
-    width: 0;
-}
-
 .home #canvas {
     position: relative;
     width: 100vw;
@@ -267,39 +197,7 @@ body {
 .home .verticalLine {
     border-left: thin solid rgba(0, 0, 0, 0.685);
     height: 80px;
-  }
-
-.home .footer{
-    padding-top: 5vh;
-    color: white;
-    min-height: 30vh;
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #414345, #17191a);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
-.home .footer .fab:hover{
-    color: rgb(207, 207, 207);
-}
-.home .footer a:hover{
-    color: rgb(207, 207, 207);
-}
-.home .footer a{
-    text-decoration: none;
-    color: white;
-}
-
-
-.home .emailInput{
-    border-radius: 100px;
-}
-
-.home .emailButton{
-    border-radius: 100px;
-    background-color: #2096A2;
-    border: none;
-}
-
 
 @media only screen and (max-width: 800px) {
     .home #overlay {
@@ -360,16 +258,5 @@ body {
     }
     .home .featuresSpacer{
         height: 80px;
-    }
-    .home #bigNavbar{
-        visibility: hidden;
-    }
-    .home #littleNavbar{
-        visibility: visible;
-        width: 80px;
-    }
-    .home #brandName{
-        visibility: hidden;
-        width: 0;
     }
 }

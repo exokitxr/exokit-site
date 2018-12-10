@@ -4,24 +4,102 @@
   <link rel="icon" href="media/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style/global.css">
   <link rel="stylesheet" type="text/css" href="style/blog.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body class="blog">
-<header>
+
+<script>
+    function expandLittleNavbar(){
+        document.getElementById('expandedLittleNavbar').style.height = "100vh"
+        document.getElementById('expandedLittleNavbar').style.visibility = "visible"
+    }
+
+    function hideLittleNavbar(){
+        document.getElementById('expandedLittleNavbar').style.height = "0vh"
+        document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
+    }
+</script> 
+
 <nav class="navbar navbar-expand-lg navbar-light pr-5 pl-5">
-  <a class="navbar-brand" href="index.html"><img class="mb-2" src="media/logo.svg"><span>Exokit</span></a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<a class="navbar-brand" href="index.html"><img src="media/logo.svg"><span id="brandName">Exokit</span></a>
+<div class="collapse navbar-collapse" id="bigNavbar">
     <div class="navbar-nav">
-      <a class="nav-item nav-link pr-4 pl-4" href="features.html"><h5 class="font-weight-normal">Features</h2></a>
-      <a class="nav-item nav-link pr-4 pl-4" href="docs"><h5 class="font-weight-normal">Docs</h2></a>
-      <a class="nav-item nav-link active pr-4 pl-4" href="blog.html"><h5 class="font-weight-normal">Blog</h2></a>
-      <a class="nav-item nav-link pr-4 pl-4" href="about.html"><h5 class="font-weight-normal">About</h2></a>
-      <a class="nav-item nav-link pr-4 pl-4" href="contact.html"><h5 class="font-weight-normal">Contact</h2></a>
+    <a class="nav-item nav-link pr-4 pl-4" href="features.html"><h5 class="font-weight-normal">Features</h2></a>
+    <a class="nav-item nav-link pr-4 pl-4" href="docs"><h5 class="font-weight-normal">Docs</h2></a>
+    <a class="nav-item nav-link pr-4 pl-4" href="blog.html"><h5 class="font-weight-normal">Blog</h2></a>
+    <a class="nav-item nav-link pr-4 pl-4" href="about.html"><h5 class="font-weight-normal">About</h2></a>
+    <a class="nav-item nav-link pr-4 pl-4" href="contact.html"><h5 class="font-weight-normal">Contact</h2></a>
     </div>
-  </div>
+</div>
+
+<div id="littleNavbar">
+    <h5 onclick="expandLittleNavbar()"class="mt-1" style="cursor: pointer">Blog<i class="fas fa-angle-down ml-2"></i></h5>
+</div>
+
 </nav>
 </header>
+
+<div id="expandedLittleNavbar">
+    <div class="row text-center mt-5">
+    <div class="col-12 mt-5 mb-5">
+        <img src="media/logo.svg" style="height: 7vh; width: auto;"></a>
+        <h2 style="font-family: Bison;">Exokit</h2>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="index.html"><h5 class="font-weight-light">Home</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="features.html"><h5 class="font-weight-light">Features</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="docs/"><h5 class="font-weight-light">Docs</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="blog.html"><h5>Blog</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="about.html"><h5 class="font-weight-light">About</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="contact.html"><h5 class="font-weight-light">Contact</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <i onclick="hideLittleNavbar()" class="fas fa-times fa-2x" style="margin-bottom: 5vh; cursor: pointer;"></i>
+    </div>
+    </div>
+</div>
+
+<div id="expandedLittleNavbar" style="position: fixed; top: 0; right: 0; left: 0; background-color: white; z-index: 3; visibility: hidden;">
+    <div class="row text-center mt-5">
+    <div class="col-12 mt-5 mb-5">
+        <img src="media/logo.svg" style="height: 7vh; width: auto;"></a>
+        <h2 style="font-family: Bison;">Exokit</h2>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="index.html"><h5>Home</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="features.html"><h5 class="font-weight-light">Features</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="docs/"><h5 class="font-weight-light">Docs</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="blog.html"><h5 class="font-weight-light">Blog</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="about.html"><h5 class="font-weight-light">About</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <a href="contact.html"><h5 class="font-weight-light">Contact</h5></a>
+    </div>
+    <div class="col-12 mb-4">
+        <i onclick="hideLittleNavbar()" class="fas fa-times fa-2x" style="margin-bottom: 5vh; cursor: pointer;"></i>
+    </div>
+    </div>
+</div>
 
 <div class="row blogHero">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5 text-center">
@@ -95,65 +173,79 @@
 
 
 <footer>
-    <div class="row footer">
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
-        <div class="row pl-4">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-            <p>Find Us</p>
-            <br/>
-            <p class="font-weight-light">101 Kensington Steet, Monteral, Canada.</p>
-            </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <p class="font-weight-light">Support</p>
-                <p class="font-weight-light">Careers</p>
-                <p class="font-weight-light">About</p>
-            </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <p class="font-weight-light">Press</p>
-                <p class="font-weight-light">Investor</p>
-            </div>
+<div class="row footer">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
+    <div class="row pl-4">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <p>Find Us</p>
+        <br/>
+        <p class="font-weight-light">101 Kensington Steet, Monteral, Canada.</p>
         </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <a href="">
+            <p class="font-weight-light">Support</p>
+        </a>
+        <a href="">
+            <p class="font-weight-light">Careers</p>
+        </a>
+        <a href="">
+            <p class="font-weight-light">About</p>
+        </a>
         </div>
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-5">
-        <div class="row text-center justify-content-center">
-            <form>
-                <div class="form-group form-inline d-inline">
-                <p class="font-weight-light">Sign up for updates.</p>
-                <input type="email" class="form-control emailInput p-3" aria-describedby="email" placeholder="Email">
-                <button type="submit" class="emailButton btn btn-primary inline ml-2 mt-2 mb-2 p-2 pl-4 pr-4">Sign up</button>
-                </div>
-            </form>
-        </div>
-        </div>
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
-        <div class="row pl-5">
-            <div class="col-12 pl-0">
-            <p>Find us online</p>
-            <a class="footerLink" href="https://www.twitch.tv/avaer"><i class="fab fa-twitch pt-2 pb-2 pr-2"></i></a>
-            <a class="footerLink" href="https://discordapp.com/invite/Apk6cZN"><i class="fab fa-discord p-2"></i></a>
-            <a class="footerLink" href="https://exokit.slack.com/join/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q"><i class="fab fa-slack p-2"></i></a>
-            <a class="footerLink" href="https://twitter.com/webmixedreality"><i class="fab fa-twitter p-2"></i></a>
-            </div>
-            <div class="col-12 pl-0">
-            <div class="row pt-5">
-                <div class="col-6 pl-0">
-                <p>Social</p>
-                </div>
-                <div class="col-6">
-                <p>Community</p>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="col-12 pt-4">
-            <div class="row">
-            <div class="col-12">
-                <p class="text-center font-weight-light">Copyright &copy; 2018 Exokit Inc.</p>
-            </div>
-            </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <a href="">
+            <p class="font-weight-light">Press</p>
+            </a>
+            <a href="">
+            <p class="font-weight-light">Investor</p>
+            </a>
         </div>
     </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-5">
+    <div class="row text-center justify-content-center">
+        <form>
+            <div class="form-group form-inline d-inline">
+            <p class="font-weight-light">Sign up for updates.</p>
+            <input type="email" class="form-control emailInput p-3" aria-describedby="email" placeholder="Email">
+            <button type="submit" class="emailButton btn btn-primary inline ml-2 mt-2 mb-2 p-2 pl-4 pr-4">Sign up</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
+    <div class="row pl-5">
+        <div class="col-12 pl-0">
+        <p>Find us online</p>
+        <a class="footerLink" href="https://www.twitch.tv/avaer"><i class="fab fa-twitch pt-2 pb-2 pr-2"></i></a>
+        <a class="footerLink" href="https://discordapp.com/invite/Apk6cZN"><i class="fab fa-discord p-2"></i></a>
+        <a class="footerLink" href="https://exokit.slack.com/join/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q"><i class="fab fa-slack p-2"></i></a>
+        <a class="footerLink" href="https://twitter.com/webmixedreality"><i class="fab fa-twitter p-2"></i></a>
+        </div>
+        <div class="col-12 pl-0">
+        <div class="row pt-5">
+            <div class="col-6 pl-0">
+            <a href="">
+                <p>Social</p>
+            </a>
+            </div>
+            <div class="col-6">
+            <a href="">
+                <p>Community</p>
+            </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-12 pt-4">
+        <div class="row">
+        <div class="col-12">
+            <p class="text-center font-weight-light">Copyright &copy; 2018 Exokit Inc.</p>
+        </div>
+        </div>
+    </div>
+</div>
 </footer>
     
 </body>

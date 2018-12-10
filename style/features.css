@@ -1,101 +1,10 @@
-@font-face {
-    font-family: 'Bison';
-    src: url('../fonts/Bison-Bold.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Bozon';
-    src: url('../fonts/ROHH - Bozon Regular.otf') format('opentype');
-    font-weight: 400;
-}
-@font-face {
-    font-family: 'Bozon';
-    src: url('../fonts/ROHH - Bozon Bold.otf') format('opentype');
-    font-weight: 500;
-}
-@font-face {
-    font-family: 'Bozon';
-    src: url('../fonts/ROHH - Bozon Light.otf') format('opentype');
-    font-weight: 300;
-}
-
-html {
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-}
-
-.features a{
-    color: black;
-}
-
-.features .footerLink{
-    color: white;
-}
-  
-body{
-    font-family: Bozon;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden
-}
-
-.row, .col {
-    margin: 0;
-    padding: 0;
-}
-
-.features .navbar-brand {
-    font-family: Bison;
-    font-size: 40px;
-}
-
-.features .navbar-brand img {
-    height: 35px;
-    margin-right: 8px;
-}
-
-.features .navbar-nav {
-    margin-left: auto;
-}
-
-.features .footer{
-    padding-top: 5vh;
-    color: white !important;
-    min-height: 30vh;
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #414345, #17191a);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.features .footer .fab:hover{
-    color: rgb(207, 207, 207);
-}
-.features .footer a:hover{
-    color: rgb(207, 207, 207);
-}
-.features .footer a{
-    text-decoration: none;
-    color: white;
-}
-
-
-.features .emailInput{
-    border-radius: 100px;
-}
-
-.features .emailButton{
-    border-radius: 100px;
-    background-color: #2096A2;
-    border: none;
-}
 .features .featuresHero{
     position: relative;
     min-height: 100vh;
 }
-
 .features .heroDL:hover{
     color: rgb(39, 39, 39);
 }
-
 .features .featuresHeroImg{
     margin-top: 15vh;
     margin-left: 5vw;
@@ -123,13 +32,11 @@ body{
     padding-left: 5vw;
     padding-bottom: 10vh;
 }
-
 .featuresHeroText{
     padding-top: 20vh;
     padding-bottom: 10vh;
     padding-left: 5vw;
 }
-
 .features .notAFork{
     position: relative;
     min-height: 88vh;
@@ -139,7 +46,6 @@ body{
     padding-bottom: 10vh;
     padding-left: 10vw;
 }
-
 .features .futureFeatures{
     color: white;
     position: relative;
@@ -155,7 +61,6 @@ body{
     padding-bottom: 10vh;
     padding-left: 10vw;
 }
-
 .features .worksOnAll{
     position: relative;
     height: 60vh;
@@ -163,12 +68,10 @@ body{
     background-image: url('../media/getStarted.png');
     background-size: contain;
 }
-
 .features .verticalLine {
     border-left: thin solid rgba(0, 0, 0, 0.685);
     height: 80px;
-  }
-
+}
 @media only screen and (max-width: 994px) {
     .features .notABrowserText{
         padding-top: 20vh;

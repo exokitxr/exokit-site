@@ -25,6 +25,7 @@ html {
 
 .blog a{
     color: black;
+    text-decoration: none;
 }
 
 .blog .footerLink{
@@ -46,6 +47,8 @@ body{
 .blog .navbar-brand {
     font-family: Bison;
     font-size: 40px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .blog .navbar-brand img {
@@ -55,6 +58,14 @@ body{
 
 .blog .navbar-nav {
     margin-left: auto;
+}
+
+.blog #bigNavbar{
+    visibility: visible;
+}
+.blog #littleNavbar{
+    visibility: hidden;
+    width: 0;
 }
 
 .blog .footer{
@@ -81,4 +92,18 @@ body{
 }
 .blog img{
     border-radius: 10px;
+}
+
+@media only screen and (max-width: 994px) {
+    .blog #bigNavbar{
+        visibility: hidden;
+    }
+    .blog #littleNavbar{
+        visibility: visible;
+        width: 80px;
+    }
+    .blog #brandName{
+        visibility: hidden;
+        width: 0;
+    }
 }

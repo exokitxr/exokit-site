@@ -25,6 +25,7 @@ html {
 
 .contact a{
     color: black;
+    text-decoration: none;
 }
 
 .contact .footerLink{
@@ -46,6 +47,8 @@ body{
 .contact .navbar-brand {
     font-family: Bison;
     font-size: 40px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .contact .navbar-brand img {
@@ -55,6 +58,14 @@ body{
 
 .contact .navbar-nav {
     margin-left: auto;
+}
+
+.contact #bigNavbar{
+    visibility: visible;
+}
+.contact #littleNavbar{
+    visibility: hidden;
+    width: 0;
 }
 
 .contact .footer{
@@ -106,4 +117,21 @@ body{
 .contact .contactSection{
     position: relative;
     min-height: 62vh;
+}
+@media only screen and (max-width: 994px) {
+    .contact .theTeam{
+        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+    }
+    .contact #bigNavbar{
+        visibility: hidden;
+    }
+    .contact #littleNavbar{
+        visibility: visible;
+        width: 105px;
+    }
+    .contact #brandName{
+        visibility: hidden;
+        width: 0;
+    }
 }

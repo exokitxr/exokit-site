@@ -25,6 +25,7 @@ html {
 
 .about a{
     color: black;
+    text-decoration: none;
 }
 
 .about .footerLink{
@@ -46,6 +47,8 @@ body{
 .about .navbar-brand {
     font-family: Bison;
     font-size: 40px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .about .navbar-brand img {
@@ -55,6 +58,14 @@ body{
 
 .about .navbar-nav {
     margin-left: auto;
+}
+
+.about #bigNavbar{
+    visibility: visible;
+}
+.about #littleNavbar{
+    visibility: hidden;
+    width: 0;
 }
 
 .about .footer{
@@ -95,5 +106,16 @@ body{
     .about .theTeam{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
         clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+    }
+    .about #bigNavbar{
+        visibility: hidden;
+    }
+    .about #littleNavbar{
+        visibility: visible;
+        width: 90px;
+    }
+    .about #brandName{
+        visibility: hidden;
+        width: 0;
     }
 }

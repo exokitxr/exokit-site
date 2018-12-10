@@ -25,6 +25,7 @@ html {
 
 .features a{
     color: black;
+    text-decoration: none;
 }
 
 .features .footerLink{
@@ -46,6 +47,8 @@ body{
 .features .navbar-brand {
     font-family: Bison;
     font-size: 40px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .features .navbar-brand img {
@@ -55,6 +58,14 @@ body{
 
 .features .navbar-nav {
     margin-left: auto;
+}
+
+.features #bigNavbar{
+    visibility: visible;
+}
+.features #littleNavbar{
+    visibility: hidden;
+    width: 0;
 }
 
 .features .footer{
@@ -199,5 +210,16 @@ body{
         margin-left: 0;
         margin-bottom: 7vh;
         height: 50vh;
+    }
+    .features #bigNavbar{
+        visibility: hidden;
+    }
+    .features #littleNavbar{
+        visibility: visible;
+        width: 110px;
+    }
+    .features #brandName{
+        visibility: hidden;
+        width: 0;
     }
 }

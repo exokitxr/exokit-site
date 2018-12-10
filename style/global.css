@@ -71,6 +71,15 @@ body {
     visibility: hidden;
     width: 0;
 }
+#expandedLittleNavbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: white;
+    z-index: 3;
+    visibility: hidden;
+}
 
 .footer{
     padding-top: 5vh;

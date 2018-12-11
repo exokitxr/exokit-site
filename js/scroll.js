@@ -2,7 +2,7 @@
 
 window.addEventListener('load', () => {
   const featuresWrap = document.getElementById('featureMain-wrap');
-  const featuresArray = document.getElementsByClassName('featureMain');
+  const featuresArray = document.getElementsByClassName('slideItem');
   for (let i = 0; i < featuresArray.length; i++) {
     const el = featuresArray[i];
     const animationString = el.dataset.animation;
@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
     }
   }
   const _tick = () => {
-    const parentFactor = Math.min(Math.max((window.pageYOffset - (featuresWrap.offsetHeight - window.innerHeight)) / (featuresWrap.offsetHeight + window.innerHeight), 0), 1);
+    const parentFactor = Math.min(Math.max((window.pageYOffset - (featuresWrap.offsetHeight - window.innerHeight * 2.2)) / (featuresWrap.offsetHeight + window.innerHeight), 0), 1);
 
     for (let i = 0; i < featuresArray.length; i++) {
       const el = featuresArray[i];

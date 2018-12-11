@@ -26,6 +26,7 @@ window.addEventListener('load', () => {
     const animationString = el.dataset.animation;
     if (animationString) {
       el.animations = eval(animationString);
+      el.style.visibility = 'visible';
     }
   }
   const _tick = () => {
@@ -45,7 +46,7 @@ window.addEventListener('load', () => {
       el.style.transform = transform;
     }
   };
-  requestAnimationFrame(_tick);
+  _tick();
   window.addEventListener('scroll', _tick);
 });
 

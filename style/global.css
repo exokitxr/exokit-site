@@ -111,6 +111,10 @@ body {
     border: none;
 }
 
+.featureMain {
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 994px) {
     #bigNavbar{
         visibility: hidden;

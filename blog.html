@@ -28,7 +28,7 @@
     <div class="navbar-nav">
     <a class="nav-item nav-link pr-4 pl-4" href="features.html"><h5 class="font-weight-normal">Features</h2></a>
     <a class="nav-item nav-link pr-4 pl-4" href="docs"><h5 class="font-weight-normal">Docs</h2></a>
-    <a class="nav-item nav-link pr-4 pl-4" href="blog.html"><h5 class="font-weight-normal">Blog</h2></a>
+    <a class="nav-item nav-link pr-4 pl-4 active" href="blog.html"><h5 class="font-weight-normal">Blog</h2></a>
     <a class="nav-item nav-link pr-4 pl-4" href="about.html"><h5 class="font-weight-normal">About</h2></a>
     <a class="nav-item nav-link pr-4 pl-4" href="contact.html"><h5 class="font-weight-normal">Contact</h2></a>
     </div>
@@ -40,36 +40,6 @@
 
 </nav>
 </header>
-
-<div id="expandedLittleNavbar">
-    <div class="row text-center mt-5">
-    <div class="col-12 mt-5 mb-5">
-        <img src="media/logo.svg" style="height: 7vh; width: auto;"></a>
-        <h2 style="font-family: Bison;">Exokit</h2>
-    </div>
-    <div class="col-12 mb-4">
-        <a href="index.html"><h5 class="font-weight-light">Home</h5></a>
-    </div>
-    <div class="col-12 mb-4">
-        <a href="features.html"><h5 class="font-weight-light">Features</h5></a>
-    </div>
-    <div class="col-12 mb-4">
-        <a href="docs/"><h5 class="font-weight-light">Docs</h5></a>
-    </div>
-    <div class="col-12 mb-4">
-        <a href="blog.html"><h5>Blog</h5></a>
-    </div>
-    <div class="col-12 mb-4">
-        <a href="about.html"><h5 class="font-weight-light">About</h5></a>
-    </div>
-    <div class="col-12 mb-4">
-        <a href="contact.html"><h5 class="font-weight-light">Contact</h5></a>
-    </div>
-    <div class="col-12 mb-4">
-        <i onclick="hideLittleNavbar()" class="fas fa-times fa-2x" style="margin-bottom: 5vh; cursor: pointer;"></i>
-    </div>
-    </div>
-</div>
 
 <div id="expandedLittleNavbar" style="position: fixed; top: 0; right: 0; left: 0; background-color: white; z-index: 3; visibility: hidden;">
     <div class="row text-center mt-5">
@@ -111,66 +81,61 @@
         <br>
         <h4>A video review</h4>
         <br>
-        <p>How I wrote this review - As an interested mixed reality technologist, I’ve been watching Magic Leap for a while.</p>
+        <p class="lead">How I wrote this review - As an interested mixed reality technologist, I’ve been watching Magic Leap for a while.</p>
+        <p class="lead">I mean that in a few ways.</p>
+        <p class="lead">The first is that I went into my first Magic Leap dive after a couple hundred hours hacking the SDK (Javascript bindings). I smelled the code before I walked into it.</p>
+        <p class="lead">The second is that I don’t have eggs in any basket. I’m cheering for everyone in the space. I’m watching the race, but I don’t have a ticket on Rony’s Pony.</p>
+        <p class="lead">Finally, being an engineer, I don’t believe in magic. I believe in smart people working hard and making things at the intersection of technology and market. I feel read enough that I know what’s reasonable in T time and D dollars....</p>
         <br>
-        <p>I mean that in a few ways.</p>
-        <br>
-        <p>The first is that I went into my first Magic Leap dive after a couple hundred hours hacking the SDK (Javascript bindings). I smelled the code before I walked into it.</p>
-        <br>
-        <p>The second is that I don’t have eggs in any basket. I’m cheering for everyone in the space. I’m watching the race, but I don’t have a ticket on Rony’s Pony.</p>
-        <br>
-        <p>Finally, being an engineer, I don’t believe in magic. I believe in smart people working hard and making things at the intersection of technology and market. I feel read enough that I know what’s reasonable in T time and D dollars....</p>
-        <br>
-        <h4>Read More - </h4>
+        <a href="https://medium.com/webmr/magic-leap-one-vive-forar-3a86084e31ff" target="_blank"><h4>Read More</h4></a>
+    </div>
+    <div class="col-12">
+        <hr class="ml-5 mr-5">
     </div>
 </div>
-
+<br>
 <div class="row blogMinor mb-5">
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mb-5 p-4">
         <img src="media/introExokit.png" class="img-fluid">
         <h3 class="text-left p-4">Introducing Exokit</h3>
         <p class="text-left p-2 mr-3 ml-3">A Javascript Web Engine For The Post Screen Era.</p>
+        <br>
         <div class="row">
             <div class="col-6">
-                <p class="text-left ml-2">July 22nd, 2018</p>
+                <p class="text-left ml-2">Aug 30th, 2018</p>
             </div>
             <div class="col-6">
-                <p class="text-right mr-2">Read More - </p>
+                <a href="https://medium.com/webmr/introducing-exokit-a-javascript-web-engine-for-the-post-screen-era-49eaf378f36e" target="_blank"><p class="text-right mr-2 font-weight-bold">Read More</p></a>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mb-5 p-4">
         <img src="media/n64vr.png" class="img-fluid">
         <h3 class="text-left p-4">N64 VR With Javascript</h3>
         <p class="text-left p-2 mr-3 ml-3">TLDR: I made an N64 emulator work in VR with Javascript and WebXR. Emukit is open source.</p>
         <div class="row">
             <div class="col-6">
-                <p class="text-left ml-2">July 22nd, 2018</p>
+                <p class="text-left ml-2">July 27nd, 2018</p>
             </div>
             <div class="col-6">
-                <p class="text-right mr-2">Read More - </p>
+                <a href="https://medium.com/webmr/emukit-2-immersive-psx-n64-vr-on-the-web-7c1ec110a592" target="_blank"><p class="text-right mr-2 font-weight-bold">Read More</p></a>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mb-5">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-center mb-5 p-4">
         <img src="media/domcanvas.png" class="img-fluid">
         <h3 class="text-left p-4">DOM To Canvas In Just 7 Years</h3>
         <p class="text-left p-2 mr-3 ml-3">You know what’s harder than creating an alternate reality with Javascript? Drawing a div.</p>
         <div class="row">
             <div class="col-6">
-                <p class="text-left ml-2">July 22nd, 2018</p>
+                <p class="text-left ml-2">Aug 7th, 2018</p>
             </div>
             <div class="col-6">
-                <p class="text-right mr-2">Read More - </p>
+                <a href="https://medium.com/webmr/dom-to-canvas-for-webxr-in-just-7-years-e032060437fb" target="_blank"><p class="text-right mr-2 font-weight-bold">Read More</p></a>
             </div>
         </div>
     </div>
 </div>
-
-<hr>
-<h1 class="text-center">Load More...</h1>
-<br><br><br>
-
 
 <footer>
 <div class="row footer">

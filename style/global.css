@@ -24,11 +24,11 @@ html {
 }
   
 a{
-    color: black;
+    color: #000000;
     text-decoration: none;
 }
 a:hover{
-    color: black;
+    color: rgb(29, 29, 29);
     text-decoration: none;
 }
   

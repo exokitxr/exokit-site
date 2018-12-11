@@ -24,11 +24,11 @@ html {
 }
   
 a{
-    color: black;
+    color: #000000;
     text-decoration: none;
 }
 a:hover{
-    color: black;
+    color: rgb(29, 29, 29);
     text-decoration: none;
 }
   
@@ -109,6 +109,10 @@ body {
     border-radius: 100px;
     background-color: #2096A2;
     border: none;
+}
+
+.featureMain {
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 994px) {

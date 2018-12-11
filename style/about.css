@@ -3,19 +3,32 @@
     position: relative;
     min-height: 110vh;
     background: #000046;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(45deg, rgb(20, 132, 163), #00003b);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(45deg, rgb(20, 132, 163), #00003b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(45deg, rgb(20, 132, 163),#12003b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(45deg, rgb(20, 132, 163), #12003b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
 }
 .about .teamPic{
-    height: 35vh;
-    width: auto;
-    border-radius: 10px;
+    border-radius: 5px;
+}
+.about p{
+    line-height: 1.8;
+}
+.about .timeline{
+    max-height: 500px;
+    float: right;
 }
 @media only screen and (max-width: 994px) {
     .about .theTeam{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
         clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+    }
+}
+@media only screen and (max-width: 768px) {
+    .about .timeline{
+        display: none;
+    }
+    .about .milestones{
+        padding-left: 12vw;
     }
 }

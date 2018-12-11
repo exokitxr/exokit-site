@@ -64,139 +64,7 @@
 <script src="js/ColladaLoader.js"></script>
 <script src="js/skin.js"></script>
 <script src="js/hero.js"></script>
-
-<script>
-
-  function expandLittleNavbar(){
-    document.getElementById('expandedLittleNavbar').style.height = "100vh"
-    document.getElementById('expandedLittleNavbar').style.visibility = "visible"
-  }
-
-   function hideLittleNavbar(){
-    document.getElementById('expandedLittleNavbar').style.height = "0vh"
-    document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
-  }
-
-  window.onload = () => {
-    const textArray = document.getElementsByClassName('featureText');
-    const featuresArray = document.getElementsByClassName('featureMain');
-    for(let i = 0; i < featuresArray.length; i++){
-      featuresArray[i].style.visibility = 'hidden'
-    }
-  }
- 
-  window.onscroll = () => {
-    const featuresArray = document.getElementsByClassName('featureMain');
-    for(let i = 0; i < featuresArray.length; i++){
-      if(window.scrollY >= (featuresArray[i].getBoundingClientRect().top + window.scrollY) - window.innerHeight * 0.75){
-        featuresArray[i].style.visibility = 'visible';
-        featuresArray[i].classList.add('slideTextLeft')
-      }
-    }
-  }
-
-  const changeCompany = (company) => {
-    const mainImg = document.getElementById('madeWithExokitMainImg');
-    const title = document.getElementById('madeWithTitle');
-    const slogan = document.getElementById('madeWithSlogan');
-    const titleSub = document.getElementById('madeWithTitleSub');
-    const project = document.getElementById('madeWithProject');
-    const year = document.getElementById('madeWithYear');
-
-    switch (company){
-      case 'expanse':
-        mainImg.src = 'media/expanse.png';
-        title.innerHTML = 'The Expanse';
-        slogan.innerHTML = 'Build, Experince & Share the future of social VR.';
-        titleSub.innerHTML = 'The Expanse';
-        project.innerHTML = 'Project: Aurora';
-        year.innerHTML = 'Year 2018 - Now';
-      break;
-      case 'active':
-        mainImg.src = 'media/activeDemoMain.png';
-        title.innerHTML = 'Active Theory';
-        slogan.innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
-        titleSub.innerHTML = 'Active Theory';
-        project.innerHTML = 'Project: xyz';
-        year.innerHTML = 'Year 2018 - Now';
-
-      break;
-      case 'emukit':
-        mainImg.src = 'media/emukitDemo.png';
-        title.innerHTML = 'Emukit';
-        slogan.innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
-        titleSub.innerHTML = 'Emukit';
-        project.innerHTML = 'Project: Nintendo 64 VR Emulation';
-        year.innerHTML = 'Year 2018 - Now';
-      break;
-
-    }
-  }
-
-  const changeQuotes = () => {
-
-    json = {
-    "quotes": [
-        {   "picture": "media/sjw.jpg",
-            "person": "- Milo Dianosuraus Rex",
-            "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
-        },
-        {
-            "picture": "media/kylie.jpg",
-            "person": "- Kiley Jenner",
-            "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
-        },
-        {
-            "picture": "media/dude.jpg",
-            "person": "- Steve Harley",
-            "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
-        },
-        {
-            "picture": "media/obama.jpg",
-            "person": "- Barrack Obama",
-            "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
-        },
-
-        {
-            "picture": "media/emukitDemo.png",
-            "person": "- Happy Rabbit",
-            "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
-        },
-        {
-            "picture": "media/favicon.png",
-            "person": "- Bruce Reslzer",
-            "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
-        },
-        {   "picture": "media/exokit.png",
-            "person": "- Great Grandma",
-            "quote": "I remember back in my day we didnt have things like this... #exokit"
-        },
-        {   "picture": "media/whatIsExokit.png",
-            "person": "- Ted Druce",
-            "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
-        }
-      ]
-    }
-
-      let cards = document.getElementsByClassName('card');
-      for(let i = 0; i < cards.length; i++){
-        if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == json.quotes[i].picture){
-          cards = document.getElementsByClassName('card');
-          cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i+4].picture;
-          cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i+4].person;
-          cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i+4].quote;
-        }
-        else{
-          cards = document.getElementsByClassName('card');
-          cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i].picture;
-          cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i].person;
-          cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i].quote;
-          cards[i].style.hidden = true;
-        }
-      }
-    }
-
-</script>
+<script src="js/scroll.js"></script>
 
 <div id="overlay">
     <h1>A New XR Engine Approaches</h1>
@@ -210,7 +78,7 @@
 </div>
 
 <div class="row whatIsExokit pt-4">
-  <div class="col-12 text-center whatIsExokitPusher">
+  <div class="col-12 text-center whatIsExokitPusher" id="featureMain-wrap">
       <h1>What is Exokit?</h1>
       <h4 class="font-weight-light">Exokit is an XR engine that runs your code as native.</h4>
       <div class="featurePusher"></div>
@@ -235,28 +103,28 @@
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pb-4">
-              <i class="featureMain fab fa-js-square fa-4x p-1"></i>
-              <h3 class="featureMain">Javascript</h3>
+              <i class="featureMain fab fa-js-square fa-4x p-1" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></i>
+              <h3 class="featureMain" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]">Javascript</h3>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pb-4">
-              <i class="featureMain fab fa-html5 fa-4x p-1"></i>
-              <h3 class="featureMain">HTML</h3>
+              <i class="featureMain fab fa-html5 fa-4x p-1" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></i>
+              <h3 class="featureMain" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]">HTML</h3>
             </div>
           </div>
           
-          <div class="featureArrow featureMain"></div>
-          <img class="exokitImg featureMain" src="media/logo-white.svg"></img>
-          <h3 class="featureMain exokitName">Exokit</h3>
-          <div class="featureArrow featureMain"></div>
+          <div class="featureArrow featureMain" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></div>
+          <img class="exokitImg featureMain" src="media/logo-white.svg" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></img>
+          <h3 class="featureMain exokitName" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]">Exokit</h3>
+          <div class="featureArrow featureMain" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></div>
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <img class="mlImg featureMain" src="media/ML.png"></img>
+                <img class="mlImg featureMain" src="media/ML.png" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></img>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <img class="viveImg featureMain" src="media/vive.png"></img>
+                <img class="viveImg featureMain" src="media/vive.png" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></img>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <img class="oculusImg featureMain" src="media/oculus.png"></img>
+                <img class="oculusImg featureMain" src="media/oculus.png" data-animation="[{k: 'translateX', sp: 0, ep: 1, sv: 50, ev: 0, u: 'vw'}]"></img>
             </div>
           </div>
         </div>

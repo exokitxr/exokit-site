@@ -28,9 +28,8 @@ window.addEventListener('load', () => {
       el.animations = eval(animationString);
     }
   }
-  window.addEventListener('scroll', () => {
+  const _tick = () => {
     const parentFactor = Math.min(Math.max((window.pageYOffset - (featuresWrap.offsetHeight - window.innerHeight)) / (featuresWrap.offsetHeight + window.innerHeight), 0), 1);
-    console.log('got factor', parentFactor);
 
     for (let i = 0; i < featuresArray.length; i++) {
       const el = featuresArray[i];
@@ -45,7 +44,9 @@ window.addEventListener('load', () => {
       }
       el.style.transform = transform;
     }
-  });
+  };
+  requestAnimationFrame(_tick);
+  window.addEventListener('scroll', _tick);
 });
 
 const changeCompany = (company) => {

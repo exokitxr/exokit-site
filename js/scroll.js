@@ -12,9 +12,10 @@ window.addEventListener('load', () => {
     }
   }
   const _tick = () => {
+    const bodyBox = document.body.getBoundingClientRect();
     const parentBox = featuresWrap.getBoundingClientRect();
     const parentBoxAbs = {
-      top: parentBox.top - window.pageYOffset,
+      top: parentBox.top - bodyBox.top,
       height: parentBox.height,
     };
     const parentFactor = Math.min(Math.max((window.pageYOffset - (parentBoxAbs.top - window.innerHeight)) / (parentBoxAbs.height + window.innerHeight), 0), 1);

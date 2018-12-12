@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
   }
   const _tick = () => {
     const parentBox = featuresWrap.getBoundingClientRect();
-    const parentBoxAbs =  {
+    const parentBoxAbs = {
       top: parentBox.top - window.pageYOffset,
       height: parentBox.height,
     };

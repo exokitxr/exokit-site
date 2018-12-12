@@ -69,52 +69,54 @@
 <script>
 
 window.addEventListener('scroll', () => {
-  div = document.getElementById('featureMain-wrap');
 
   rgba_JSON = {
-    1: { // bright pink
+    0: { // bright pink
       "red": 225,
       "green": 20,
       "blue": 225
     },
-    2: { // blue
+    1: { // blue
       "red": 20,
       "green": 20,
       "blue": 223
     },
-    3: { //orange
+    2: { //orange
       "red": 223,
       "green": 122,
       "blue": 20
     },
-    4: { //bright green
+    3: { //bright green
       "red": 20,
       "green": 223,
       "blue": 20
     } 
   }
 
-  let scrollY = window.scrollY;
-  let distanceTop = div.offsetTop - window.scrollY;
-  let factor = scrollY / distanceTop;
-  let red = Math.abs(225 / factor);
-  let green = Math.abs(20 / factor);
-  let blue = Math.abs(225 / factor);
-  let trans = Math.abs(factor * 1.4);
+  const rgbaRows = document.getElementsByClassName('rgbaRow');
 
-  console.log("scrollY: ", scrollY, "distanceTop: ", distanceTop);
-  console.log("factor: ", factor);
-  console.log("rgba: ", red, green, blue, trans);
+  for(let i = 0; i < rgbaRows.length; i++){
+    let scrollY = window.scrollY;
+    let distanceTop = rgbaRows[i].offsetTop - window.scrollY;
+    let factor = scrollY / distanceTop;
+    let red = Math.abs(225 / factor);
+    let green = Math.abs(20 / factor);
+    let blue = Math.abs(225 / factor);
+    let trans = Math.abs(factor * 0.5);
 
-  let randomIndex = Math.floor(Math.random() * 4);  
+    console.log("scrollY: ", scrollY, "distanceTop: ", distanceTop);
+    console.log("factor: ", factor);
+    console.log("rgba: ", red, green, blue, trans);
 
-  if(scrollY > distanceTop){
-    div.style.background = `-webkit-linear-gradient(120deg, rgba(
-     ${rgba_JSON[randomIndex].red},
-     ${rgba_JSON[randomIndex].green},
-     ${rgba_JSON[randomIndex].blue},
-    ${trans}), white)`;
+    if(scrollY < rgbaRows[i].offsetTop - window.scrollY){
+      rgbaRows[i].style.background = `-webkit-linear-gradient(120deg, rgba(
+      ${rgba_JSON[i].red},
+      ${rgba_JSON[i].green},
+      ${rgba_JSON[i].blue},
+      ${trans}), white)`;
+    }
   }
+  
 
 });
 
@@ -243,7 +245,7 @@ function expandLittleNavbar() {
 
 <div class="whatIsExokit pt-4" id="featureMain-wrap">
 
-  <div class="row">
+  <div class="row rgbaRow">
       <div class="col-12 text-center whatIsExokitPusher" style="color: #212529">
           <h1 class="slideItem" data-animation="[{k: 'translateX', sp: 0.05, ep: 0.2, sv: -50, ev: 0, u: 'vw'}]">What is Exokit?</h1>
           <h4 class="font-weight-light slideItem" data-animation="[{k: 'translateX', sp: 0.05, ep: 0.22, sv: -60, ev: 0, u: 'vw'}]">
@@ -253,7 +255,10 @@ function expandLittleNavbar() {
       </div>
   </div>
 
-  <div class="row pt-5" style="color: #212529">
+  <div class="row pt-5 rgbaRow" style="color: #212529">
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
       <h2 class="featureText pb-4 slideItem" data-animation="[{k: 'translateX', sp: 0.25, ep: 0.38, sv: -50, ev: 0, u: 'vw'}]">Power up your WebXR app</h2>
       <h5 class="featureText slideItem text-left font-weight-light" data-animation="[{k: 'translateX', sp: 0.3, ep: 0.38, sv: -50, ev: 0, u: 'vw'}]">
@@ -271,11 +276,15 @@ function expandLittleNavbar() {
           </div>
       </div>
     </div>
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
   </div>
 
-  <div class="featureTextPusher"></div>
-
-  <div class="row pt-5">
+  <div class="row pt-5 rgbaRow">
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
         <h2 class="featureText pb-4 slideItem" data-animation="[{k: 'translateX', sp: 0.4, ep: 0.5, sv: -50, ev: 0, u: 'vw'}]">Run apps in Exokit</h1>
         <h5 class="featureText text-left font-weight-light slideItem"
@@ -283,14 +292,18 @@ function expandLittleNavbar() {
           Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.</h5>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
-      <img class="exokitImg featureMain slideItem" src="media/logo-white.svg" data-animation="[{k: 'translateX', sp: 0.4, ep: 0.5, sv: 50, ev: 0, u: 'vw'}]"></img>
+      <img class="exokitImg featureMain slideItem" src="media/logo-black.svg" data-animation="[{k: 'translateX', sp: 0.4, ep: 0.5, sv: 50, ev: 0, u: 'vw'}]"></img>
       <h3 class="featureMain exokitName slideItem" data-animation="[{k: 'translateX', sp: 0.4, ep: 0.52, sv: 50, ev: 0, u: 'vw'}]">Exokit</h3>
+    </div>
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
     </div>
   </div>
 
-  <div class="featureTextPusher"></div>
-
-  <div class="row pt-5">
+  <div class="row pt-5 rgbaRow">
+      <div class="col-12">
+        <div class="featureTextPusher"></div>
+      </div>
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
         <h2 class="featureText pb-4 slideItem" data-animation="[{k: 'translateX', sp: 0.55, ep: 0.7, sv: -50, ev: 0, u: 'vw'}]">Run apps in Exokit</h1>
         <h5 class="featureText text-left font-weight-light slideItem"
@@ -310,10 +323,10 @@ function expandLittleNavbar() {
           </div>
         </div>
       </div>
+      <div class="col-12">
+        <div class="featureTextPusher"></div>
+      </div>
   </div>
-
-  <div class="featureTextPusher"></div>
-
 </div>
 
 <div class="row exokitFeatures pt-5">

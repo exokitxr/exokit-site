@@ -94,6 +94,7 @@ window.addEventListener('scroll', () => {
   }
 
   const rgbaRows = document.getElementsByClassName('rgbaRow');
+  const parent = document.getElementById('featureMain-wrap');
 
   for(let i = 0; i < rgbaRows.length; i++){
     let scrollY = window.scrollY;
@@ -102,22 +103,22 @@ window.addEventListener('scroll', () => {
     let red = Math.abs(225 / factor);
     let green = Math.abs(20 / factor);
     let blue = Math.abs(225 / factor);
-    let trans = Math.abs(factor * 0.5);
+    let trans = Math.abs(factor * 0.1);
 
-    console.log("scrollY: ", scrollY, "distanceTop: ", distanceTop);
-    console.log("factor: ", factor);
-    console.log("rgba: ", red, green, blue, trans);
+    // console.log("scrollY: ", scrollY, "distanceTop: ", distanceTop);
+    // console.log("factor: ", factor);
+    // console.log("rgba: ", red, green, blue, trans);
 
-    if(scrollY < rgbaRows[i].offsetTop - window.scrollY){
-      rgbaRows[i].style.background = `-webkit-linear-gradient(120deg, rgba(
+    let rowOffset = rgbaRows[i].offsetTop - (rgbaRows[i].scrollTop + rgbaRows[i].clientTop);
+
+    if(scrollY > rowOffset){
+      parent.style.background = `-webkit-linear-gradient(120deg, rgba(
       ${rgba_JSON[i].red},
       ${rgba_JSON[i].green},
       ${rgba_JSON[i].blue},
       ${trans}), white)`;
     }
   }
-  
-
 });
 
 const changeQuotes = () => {

@@ -71,6 +71,29 @@
 window.addEventListener('scroll', () => {
   div = document.getElementById('featureMain-wrap');
 
+  rgba_JSON = {
+    1: { // bright pink
+      "red": 225,
+      "green": 20,
+      "blue": 225
+    },
+    2: { // blue
+      "red": 20,
+      "green": 20,
+      "blue": 223
+    },
+    3: { //orange
+      "red": 223,
+      "green": 122,
+      "blue": 20
+    },
+    4: { //bright green
+      "red": 20,
+      "green": 223,
+      "blue": 20
+    } 
+  }
+
   let scrollY = window.scrollY;
   let distanceTop = div.offsetTop - window.scrollY;
   let factor = scrollY / distanceTop;
@@ -83,8 +106,14 @@ window.addEventListener('scroll', () => {
   console.log("factor: ", factor);
   console.log("rgba: ", red, green, blue, trans);
 
+  let randomIndex = Math.floor(Math.random() * 4);  
+
   if(scrollY > distanceTop){
-    div.style.background = `-webkit-linear-gradient(120deg, rgba(${red}, ${green}, ${blue}, ${trans}), white)`;
+    div.style.background = `-webkit-linear-gradient(120deg, rgba(
+     ${rgba_JSON[randomIndex].red},
+     ${rgba_JSON[randomIndex].green},
+     ${rgba_JSON[randomIndex].blue},
+    ${trans}), white)`;
   }
 
 });

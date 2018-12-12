@@ -23,6 +23,7 @@
 }
 
 .home .whatIsExokit{
+    z-index: -4;
     position: relative;
     margin-top: -80px;
     min-height: 350vh;

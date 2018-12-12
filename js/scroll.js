@@ -13,7 +13,11 @@ window.addEventListener('load', () => {
   }
   const _tick = () => {
     const parentBox = featuresWrap.getBoundingClientRect();
-    const parentFactor = Math.min(Math.max((window.pageYOffset - (parentBox.top - window.innerHeight)) / (parentBox.height + window.innerHeight), 0), 1);
+    const parentBoxAbs =  {
+      top: parentBox.top - window.pageYOffset,
+      height: parentBox.height,
+    };
+    const parentFactor = Math.min(Math.max((window.pageYOffset - (parentBoxAbs.top - window.innerHeight)) / (parentBoxAbs.height + window.innerHeight), 0), 1);
 
     for (let i = 0; i < featuresArray.length; i++) {
       const el = featuresArray[i];

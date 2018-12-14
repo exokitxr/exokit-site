@@ -781,4 +781,41 @@ window.addEventListener("scroll", e =>{
   }
 })
 
+window.addEventListener("scroll", () =>{
+  const rgba_JSON = {
 
+    0: { // blue
+      "rgb": "rgba(47, 134, 222)"
+    },
+    1: { // purple
+      "rgb": "rgba(142, 76, 170)"
+    },
+    2: { //orange
+      "rgb": "rgba(222, 122, 20)"
+    },
+    3: { //bright green
+      "rgb": "rgba(240, 5, 5)"
+    }, 
+    4: { //bright green
+      "rgb": "rgba(180, 200, 200)"
+    } 
+  }
+
+  const rgbaRows = document.getElementsByClassName('rgbaRow');
+  const parent = document.getElementById('featureMain-wrap');
+
+  for(let i = 0; i < rgbaRows.length; i++){
+    let scrollY = window.scrollY;
+    let distanceTop = parent.offsetTop - window.scrollY;
+    let factor = Math.abs((scrollY / distanceTop) * 0.2);
+
+    let rowOffset = rgbaRows[i].offsetTop - (rgbaRows[i].scrollTop + rgbaRows[i].clientTop);
+
+    currColor = new THREE.Color(rgba_JSON[i].rgb);
+    nextColor = new THREE.Color(rgba_JSON[i+1].rgb);
+
+    if(scrollY > rowOffset * 1.2){
+      parent.style.backgroundColor = currColor.lerp(nextColor, factor).getHexString()
+    }
+  }
+});

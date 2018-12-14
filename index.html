@@ -68,52 +68,6 @@
 
 <script>
 
-window.addEventListener('scroll', () => {
-
-  rgba_JSON = {
-    0: { // blue
-      "red": 47,
-      "green": 134,
-      "blue": 222
-    },
-    1: { // purple
-      "red": 142,
-      "green": 76,
-      "blue": 170
-    },
-    2: { //orange
-      "red": 223,
-      "green": 122,
-      "blue": 20
-    },
-    3: { //bright green
-      "red": 20,
-      "green": 223,
-      "blue": 20
-    } 
-  }
-
-  const rgbaRows = document.getElementsByClassName('rgbaRow');
-  const parent = document.getElementById('featureMain-wrap');
-
-  for(let i = 0; i < rgbaRows.length; i++){
-    let scrollY = window.scrollY;
-    let distanceTop = parent.offsetTop - window.scrollY;
-    let factor = scrollY / distanceTop;
-    let trans = Math.abs(factor * 0.1);
-
-    let rowOffset = rgbaRows[i].offsetTop - (rgbaRows[i].scrollTop + rgbaRows[i].clientTop);
-
-    if(scrollY > rowOffset * 1.2){
-      parent.style.background = `-webkit-linear-gradient(120deg, rgba(
-      ${rgba_JSON[i].red},
-      ${rgba_JSON[i].green},
-      ${rgba_JSON[i].blue},
-      ${trans}), white)`;
-    }
-  }
-});
-
 const changeQuotes = () => {
 const json = {
   "quotes": [
@@ -241,7 +195,7 @@ function expandLittleNavbar() {
 <div class="whatIsExokit pt-4" id="featureMain-wrap">
 
   <div class="row rgbaRow">
-      <div class="col-12 text-center whatIsExokitPusher" style="color: #212529">
+      <div class="col-12 text-center whatIsExokitPusher" style="color: white">
           <h1 class="slideItem" data-animation="[{k: 'translateX', sp: 0.05, ep: 0.13, sv: -50, ev: 0, u: 'vw'}]">What is Exokit?</h1>
           <h4 class="font-weight-light slideItem" data-animation="[{k: 'translateX', sp: 0.05, ep: 0.16, sv: -60, ev: 0, u: 'vw'}]">
             Exokit is an XR engine that runs your code as native.</h4>
@@ -250,7 +204,7 @@ function expandLittleNavbar() {
       </div>
   </div>
 
-  <div class="row pt-5 rgbaRow" style="color: #212529">
+  <div class="row pt-5 rgbaRow" style="color: white">
     <div class="col-12">
       <div class="featureTextPusher"></div>
     </div>
@@ -262,11 +216,11 @@ function expandLittleNavbar() {
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
       <div class="row">
         <div class="col-6">
-            <i class="featureMain slideItem fab fa-js-square fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.20, ep: 0.38, sv: -150, ev: 0, u: 'vw'}]"></i>
+            <i class="featureMain slideItem fab fa-js-square fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.20, ep: 0.36, sv: -150, ev: 0, u: 'vw'}]"></i>
             <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.22, ep:  0.38, sv: -150, ev: 0, u: 'vw'}]">Javascript</h4>
           </div>
           <div class="col-6">
-              <i class="featureMain slideItem fab fa-html5 fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.20, ep: 0.38, sv: -150, ev: 0, u: 'vw'}]"></i>
+              <i class="featureMain slideItem fab fa-html5 fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.20, ep: 0.36, sv: -150, ev: 0, u: 'vw'}]"></i>
               <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.22, ep: 0.38, sv: -150, ev: 0, u: 'vw'}]">HTML</h4>
           </div>
       </div>
@@ -276,7 +230,7 @@ function expandLittleNavbar() {
     </div>
   </div>
 
-  <div class="row pt-5 rgbaRow">
+  <div class="row pt-5 rgbaRow" style="color: white">
     <div class="col-12">
       <div class="featureTextPusher"></div>
     </div>
@@ -287,7 +241,7 @@ function expandLittleNavbar() {
           Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.</h5>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
-      <img class="exokitImg featureMain slideItem" src="media/logo-black.svg" data-animation="[{k: 'translateX', sp: 0.3, ep: 0.58, sv: 100, ev: 0, u: 'vw'}]"></img>
+      <img class="exokitImg featureMain slideItem" src="media/logo-white.svg" data-animation="[{k: 'translateX', sp: 0.3, ep: 0.58, sv: 100, ev: 0, u: 'vw'}]"></img>
       <h3 class="featureMain exokitName slideItem" data-animation="[{k: 'translateX', sp: 0.4, ep: 0.58, sv: 100, ev: 0, u: 'vw'}]">Exokit</h3>
     </div>
     <div class="col-12">
@@ -295,7 +249,7 @@ function expandLittleNavbar() {
     </div>
   </div>
 
-  <div class="row pt-5 rgbaRow">
+  <div class="row pt-5 rgbaRow" style="color: white">
       <div class="col-12">
         <div class="featureTextPusher"></div>
       </div>

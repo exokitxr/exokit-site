@@ -269,12 +269,15 @@ window.addEventListener('scroll', () => {
         tick(0, featuresLeft, featuresRight);
       }
   }
-  else{
+  else if(topOfNextSection < 0){
     insideContent.style.position = "absolute";
     insideContent.style.top = "auto";
     insideContent.style.bottom = "100";
   }
-
+  else{
+      insideContent.style.top = "auto";
+      insideContent.style.position = "static";
+  }
 });
 
 </script>

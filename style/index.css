@@ -232,6 +232,9 @@
     .home .exokitFeature{
         min-height: 90vh;
     }
+    .home .featuresBottomSpacer{
+        height: 200px;
+    }
 }
 @media only screen and (max-width: 994px) {
     .home .whatIsExokitImg{
@@ -254,11 +257,6 @@
     .home .featureArrow {
         margin-top: 30px;
         margin-bottom: 30px;
-    }
-    .home .exokitFeatures{
-        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-        clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-        min-height: 230vh;
     }
     .home .exokitFeature{
         min-height: 60vh;

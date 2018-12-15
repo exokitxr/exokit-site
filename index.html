@@ -202,7 +202,7 @@ window.addEventListener('scroll', () => {
   const vLine = document.getElementById('vLine');
 
   const distanceFromTop = (parent.offsetTop - window.scrollY);
-  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 5));
+  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 4));
   const counter = document.getElementById('featuresCounter');
 
   const bodyBox = document.body.getBoundingClientRect();
@@ -215,7 +215,7 @@ window.addEventListener('scroll', () => {
 
   const breakPoint = 1.0 / 12;
   const scrollXValue = 800;
-  const scrollYValue = 85;
+  const scrollYValue = 80;
   const vLineFactor = Math.floor(factor * 100) / 3 + "vh";
 
   if(distanceFromTop <= 0 && topOfNextSection > 0){
@@ -334,7 +334,7 @@ window.addEventListener('scroll', () => {
   else if(topOfNextSection < 0){
     insideContent.style.position = "absolute";
     insideContent.style.top = "auto";
-    insideContent.style.bottom = "100";
+    insideContent.style.bottom = "-100";
   }
   else{
       insideContent.style.top = "auto";
@@ -445,12 +445,11 @@ window.addEventListener('scroll', () => {
 <div class="row exokitFeatures pt-5" id="featuresParent">
   <div id="featuresInside" style="width: 100vw;">
     <div class="col-12 text-center pt-5 pb-4">
-      <div class="featuresSpacer"></div>
       <h1 class="pt-5">Features</h1>
       <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
-      <div style="height: 20vh"></div>
+      <div style="height: 10vh"></div>
     </div>
-    <div class="col-12">
+    <div class="col-12" style="min-height: 80vh;">
       <div class="row">
         <div class="col-1">
         </div>
@@ -458,61 +457,61 @@ window.addEventListener('scroll', () => {
           <h2><span id="featuresCounter">1</span>/11</h2>
         </div>
         <div class="col-6">
-          <div style="display: flex; overflow-x: hidden; width: 650px;" id="featuresLeft">
+          <div style="display: flex; overflow-x: hidden; width: 50vw;" id="featuresLeft">
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/chip.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/chip.png"></img>
               <h2>Runs Existing Code</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/javascript.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/javascript.png"></img>
               <h2>Native Javascript</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/lan.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/lan.png"></img>
               <h2>Hardware Bindings</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/javascript (1).png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/javascript (1).png"></img>
               <h2>Made in Javascript</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/window.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/window.png"></img>
               <h2>Multithreading Reality Tabs</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/satelite.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/satelite.png"></img>
               <h2>Futuristic APIs</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/performance.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/performance.png"></img>
               <h2>Speed Past Legacy</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/fork.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/fork.png"></img>
               <h2>Not a Fork</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/Squares.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/Squares.png"></img>
               <h2>Cross Platform</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/collaboration.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/collaboration.png"></img>
               <h2>Package for Stores</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
-              <img class="img-fluid w-25 m-3" src="media/gas.png"></img>
+              <img class="img-fluid w-25 float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/gas.png"></img>
               <h2>Great on gas</h2>
-              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
           </div>
         </div>
@@ -520,36 +519,39 @@ window.addEventListener('scroll', () => {
         <div class="col-4">
           <div class="row">
             <div class="col-2">
-              <div class="vLine mr-5" id="vLine"></div>
+              <div class="vLine ml-3 mr-3" id="vLine"></div>
             </div>
-            <div class="col-10" style="height: 30vh; overflow-y: hidden;" id="featuresRight">
+            <div class="col-10" style="height: 40vh; overflow-y: hidden;" id="featuresRight">
               <h5 id="item1">Runs Existing Code</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item2">Native Javascript</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item3">Hardware Bindings</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item4">Made in Javascript</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item5">Multithreading Reality Tabs</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item6">Futuristic APIs</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item7">Speed Past Legacy</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item8">Not a Fork</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item9">Cross Platform</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item10">Package for Stores</h5>
-              <div style="height: 6.5vh"></div>
+              <div style="height: 8vh"></div>
               <h5 id="item11">Great on gas</h5>
+              <div style="height: 8vh"></div>
+              <div style="height: 8vh"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div id="featuresBottomSpacer"></div>
 </div>
 
 <div class="row madeWithExokit mt-5" id="madeWithExokit">

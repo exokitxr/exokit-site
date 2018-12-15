@@ -180,18 +180,6 @@ function expandLittleNavbar() {
 
 window.addEventListener('scroll', () => {
 
-  // function tick(i = 0, elem_x, elem_y) {
-  //   let y = 1; // multiplier 
-  //   requestAnimationFrame(() => {
-  //     if(i < 10){
-  //       elem_y.scrollTop = elem_y.scrollTop + y;
-  //       elem_x.scrollLeft = elem_x.scrollLeft + y;
-  //       y = y + 0.00001;
-  //       tick(i+i, elem_x, elem_y);
-  //     }
-  //   });
-  // }
-
   function scrollX(elem , positionX){
     elem.scrollTo({
       left: positionX,
@@ -211,6 +199,7 @@ window.addEventListener('scroll', () => {
   const insideContent = document.getElementById('featuresInside');
   const featuresLeft = document.getElementById('featuresLeft');
   const featuresRight = document.getElementById('featuresRight');
+  const vLine = document.getElementById('vLine');
 
   const distanceFromTop = (parent.offsetTop - window.scrollY);
   const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 5));
@@ -226,7 +215,8 @@ window.addEventListener('scroll', () => {
 
   const breakPoint = 1.0 / 12;
   const scrollXValue = 800;
-  const scrollYValue = 50;
+  const scrollYValue = 85;
+  const vLineFactor = Math.floor(factor * 100) / 3 + "vh";
 
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       insideContent.style.top = "0";
@@ -236,66 +226,109 @@ window.addEventListener('scroll', () => {
         counter.innerText = "1";
         scrollX(featuresLeft, scrollXValue * 0);
         scrollY(featuresRight, scrollYValue * 0);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item1').style.color = '#faa8ff'
+        document.getElementById('item2').style.color = 'white'
+        document.getElementById('item3').style.color = 'white'
       }
       if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "2"){
         console.log('2nd flip')
         counter.innerText = "2";
         scrollX(featuresLeft, scrollXValue);
         scrollY(featuresRight, scrollYValue);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item1').style.color = 'white'
+        document.getElementById('item2').style.color = '#faa8ff'
+        document.getElementById('item3').style.color = 'white'
       }
       if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "3"){
         counter.innerText = "3";
         console.log('3rd flip')
         scrollX(featuresLeft, scrollXValue * 2);
         scrollY(featuresRight, scrollYValue * 2);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item2').style.color = 'white'
+        document.getElementById('item3').style.color = '#faa8ff'
+        document.getElementById('item4').style.color = 'white'
       }
       if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "4"){
         counter.innerText = "4";
         console.log('4th flip')
         scrollX(featuresLeft, scrollXValue * 3);
         scrollY(featuresRight, scrollYValue * 3);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item3').style.color = 'white'
+        document.getElementById('item4').style.color = '#faa8ff'
+        document.getElementById('item5').style.color = 'white'
       }
       if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "5"){
         counter.innerText = "5";
         console.log('5th flip')
         scrollX(featuresLeft, scrollXValue * 4);
         scrollY(featuresRight, scrollYValue * 4);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item4').style.color = 'white'
+        document.getElementById('item5').style.color = '#faa8ff'
+        document.getElementById('item6').style.color = 'white'
       }
       if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "6"){
         counter.innerText = "6";
         console.log('6th flip')
         scrollX(featuresLeft, scrollXValue * 5);
         scrollY(featuresRight, scrollYValue * 5);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item5').style.color = 'white'
+        document.getElementById('item6').style.color = '#faa8ff'
+        document.getElementById('item7').style.color = 'white'
       }
       if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "7"){
         counter.innerText = "7";
         console.log('7th flip')
         scrollX(featuresLeft, scrollXValue * 6);
         scrollY(featuresRight, scrollYValue * 6);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item6').style.color = 'white'
+        document.getElementById('item7').style.color = '#faa8ff'
+        document.getElementById('item8').style.color = 'white'
       }
       if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "8"){
         counter.innerText = "8";
         console.log('8th flip')
         scrollX(featuresLeft, scrollXValue * 7);
         scrollY(featuresRight, scrollYValue * 7);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item7').style.color = 'white'
+        document.getElementById('item8').style.color = '#faa8ff'
+        document.getElementById('item9').style.color = 'white'
       }
       if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "9"){
         counter.innerText = "9";
         console.log('9th flip')
         scrollX(featuresLeft, scrollXValue * 8);
         scrollY(featuresRight, scrollYValue * 8);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item8').style.color = 'white'
+        document.getElementById('item9').style.color = '#faa8ff'
+        document.getElementById('item10').style.color = 'white'
       }
       if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "10"){
         counter.innerText = "10";
         console.log('10th flip')
         scrollX(featuresLeft, scrollXValue * 9);
         scrollY(featuresRight, scrollYValue * 9);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item9').style.color = 'white'
+        document.getElementById('item10').style.color = '#faa8ff'
+        document.getElementById('item11').style.color = 'white'
       }
       if(factor > breakPoint * 11 && factor < breakPoint * 12 && counter.innerText != "11"){
         counter.innerText = "11";
         console.log('11th flip');
         scrollX(featuresLeft, scrollXValue * 10);
         scrollY(featuresRight, scrollYValue * 10);
+        vLine.style.height = vLineFactor;
+        document.getElementById('item10').style.color = 'white'
+        document.getElementById('item11').style.color = '#faa8ff'
       }
   }
   else if(topOfNextSection < 0){
@@ -487,28 +520,30 @@ window.addEventListener('scroll', () => {
         <div class="col-4">
           <div class="row">
             <div class="col-2">
-              <div class="vLine mr-5"></div>
+              <div class="vLine mr-5" id="vLine"></div>
             </div>
             <div class="col-10" style="height: 30vh; overflow-y: hidden;" id="featuresRight">
-              <h5>Runs Existing Code</h5>
-              <br>
-              <h5>Native Javascript</h5>
-              <br>
-              <h5>Hardware Bindings</h5>
-              <br>
-              <h5>Made in Javascript</h5>
-              <br>
-              <h5>Multithreading Reailty Tabs</h5>
-              <br>
-              <h5>Futuristic APIs</h5>
-              <br>
-              <h5>Speed Past Legacy</h5>
-              <br>
-              <h5>Not a Fork</h5>
-              <br>
-              <h5>Cross Platform</h5>
-              <br>
-              <h5>Package for Stores</h5>
+              <h5 id="item1">Runs Existing Code</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item2">Native Javascript</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item3">Hardware Bindings</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item4">Made in Javascript</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item5">Multithreading Reailty Tabs</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item6">Futuristic APIs</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item7">Speed Past Legacy</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item8">Not a Fork</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item9">Cross Platform</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item10">Package for Stores</h5>
+              <div style="height: 6.5vh"></div>
+              <h5 id="item11">Great on gas</h5>
             </div>
           </div>
         </div>

@@ -97,7 +97,7 @@
 
 .home .exokitFeatures{
     position: relative;
-    min-height: 100vh;
+    min-height: 120vh;
     color: white;
     background: #2E84DC;  /* fallback for old browsers */
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
@@ -112,7 +112,7 @@
 
 .home .vLine{
     border-left: 3px solid white;
-    height: 35%;
+    height: 20%;
     float: left;
 }
 .home .featureArrows{

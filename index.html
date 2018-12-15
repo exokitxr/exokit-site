@@ -178,6 +178,22 @@ function expandLittleNavbar() {
   document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
 }
 
+window.addEventListener('scroll', () => {
+  const parent = document.getElementById('featuresParent');
+
+  const distanceFromTop = (parent.offsetTop - window.scrollY);
+
+  if(distanceFromTop <= 0){
+      console.log('scroll reached bottom');
+      parent.style.position = "fixed";
+      parent.style.top = "0";
+      parent.style.zIndex = "10"
+
+      // TO-DO: disable body scrolling, scroll through divs inside the parent, unlock the fixed postion and return to relative when complete
+  }
+
+});
+
 </script>
 
 <div id="overlay">
@@ -278,7 +294,7 @@ function expandLittleNavbar() {
   </div>
 </div>
 
-<div class="row exokitFeatures pt-5">
+<div class="row exokitFeatures pt-5" id="featuresParent">
   <div class="featuresSpacer"></div>
   <div class="col-12 text-center pt-5 pb-4">
     <h1 class="pt-5">Features</h1>
@@ -310,7 +326,7 @@ function expandLittleNavbar() {
         <div class="col-2">
           <div class="vLine mr-5"></div>
         </div>
-        <div class="col-10" style="height: 30vh; overflow-y: scroll; overflow: auto;">
+        <div class="col-10" style="height: 20vh; overflow-y: scroll; overflow: auto;">
           <h5>Runs Existing Code</h5>
           <h5>Native Javascript</h5>
           <h5>Hardware Bindings</h5>

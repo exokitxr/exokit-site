@@ -180,15 +180,29 @@ function expandLittleNavbar() {
 
 window.addEventListener('scroll', () => {
 
-  function tick(i = 0, elem_x, elem_y) {
-    let y = 1; // multiplier 
-    requestAnimationFrame(() => {
-      if(i < 10){
-        elem_y.scrollTop = elem_y.scrollTop + y;
-        elem_x.scrollLeft = elem_x.scrollLeft + y;
-        y = y + 0.00001;
-        tick(i+i, elem_x, elem_y);
-      }
+  // function tick(i = 0, elem_x, elem_y) {
+  //   let y = 1; // multiplier 
+  //   requestAnimationFrame(() => {
+  //     if(i < 10){
+  //       elem_y.scrollTop = elem_y.scrollTop + y;
+  //       elem_x.scrollLeft = elem_x.scrollLeft + y;
+  //       y = y + 0.00001;
+  //       tick(i+i, elem_x, elem_y);
+  //     }
+  //   });
+  // }
+
+  function scrollX(elem , positionX){
+    elem.scrollTo({
+      left: positionX,
+      behavior: 'smooth'
+    });
+  }
+
+   function scrollY(elem, positionY){
+    elem.scrollTo({
+      top: positionY,
+      behavior: 'smooth'
     });
   }
 
@@ -211,6 +225,8 @@ window.addEventListener('scroll', () => {
   const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
 
   const breakPoint = 1.0 / 12;
+  const scrollXValue = 800;
+  const scrollYValue = 50;
 
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       insideContent.style.top = "0";
@@ -218,57 +234,68 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "1"){
         console.log('1st flip')
         counter.innerText = "1";
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 0);
+        scrollY(featuresRight, scrollYValue * 0);
       }
       if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "2"){
         console.log('2nd flip')
         counter.innerText = "2";
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue);
+        scrollY(featuresRight, scrollYValue);
       }
       if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "3"){
         counter.innerText = "3";
         console.log('3rd flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 2);
+        scrollY(featuresRight, scrollYValue * 2);
       }
       if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "4"){
         counter.innerText = "4";
         console.log('4th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 3);
+        scrollY(featuresRight, scrollYValue * 3);
       }
       if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "5"){
         counter.innerText = "5";
         console.log('5th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 4);
+        scrollY(featuresRight, scrollYValue * 4);
       }
       if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "6"){
         counter.innerText = "6";
         console.log('6th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 5);
+        scrollY(featuresRight, scrollYValue * 5);
       }
       if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "7"){
         counter.innerText = "7";
         console.log('7th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 6);
+        scrollY(featuresRight, scrollYValue * 6);
       }
       if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "8"){
         counter.innerText = "8";
         console.log('8th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 7);
+        scrollY(featuresRight, scrollYValue * 7);
       }
       if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "9"){
         counter.innerText = "9";
         console.log('9th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 8);
+        scrollY(featuresRight, scrollYValue * 8);
       }
       if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "10"){
         counter.innerText = "10";
         console.log('10th flip')
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 9);
+        scrollY(featuresRight, scrollYValue * 9);
       }
       if(factor > breakPoint * 11 && factor < breakPoint * 12 && counter.innerText != "11"){
         counter.innerText = "11";
         console.log('11th flip');
-        tick(0, featuresLeft, featuresRight);
+        scrollX(featuresLeft, scrollXValue * 10);
+        scrollY(featuresRight, scrollYValue * 10);
       }
   }
   else if(topOfNextSection < 0){
@@ -406,6 +433,36 @@ window.addEventListener('scroll', () => {
             </div>
             <div style="min-width: 600px; margin-right: 200px;">
               <img class="img-fluid w-20" src="media/satelite.png"></img>
+              <h2>Multithreading Reailty Tabs</h2>
+              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            </div>
+            <div style="min-width: 600px; margin-right: 200px;">
+              <img class="img-fluid w-20" src="media/Squares.png"></img>
+              <h2>Multithreading Reailty Tabs</h2>
+              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            </div>
+            <div style="min-width: 600px; margin-right: 200px;">
+              <img class="img-fluid w-20" src="media/fork.png"></img>
+              <h2>Multithreading Reailty Tabs</h2>
+              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            </div>
+            <div style="min-width: 600px; margin-right: 200px;">
+              <img class="img-fluid w-20" src="media/window.png"></img>
+              <h2>Multithreading Reailty Tabs</h2>
+              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            </div>
+            <div style="min-width: 600px; margin-right: 200px;">
+              <img class="img-fluid w-20" src="media/Squares.png"></img>
+              <h2>Multithreading Reailty Tabs</h2>
+              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            </div>
+            <div style="min-width: 600px; margin-right: 200px;">
+              <img class="img-fluid w-20" src="media/fork.png"></img>
+              <h2>Multithreading Reailty Tabs</h2>
+              <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            </div>
+            <div style="min-width: 600px; margin-right: 200px;">
+              <img class="img-fluid w-20" src="media/window.png"></img>
               <h2>Multithreading Reailty Tabs</h2>
               <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>

@@ -334,7 +334,7 @@ window.addEventListener('scroll', () => {
   else if(topOfNextSection < 0){
     insideContent.style.position = "absolute";
     insideContent.style.top = "auto";
-    insideContent.style.bottom = "-100";
+    insideContent.style.bottom = 0 - document.getElementById('home').clientHeight * 0.4;
   }
   else{
       insideContent.style.top = "auto";

@@ -187,11 +187,52 @@ window.addEventListener('scroll', () => {
   const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 4));
   const counter = document.getElementById('featuresCounter');
 
+  const bodyBox = document.body.getBoundingClientRect();
+  const parentBox = parent.getBoundingClientRect();
+  const parentBoxAbs = {
+    top: parentBox.top - bodyBox.top,
+    height: parentBox.height,
+  };
+  const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
+
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
       let currCount = Number(counter.innerHTML);
       counter.innerHTML = currCount + 1;
+      if(factor > 0.09 && factor < 0.18){
+        console.log('1st flip')
+      }
+      if(factor > 0.18 && factor < 0.27){
+        console.log('2nd flip')
+      }
+      if(factor > 0.27 && factor < 0.36){
+        console.log('3rd flip')
+      }
+      if(factor > 0.36 && factor < 0.45){
+        console.log('4th flip')
+      }
+      if(factor > 0.45 && factor < 0.54){
+        console.log('5th flip')
+      }
+      if(factor > 0.54 && factor < 0.63){
+        console.log('6th flip')
+      }
+      if(factor > 0.63 && factor < 0.72){
+        console.log('7th flip')
+      }
+      if(factor > 0.72 && factor < 0.81){
+        console.log('8th flip')
+      }
+      if(factor > 0.81 && factor < 0.90){
+        console.log('9th flip')
+      }
+      if(factor > 0.90 && factor < 0.99){
+        console.log('10th flip')
+      }
+      if(factor > 0.99 && factor < 1){
+        console.log('11th flip')
+      }
   }
   else{
     insideContent.style.position = "static";
@@ -307,13 +348,14 @@ window.addEventListener('scroll', () => {
       <h1 class="pt-5">Features</h1>
       <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
     </div>
+    <div style="height: 20vh"></div>
     <div class="row">
       <div class="col-1">
       </div>
       <div class="col-1">
         <h2><span id="featuresCounter">1</span>/11</h2>
       </div>
-      <div class="col-3" style="height: 30vh; overflow-y: scroll; overflow: auto;">
+      <div class="col-3" style="height: 20vh; overflow-y: scroll; overflow: auto;" id="featuresLeft">
         <img class="img-fluid w-50" src="media/window.png"></img>
         <div style="height: 20vh"></div>
         <img class="img-fluid w-50" src="media/fork.png"></img>
@@ -322,7 +364,7 @@ window.addEventListener('scroll', () => {
         <div style="height: 20vh"></div>
         <img class="img-fluid w-50" src="media/Squares.png"></img>
       </div>
-      <div class="col-3" style="height: 20vh; overflow-y: scroll; overflow: auto;">
+      <div class="col-3" style="height: 25vh; overflow-y: scroll; overflow: auto;" id="featuresMiddle">
         <h2>Not a Browser</h2>
         <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
         <div style="height: 10vh"></div>
@@ -343,7 +385,7 @@ window.addEventListener('scroll', () => {
           <div class="col-2">
             <div class="vLine mr-5"></div>
           </div>
-          <div class="col-10" style="height: 20vh; overflow-y: scroll; overflow: auto;">
+          <div class="col-10" style="height: 30vh; overflow-y: scroll; overflow: auto;" id="featuresRight">
             <h5>Runs Existing Code</h5>
             <br>
             <h5>Native Javascript</h5>

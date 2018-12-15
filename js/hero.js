@@ -822,7 +822,7 @@ window.addEventListener("load", () =>{
     },
   ];
 
-  window.addEventListener("scroll", () =>{
+  const _tick = () =>{
     const bodyBox = document.body.getBoundingClientRect();
     const parentBox = featuresWrap.getBoundingClientRect();
     const parentBoxAbs = {
@@ -846,5 +846,7 @@ window.addEventListener("load", () =>{
         break;
       }
     }
-  });
+  };
+  _tick();
+  window.addEventListener("scroll", _tick);
 });

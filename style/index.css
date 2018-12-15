@@ -110,6 +110,11 @@
     background: transparent;  
 }
 
+.home #featuresLeft img{
+    height: auto !important;
+    width: 10vw !important;
+}
+
 .home .vLine{
     border-left: 3px solid white;
     float: left;

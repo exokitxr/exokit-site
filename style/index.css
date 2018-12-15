@@ -97,14 +97,26 @@
 
 .home .exokitFeatures{
     position: relative;
-    min-height: 90vh;
+    min-height: 100vh;
     color: white;
-    background: #221962;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(120deg, #255B7F, #221962);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(120deg, #255B7F, #221962); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #2E84DC;  /* fallback for old browsers */
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
     margin-top: -15vh;
+}
+
+.home .exokitFeatures ::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;  
+}
+
+.home .vLine{
+    border-left: 3px solid white;
+    height: 35%;
+    float: left;
+}
+.home .featureArrows{
+    padding-top: 160px;
 }
 
 .home .exokitFeatures .row{

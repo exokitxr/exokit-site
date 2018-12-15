@@ -199,7 +199,7 @@ window.addEventListener('scroll', () => {
   const featuresRight = document.getElementById('featuresRight');
 
   const distanceFromTop = (parent.offsetTop - window.scrollY);
-  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 4));
+  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 5));
   const counter = document.getElementById('featuresCounter');
 
   const bodyBox = document.body.getBoundingClientRect();
@@ -210,60 +210,62 @@ window.addEventListener('scroll', () => {
   };
   const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
 
+  const breakPoint = 1.0 / 12;
+
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
-      if(factor > 0.09 && factor < 0.18 && counter.innerText != "1"){
+      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "1"){
         console.log('1st flip')
         counter.innerText = "1";
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.18 && factor < 0.27 && counter.innerText != "2"){
+      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "2"){
         console.log('2nd flip')
         counter.innerText = "2";
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.27 && factor < 0.36 && counter.innerText != "3"){
+      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "3"){
         counter.innerText = "3";
         console.log('3rd flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.36 && factor < 0.45 && counter.innerText != "4"){
+      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "4"){
         counter.innerText = "4";
         console.log('4th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.45 && factor < 0.54 && counter.innerText != "5"){
+      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "5"){
         counter.innerText = "5";
         console.log('5th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.54 && factor < 0.63 && counter.innerText != "6"){
+      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "6"){
         counter.innerText = "6";
         console.log('6th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.63 && factor < 0.72 && counter.innerText != "7"){
+      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "7"){
         counter.innerText = "7";
         console.log('7th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.72 && factor < 0.81 && counter.innerText != "8"){
+      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "8"){
         counter.innerText = "8";
         console.log('8th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.81 && factor < 0.90 && counter.innerText != "9"){
+      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "9"){
         counter.innerText = "9";
         console.log('9th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.90 && factor < 0.99 && counter.innerText != "10"){
+      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "10"){
         counter.innerText = "10";
         console.log('10th flip')
         tick(0, featuresLeft, featuresRight);
       }
-      if(factor > 0.99 && factor < 1 && counter.innerText != "11"){
+      if(factor > breakPoint * 11 && factor < breakPoint * 12 && counter.innerText != "11"){
         counter.innerText = "11";
         console.log('11th flip');
         tick(0, featuresLeft, featuresRight);

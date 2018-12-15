@@ -97,11 +97,11 @@
 
 .home .exokitFeatures{
     position: relative;
-    min-height: 120vh;
+    min-height: 1100vh;
     color: white;
     background: #2E84DC;  /* fallback for old browsers */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    /* -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%); */
     margin-top: -15vh;
 }
 

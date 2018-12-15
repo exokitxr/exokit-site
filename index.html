@@ -180,19 +180,22 @@ function expandLittleNavbar() {
 
 window.addEventListener('scroll', () => {
   const parent = document.getElementById('featuresParent');
+  const nextSection = document.getElementById('madeWithExokit');
+  const insideContent = document.getElementById('featuresInside');
 
   const distanceFromTop = (parent.offsetTop - window.scrollY);
-
+  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 4));
   const counter = document.getElementById('featuresCounter');
 
-  if(distanceFromTop <= 0){
-      console.log('scroll reached bottom');
-      parent.style.position = "fixed";
-      parent.style.top = "25";
-      parent.style.zIndex = "10"
+  if(distanceFromTop <= 0 && topOfNextSection > 0){
+      insideContent.style.top = "0";
+      insideContent.style.position = "fixed";
       let currCount = Number(counter.innerHTML);
       counter.innerHTML = currCount + 1;
-      // TO-DO: disable body scrolling, scroll through divs inside the parent, unlock the fixed postion and return to relative when complete
+  }
+  else{
+    insideContent.style.position = "static";
+    insideContent.style.top = "auto";
   }
 
 });
@@ -298,77 +301,79 @@ window.addEventListener('scroll', () => {
 </div>
 
 <div class="row exokitFeatures pt-5" id="featuresParent">
-  <div class="featuresSpacer"></div>
-  <div class="col-12 text-center pt-5 pb-4">
-    <h1 class="pt-5">Features</h1>
-    <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
-  </div>
-  <div class="row">
-    <div class="col-1">
+  <div id="featuresInside">
+    <div class="featuresSpacer"></div>
+    <div class="col-12 text-center pt-5 pb-4">
+      <h1 class="pt-5">Features</h1>
+      <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
     </div>
-    <div class="col-1">
-      <h2><span id="featuresCounter">1</span>/11</h2>
-    </div>
-    <div class="col-3" style="height: 30vh; overflow-y: scroll; overflow: auto;">
-      <img class="img-fluid w-50" src="media/window.png"></img>
-      <div style="height: 20vh"></div>
-      <img class="img-fluid w-50" src="media/fork.png"></img>
-      <div style="height: 20vh"></div>
-      <img class="img-fluid w-50" src="media/satelite.png"></img>
-      <div style="height: 20vh"></div>
-      <img class="img-fluid w-50" src="media/Squares.png"></img>
-    </div>
-    <div class="col-3" style="height: 20vh; overflow-y: scroll; overflow: auto;">
-      <h2>Not a Browser</h2>
-      <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-      <div style="height: 10vh"></div>
-      <h2>Runs Existing Code</h2>
-      <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-      <div style="height: 10vh"></div>
-      <h2>Hardware Bindings</h2>
-      <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-      <div style="height: 10vh"></div>
-      <h2>Made in Javascript</h2>
-      <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-      <div style="height: 10vh"></div>
-      <h2>Multithreading Reailty Tabs</h2>
-      <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-    </div>
-    <div class="col-2">
-      <div class="row">
-        <div class="col-2">
-          <div class="vLine mr-5"></div>
-        </div>
-        <div class="col-10" style="height: 20vh; overflow-y: scroll; overflow: auto;">
-          <h5>Runs Existing Code</h5>
-          <br>
-          <h5>Native Javascript</h5>
-          <br>
-          <h5>Hardware Bindings</h5>
-          <br>
-          <h5>Made in Javascript</h5>
-          <br>
-          <h5>Multithreading Reailty Tabs</h5>
-          <br>
-          <h5>Futuristic APIs</h5>
-          <br>
-          <h5>Speed Past Legacy</h5>
-          <br>
-          <h5>Not a Fork</h5>
-          <br>
-          <h5>Cross Platform</h5>
-          <br>
-          <h5>Package for Stores</h5>
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-1">
+        <h2><span id="featuresCounter">1</span>/11</h2>
+      </div>
+      <div class="col-3" style="height: 30vh; overflow-y: scroll; overflow: auto;">
+        <img class="img-fluid w-50" src="media/window.png"></img>
+        <div style="height: 20vh"></div>
+        <img class="img-fluid w-50" src="media/fork.png"></img>
+        <div style="height: 20vh"></div>
+        <img class="img-fluid w-50" src="media/satelite.png"></img>
+        <div style="height: 20vh"></div>
+        <img class="img-fluid w-50" src="media/Squares.png"></img>
+      </div>
+      <div class="col-3" style="height: 20vh; overflow-y: scroll; overflow: auto;">
+        <h2>Not a Browser</h2>
+        <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+        <div style="height: 10vh"></div>
+        <h2>Runs Existing Code</h2>
+        <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+        <div style="height: 10vh"></div>
+        <h2>Hardware Bindings</h2>
+        <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+        <div style="height: 10vh"></div>
+        <h2>Made in Javascript</h2>
+        <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+        <div style="height: 10vh"></div>
+        <h2>Multithreading Reailty Tabs</h2>
+        <h4 class="font-weight-light">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+      </div>
+      <div class="col-2">
+        <div class="row">
+          <div class="col-2">
+            <div class="vLine mr-5"></div>
+          </div>
+          <div class="col-10" style="height: 20vh; overflow-y: scroll; overflow: auto;">
+            <h5>Runs Existing Code</h5>
+            <br>
+            <h5>Native Javascript</h5>
+            <br>
+            <h5>Hardware Bindings</h5>
+            <br>
+            <h5>Made in Javascript</h5>
+            <br>
+            <h5>Multithreading Reailty Tabs</h5>
+            <br>
+            <h5>Futuristic APIs</h5>
+            <br>
+            <h5>Speed Past Legacy</h5>
+            <br>
+            <h5>Not a Fork</h5>
+            <br>
+            <h5>Cross Platform</h5>
+            <br>
+            <h5>Package for Stores</h5>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-1">
+      <div class="col-1">
 
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row madeWithExokit mt-5">
+<div class="row madeWithExokit mt-5" id="madeWithExokit">
 
   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
     <img id="madeWithExokitMainImg" class="img-fluid mb-5" src="media/expanse.png"></img>

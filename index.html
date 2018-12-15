@@ -216,7 +216,8 @@ window.addEventListener('scroll', () => {
   const breakPoint = 1.0 / 12;
   const scrollXValue = document.getElementById("featuresLeft").offsetWidth + 100;
   const scrollYValue = 80;
-  const vLineFactor = Math.floor(factor * 100) / 3 + "vh";
+  const vLineFactor = Math.floor(factor * 100) * 5 + "%";
+  console.log(vLineFactor);
 
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       insideContent.style.top = "0";
@@ -226,7 +227,7 @@ window.addEventListener('scroll', () => {
         counter.innerText = "1";
         scrollX(featuresLeft, scrollXValue * 0);
         scrollY(featuresRight, scrollYValue * 0);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = 10;
         document.getElementById('item1').style.color = '#faa8ff'
         document.getElementById('item2').style.color = 'white'
         document.getElementById('item3').style.color = 'white'
@@ -236,7 +237,7 @@ window.addEventListener('scroll', () => {
         counter.innerText = "2";
         scrollX(featuresLeft, scrollXValue);
         scrollY(featuresRight, scrollYValue);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item1').style.color = 'white'
         document.getElementById('item2').style.color = '#faa8ff'
         document.getElementById('item3').style.color = 'white'
@@ -246,7 +247,7 @@ window.addEventListener('scroll', () => {
         console.log('3rd flip')
         scrollX(featuresLeft, scrollXValue * 2);
         scrollY(featuresRight, scrollYValue * 2);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item2').style.color = 'white'
         document.getElementById('item3').style.color = '#faa8ff'
         document.getElementById('item4').style.color = 'white'
@@ -256,7 +257,7 @@ window.addEventListener('scroll', () => {
         console.log('4th flip')
         scrollX(featuresLeft, scrollXValue * 3);
         scrollY(featuresRight, scrollYValue * 3);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item3').style.color = 'white'
         document.getElementById('item4').style.color = '#faa8ff'
         document.getElementById('item5').style.color = 'white'
@@ -266,7 +267,7 @@ window.addEventListener('scroll', () => {
         console.log('5th flip')
         scrollX(featuresLeft, scrollXValue * 4);
         scrollY(featuresRight, scrollYValue * 4);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item4').style.color = 'white'
         document.getElementById('item5').style.color = '#faa8ff'
         document.getElementById('item6').style.color = 'white'
@@ -276,7 +277,7 @@ window.addEventListener('scroll', () => {
         console.log('6th flip')
         scrollX(featuresLeft, scrollXValue * 5);
         scrollY(featuresRight, scrollYValue * 5);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item5').style.color = 'white'
         document.getElementById('item6').style.color = '#faa8ff'
         document.getElementById('item7').style.color = 'white'
@@ -286,7 +287,7 @@ window.addEventListener('scroll', () => {
         console.log('7th flip')
         scrollX(featuresLeft, scrollXValue * 6);
         scrollY(featuresRight, scrollYValue * 6);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item6').style.color = 'white'
         document.getElementById('item7').style.color = '#faa8ff'
         document.getElementById('item8').style.color = 'white'
@@ -296,7 +297,7 @@ window.addEventListener('scroll', () => {
         console.log('8th flip')
         scrollX(featuresLeft, scrollXValue * 7);
         scrollY(featuresRight, scrollYValue * 7);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item7').style.color = 'white'
         document.getElementById('item8').style.color = '#faa8ff'
         document.getElementById('item9').style.color = 'white'
@@ -306,7 +307,7 @@ window.addEventListener('scroll', () => {
         console.log('9th flip')
         scrollX(featuresLeft, scrollXValue * 8);
         scrollY(featuresRight, scrollYValue * 8);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item8').style.color = 'white'
         document.getElementById('item9').style.color = '#faa8ff'
         document.getElementById('item10').style.color = 'white'
@@ -316,7 +317,7 @@ window.addEventListener('scroll', () => {
         console.log('10th flip')
         scrollX(featuresLeft, scrollXValue * 9);
         scrollY(featuresRight, scrollYValue * 9);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item9').style.color = 'white'
         document.getElementById('item10').style.color = '#faa8ff'
         document.getElementById('item11').style.color = 'white'
@@ -326,7 +327,7 @@ window.addEventListener('scroll', () => {
         console.log('11th flip');
         scrollX(featuresLeft, scrollXValue * 10);
         scrollY(featuresRight, scrollYValue * 10);
-        vLine.style.height = vLineFactor;
+        vLine.style.marginTop = vLineFactor;
         document.getElementById('item10').style.color = 'white'
         document.getElementById('item11').style.color = '#faa8ff'
       }
@@ -519,7 +520,7 @@ window.addEventListener('scroll', () => {
         <div class="col-4">
           <div class="row">
             <div class="col-2">
-              <div class="vLine ml-3 mr-3" id="vLine"></div>
+              <div class="vLine ml-3 mr-3" id="vLine" style="height: 5vh;"></div>
             </div>
             <div class="col-10" style="height: 40vh; overflow-y: hidden;" id="featuresRight">
               <h5 id="item1">Runs Existing Code</h5>

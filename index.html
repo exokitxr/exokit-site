@@ -217,7 +217,6 @@ window.addEventListener('scroll', () => {
   const scrollXValue = document.getElementById("featuresLeft").offsetWidth + 100;
   const scrollYValue = 80;
   const vLineFactor = Math.floor(factor * 100) * 5 + "%";
-  console.log(vLineFactor);
 
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       insideContent.style.top = "0";
@@ -446,78 +445,76 @@ window.addEventListener('scroll', () => {
 <div class="row exokitFeatures pt-5" id="featuresParent">
   <div id="featuresInside" style="width: 100vw;">
     <div class="col-12 text-center pt-5 pb-4">
-      <h1 class="pt-5">Features</h1>
+      <h1 class="pt-4">Features</h1>
       <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
-      <div style="height: 10vh"></div>
+      <div class="featuresHeaderPusher" style="height: 10vh"></div>
     </div>
     <div class="col-12" style="min-height: 80vh;">
       <div class="row">
-        <div class="col-1">
-        </div>
-        <div class="col-1">
+        <div class="col-lg-2 col-md-1 col-sm-12 col-xs-12 text-center mb-5" id="counterCol">
           <h2><span id="featuresCounter">1</span>/11</h2>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
           <div style="display: flex; overflow-x: hidden; min-width: 50vw;" id="featuresLeft">
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/chip.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/code.svg"></img>
               <h2>Runs Existing Code</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/javascript.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/js-square.svg"></img>
               <h2>Native Javascript</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/lan.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/rocket.svg"></img>
               <h2>Hardware Bindings</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/javascript (1).png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/js-square.svg"></img>
               <h2>Made in Javascript</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/window.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/desktop.svg"></img>
               <h2>Multithreading Reality Tabs</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/satelite.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/dna.svg"></img>
               <h2>Futuristic APIs</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/performance.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/shipping-fast.svg"></img>
               <h2>Speed Past Legacy</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/fork.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/code-branch.svg"></img>
               <h2>Not a Fork</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/Squares.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/puzzle-piece.svg"></img>
               <h2>Cross Platform</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/collaboration.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/boxes.svg"></img>
               <h2>Package for Stores</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
-            <div style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/gas.png"></img>
+            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
+              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/gas-pump.svg"></img>
               <h2>Great on gas</h2>
               <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
             </div>
           </div>
         </div>
     
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="featuresListCol">
           <div class="row">
             <div class="col-2">
               <div class="vLine ml-3 mr-3" id="vLine" style="height: 5vh;"></div>

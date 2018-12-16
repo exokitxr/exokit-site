@@ -228,6 +228,28 @@
     .home #canvas{
         margin-top: 18vh;
     }
+    .home #featuresInside img{
+        float: none !important;
+        margin-bottom: 20px !important;
+        height: auto !important;
+        width: 35% !important;
+        max-width: 200px !important;
+    }
+    .home #counterCol{
+        display: none;
+    }
+    .home #featuresLeft .align-container{
+        text-align: center;
+    }
+    .home .featuresHeaderPusher{
+        height: 2vh !important;
+    }
+    .home #featuresLeft h4{
+        max-width: 100vh !important;
+    }
+    .home #featuresListCol{
+        display: none;
+    }
 }
 
 @media only screen and (max-height: 700px) {

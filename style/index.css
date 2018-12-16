@@ -26,11 +26,11 @@
     z-index: -4;
     position: relative;
     margin-top: -80px;
-    min-height: 350vh;
+    min-height: 100vh;
 }
 
 .home .whatIsExokitPusher{
-    margin-top: 500px;
+    margin-top: 200px;
 }
 
 .home .whatIsExokitImg{
@@ -40,7 +40,6 @@
     bottom: -20;
     left: 0;
     color: black;
-
 }
 
 .home #featureMain-wrap{
@@ -83,7 +82,7 @@
     line-height: 1.5;
 }
 .home .featureTextPusher{
-    height: 60vh;
+    height: 20vh;
 }
 
 .home .slideTextLeft{

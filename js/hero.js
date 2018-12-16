@@ -781,4 +781,72 @@ window.addEventListener("scroll", e =>{
   }
 })
 
+window.addEventListener("load", () =>{
+  const featuresWrap = document.getElementById('featureMain-wrap');
+  const rgba_JSON = [
+    { // blue
+      startFactor: 0,
+      endFactor: 1/6,
+      color1: "rgb(47, 134, 222)",
+      color2: "rgb(142, 76, 170)",
+    },
+    { // purple
+      startFactor: 1/6,
+      endFactor: 2/6,
+      color1: "rgb(142, 76, 170)",
+      color2: "rgb(222, 122, 20)",
+    },
+    { //orange
+      startFactor: 2/6,
+      endFactor: 3/6,
+      color1: "rgb(222, 122, 20)",
+      color2: "rgb(240, 5, 5)",
+    },
+    { //bright green
+      startFactor: 3/6,
+      endFactor: 4/6,
+      color1: "rgb(240, 5, 5)",
+      color2: "rgb(180, 200, 200)",
+    }, 
+    { //bright green
+      startFactor: 4/6,
+      endFactor: 5/6,
+      color1: "rgb(180, 200, 200)",
+      color2: "rgb(47, 134, 222)",
+    },
+    { //bright green
+      startFactor: 5/6,
+      endFactor: 6/6,
+      color1: "rgb(47, 134, 222)",
+      color2: "rgb(142, 76, 170)",
+    },
+  ];
 
+  const _tick = () =>{
+    const bodyBox = document.body.getBoundingClientRect();
+    const parentBox = featuresWrap.getBoundingClientRect();
+    const parentBoxAbs = {
+      top: parentBox.top - bodyBox.top,
+      height: parentBox.height,
+    };
+    const parentFactor = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1);
+
+    for (let i = 0; i < rgba_JSON.length-1; i++) {
+      const j = rgba_JSON[i];
+      const j2 = rgba_JSON[i+1];
+
+      if (parentFactor >= j.startFactor && parentFactor < j.endFactor) {
+        const lerpFactor = (parentFactor - j.startFactor) / (j.endFactor - j.startFactor);
+        const topColor = new THREE.Color(j.color1).lerp(new THREE.Color(j.color2), lerpFactor).getHexString();
+        const bottomColor = new THREE.Color(j2.color1).lerp(new THREE.Color(j2.color2), lerpFactor).getHexString();
+
+        featuresWrap.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
+        featuresWrap.style.backgroundPosition = `0 ${window.pageYOffset - parentBoxAbs.top}px`;
+        featuresWrap.style.backgroundSize = `auto ${window.innerHeight}px`;
+        break;
+      }
+    }
+  };
+  _tick();
+  window.addEventListener("scroll", _tick);
+});

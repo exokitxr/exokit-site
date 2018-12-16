@@ -12,7 +12,13 @@ window.addEventListener('load', () => {
     }
   }
   const _tick = () => {
-    const parentFactor = Math.min(Math.max((window.pageYOffset - (featuresWrap.offsetHeight - window.innerHeight * 2.2)) / (featuresWrap.offsetHeight + window.innerHeight), 0), 1);
+    const bodyBox = document.body.getBoundingClientRect();
+    const parentBox = featuresWrap.getBoundingClientRect();
+    const parentBoxAbs = {
+      top: parentBox.top - bodyBox.top,
+      height: parentBox.height,
+    };
+    const parentFactor = Math.min(Math.max((window.pageYOffset - (parentBoxAbs.top - window.innerHeight)) / (parentBoxAbs.height + window.innerHeight), 0), 1);
 
     for (let i = 0; i < featuresArray.length; i++) {
       const el = featuresArray[i];

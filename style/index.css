@@ -23,13 +23,14 @@
 }
 
 .home .whatIsExokit{
+    z-index: -4;
     position: relative;
     margin-top: -80px;
-    min-height: 130vh;
+    min-height: 350vh;
 }
 
 .home .whatIsExokitPusher{
-    margin-top: 160px;
+    margin-top: 500px;
 }
 
 .home .whatIsExokitImg{
@@ -46,7 +47,6 @@
     height: 100px;
     margin-bottom: 100px;
     width: auto;
-    filter: invert(88%);
 }
 
 .home .exokitImg{
@@ -75,7 +75,7 @@
     line-height: 1.5;
 }
 .home .featureTextPusher{
-    height: 30px;
+    height: 60vh;
 }
 
 .home .slideTextLeft{
@@ -97,13 +97,30 @@
 
 .home .exokitFeatures{
     position: relative;
-    min-height: 90vh;
+    min-height: 1100vh;
     color: white;
-    background: #221962;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(120deg, #255B7F, #221962);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(120deg, #255B7F, #221962); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    background: #2E84DC;  /* fallback for old browsers */
+    /* -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%); */
+    margin-top: -15vh;
+}
+
+.home .exokitFeatures ::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;  
+}
+
+.home #featuresLeft img{
+    height: auto !important;
+    width: 10vw !important;
+}
+
+.home .vLine{
+    border-left: 3px solid white;
+    float: left;
+}
+.home .featureArrows{
+    padding-top: 160px;
 }
 
 .home .exokitFeatures .row{
@@ -122,6 +139,7 @@
 
 .home .madeWithExokit{
     position: relative;
+    color: black;
     min-height: 70vh
 }
 
@@ -210,6 +228,28 @@
     .home #canvas{
         margin-top: 18vh;
     }
+    .home #featuresInside img{
+        float: none !important;
+        margin-bottom: 20px !important;
+        height: auto !important;
+        width: 35% !important;
+        max-width: 200px !important;
+    }
+    .home #counterCol{
+        display: none;
+    }
+    .home #featuresLeft .align-container{
+        text-align: center;
+    }
+    .home .featuresHeaderPusher{
+        height: 2vh !important;
+    }
+    .home #featuresLeft h4{
+        max-width: 100vh !important;
+    }
+    .home #featuresListCol{
+        display: none;
+    }
 }
 
 @media only screen and (max-height: 700px) {
@@ -218,6 +258,9 @@
     }
     .home .exokitFeature{
         min-height: 90vh;
+    }
+    .home .featuresBottomSpacer{
+        height: 200px;
     }
 }
 @media only screen and (max-width: 994px) {
@@ -228,12 +271,6 @@
     .home .quotes{
         -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
         clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
-    }
-    .home .whatIsExokitPusher{
-        margin-top: 200px;
-    }
-    .home .featureTextPusher{
-        height: 20px;
     }
     .home .featurePusher{
         padding-top: 50px;
@@ -247,11 +284,6 @@
     .home .featureArrow {
         margin-top: 30px;
         margin-bottom: 30px;
-    }
-    .home .exokitFeatures{
-        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-        clip-path: polygon(0 0, 100% 5%, 100% 98%, 0 100%);
-        min-height: 230vh;
     }
     .home .exokitFeature{
         min-height: 60vh;

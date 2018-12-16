@@ -43,6 +43,14 @@
 
 }
 
+.home #featureMain-wrap{
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
 .home .mlImg, .home .oculusImg, .home .viveImg{
     height: 100px;
     margin-bottom: 100px;

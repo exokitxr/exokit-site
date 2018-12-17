@@ -180,11 +180,9 @@ function expandLittleNavbar() {
 
 function clickList(num){
   const parent = document.getElementById('featuresParent');
-  const percent = (((parent.offsetHeight / 12) * num) + parent.offsetTop); // need to subtract some factor to this to fix it going too far
-
+  const percent = ((parent.offsetHeight / 11) * num) + parent.offsetTop;
   window.scrollTo({
     top: percent,
-    left: 0,
     behavior: 'smooth'
   })
 }
@@ -222,13 +220,11 @@ window.addEventListener('scroll', () => {
   const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
 
   const breakPoint = 1.0 / 12;
-  const scrollXValue = document.getElementById("featuresLeft").offsetWidth + 100;
   const scrollYValue = 80;
   const vLineFactor = Math.floor(factor * 100) * 5 + "%";
 
   const containers = document.getElementsByClassName('align-container');
 
-  
   let totalWidth = 0;
   for (let i = 0; i < containers.length; i++){
     totalWidth += containers[i].offsetWidth + 100;
@@ -238,8 +234,8 @@ window.addEventListener('scroll', () => {
       scrollX(featuresLeft, Math.floor(totalWidth * factor));
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
-      // console.log('factor: ', factor, 'breakpoint:', breakPoint)
       if(factor < breakPoint && counter.innerText != "1"){
+        console.log(window.scrollY)
         console.log('1st flip')
         counter.innerText = "1";
         scrollY(featuresRight, scrollYValue * 0);
@@ -527,18 +523,18 @@ window.addEventListener('scroll', () => {
             <div class="col-2">
               <div class="vLine ml-3 mr-3" id="vLine" style="height: 5vh;"></div>
             </div>
-            <div class="col-10" style="height: 40vh; overflow-y: hidden;" id="featuresRight">
-              <a onclick="clickList(1)"><h5 class="font-weight-light" id="item1">Runs Existing Code</h5></a>
-              <a onclick="clickList(2)"><h5 class="font-weight-light" id="item2">Native Javascript</h5></a>
-              <a onclick="clickList(3)"><h5 class="font-weight-light" id="item3">Hardware Bindings</h5></a>
-              <a onclick="clickList(4)"><h5 class="font-weight-light" id="item4">Made in Javascript</h5></a>
-              <a onclick="clickList(5)"><h5 class="font-weight-light" id="item5">Multithreading Reality Tabs</h5></a>
-              <a onclick="clickList(6)"><h5 class="font-weight-light" id="item6">Futuristic APIs</h5></a>
-              <a onclick="clickList(7)"><h5 class="font-weight-light" id="item7">Speed Past Legacy</h5></a>
-              <a onclick="clickList(8)"><h5 class="font-weight-light" id="item8">Not a Fork</h5></a>
-              <a onclick="clickList(9)"><h5 class="font-weight-light" id="item9">Cross Platform</h5></a>
-              <a onclick="clickList(10)"><h5 class="font-weight-light" id="item10">Package for Stores</h5></a>
-              <a onclick="clickList(11)"><h5 class="font-weight-light" id="item11">Great on gas</h5></a>
+            <div class="col-10" id="featuresRight">
+              <a onclick="clickList(0)"><h5 class="font-weight-light" id="item1">Runs Existing Code</h5></a>
+              <a onclick="clickList(1)"><h5 class="font-weight-light" id="item2">Native Javascript</h5></a>
+              <a onclick="clickList(2)"><h5 class="font-weight-light" id="item3">Hardware Bindings</h5></a>
+              <a onclick="clickList(3)"><h5 class="font-weight-light" id="item4">Made in Javascript</h5></a>
+              <a onclick="clickList(4)"><h5 class="font-weight-light" id="item5">Multithreading Reality Tabs</h5></a>
+              <a onclick="clickList(5)"><h5 class="font-weight-light" id="item6">Futuristic APIs</h5></a>
+              <a onclick="clickList(6)"><h5 class="font-weight-light" id="item7">Speed Past Legacy</h5></a>
+              <a onclick="clickList(7)"><h5 class="font-weight-light" id="item8">Not a Fork</h5></a>
+              <a onclick="clickList(8)"><h5 class="font-weight-light" id="item9">Cross Platform</h5></a>
+              <a onclick="clickList(9)"><h5 class="font-weight-light" id="item10">Package for Stores</h5></a>
+              <a onclick="clickList(10)"><h5 class="font-weight-light" id="item11">Great on gas</h5></a>
             </div>
           </div>
         </div>

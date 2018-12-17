@@ -181,7 +181,7 @@ function expandLittleNavbar() {
 window.addEventListener('scroll', () => {
 
   function scrollX(elem , positionX){
-    console.log('scrolling', positionX)
+    // console.log('scrolling', positionX)
     elem.scrollLeft = positionX;
   }
 
@@ -228,7 +228,8 @@ window.addEventListener('scroll', () => {
       scrollX(featuresLeft, Math.floor(totalWidth * factor));
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
-      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "1"){
+      // console.log('factor: ', factor, 'breakpoint:', breakPoint)
+      if(factor < breakPoint && counter.innerText != "1"){
         console.log('1st flip')
         counter.innerText = "1";
         scrollY(featuresRight, scrollYValue * 0);
@@ -237,7 +238,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item2').style.color = 'white'
         document.getElementById('item3').style.color = 'white'
       }
-      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "2"){
+      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "2"){
         console.log('2nd flip')
         counter.innerText = "2";
         scrollY(featuresRight, scrollYValue);
@@ -246,7 +247,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item2').style.color = '#faa8ff'
         document.getElementById('item3').style.color = 'white'
       }
-      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "3"){
+      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "3"){
         counter.innerText = "3";
         console.log('3rd flip')
         scrollY(featuresRight, scrollYValue * 2);
@@ -255,7 +256,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item3').style.color = '#faa8ff'
         document.getElementById('item4').style.color = 'white'
       }
-      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "4"){
+      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "4"){
         counter.innerText = "4";
         console.log('4th flip')
         scrollY(featuresRight, scrollYValue * 3);
@@ -264,7 +265,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item4').style.color = '#faa8ff'
         document.getElementById('item5').style.color = 'white'
       }
-      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "5"){
+      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "5"){
         counter.innerText = "5";
         console.log('5th flip')
         scrollY(featuresRight, scrollYValue * 4);
@@ -273,7 +274,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item5').style.color = '#faa8ff'
         document.getElementById('item6').style.color = 'white'
       }
-      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "6"){
+      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "6"){
         counter.innerText = "6";
         console.log('6th flip')
         scrollY(featuresRight, scrollYValue * 5);
@@ -282,7 +283,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item6').style.color = '#faa8ff'
         document.getElementById('item7').style.color = 'white'
       }
-      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "7"){
+      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "7"){
         counter.innerText = "7";
         console.log('7th flip')
         scrollY(featuresRight, scrollYValue * 6);
@@ -291,7 +292,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item7').style.color = '#faa8ff'
         document.getElementById('item8').style.color = 'white'
       }
-      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "8"){
+      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "8"){
         counter.innerText = "8";
         console.log('8th flip')
         scrollY(featuresRight, scrollYValue * 7);
@@ -300,7 +301,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item8').style.color = '#faa8ff'
         document.getElementById('item9').style.color = 'white'
       }
-      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "9"){
+      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "9"){
         counter.innerText = "9";
         console.log('9th flip')
         scrollY(featuresRight, scrollYValue * 8);
@@ -309,7 +310,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item9').style.color = '#faa8ff'
         document.getElementById('item10').style.color = 'white'
       }
-      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "10"){
+      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "10"){
         counter.innerText = "10";
         console.log('10th flip')
         scrollY(featuresRight, scrollYValue * 9);
@@ -318,7 +319,7 @@ window.addEventListener('scroll', () => {
         document.getElementById('item10').style.color = '#faa8ff'
         document.getElementById('item11').style.color = 'white'
       }
-      if(factor > breakPoint * 11 && factor < breakPoint * 12 && counter.innerText != "11"){
+      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "11"){
         counter.innerText = "11";
         console.log('11th flip');
         scrollY(featuresRight, scrollYValue * 10);

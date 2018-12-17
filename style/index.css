@@ -252,7 +252,7 @@
         height: 2vh !important;
     }
     .home #featuresLeft h4{
-        max-width: 100vh !important;
+        max-width: 50vh !important;
     }
     .home #featuresListCol{
         display: none;

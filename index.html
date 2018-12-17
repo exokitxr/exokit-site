@@ -181,10 +181,8 @@ function expandLittleNavbar() {
 window.addEventListener('scroll', () => {
 
   function scrollX(elem , positionX){
-    elem.scrollTo({
-      left: positionX,
-      behavior: 'smooth'
-    });
+    console.log('scrolling', positionX)
+    elem.scrollLeft = positionX;
   }
 
    function scrollY(elem, positionY){
@@ -218,13 +216,21 @@ window.addEventListener('scroll', () => {
   const scrollYValue = 80;
   const vLineFactor = Math.floor(factor * 100) * 5 + "%";
 
+  const containers = document.getElementsByClassName('align-container');
+
+  
+  let totalWidth = 0;
+  for (let i = 0; i < containers.length; i++){
+    totalWidth += containers[i].offsetWidth + 100;
+  }
+
   if(distanceFromTop <= 0 && topOfNextSection > 0){
+      scrollX(featuresLeft, Math.floor(totalWidth * factor));
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
       if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "1"){
         console.log('1st flip')
         counter.innerText = "1";
-        scrollX(featuresLeft, scrollXValue * 0);
         scrollY(featuresRight, scrollYValue * 0);
         vLine.style.marginTop = 10;
         document.getElementById('item1').style.color = '#faa8ff'
@@ -234,7 +240,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "2"){
         console.log('2nd flip')
         counter.innerText = "2";
-        scrollX(featuresLeft, scrollXValue);
         scrollY(featuresRight, scrollYValue);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item1').style.color = 'white'
@@ -244,7 +249,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "3"){
         counter.innerText = "3";
         console.log('3rd flip')
-        scrollX(featuresLeft, scrollXValue * 2);
         scrollY(featuresRight, scrollYValue * 2);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item2').style.color = 'white'
@@ -254,7 +258,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "4"){
         counter.innerText = "4";
         console.log('4th flip')
-        scrollX(featuresLeft, scrollXValue * 3);
         scrollY(featuresRight, scrollYValue * 3);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item3').style.color = 'white'
@@ -264,7 +267,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "5"){
         counter.innerText = "5";
         console.log('5th flip')
-        scrollX(featuresLeft, scrollXValue * 4);
         scrollY(featuresRight, scrollYValue * 4);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item4').style.color = 'white'
@@ -274,7 +276,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "6"){
         counter.innerText = "6";
         console.log('6th flip')
-        scrollX(featuresLeft, scrollXValue * 5);
         scrollY(featuresRight, scrollYValue * 5);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item5').style.color = 'white'
@@ -284,7 +285,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "7"){
         counter.innerText = "7";
         console.log('7th flip')
-        scrollX(featuresLeft, scrollXValue * 6);
         scrollY(featuresRight, scrollYValue * 6);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item6').style.color = 'white'
@@ -294,7 +294,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "8"){
         counter.innerText = "8";
         console.log('8th flip')
-        scrollX(featuresLeft, scrollXValue * 7);
         scrollY(featuresRight, scrollYValue * 7);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item7').style.color = 'white'
@@ -304,7 +303,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "9"){
         counter.innerText = "9";
         console.log('9th flip')
-        scrollX(featuresLeft, scrollXValue * 8);
         scrollY(featuresRight, scrollYValue * 8);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item8').style.color = 'white'
@@ -314,7 +312,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "10"){
         counter.innerText = "10";
         console.log('10th flip')
-        scrollX(featuresLeft, scrollXValue * 9);
         scrollY(featuresRight, scrollYValue * 9);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item9').style.color = 'white'
@@ -324,7 +321,6 @@ window.addEventListener('scroll', () => {
       if(factor > breakPoint * 11 && factor < breakPoint * 12 && counter.innerText != "11"){
         counter.innerText = "11";
         console.log('11th flip');
-        scrollX(featuresLeft, scrollXValue * 10);
         scrollY(featuresRight, scrollYValue * 10);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item10').style.color = 'white'

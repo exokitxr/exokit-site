@@ -32,7 +32,7 @@
 
 .home #overlay-subs .overlay-sub .button {
   display: flex;
-  height: 3vw;
+  height: 40px;
   border: 2px solid #000;
   border-radius: 1000px;
   justify-content: center;
@@ -257,8 +257,22 @@
 
 @media only screen and (max-width: 800px) {
     .home #overlay {
-        width: 80vw;
-        margin-top: 15vh;
+        width: 90vw;
+        margin-top: 14vh;
+        margin-left: 25px;
+    }
+    .home  #overlay h1{
+        font-size: 30px;;
+    }
+    .home  #overlay i{
+        font-size: 25px;
+    }
+    .home  #overlay img{
+        height: 35px;
+        width: auto;
+    }
+    .home  #overlay h2{
+        font-size: 20px;;
     }
     .home #heroPusher{
         margin-bottom: 40px;

@@ -65,7 +65,14 @@
     color: black;
 }
 
-.home #featureMain-wrap{
+.home #featureMain-wrap {
+  position: relative;
+}
+
+.home #featureMain-wrap .gradient {
+    position: absolute;
+    height: 100vw;
+    width: 100%;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);

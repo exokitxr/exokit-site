@@ -783,6 +783,7 @@ window.addEventListener("scroll", e =>{
 
 window.addEventListener("load", () =>{
   const featuresWrap = document.getElementById('featureMain-wrap');
+  const gradient = featuresWrap.querySelector('.gradient');
   const rgba_JSON = [
     { // blue
       startFactor: 0,
@@ -829,7 +830,9 @@ window.addEventListener("load", () =>{
       top: parentBox.top - bodyBox.top,
       height: parentBox.height,
     };
-    const parentFactor = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1);
+    const parentFactor = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height - window.innerHeight), 0), 1);
+    gradient.style.top = `${Math.min(Math.max(window.pageYOffset - parentBoxAbs.top, 0), parentBoxAbs.height - window.innerWidth)}px`;
+    gradient.style.background = `linear-gradient(to bottom, #2f86de 0%, #8e4caa 100%)`;
 
     for (let i = 0; i < rgba_JSON.length-1; i++) {
       const j = rgba_JSON[i];
@@ -840,9 +843,7 @@ window.addEventListener("load", () =>{
         const topColor = new THREE.Color(j.color1).lerp(new THREE.Color(j.color2), lerpFactor).getHexString();
         const bottomColor = new THREE.Color(j2.color1).lerp(new THREE.Color(j2.color2), lerpFactor).getHexString();
 
-        featuresWrap.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
-        featuresWrap.style.backgroundPosition = `0 ${window.pageYOffset - parentBoxAbs.top}px`;
-        featuresWrap.style.backgroundSize = `auto ${window.innerHeight}px`;
+        gradient.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
         break;
       }
     }

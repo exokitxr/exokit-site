@@ -183,21 +183,130 @@ function clickList(num){
   const percent = ((parent.offsetHeight / 11) * num) + parent.offsetTop;
   window.scrollTo({
     top: percent,
-    behavior: 'smooth'
-  })
+    // behavior: 'smooth'
+  });
+  _updateScroll();
 }
 
-window.addEventListener('scroll', () => {
+const easeInOut = (() => {
+  // These values are established by empiricism with tests (tradeoff: performance VS precision)
+  var NEWTON_ITERATIONS = 4;
+  var NEWTON_MIN_SLOPE = 0.001;
+  var SUBDIVISION_PRECISION = 0.0000001;
+  var SUBDIVISION_MAX_ITERATIONS = 10;
 
+  var kSplineTableSize = 11;
+  var kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
+
+  var float32ArraySupported = typeof Float32Array === 'function';
+
+  function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1; }
+  function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
+  function C (aA1)      { return 3.0 * aA1; }
+
+  // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
+  function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT; }
+
+  // Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
+  function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1); }
+
+  function binarySubdivide (aX, aA, aB, mX1, mX2) {
+    var currentX, currentT, i = 0;
+    do {
+      currentT = aA + (aB - aA) / 2.0;
+      currentX = calcBezier(currentT, mX1, mX2) - aX;
+      if (currentX > 0.0) {
+        aB = currentT;
+      } else {
+        aA = currentT;
+      }
+    } while (Math.abs(currentX) > SUBDIVISION_PRECISION && ++i < SUBDIVISION_MAX_ITERATIONS);
+    return currentT;
+  }
+
+  function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
+   for (var i = 0; i < NEWTON_ITERATIONS; ++i) {
+     var currentSlope = getSlope(aGuessT, mX1, mX2);
+     if (currentSlope === 0.0) {
+       return aGuessT;
+     }
+     var currentX = calcBezier(aGuessT, mX1, mX2) - aX;
+     aGuessT -= currentX / currentSlope;
+   }
+   return aGuessT;
+  }
+
+  function LinearEasing (x) {
+    return x;
+  }
+
+  function bezier (mX1, mY1, mX2, mY2) {
+    if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1)) {
+      throw new Error('bezier x values must be in [0, 1] range');
+    }
+
+    if (mX1 === mY1 && mX2 === mY2) {
+      return LinearEasing;
+    }
+
+    // Precompute samples table
+    var sampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
+    for (var i = 0; i < kSplineTableSize; ++i) {
+      sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
+    }
+
+    function getTForX (aX) {
+      var intervalStart = 0.0;
+      var currentSample = 1;
+      var lastSample = kSplineTableSize - 1;
+
+      for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
+        intervalStart += kSampleStepSize;
+      }
+      --currentSample;
+
+      // Interpolate to provide an initial guess for t
+      var dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
+      var guessForT = intervalStart + dist * kSampleStepSize;
+
+      var initialSlope = getSlope(guessForT, mX1, mX2);
+      if (initialSlope >= NEWTON_MIN_SLOPE) {
+        return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
+      } else if (initialSlope === 0.0) {
+        return guessForT;
+      } else {
+        return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
+      }
+    }
+
+    return function BezierEasing (x) {
+      // Because JavaScript number are imprecise, we should guarantee the extremes are right.
+      if (x === 0) {
+        return 0;
+      }
+      if (x === 1) {
+        return 1;
+      }
+      return calcBezier(getTForX(x), mY1, mY2);
+    };
+  };
+  return bezier(1, 0, 0, 1);
+})();
+
+const _updateScroll = () => {
   function scrollX(elem , positionX){
     elem.scrollLeft = positionX;
   }
-
-   function scrollY(elem, positionY){
+  function scrollY(elem, positionY) {
     elem.scrollTo({
       top: positionY,
-      behavior: 'smooth'
+      // behavior: 'smooth'
     });
+  }
+  function smooth(n) {
+    const fract = n % 1;
+    n = Math.floor(n) + easeInOut(fract);
+    return n;
   }
 
   const parent = document.getElementById('featuresParent');
@@ -229,107 +338,89 @@ window.addEventListener('scroll', () => {
     totalWidth += containers[i].offsetWidth + 100;
   }
 
+  for (let i = 1; i <= 11; i++) {
+    document.getElementById(`item${i}`).style.color = 'white'
+  }
   if(distanceFromTop <= 0 && topOfNextSection > 0){
-      scrollX(featuresLeft, Math.floor(totalWidth * factor));
+      scrollX(featuresLeft, Math.floor(smooth(factor * 11) / 11 * totalWidth));
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
-      if(factor < breakPoint && counter.innerText != "1"){
+      if(factor < breakPoint){
         console.log(window.scrollY)
         console.log('1st flip')
         counter.innerText = "1";
         scrollY(featuresRight, scrollYValue * 0);
         vLine.style.marginTop = 10;
         document.getElementById('item1').style.color = '#faa8ff'
-        document.getElementById('item2').style.color = 'white'
-        document.getElementById('item3').style.color = 'white'
       }
-      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "2"){
+      if(factor > breakPoint && factor < breakPoint * 2){
         console.log('2nd flip')
         counter.innerText = "2";
         scrollY(featuresRight, scrollYValue);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item1').style.color = 'white'
         document.getElementById('item2').style.color = '#faa8ff'
-        document.getElementById('item3').style.color = 'white'
       }
-      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "3"){
+      if(factor > breakPoint * 2 && factor < breakPoint * 3){
         counter.innerText = "3";
         console.log('3rd flip')
         scrollY(featuresRight, scrollYValue * 2);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item2').style.color = 'white'
         document.getElementById('item3').style.color = '#faa8ff'
-        document.getElementById('item4').style.color = 'white'
       }
-      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "4"){
+      if(factor > breakPoint * 3 && factor < breakPoint * 4){
         counter.innerText = "4";
         console.log('4th flip')
         scrollY(featuresRight, scrollYValue * 3);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item3').style.color = 'white'
         document.getElementById('item4').style.color = '#faa8ff'
-        document.getElementById('item5').style.color = 'white'
       }
-      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "5"){
+      if(factor > breakPoint * 4 && factor < breakPoint * 5){
         counter.innerText = "5";
         console.log('5th flip')
         scrollY(featuresRight, scrollYValue * 4);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item4').style.color = 'white'
         document.getElementById('item5').style.color = '#faa8ff'
-        document.getElementById('item6').style.color = 'white'
       }
-      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "6"){
+      if(factor > breakPoint * 5 && factor < breakPoint * 6){
         counter.innerText = "6";
         console.log('6th flip')
         scrollY(featuresRight, scrollYValue * 5);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item5').style.color = 'white'
         document.getElementById('item6').style.color = '#faa8ff'
-        document.getElementById('item7').style.color = 'white'
       }
-      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "7"){
+      if(factor > breakPoint * 6 && factor < breakPoint * 7){
         counter.innerText = "7";
         console.log('7th flip')
         scrollY(featuresRight, scrollYValue * 6);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item6').style.color = 'white'
         document.getElementById('item7').style.color = '#faa8ff'
-        document.getElementById('item8').style.color = 'white'
       }
-      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "8"){
+      if(factor > breakPoint * 7 && factor < breakPoint * 8){
         counter.innerText = "8";
         console.log('8th flip')
         scrollY(featuresRight, scrollYValue * 7);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item7').style.color = 'white'
         document.getElementById('item8').style.color = '#faa8ff'
-        document.getElementById('item9').style.color = 'white'
       }
-      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "9"){
+      if(factor > breakPoint * 8 && factor < breakPoint * 9){
         counter.innerText = "9";
         console.log('9th flip')
         scrollY(featuresRight, scrollYValue * 8);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item8').style.color = 'white'
         document.getElementById('item9').style.color = '#faa8ff'
-        document.getElementById('item10').style.color = 'white'
       }
-      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "10"){
+      if(factor > breakPoint * 9 && factor < breakPoint * 10){
         counter.innerText = "10";
         console.log('10th flip')
         scrollY(featuresRight, scrollYValue * 9);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item9').style.color = 'white'
         document.getElementById('item10').style.color = '#faa8ff'
-        document.getElementById('item11').style.color = 'white'
       }
-      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "11"){
+      if(factor > breakPoint * 10 && factor < breakPoint * 11){
         counter.innerText = "11";
         console.log('11th flip');
         scrollY(featuresRight, scrollYValue * 10);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item10').style.color = 'white'
         document.getElementById('item11').style.color = '#faa8ff'
       }
   }
@@ -342,7 +433,8 @@ window.addEventListener('scroll', () => {
       insideContent.style.top = "auto";
       insideContent.style.position = "static";
   }
-});
+};
+window.addEventListener('scroll', _updateScroll);
 
 </script>
 

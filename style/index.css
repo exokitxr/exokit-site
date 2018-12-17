@@ -122,6 +122,14 @@
     width: 10vw !important;
 }
 
+.home #featuresRight h5{
+    cursor: pointer;
+}
+
+.home #featuresRight a h5:hover{
+    color: #fcc8ff !important;
+}
+
 .home .vLine{
     border-left: 3px solid white;
     float: left;

@@ -178,10 +178,20 @@ function expandLittleNavbar() {
   document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
 }
 
+function clickList(num){
+  const parent = document.getElementById('featuresParent');
+  const percent = (((parent.offsetHeight / 12) * num) + parent.offsetTop); // need to subtract some factor to this to fix it going too far
+
+  window.scrollTo({
+    top: percent,
+    left: 0,
+    behavior: 'smooth'
+  })
+}
+
 window.addEventListener('scroll', () => {
 
   function scrollX(elem , positionX){
-    // console.log('scrolling', positionX)
     elem.scrollLeft = positionX;
   }
 
@@ -512,34 +522,23 @@ window.addEventListener('scroll', () => {
           </div>
         </div>
     
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="featuresListCol">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="featuresListCol" style="margin-top: -50px;">
           <div class="row">
             <div class="col-2">
               <div class="vLine ml-3 mr-3" id="vLine" style="height: 5vh;"></div>
             </div>
             <div class="col-10" style="height: 40vh; overflow-y: hidden;" id="featuresRight">
-              <h5 id="item1">Runs Existing Code</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item2">Native Javascript</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item3">Hardware Bindings</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item4">Made in Javascript</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item5">Multithreading Reality Tabs</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item6">Futuristic APIs</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item7">Speed Past Legacy</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item8">Not a Fork</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item9">Cross Platform</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item10">Package for Stores</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item11">Great on gas</h5>
-              <div style="height: 100px"></div>
+              <a onclick="clickList(1)"><h5 class="font-weight-light" id="item1">Runs Existing Code</h5></a>
+              <a onclick="clickList(2)"><h5 class="font-weight-light" id="item2">Native Javascript</h5></a>
+              <a onclick="clickList(3)"><h5 class="font-weight-light" id="item3">Hardware Bindings</h5></a>
+              <a onclick="clickList(4)"><h5 class="font-weight-light" id="item4">Made in Javascript</h5></a>
+              <a onclick="clickList(5)"><h5 class="font-weight-light" id="item5">Multithreading Reality Tabs</h5></a>
+              <a onclick="clickList(6)"><h5 class="font-weight-light" id="item6">Futuristic APIs</h5></a>
+              <a onclick="clickList(7)"><h5 class="font-weight-light" id="item7">Speed Past Legacy</h5></a>
+              <a onclick="clickList(8)"><h5 class="font-weight-light" id="item8">Not a Fork</h5></a>
+              <a onclick="clickList(9)"><h5 class="font-weight-light" id="item9">Cross Platform</h5></a>
+              <a onclick="clickList(10)"><h5 class="font-weight-light" id="item10">Package for Stores</h5></a>
+              <a onclick="clickList(11)"><h5 class="font-weight-light" id="item11">Great on gas</h5></a>
             </div>
           </div>
         </div>

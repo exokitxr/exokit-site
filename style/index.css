@@ -48,7 +48,7 @@
 .home .whatIsExokit{
     z-index: -4;
     position: relative;
-    margin-top: -80px;
+    // margin-top: -80px;
     min-height: 100vh;
 }
 
@@ -139,7 +139,7 @@
     background: #2E84DC;  /* fallback for old browsers */
     /* -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%); */
-    margin-top: -15vh;
+    // margin-top: -15vh;
 }
 
 .home .exokitFeatures ::-webkit-scrollbar{

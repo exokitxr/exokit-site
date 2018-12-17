@@ -286,6 +286,7 @@
     }
     .home #canvas{
         margin-top: 18vh;
+        background-color: #FFF;
     }
     .home #featuresInside img{
         float: none !important;

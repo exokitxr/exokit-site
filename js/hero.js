@@ -831,21 +831,37 @@ window.addEventListener("load", () =>{
       height: parentBox.height,
     };
     const parentFactor = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height - window.innerHeight), 0), 1);
-    gradient.style.top = `${Math.min(Math.max(window.pageYOffset - parentBoxAbs.top, 0), parentBoxAbs.height - window.innerWidth)}px`;
-    gradient.style.background = `linear-gradient(to bottom, #2f86de 0%, #8e4caa 100%)`;
 
-    for (let i = 0; i < rgba_JSON.length-1; i++) {
-      const j = rgba_JSON[i];
-      const j2 = rgba_JSON[i+1];
+    if (parentFactor > 0) {
+      let i;
+      for (i = 0; i < rgba_JSON.length-1; i++) {
+        const j = rgba_JSON[i];
+        const j2 = rgba_JSON[i+1];
 
-      if (parentFactor >= j.startFactor && parentFactor < j.endFactor) {
-        const lerpFactor = (parentFactor - j.startFactor) / (j.endFactor - j.startFactor);
-        const topColor = new THREE.Color(j.color1).lerp(new THREE.Color(j.color2), lerpFactor).getHexString();
-        const bottomColor = new THREE.Color(j2.color1).lerp(new THREE.Color(j2.color2), lerpFactor).getHexString();
+        if (parentFactor >= j.startFactor && parentFactor <= j.endFactor) {
+          const lerpFactor = (parentFactor - j.startFactor) / (j.endFactor - j.startFactor);
+          const topColor = new THREE.Color(j.color1).lerp(new THREE.Color(j.color2), lerpFactor).getHexString();
+          const bottomColor = new THREE.Color(j2.color1).lerp(new THREE.Color(j2.color2), lerpFactor).getHexString();
 
-        gradient.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
-        break;
+          gradient.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
+          break;
+        }
       }
+      if (i < rgba_JSON.length-1) {
+        gradient.style.position = 'fixed';
+        gradient.style.top = 0;
+        gradient.style.bottom = '';
+      } else {
+        gradient.style.position = 'absolute';
+        gradient.style.top = '';
+        gradient.style.bottom = 0;
+        gradient.style.background = 'linear-gradient(#2f86dd 0%, #8d4caa 100%)';
+      }
+    } else {
+      gradient.style.position = 'absolute';
+      gradient.style.top = 0;
+      gradient.style.bottom = '';
+      gradient.style.background = `linear-gradient(to bottom, #2f86de 0%, #8e4caa 100%)`;
     }
   };
   _tick();

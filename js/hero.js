@@ -784,6 +784,7 @@ window.addEventListener("scroll", e =>{
 window.addEventListener("load", () =>{
   const featuresWrap = document.getElementById('featureMain-wrap');
   const gradient = featuresWrap.querySelector('.gradient');
+  gradient.style.height = `${window.innerHeight}px`;
   const rgba_JSON = [
     { // blue
       startFactor: 0,

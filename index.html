@@ -178,13 +178,19 @@ function expandLittleNavbar() {
   document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
 }
 
+function clickList(num){
+  const parent = document.getElementById('featuresParent');
+  const percent = ((parent.offsetHeight / 11) * num) + parent.offsetTop;
+  window.scrollTo({
+    top: percent,
+    behavior: 'smooth'
+  })
+}
+
 window.addEventListener('scroll', () => {
 
   function scrollX(elem , positionX){
-    elem.scrollTo({
-      left: positionX,
-      behavior: 'smooth'
-    });
+    elem.scrollLeft = positionX;
   }
 
    function scrollY(elem, positionY){
@@ -214,117 +220,113 @@ window.addEventListener('scroll', () => {
   const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
 
   const breakPoint = 1.0 / 12;
-  const scrollXValue = document.getElementById("featuresLeft").offsetWidth + 100;
   const scrollYValue = 80;
-  const vLineFactor = Math.floor(factor * 100) * 5 + "%";
+  const vLineFactor = (factor * featuresRight.clientHeight) + "px";
+  const containers = document.getElementsByClassName('align-container');
+
+  let totalWidth = 0;
+  for (let i = 0; i < containers.length; i++){
+    totalWidth += containers[i].offsetWidth + 100;
+  }
 
   if(distanceFromTop <= 0 && topOfNextSection > 0){
+      scrollX(featuresLeft, Math.floor(totalWidth * factor));
       insideContent.style.top = "0";
       insideContent.style.position = "fixed";
-      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "1"){
+      if(factor < breakPoint && counter.innerText != "1"){
+        console.log(window.scrollY)
         console.log('1st flip')
         counter.innerText = "1";
-        scrollX(featuresLeft, scrollXValue * 0);
         scrollY(featuresRight, scrollYValue * 0);
         vLine.style.marginTop = 10;
         document.getElementById('item1').style.color = '#faa8ff'
         document.getElementById('item2').style.color = 'white'
         document.getElementById('item3').style.color = 'white'
       }
-      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "2"){
+      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "2"){
         console.log('2nd flip')
         counter.innerText = "2";
-        scrollX(featuresLeft, scrollXValue);
         scrollY(featuresRight, scrollYValue);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item1').style.color = 'white'
         document.getElementById('item2').style.color = '#faa8ff'
         document.getElementById('item3').style.color = 'white'
       }
-      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "3"){
+      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "3"){
         counter.innerText = "3";
         console.log('3rd flip')
-        scrollX(featuresLeft, scrollXValue * 2);
         scrollY(featuresRight, scrollYValue * 2);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item2').style.color = 'white'
         document.getElementById('item3').style.color = '#faa8ff'
         document.getElementById('item4').style.color = 'white'
       }
-      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "4"){
+      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "4"){
         counter.innerText = "4";
         console.log('4th flip')
-        scrollX(featuresLeft, scrollXValue * 3);
         scrollY(featuresRight, scrollYValue * 3);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item3').style.color = 'white'
         document.getElementById('item4').style.color = '#faa8ff'
         document.getElementById('item5').style.color = 'white'
       }
-      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "5"){
+      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "5"){
         counter.innerText = "5";
         console.log('5th flip')
-        scrollX(featuresLeft, scrollXValue * 4);
         scrollY(featuresRight, scrollYValue * 4);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item4').style.color = 'white'
         document.getElementById('item5').style.color = '#faa8ff'
         document.getElementById('item6').style.color = 'white'
       }
-      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "6"){
+      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "6"){
         counter.innerText = "6";
         console.log('6th flip')
-        scrollX(featuresLeft, scrollXValue * 5);
         scrollY(featuresRight, scrollYValue * 5);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item5').style.color = 'white'
         document.getElementById('item6').style.color = '#faa8ff'
         document.getElementById('item7').style.color = 'white'
       }
-      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "7"){
+      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "7"){
         counter.innerText = "7";
         console.log('7th flip')
-        scrollX(featuresLeft, scrollXValue * 6);
         scrollY(featuresRight, scrollYValue * 6);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item6').style.color = 'white'
         document.getElementById('item7').style.color = '#faa8ff'
         document.getElementById('item8').style.color = 'white'
       }
-      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "8"){
+      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "8"){
         counter.innerText = "8";
         console.log('8th flip')
-        scrollX(featuresLeft, scrollXValue * 7);
         scrollY(featuresRight, scrollYValue * 7);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item7').style.color = 'white'
         document.getElementById('item8').style.color = '#faa8ff'
         document.getElementById('item9').style.color = 'white'
       }
-      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "9"){
+      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "9"){
         counter.innerText = "9";
         console.log('9th flip')
-        scrollX(featuresLeft, scrollXValue * 8);
         scrollY(featuresRight, scrollYValue * 8);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item8').style.color = 'white'
         document.getElementById('item9').style.color = '#faa8ff'
         document.getElementById('item10').style.color = 'white'
       }
-      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "10"){
+      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "10"){
         counter.innerText = "10";
         console.log('10th flip')
-        scrollX(featuresLeft, scrollXValue * 9);
         scrollY(featuresRight, scrollYValue * 9);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item9').style.color = 'white'
         document.getElementById('item10').style.color = '#faa8ff'
         document.getElementById('item11').style.color = 'white'
       }
-      if(factor > breakPoint * 11 && factor < breakPoint * 12 && counter.innerText != "11"){
+      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "11"){
         counter.innerText = "11";
         console.log('11th flip');
-        scrollX(featuresLeft, scrollXValue * 10);
         scrollY(featuresRight, scrollYValue * 10);
         vLine.style.marginTop = vLineFactor;
         document.getElementById('item10').style.color = 'white'
@@ -367,8 +369,8 @@ window.addEventListener('scroll', () => {
 
   <div class="row rgbaRow">
       <div class="col-12 text-center whatIsExokitPusher" style="color: white">
-          <h1 class="slideItem" data-animation="[{k: 'translateX', sp: 0.05, ep: 0.13, sv: -50, ev: 0, u: 'vw'}]">What is Exokit?</h1>
-          <h4 class="font-weight-light slideItem" data-animation="[{k: 'translateX', sp: 0.05, ep: 0.16, sv: -60, ev: 0, u: 'vw'}]">
+          <h1>What is Exokit?</h1>
+          <h4 class="font-weight-light">
             Exokit is an XR engine that runs your code as native.</h4>
           <div class="featurePusher"></div>
           <div class="featureTextPusher"></div>
@@ -380,19 +382,19 @@ window.addEventListener('scroll', () => {
       <div class="featureTextPusher"></div>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
-      <h2 class="featureText pb-4 slideItem" data-animation="[{k: 'translateX', sp: 0.25, ep: 0.36, sv: -50, ev: 0, u: 'vw'}]">Power up your WebXR app</h2>
-      <h5 class="featureText slideItem text-left font-weight-light" data-animation="[{k: 'translateX', sp: 0.3, ep: 0.35, sv: -50, ev: 0, u: 'vw'}]">
+      <h2 class="featureText pb-4">Power up your WebXR app</h2>
+      <h5 class="featureText text-left font-weight-light">
         Exokit runs regular HTML+JS WebXR sites. Add hardware bindings, native code, and more with the APIs Exokit gives you access to.</h5>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
       <div class="row">
-        <div class="col-6">
-            <i class="featureMain slideItem fab fa-js-square fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.20, ep: 0.36, sv: -150, ev: 0, u: 'vw'}]"></i>
-            <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.22, ep:  0.38, sv: -150, ev: 0, u: 'vw'}]">Javascript</h4>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
+            <i class="featureMain slideItem fab fa-js-square fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.15, ep: 0.35, sv: -10, ev: 0, u: 'vw'}]"></i>
+            <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.15, ep:  0.35, sv: 10, ev: 0, u: 'vw'}]">Javascript</h4>
           </div>
-          <div class="col-6">
-              <i class="featureMain slideItem fab fa-html5 fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.20, ep: 0.36, sv: -150, ev: 0, u: 'vw'}]"></i>
-              <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.22, ep: 0.38, sv: -150, ev: 0, u: 'vw'}]">HTML</h4>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
+              <i class="featureMain slideItem fab fa-html5 fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.15, ep: 0.35, sv: 50, ev: 0, u: 'vw'}]"></i>
+              <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.15, ep: 0.35, sv: 50, ev: 0, u: 'vw'}]">HTML</h4>
           </div>
       </div>
     </div>
@@ -406,14 +408,14 @@ window.addEventListener('scroll', () => {
       <div class="featureTextPusher"></div>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
-        <h2 class="featureText pb-4 slideItem" data-animation="[{k: 'translateX', sp: 0.3, ep: 0.58, sv: 150, ev: 0, u: 'vw'}]">Run apps in Exokit</h1>
-        <h5 class="featureText text-left font-weight-light slideItem"
-          data-animation="[{k: 'translateX', sp: 0.4, ep: 0.58, sv: 150, ev: 0, u: 'vw'}]">
-          Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.</h5>
+        <h2 class="featureText pb-4">Run apps in Exokit</h1>
+        <h5 class="featureText text-left font-weight-light">
+          Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.
+        </h5>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
-      <img class="exokitImg featureMain slideItem" src="media/logo-white.svg" data-animation="[{k: 'translateX', sp: 0.3, ep: 0.58, sv: 100, ev: 0, u: 'vw'}]"></img>
-      <h3 class="featureMain exokitName slideItem" data-animation="[{k: 'translateX', sp: 0.4, ep: 0.58, sv: 100, ev: 0, u: 'vw'}]">Exokit</h3>
+      <img class="exokitImg featureMain slideItem" src="media/logo-white.svg" data-animation="[{k: 'translateX', sp: 0.36, ep: 0.5, sv: 10, ev: 0, u: 'vw'}]"></img>
+      <h3 class="featureMain exokitName slideItem" data-animation="[{k: 'translateX', sp: 0.36, ep: 0.5, sv: 10, ev: 0, u: 'vw'}]">Exokit</h3>
     </div>
     <div class="col-12">
       <div class="featureTextPusher"></div>
@@ -425,25 +427,26 @@ window.addEventListener('scroll', () => {
         <div class="featureTextPusher"></div>
       </div>
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
-        <h2 class="featureText pb-4 slideItem" data-animation="[{k: 'translateX', sp: 0.55, ep: 0.8, sv: -50, ev: 0, u: 'vw'}]">Run apps in Exokit</h1>
-        <h5 class="featureText text-left font-weight-light slideItem"
-          data-animation="[{k: 'translateX', sp: 0.55, ep: 0.8, sv: -80, ev: 0, u: 'vw'}]">
-          Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.</h5>
+        <h2 class="featureText pb-4">Run apps in Exokit</h1>
+        <h5 class="featureText text-left font-weight-light">
+          Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.
+        </h5>
       </div>
       <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4">
         <div class="row">
           <div class="col-lg-4 text-center">
-            <img class="mlImg featureMain slideItem" src="media/ML.png" data-animation="[{k: 'translateX', sp: 0.55, ep: 0.8, sv: 50, ev: 0, u: 'vw'}]"></img>
+            <img class="mlImg featureMain slideItem" src="media/ML.png" data-animation="[{k: 'translateX', sp: 0.55, ep: 0.7, sv: 50, ev: 0, u: 'vw'}]"></img>
           </div>
           <div class="col-lg-4 text-center">
-            <img class="viveImg featureMain slideItem" src="media/vive.png" data-animation="[{k: 'translateX', sp: 0.50, ep: 0.8, sv: 50, ev: 0, u: 'vw'}]"></img>
+            <img class="viveImg featureMain slideItem" src="media/vive.png" data-animation="[{k: 'translateX', sp: 0.50, ep: 0.7, sv: 50, ev: 0, u: 'vw'}]"></img>
           </div>
           <div class="col-lg-4 text-center">
-            <img class="oculusImg featureMain slideItem" src="media/oculus.png" data-animation="[{k: 'translateX', sp: 0.45, ep: 0.8, sv: 50, ev: 0, u: 'vw'}]"></img>
+            <img class="oculusImg featureMain slideItem" src="media/oculus.png" data-animation="[{k: 'translateX', sp: 0.45, ep: 0.7, sv: 50, ev: 0, u: 'vw'}]"></img>
           </div>
         </div>
       </div>
       <div class="col-12">
+        <div class="featureTextPusher"></div>
         <div class="featureTextPusher"></div>
       </div>
   </div>
@@ -454,7 +457,7 @@ window.addEventListener('scroll', () => {
     <div class="col-12 text-center pt-5 pb-4">
       <h1 class="pt-4">Features</h1>
       <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
-      <div class="featuresHeaderPusher" style="height: 10vh"></div>
+      <div class="featuresHeaderPusher" style="height: 15vh"></div>
     </div>
     <div class="col-12" style="min-height: 80vh;">
       <div class="row">
@@ -521,34 +524,23 @@ window.addEventListener('scroll', () => {
           </div>
         </div>
     
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="featuresListCol">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="featuresListCol" style="margin-top: -50px;">
           <div class="row">
             <div class="col-2">
-              <div class="vLine ml-3 mr-3" id="vLine" style="height: 5vh;"></div>
+              <div class="vLine ml-4 mr-3" id="vLine" style="height: 3vh;"></div>
             </div>
-            <div class="col-10" style="height: 40vh; overflow-y: hidden;" id="featuresRight">
-              <h5 id="item1">Runs Existing Code</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item2">Native Javascript</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item3">Hardware Bindings</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item4">Made in Javascript</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item5">Multithreading Reality Tabs</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item6">Futuristic APIs</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item7">Speed Past Legacy</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item8">Not a Fork</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item9">Cross Platform</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item10">Package for Stores</h5>
-              <div style="height: 50px"></div>
-              <h5 id="item11">Great on gas</h5>
-              <div style="height: 100px"></div>
+            <div class="col-10" id="featuresRight">
+              <a onclick="clickList(0)"><h5 class="font-weight-light" id="item1">Runs Existing Code</h5></a>
+              <a onclick="clickList(1)"><h5 class="font-weight-light" id="item2">Native Javascript</h5></a>
+              <a onclick="clickList(2)"><h5 class="font-weight-light" id="item3">Hardware Bindings</h5></a>
+              <a onclick="clickList(3)"><h5 class="font-weight-light" id="item4">Made in Javascript</h5></a>
+              <a onclick="clickList(4)"><h5 class="font-weight-light" id="item5">Multithreading Reality Tabs</h5></a>
+              <a onclick="clickList(5)"><h5 class="font-weight-light" id="item6">Futuristic APIs</h5></a>
+              <a onclick="clickList(6)"><h5 class="font-weight-light" id="item7">Speed Past Legacy</h5></a>
+              <a onclick="clickList(7)"><h5 class="font-weight-light" id="item8">Not a Fork</h5></a>
+              <a onclick="clickList(8)"><h5 class="font-weight-light" id="item9">Cross Platform</h5></a>
+              <a onclick="clickList(9)"><h5 class="font-weight-light" id="item10">Package for Stores</h5></a>
+              <a onclick="clickList(10)"><h5 class="font-weight-light" id="item11">Great on gas</h5></a>
             </div>
           </div>
         </div>

@@ -157,17 +157,28 @@ function init() {
     object.nextUpdateTime = 0;
     object.exobotMeshes = [];
 
-    const loader = new THREE.ColladaLoader();
-    loader.load('models/car_engine.dae', o => {
+    const loader = new THREE.GLTFLoader().setPath( 'models/' );
+    loader.load( 'engine.glb', function ( o ) {
+
       o = o.scene;
       o.traverse(e => {
         e.castShadow = true;
       });
 
-      o.position.set(0, -0.2, 0);
-      o.scale.set(0.2, 0.2, 0.2);
+      o.position.set(0, 0.15, 0);
+      o.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(0, 0, 1)
+      );
+      o.scale.set(0.15, 0.15, 0.15);
+      o.updateMatrixWorld();
       object.add(o);
-    });
+
+    }, undefined, function ( e ) {
+
+      console.error( e );
+
+    } );
 
     return object;
   })();

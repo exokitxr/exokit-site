@@ -339,7 +339,8 @@ const _updateScroll = () => {
   }
 
   for (let i = 1; i <= 11; i++) {
-    document.getElementById(`item${i}`).style.color = 'white'
+    const el = document.getElementById(`item${i}`);
+    el.classList.remove('active');
   }
   if(distanceFromTop <= 0 && topOfNextSection > 0){
       scrollX(featuresLeft, Math.floor(smooth(factor * 11) / 11 * totalWidth));
@@ -347,81 +348,70 @@ const _updateScroll = () => {
       insideContent.style.position = "fixed";
       if(factor < breakPoint){
         console.log(window.scrollY)
-        console.log('1st flip')
         counter.innerText = "1";
         scrollY(featuresRight, scrollYValue * 0);
         vLine.style.marginTop = 10;
-        document.getElementById('item1').style.color = '#faa8ff'
+        document.getElementById('item1').classList.add('active');
       }
       if(factor > breakPoint && factor < breakPoint * 2){
-        console.log('2nd flip')
         counter.innerText = "2";
         scrollY(featuresRight, scrollYValue);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item2').style.color = '#faa8ff'
+        document.getElementById('item2').classList.add('active');
       }
       if(factor > breakPoint * 2 && factor < breakPoint * 3){
         counter.innerText = "3";
-        console.log('3rd flip')
         scrollY(featuresRight, scrollYValue * 2);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item3').style.color = '#faa8ff'
+        document.getElementById('item3').classList.add('active');
       }
       if(factor > breakPoint * 3 && factor < breakPoint * 4){
         counter.innerText = "4";
-        console.log('4th flip')
         scrollY(featuresRight, scrollYValue * 3);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item4').style.color = '#faa8ff'
+        document.getElementById('item4').classList.add('active');
       }
       if(factor > breakPoint * 4 && factor < breakPoint * 5){
         counter.innerText = "5";
-        console.log('5th flip')
         scrollY(featuresRight, scrollYValue * 4);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item5').style.color = '#faa8ff'
+        document.getElementById('item5').classList.add('active');
       }
       if(factor > breakPoint * 5 && factor < breakPoint * 6){
         counter.innerText = "6";
-        console.log('6th flip')
         scrollY(featuresRight, scrollYValue * 5);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item6').style.color = '#faa8ff'
+        document.getElementById('item6').classList.add('active');
       }
       if(factor > breakPoint * 6 && factor < breakPoint * 7){
         counter.innerText = "7";
-        console.log('7th flip')
         scrollY(featuresRight, scrollYValue * 6);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item7').style.color = '#faa8ff'
+        document.getElementById('item7').classList.add('active');
       }
       if(factor > breakPoint * 7 && factor < breakPoint * 8){
         counter.innerText = "8";
-        console.log('8th flip')
         scrollY(featuresRight, scrollYValue * 7);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item8').style.color = '#faa8ff'
+        document.getElementById('item8').classList.add('active');
       }
       if(factor > breakPoint * 8 && factor < breakPoint * 9){
         counter.innerText = "9";
-        console.log('9th flip')
         scrollY(featuresRight, scrollYValue * 8);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item9').style.color = '#faa8ff'
+        document.getElementById('item9').classList.add('active');
       }
       if(factor > breakPoint * 9 && factor < breakPoint * 10){
         counter.innerText = "10";
-        console.log('10th flip')
         scrollY(featuresRight, scrollYValue * 9);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item10').style.color = '#faa8ff'
+        document.getElementById('item10').classList.add('active');
       }
       if(factor > breakPoint * 10 && factor < breakPoint * 11){
         counter.innerText = "11";
-        console.log('11th flip');
         scrollY(featuresRight, scrollYValue * 10);
         vLine.style.marginTop = vLineFactor;
-        document.getElementById('item11').style.color = '#faa8ff'
+        document.getElementById('item11').classList.add('active');
       }
   }
   else if(topOfNextSection < 0){

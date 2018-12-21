@@ -1,7 +1,33 @@
-.home #canvas {
+.home #hero-canvas {
     position: relative;
     width: 100vw;
     height: 50vh;
+}
+
+.home #features-canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    pointer-events: none;
+}
+
+.home #features-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vw;
+    background-color: #FFF;
+    // background-color: #000;
+    /* background-image: linear-gradient(to bottom, #2196f3 0%, #fff 30%); */
+}
+
+.home #counterCol {
+  display: none;
 }
 
 .home #overlay {
@@ -112,7 +138,7 @@
     line-height: 1.5;
 }
 .home .featureTextPusher{
-    height: 20vh;
+    height: 15vh;
 }
 
 .home .slideTextLeft{
@@ -134,12 +160,9 @@
 
 .home .exokitFeatures{
     position: relative;
-    min-height: 1100vh;
-    color: white;
-    background: #2E84DC;  /* fallback for old browsers */
-    /* -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%); */
-    // margin-top: -15vh;
+    min-height: 400vh;
+    color: #000;
+    background-color: #000;
 }
 
 .home .exokitFeatures ::-webkit-scrollbar{
@@ -148,8 +171,31 @@
 }
 
 .home #featuresLeft img{
-    height: auto !important;
-    width: 10vw !important;
+    width: 7vw !important;
+    height: 7vw !important;
+}
+
+.home #featuresLeft .align-container{
+    min-width: 100%;
+    padding-right: 20vw;
+}
+
+.home #featuresLeft .align-container-inner{
+  padding: 2vw;
+  background-color: #000;
+  border-radius: 1vw;
+  color: #FFF;
+}
+
+.home #featuresLeft .align-container img {
+    display: none;
+    margin-right: 3vw;
+}
+
+.home #featuresListCol {
+   padding: 10px;
+   border-top-left-radius: 1vw;
+   border-bottom-left-radius: 1vw;
 }
 
 .home #featuresRight{
@@ -159,6 +205,7 @@
 
 .home #featuresRight h5{
     display: inline-block;
+    margin: 0;
     padding: 4px 15px;
     background-color: transparent;
     border: 2px solid transparent;
@@ -167,25 +214,32 @@
     line-height: 1.6rem;
     cursor: pointer;
     transition: none;
-    transition: background-color 0.5s cubic-bezier(0, 1, 0, 1);
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 }
 
-.home #featuresRight a h5:hover {
-    background-color: #FFF;
-    color: #2e84dc;
-    font-weight: 600;
+.home #featuresRight a h5:hover:not(.active) {
+    border-color: #000;
+    font-weight: 900;
     transition: none;
 }
 
 .home #featuresRight a h5.active {
-    border-color: #FFF;
+    background-image: linear-gradient(to right, #7e57c2 0%, #512da8 50%);
+    border-color: transparent;
     font-weight: 600;
+    color: #FFF;
+}
+
+.home .vArrow{
+    display: flex;
+    position: relative;
+    justify-content: center;
 }
 
 .home .vLine{
-    border-left: 3px solid white;
-    float: left;
+    border-left: 3px solid #000;
 }
+
 .home .featureArrows{
     padding-top: 160px;
 }
@@ -199,15 +253,14 @@
     text-align: center;
     height: auto;
     min-height: 400px;
-    background: rgba(238, 238, 238, 0);  /* fallback for old browsers */
-    background: -webkit-linear-gradient(120deg, #EEEEEE, #EEEEEE);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(120deg, rgba(238, 238, 238, 0.70), rgba(238, 238, 238, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-image: linear-gradient(120deg, rgba(238, 238, 238, 0.70), rgba(238, 238, 238, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .home .madeWithExokit{
     position: relative;
-    color: black;
-    min-height: 70vh
+    border-top: 1px solid #EEE;
+    padding-top: 10vh;
+    min-height: 70vh;
 }
 
 .home .madeWithExokitPusher{
@@ -230,9 +283,7 @@
     color: white;
     position: relative;
     min-height: 90vh;
-    background: #FF416C;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-image: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
 }
@@ -306,7 +357,7 @@
     .home #heroPusher{
         margin-bottom: 40px;
     }
-    .home #canvas{
+    .home #hero-canvas{
         margin-top: 18vh;
         background-color: #FFF;
     }

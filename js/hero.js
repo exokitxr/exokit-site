@@ -1,4 +1,6 @@
-let renderer, scene, camera, iframe, container, engineMesh, meteorMesher;
+(() => {
+
+let renderer, scene, camera, iframe, container, avatarMesh, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -11,7 +13,7 @@ const localRaycaster = new THREE.Raycaster();
 
 function init() {
   renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById('canvas'),
+    canvas: document.getElementById('hero-canvas'),
     antialias: true,
     alpha: true,
   });
@@ -91,13 +93,12 @@ function init() {
   })();
   container.add(groundMesh);
 
-  const avatarMesh = (() => {
+  avatarMesh = (() => {
     const DEFAULT_SKIN_URL = 'img/skin.png';
 
     const mesh = skin({
       limbs: true,
     });
-    mesh.position.y += 0.18;
     mesh.castShadow = true;
     /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
@@ -607,10 +608,6 @@ function init() {
 
   scene.add(container);
 
-  // window.addEventListener('scroll', () => {
-  //   const factor = window.scrollY / window.innerHeight;
-  //   renderer.domElement.style.transform = `scale(${1 + factor})`;
-  // });
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -797,40 +794,34 @@ window.addEventListener("load", () =>{
   const gradient = featuresWrap.querySelector('.gradient');
   const rgba_JSON = [
     { // blue
-      startFactor: 0,
-      endFactor: 1/6,
+      startFactor: 0/5,
+      endFactor: 1/5,
       color1: "rgb(47, 134, 222)",
       color2: "rgb(142, 76, 170)",
     },
     { // purple
-      startFactor: 1/6,
-      endFactor: 2/6,
+      startFactor: 1/5,
+      endFactor: 2/5,
       color1: "rgb(142, 76, 170)",
       color2: "rgb(222, 122, 20)",
     },
     { //orange
-      startFactor: 2/6,
-      endFactor: 3/6,
+      startFactor: 2/5,
+      endFactor: 3/5,
       color1: "rgb(222, 122, 20)",
       color2: "rgb(240, 5, 5)",
     },
     { //bright green
-      startFactor: 3/6,
-      endFactor: 4/6,
+      startFactor: 3/5,
+      endFactor: 4/5,
       color1: "rgb(240, 5, 5)",
-      color2: "rgb(180, 200, 200)",
+      color2: "rgb(142, 76, 170)",
     }, 
     { //bright green
-      startFactor: 4/6,
-      endFactor: 5/6,
-      color1: "rgb(180, 200, 200)",
-      color2: "rgb(47, 134, 222)",
-    },
-    { //bright green
-      startFactor: 5/6,
-      endFactor: 6/6,
-      color1: "rgb(47, 134, 222)",
-      color2: "rgb(142, 76, 170)",
+      startFactor: 4/5,
+      endFactor: 5/5,
+      color1: "rgb(142, 76, 170)",
+      color2: "#2196f3",
     },
   ];
 
@@ -865,7 +856,7 @@ window.addEventListener("load", () =>{
         gradient.style.position = 'absolute';
         gradient.style.top = '';
         gradient.style.bottom = 0;
-        gradient.style.background = 'linear-gradient(#2f86dd 0%, #8d4caa 100%)';
+        gradient.style.background = `linear-gradient(${rgba_JSON[rgba_JSON.length-1].color1} 0%, ${rgba_JSON[rgba_JSON.length-1].color2} 100%)`;
       }
     } else {
       gradient.style.position = 'absolute';
@@ -877,3 +868,5 @@ window.addEventListener("load", () =>{
   _tick();
   window.addEventListener("scroll", _tick);
 });
+
+})();

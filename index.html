@@ -767,7 +767,7 @@ const _updateScroll = () => {
   for (let i = 0; i < featuresRightChildren.length; i++) {
     featuresRightChildren[i].querySelector('h5').classList.remove('active');
   }
-  if (distanceFromTop <= 0 && topOfNextSection > 0){
+  if (distanceFromTop <= 0 && topOfNextSection > 0) {
     scrollX(featuresLeft, Math.floor(smooth(factor * featuresRightChildren.length) / featuresRightChildren.length * totalWidth));
     insideContent.style.top = "0";
     insideContent.style.position = "fixed";
@@ -779,15 +779,14 @@ const _updateScroll = () => {
         break;
       }
     }
-  }
-  else if(topOfNextSection < 0){
-    insideContent.style.position = "absolute";
+  } else if (topOfNextSection < 0) {
+    insideContent.style.position = 'absolute';
     insideContent.style.top = '';
     insideContent.style.bottom = 0;
-  }
-  else{
-      insideContent.style.top = "auto";
-      insideContent.style.position = "static";
+  } else {
+    insideContent.style.position = 'absolute';
+    insideContent.style.top = 0;
+    insideContent.style.bottom = '';
   }
 };
 window.addEventListener('scroll', _updateScroll);

@@ -258,9 +258,10 @@
 
 .home .madeWithExokit{
     position: relative;
-    border-top: 1px solid #EEE;
-    padding-top: 10vh;
     min-height: 70vh;
+    margin-top: 0 !important;
+    padding-top: 10vh;
+    border-top: 1px solid #EEE;
 }
 
 .home .madeWithExokitPusher{

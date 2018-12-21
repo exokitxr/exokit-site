@@ -376,24 +376,23 @@ function init() {
 
   const walkRate = 500;
   window.addEventListener('scroll', e => {
-    const factor = (window.scrollY % walkRate) / walkRate;
+    const parent = document.getElementById('featuresParent');
+    const bodyBox = document.body.getBoundingClientRect();
+    const parentBox = parent.getBoundingClientRect();
+    const parentBoxAbs = {
+      top: parentBox.top - bodyBox.top,
+      height: parentBox.height,
+    };
+    const featuresRight = document.getElementById('featuresRight');
+    const featuresRightChildren = featuresRight.querySelectorAll('a');
+
+    const factor = (window.pageYOffset >= parentBoxAbs.top) ?
+      (window.scrollY % walkRate) / walkRate
+    : 0;
     const factor2 = (factor + 0.2) % 1;
     const factor3 = factor2;
-    const factor4 = (() => {
-      const parent = document.getElementById('featuresParent');
-      const bodyBox = document.body.getBoundingClientRect();
-      const parentBox = parent.getBoundingClientRect();
-      const parentBoxAbs = {
-        top: parentBox.top - bodyBox.top,
-        height: parentBox.height,
-      };
-      return Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height - window.innerHeight), 0), 1);
-    })();
-    const factor5 = (() => {
-      const featuresRight = document.getElementById('featuresRight');
-      const featuresRightChildren = featuresRight.querySelectorAll('a');
-      return factor4 * featuresRightChildren.length;
-    })();
+    const factor4 = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height - window.innerHeight), 0), 1);
+    const factor5 = factor4 * featuresRightChildren.length;
     const factor6 = factor5 + 0.5;
     const factor7 = Math.min(Math.max((factor5-2.5)/1.5, 0), 1);
     const factor8 = Math.min(Math.max((factor7 - 0.95)/0.05, 0), 1);
@@ -565,10 +564,6 @@ function init() {
         bg.material.uniforms.diffuse.value = factor4*2;
       }
     }
-
-    // console.log(factor5);
-
-    scene.add(bg);
   });
 
   window.addEventListener('resize', e => {

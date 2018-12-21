@@ -321,12 +321,113 @@ function init() {
   })();
   container.add(sceneMesh);
 
-  /* const windGroup = new SPE.Group({ texture : THREE.ImageUtils.loadTexture("assets/airfly.png"), maxAge : 5});
-	const windEmitter = new SPE.Emitter({ type : "cube", position : new THREE.Vector3(700,150,-1417), positionSpread : new THREE.Vector3(130,600,0), acceleration : new THREE.Vector3(-34,11,61), accelerationSpread : new THREE.Vector3(6,35,0), velocity : new THREE.Vector3(-46,0,0), velocitySpread : new THREE.Vector3(-28,27,0), opacityStart : 0, opacityMiddle : 1, opacityEnd : 0, particleCount : 200, sizeStart : 14, sizeEnd : 14, alive : 1.0});
- //  windGroup.mesh.name = "Wind Particle Group";
-  windGroup.addEmitter(windEmitter);
-  windGroup.mesh.frustumCulled = false;
-  worldScene.add(windGroup.mesh); */
+  const tabMesh1 = (() => {
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      // wireframe: true,
+    });
+    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
+    mesh.position.set(-2, 1.2, 1);
+    mesh.rotation.y = Math.PI/6;
+    mesh.rotation.order = 'YXZ';
+
+    const labelMesh = (() => {
+      const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 1024 * 0.2;
+      // canvas.style.backgroundColor = 'red';
+      const ctx = canvas.getContext('2d');
+      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+      ctx.fillText('http://A-Frame', 0, 150);
+      // window.document.body.appendChild(canvas);
+      const texture = new THREE.Texture(canvas);
+      texture.needsUpdate = true;
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
+        transparent: true,
+        alphaTest: 0.5,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.y = 0.7;
+      return mesh;
+    })();
+    mesh.add(labelMesh);
+
+    return mesh;
+  })();
+  sceneMesh.add(tabMesh1);
+  const innerMesh1 = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(1, 1);
+    const mesh = new THREE.Reflector(geometry, {
+      clipBias: 0.003,
+      textureWidth: 1024 * window.devicePixelRatio,
+      textureHeight: 1024 * window.devicePixelRatio,
+      color: 0x889999,
+      addColor: 0x7e57c2,
+      recursion: 1
+    });
+    mesh.position.copy(tabMesh1.position);
+    mesh.rotation.copy(tabMesh1.rotation);
+    mesh.scale.copy(tabMesh1.scale);
+    return mesh;
+  })();
+  sceneMesh.add(innerMesh1);
+
+  const tabMesh2 = (() => {
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      // wireframe: true,
+    });
+    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
+    mesh.position.set(1.2, 1.5, -1);
+    // mesh.rotation.y = Math.PI/6;
+    // mesh.rotation.order = 'YXZ';
+
+    const labelMesh = (() => {
+      const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 1024 * 0.2;
+      // canvas.style.backgroundColor = 'red';
+      const ctx = canvas.getContext('2d');
+      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+      ctx.fillText('http://myxr.com', 0, 150);
+      // window.document.body.appendChild(canvas);
+      const texture = new THREE.Texture(canvas);
+      texture.needsUpdate = true;
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
+        transparent: true,
+        alphaTest: 0.5,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.y = 0.7;
+      return mesh;
+    })();
+    mesh.add(labelMesh);
+
+    return mesh;
+  })();
+  sceneMesh.add(tabMesh2);
+  const innerMesh2 = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(1, 1);
+    const mesh = new THREE.Reflector(geometry, {
+      clipBias: 0.003,
+      textureWidth: 1024 * window.devicePixelRatio,
+      textureHeight: 1024 * window.devicePixelRatio,
+      color: 0x889999,
+      addColor: 0x66bb6a,
+      recursion: 1
+    });
+    mesh.position.copy(tabMesh2.position);
+    mesh.rotation.copy(tabMesh2.rotation);
+    mesh.scale.copy(tabMesh2.scale);
+    return mesh;
+  })();
+  sceneMesh.add(innerMesh2);
 
   bg = (() => {
     const geometry = new THREE.SphereGeometry(100, 16, 10);

@@ -374,7 +374,7 @@ function init() {
   })();
   scene.add(bg);
 
-  const walkRate = 1500;
+  const walkRate = 500;
   window.addEventListener('scroll', e => {
     const factor = (window.scrollY % walkRate) / walkRate;
     const factor2 = (factor + 0.2) % 1;

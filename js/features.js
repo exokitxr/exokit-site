@@ -321,113 +321,120 @@ function init() {
   })();
   container.add(sceneMesh);
 
-  const tabMesh1 = (() => {
-    const material = new THREE.MeshBasicMaterial({
-      color: 0x000000,
-      // wireframe: true,
-    });
-    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
-    mesh.position.set(-2, 1.2, 1);
-    mesh.rotation.y = Math.PI/6;
-    mesh.rotation.order = 'YXZ';
+  const tabMeshes = (() => {
+    const object = new THREE.Object3D();
 
-    const labelMesh = (() => {
-      const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
-      const canvas = document.createElement('canvas');
-      canvas.width = 1024;
-      canvas.height = 1024 * 0.2;
-      // canvas.style.backgroundColor = 'red';
-      const ctx = canvas.getContext('2d');
-      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-      ctx.fillText('http://A-Frame', 0, 150);
-      // window.document.body.appendChild(canvas);
-      const texture = new THREE.Texture(canvas);
-      texture.needsUpdate = true;
+    const tabMesh1 = (() => {
       const material = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.DoubleSide,
-        transparent: true,
-        alphaTest: 0.5,
+        color: 0x000000,
+        // wireframe: true,
       });
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.y = 0.7;
+      const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
+      mesh.position.set(-2, 1.2, 1);
+      mesh.rotation.y = Math.PI/6;
+      mesh.rotation.order = 'YXZ';
+
+      const labelMesh = (() => {
+        const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 1024 * 0.2;
+        // canvas.style.backgroundColor = 'red';
+        const ctx = canvas.getContext('2d');
+        ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        ctx.fillText('http://A-Frame', 0, 150);
+        // window.document.body.appendChild(canvas);
+        const texture = new THREE.Texture(canvas);
+        texture.needsUpdate = true;
+        const material = new THREE.MeshBasicMaterial({
+          map: texture,
+          side: THREE.DoubleSide,
+          transparent: true,
+          alphaTest: 0.5,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.y = 0.7;
+        return mesh;
+      })();
+      mesh.add(labelMesh);
+
       return mesh;
     })();
-    mesh.add(labelMesh);
-
-    return mesh;
-  })();
-  sceneMesh.add(tabMesh1);
-  const innerMesh1 = (() => {
-    const geometry = new THREE.PlaneBufferGeometry(1, 1);
-    const mesh = new THREE.Reflector(geometry, {
-      clipBias: 0.003,
-      textureWidth: 1024 * window.devicePixelRatio,
-      textureHeight: 1024 * window.devicePixelRatio,
-      color: 0x889999,
-      addColor: 0x7e57c2,
-      recursion: 1
-    });
-    mesh.position.copy(tabMesh1.position);
-    mesh.rotation.copy(tabMesh1.rotation);
-    mesh.scale.copy(tabMesh1.scale);
-    return mesh;
-  })();
-  sceneMesh.add(innerMesh1);
-
-  const tabMesh2 = (() => {
-    const material = new THREE.MeshBasicMaterial({
-      color: 0x000000,
-      // wireframe: true,
-    });
-    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
-    mesh.position.set(1.2, 1.5, -1);
-    // mesh.rotation.y = Math.PI/6;
-    // mesh.rotation.order = 'YXZ';
-
-    const labelMesh = (() => {
-      const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
-      const canvas = document.createElement('canvas');
-      canvas.width = 1024;
-      canvas.height = 1024 * 0.2;
-      // canvas.style.backgroundColor = 'red';
-      const ctx = canvas.getContext('2d');
-      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-      ctx.fillText('http://myxr.com', 0, 150);
-      // window.document.body.appendChild(canvas);
-      const texture = new THREE.Texture(canvas);
-      texture.needsUpdate = true;
-      const material = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.DoubleSide,
-        transparent: true,
-        alphaTest: 0.5,
+    object.add(tabMesh1);
+    const innerMesh1 = (() => {
+      const geometry = new THREE.PlaneBufferGeometry(1, 1);
+      const mesh = new THREE.Reflector(geometry, {
+        clipBias: 0.003,
+        textureWidth: 1024 * window.devicePixelRatio,
+        textureHeight: 1024 * window.devicePixelRatio,
+        color: 0x889999,
+        addColor: 0x7e57c2,
+        recursion: 1
       });
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.y = 0.7;
+      mesh.position.copy(tabMesh1.position);
+      mesh.rotation.copy(tabMesh1.rotation);
+      mesh.scale.copy(tabMesh1.scale);
       return mesh;
     })();
-    mesh.add(labelMesh);
+    object.add(innerMesh1);
 
-    return mesh;
+    const tabMesh2 = (() => {
+      const material = new THREE.MeshBasicMaterial({
+        color: 0x000000,
+        // wireframe: true,
+      });
+      const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
+      mesh.position.set(1.2, 1.5, -1);
+      // mesh.rotation.y = Math.PI/6;
+      // mesh.rotation.order = 'YXZ';
+
+      const labelMesh = (() => {
+        const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 1024 * 0.2;
+        // canvas.style.backgroundColor = 'red';
+        const ctx = canvas.getContext('2d');
+        ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        ctx.fillText('http://myxr.com', 0, 150);
+        // window.document.body.appendChild(canvas);
+        const texture = new THREE.Texture(canvas);
+        texture.needsUpdate = true;
+        const material = new THREE.MeshBasicMaterial({
+          map: texture,
+          side: THREE.DoubleSide,
+          transparent: true,
+          alphaTest: 0.5,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.y = 0.7;
+        return mesh;
+      })();
+      mesh.add(labelMesh);
+
+      return mesh;
+    })();
+    object.add(tabMesh2);
+    const innerMesh2 = (() => {
+      const geometry = new THREE.PlaneBufferGeometry(1, 1);
+      const mesh = new THREE.Reflector(geometry, {
+        clipBias: 0.003,
+        textureWidth: 1024 * window.devicePixelRatio,
+        textureHeight: 1024 * window.devicePixelRatio,
+        color: 0x889999,
+        addColor: 0x66bb6a,
+        recursion: 1
+      });
+      mesh.position.copy(tabMesh2.position);
+      mesh.rotation.copy(tabMesh2.rotation);
+      mesh.scale.copy(tabMesh2.scale);
+      return mesh;
+    })();
+    object.add(innerMesh2);
+
+    return object;
   })();
-  sceneMesh.add(tabMesh2);
-  const innerMesh2 = (() => {
-    const geometry = new THREE.PlaneBufferGeometry(1, 1);
-    const mesh = new THREE.Reflector(geometry, {
-      clipBias: 0.003,
-      textureWidth: 1024 * window.devicePixelRatio,
-      textureHeight: 1024 * window.devicePixelRatio,
-      color: 0x889999,
-      addColor: 0x66bb6a,
-      recursion: 1
-    });
-    mesh.position.copy(tabMesh2.position);
-    mesh.rotation.copy(tabMesh2.rotation);
-    mesh.scale.copy(tabMesh2.scale);
-    return mesh;
-  })();
-  sceneMesh.add(innerMesh2);
+  scene.add(tabMeshes);
 
   bg = (() => {
     const geometry = new THREE.SphereGeometry(100, 16, 10);
@@ -541,11 +548,13 @@ function init() {
         exobotMesh.visible = true;
       }
       {
-        // groundMesh.position.z = -factor4*40;
-        // groundMesh.matrixWorldNeedsUpdate = true;
+        const f = -factor5*10;
 
-        sceneMesh.position.z = -factor5*10;
+        sceneMesh.position.z = f;
         sceneMesh.matrixWorldNeedsUpdate = true;
+
+        tabMeshes.position.z = f;
+        tabMeshes.matrixWorldNeedsUpdate = true;
       }
       if (sceneMesh.boxMesh) {
         sceneMesh.boxMesh.visible = false;
@@ -611,6 +620,9 @@ function init() {
       {
         sceneMesh.position.z = -2.5*10;
         sceneMesh.matrixWorldNeedsUpdate = true;
+
+        tabMeshes.position.z = -2.5*10;
+        tabMeshes.matrixWorldNeedsUpdate = true;
       }
       if (sceneMesh.boxMesh) {
         if (factor8 > 0) {
@@ -648,7 +660,12 @@ function init() {
         const tab = sceneMesh.tabs[i];
         tab.position
           .copy(tab.basePosition);
-        tab.visible = i >= index-1;
+        const visible = i >= index-1;
+        tab.visible = visible;
+
+        if (i === 0) {
+          tabMeshes.visible = visible;
+        }
       }
 
       const fract = factor6 % 1;
@@ -659,6 +676,10 @@ function init() {
           .add(
             localVector.set(0, -Math.pow(fract,2)*50, 0)
           );
+
+        if (prevIndex === 0) {
+          tabMeshes.position.y = -Math.pow(fract,2)*50;
+        }
       }
       {
         bg.rotation.x = -factor5*0.5 * Math.PI*2;

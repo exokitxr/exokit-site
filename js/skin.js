@@ -1110,15 +1110,6 @@ const skinGeometry = (() => {
   return geometry;
 })();
 
-const skinMaterial = new THREE.ShaderMaterial({
-  uniforms: THREE.UniformsUtils.clone(SKIN_SHADER.uniforms),
-  vertexShader: SKIN_SHADER.vertexShader,
-  fragmentShader: SKIN_SHADER.fragmentShader,
-  side: THREE.DoubleSide,
-  transparent: true,
-});
-skinMaterial.volatile = true;
-
 const _requestImage = src => new Promise((accept, reject) => {
   const img = new Image();
   img.onload = () => {
@@ -1140,9 +1131,17 @@ const skin = ({limbs = false} = {}) => {
 	texture.magFilter = THREE.NearestFilter;
 	texture.minFilter = THREE.NearestMipMapNearestFilter;
 
-  const material = skinMaterial;
+  const material = new THREE.ShaderMaterial({
+    uniforms: THREE.UniformsUtils.clone(SKIN_SHADER.uniforms),
+    vertexShader: SKIN_SHADER.vertexShader,
+    fragmentShader: SKIN_SHADER.fragmentShader,
+    side: THREE.DoubleSide,
+    transparent: true,
+  });
+  material.volatile = true;
 
   const mesh = new THREE.Mesh(skinGeometry, material);
+  mesh.position.y = 0.18;
   mesh.scale.set(scale, scale, scale);
   mesh.rotation.order = rotationOrder;
   mesh.updateMatrixWorld();

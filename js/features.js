@@ -526,7 +526,7 @@ function init() {
         avatarMesh2.material.uniforms.theta.value = Math.sin(factor2 * Math.PI*2)*1.2;
 
         const quaternion = new THREE.Quaternion().setFromEuler(
-          new THREE.Euler(-Math.PI/10 + Math.sin(factor2*2 * Math.PI*2)*0.2, Math.sin(Math.PI/8 + factor2 * Math.PI*2)*0.2, 0, 'YXZ')
+          new THREE.Euler(-Math.PI/20 + Math.sin(factor2*2 * Math.PI*2)*0.2, -Math.PI/8 + Math.sin(Math.PI/8 + factor2 * Math.PI*2)*0.1, 0, 'YXZ')
         );
         avatarMesh2.material.uniforms.headRotation.value.x = quaternion.x;
         avatarMesh2.material.uniforms.headRotation.value.y = quaternion.y;

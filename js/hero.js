@@ -1,6 +1,6 @@
 (() => {
 
-let renderer, scene, camera, iframe, container, avatarMesh, engineMesh, meteorMesher;
+let renderer, scene, camera, iframe, mouse, container, avatarMesh, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -185,7 +185,7 @@ function init() {
   })();
   container.add(engineMesh);
 
-  const mouse = {
+  mouse = {
     x: 0.5,
     y: 0.5,
   };

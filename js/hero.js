@@ -152,6 +152,80 @@ function init() {
   })();
   container.add(avatarMesh);
 
+  mloMesh = (() => {
+    const object = new THREE.Object3D();
+    object.lightwear = null;
+    object.control = null;
+    object.lightpack = null;
+
+    const loader = new THREE.GLTFLoader().setPath( 'models/' );
+    loader.load( 'mlo.glb', function ( o ) {
+
+      o = o.scene;
+      o.traverse(e => {
+        e.castShadow = true;
+      });
+
+      const scale = 1 / 18;
+      const offsetY = (22 + 13.5/2 - 8/2)*scale;
+
+      for (let i = 0; i < o.children.length; i++) {
+        const child = o.children[i];
+        if (/^lightwear$/i.test(child.name)) {
+          object.lightwear = child;
+          child.position.y = 1.6 - offsetY;
+
+          /* const frustumMesh = (() => {
+            const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+            positions = geometry.attributes.position.array;
+            for (let i = 0; i < positions.length; i += 3) {
+              if (positions[i+2] < 0) {
+                positions[i+0] *= 0.5;
+                positions[i+1] *= 0.5;
+              }
+              positions[i+2] += 1/2 + 0.3;
+              positions[i+1] *= 2/3;
+            }
+
+            const material = new THREE.MeshPhongMaterial({
+              // color: 0x7e57c2,
+              color: 0xec407a,
+              opacity: 0.5,
+              transparent: true,
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            return mesh;
+          })();
+          child.add(frustumMesh); */
+        } else if (/^control$/i.test(child.name)) {
+          object.control = child;
+          child.visible = false;
+        } else if (/^lightpack$/i.test(child.name)) {
+          object.lightpack = child;
+          child.position.set(-0.28, -0.7, 0);
+          // child.rotation.x = -Math.PI/2;
+          child.rotation.x = -Math.PI/2;
+          child.rotation.z = Math.PI/2;
+          child.rotation.order = 'YXZ';
+          // child.visible = false;
+        }
+      }
+
+      o.position.set(0, offsetY, 0);
+      // o.scale.set(0.15, 0.15, 0.15);
+      // o.updateMatrixWorld();
+      object.add(o);
+
+    }, undefined, function ( e ) {
+
+      console.error( e );
+
+    } );
+
+    return object;
+  })();
+  container.add(mloMesh);
+
   engineMesh = (() => {
     const object = new THREE.Object3D();
     object.basePosition = new THREE.Vector3(-1, 0, -1);
@@ -196,13 +270,14 @@ function init() {
     t.w = r.w;
   };
   const _updateSkin = () => {
+    const headQuaternion = new THREE.Quaternion()
+      .setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
+      );
     _applyUniformRotation(
-      new THREE.Quaternion()
-        .setFromUnitVectors(
-          new THREE.Vector3(0, 0, -1),
-          new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
-        ),
-        avatarMesh.material.uniforms.headRotation.value
+      headQuaternion,
+      avatarMesh.material.uniforms.headRotation.value
     );
     _applyUniformRotation(
       new THREE.Quaternion()
@@ -233,6 +308,16 @@ function init() {
         avatarMesh.material.uniforms.rightArmRotation.value
     );
     avatarMesh.material.uniforms.theta.value = (mouse.y-0.5)*0.1*Math.PI;
+
+    mloMesh.lightwear &&  mloMesh.lightwear.quaternion
+      .copy(headQuaternion.inverse())
+      .multiply(
+        new THREE.Quaternion()
+          .setFromUnitVectors(
+            new THREE.Vector3(0, 0, -1),
+            new THREE.Vector3(0, 0, 1)
+          )
+      );
   };
   _updateSkin();
 

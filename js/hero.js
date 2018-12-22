@@ -259,6 +259,37 @@ function init() {
   })();
   container.add(engineMesh);
 
+  exobotMesh = (() => {
+    const object = new THREE.Object3D();
+    object.rotation.order = 'YXZ';
+    object.basePosition = new THREE.Vector3(-1, 1.5, -1);
+    object.scale.set(0.2, 0.2, 0.2);
+
+    const loader = new THREE.GLTFLoader().setPath( 'models/' );
+    loader.load( 'exobot.glb', function ( o ) {
+
+      o = o.scene;
+      o.traverse(e => {
+        e.castShadow = true;
+      });
+
+      /* o.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(0, 0, 1)
+      ); */
+      o.updateMatrixWorld();
+      object.add(o);
+
+    }, undefined, function ( e ) {
+
+      console.error( e );
+
+    } );
+
+    return object;
+  })();
+  container.add(exobotMesh);
+
   mouse = {
     x: 0.5,
     y: 0.5,
@@ -677,6 +708,14 @@ function animate() {
       return false;
     }
   });
+
+  const timeBase = 2000;
+  const factor = (now / timeBase) % timeBase;
+  exobotMesh.position
+    .copy(exobotMesh.basePosition)
+    .add(localVector.set(0, Math.sin(factor * Math.PI*2)*0.1, 0))
+    .add(localVector.set((mouse.x - 0.5)*2*2, -(mouse.y - 0.5)*2*2, 0));
+  exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
   if (now > meteorMesher.nextUpdateTime) {
     const meteorMesh = _makeMeteorMesh();

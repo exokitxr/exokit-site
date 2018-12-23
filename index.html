@@ -13,7 +13,6 @@
   <a class="navbar-brand" href="index.html"><img src="media/logo.svg"><span id="brandName">Exokit</span></a>
   <div class="collapse navbar-collapse" id="bigNavbar">
     <div class="navbar-nav">
-      <a class="nav-item nav-link pr-4 pl-4" href="features.html"><h5 class="font-weight-normal">Features</h2></a>
       <a class="nav-item nav-link pr-4 pl-4" href="docs"><h5 class="font-weight-normal">Docs</h2></a>
       <a class="nav-item nav-link pr-4 pl-4" href="blog.html"><h5 class="font-weight-normal">Blog</h2></a>
       <a class="nav-item nav-link pr-4 pl-4" href="about.html"><h5 class="font-weight-normal">About</h2></a>
@@ -37,9 +36,6 @@
         <a href="index.html"><h5>Home</h5></a>
       </div>
       <div class="col-12 mb-4">
-        <a href="features.html"><h5 class="font-weight-light">Features</h5></a>
-      </div>
-      <div class="col-12 mb-4">
         <a href="docs/"><h5 class="font-weight-light">Docs</h5></a>
       </div>
       <div class="col-12 mb-4">
@@ -57,294 +53,7 @@
     </div>
 </div>
 
-<canvas id=canvas></canvas>
-
-<script src="js/three.min.js"></script>
-<script src="js/Reflector.js"></script>
-<script src="js/ColladaLoader.js"></script>
-<script src="js/skin.js"></script>
-<script src="js/hero.js"></script>
-<script src="js/scroll.js"></script>
-
-<script>
-
-const changeQuotes = () => {
-const json = {
-  "quotes": [
-    {   "picture": "media/sjw.jpg",
-        "person": "- Milo Dianosuraus Rex",
-        "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
-    },
-    {
-        "picture": "media/kylie.jpg",
-        "person": "- Kiley Jenner",
-        "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
-    },
-    {
-        "picture": "media/dude.jpg",
-        "person": "- Steve Harley",
-        "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
-    },
-    {
-        "picture": "media/obama.jpg",
-        "person": "- Barrack Obama",
-        "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
-    },
-
-    {
-        "picture": "media/emukitDemo.png",
-        "person": "- Happy Rabbit",
-        "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
-    },
-    {
-        "picture": "media/favicon.png",
-        "person": "- Bruce Reslzer",
-        "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
-    },
-    {   "picture": "media/exokit.png",
-        "person": "- Great Grandma",
-        "quote": "I remember back in my day we didnt have things like this... #exokit"
-    },
-    {   "picture": "media/whatIsExokit.png",
-        "person": "- Ted Druce",
-        "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
-    }
-  ]
-};
-
-let cards = document.getElementsByClassName('card');
-for (let i = 0; i < cards.length; i++) {
-  if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == json.quotes[i].picture){
-    cards = document.getElementsByClassName('card');
-    cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i+4].picture;
-    cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i+4].person;
-    cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i+4].quote;
-  }
-  else{
-    cards = document.getElementsByClassName('card');
-    cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i].picture;
-    cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i].person;
-    cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i].quote;
-    cards[i].style.hidden = true;
-  }
-}
-};
-
-const changeCompany = (company) => {
-  const mainImg = document.getElementById('madeWithExokitMainImg');
-  const title = document.getElementById('madeWithTitle');
-  const slogan = document.getElementById('madeWithSlogan');
-  const titleSub = document.getElementById('madeWithTitleSub');
-  const project = document.getElementById('madeWithProject');
-  const year = document.getElementById('madeWithYear');
-
-  switch (company) {
-    case 'expanse':
-      mainImg.src = 'media/expanse.png';
-      title.innerHTML = 'The Expanse';
-      slogan.innerHTML = 'Build, Experince & Share the future of social VR.';
-      titleSub.innerHTML = 'The Expanse';
-      project.innerHTML = 'Project: Aurora';
-      year.innerHTML = 'Year 2018 - Now';
-    break;
-    case 'active':
-      mainImg.src = 'media/activeDemoMain.png';
-      title.innerHTML = 'Active Theory';
-      slogan.innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
-      titleSub.innerHTML = 'Active Theory';
-      project.innerHTML = 'Project: xyz';
-      year.innerHTML = 'Year 2018 - Now';
-
-    break;
-    case 'emukit':
-      mainImg.src = 'media/emukitDemo.png';
-      title.innerHTML = 'Emukit';
-      slogan.innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
-      titleSub.innerHTML = 'Emukit';
-      project.innerHTML = 'Project: Nintendo 64 VR Emulation';
-      year.innerHTML = 'Year 2018 - Now';
-    break;
-
-  }
-}
-
-function expandLittleNavbar() {
-  document.getElementById('expandedLittleNavbar').style.height = "100vh"
-  document.getElementById('expandedLittleNavbar').style.visibility = "visible"
-}
-
- function hideLittleNavbar() {
-  document.getElementById('expandedLittleNavbar').style.height = "0vh"
-  document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
-}
-
-function clickList(num){
-  const parent = document.getElementById('featuresParent');
-  const percent = ((parent.offsetHeight / 11) * num) + parent.offsetTop;
-  window.scrollTo({
-    top: percent,
-    behavior: 'smooth'
-  })
-}
-
-window.addEventListener('scroll', () => {
-
-  function scrollX(elem , positionX){
-    elem.scrollLeft = positionX;
-  }
-
-   function scrollY(elem, positionY){
-    elem.scrollTo({
-      top: positionY,
-      behavior: 'smooth'
-    });
-  }
-
-  const parent = document.getElementById('featuresParent');
-  const nextSection = document.getElementById('madeWithExokit');
-  const insideContent = document.getElementById('featuresInside');
-  const featuresLeft = document.getElementById('featuresLeft');
-  const featuresRight = document.getElementById('featuresRight');
-  const vLine = document.getElementById('vLine');
-
-  const distanceFromTop = (parent.offsetTop - window.scrollY);
-  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight - (window.innerHeight / 4));
-  const counter = document.getElementById('featuresCounter');
-
-  const bodyBox = document.body.getBoundingClientRect();
-  const parentBox = parent.getBoundingClientRect();
-  const parentBoxAbs = {
-    top: parentBox.top - bodyBox.top,
-    height: parentBox.height,
-  };
-  const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
-
-  const breakPoint = 1.0 / 12;
-  const scrollYValue = 80;
-  const vLineFactor = (factor * featuresRight.clientHeight) + "px";
-  const containers = document.getElementsByClassName('align-container');
-
-  let totalWidth = 0;
-  for (let i = 0; i < containers.length; i++){
-    totalWidth += containers[i].offsetWidth + 100;
-  }
-
-  if(distanceFromTop <= 0 && topOfNextSection > 0){
-      scrollX(featuresLeft, Math.floor(totalWidth * factor));
-      insideContent.style.top = "0";
-      insideContent.style.position = "fixed";
-      if(factor < breakPoint && counter.innerText != "1"){
-        console.log(window.scrollY)
-        console.log('1st flip')
-        counter.innerText = "1";
-        scrollY(featuresRight, scrollYValue * 0);
-        vLine.style.marginTop = 10;
-        document.getElementById('item1').style.color = '#faa8ff'
-        document.getElementById('item2').style.color = 'white'
-        document.getElementById('item3').style.color = 'white'
-      }
-      if(factor > breakPoint && factor < breakPoint * 2 && counter.innerText != "2"){
-        console.log('2nd flip')
-        counter.innerText = "2";
-        scrollY(featuresRight, scrollYValue);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item1').style.color = 'white'
-        document.getElementById('item2').style.color = '#faa8ff'
-        document.getElementById('item3').style.color = 'white'
-      }
-      if(factor > breakPoint * 2 && factor < breakPoint * 3 && counter.innerText != "3"){
-        counter.innerText = "3";
-        console.log('3rd flip')
-        scrollY(featuresRight, scrollYValue * 2);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item2').style.color = 'white'
-        document.getElementById('item3').style.color = '#faa8ff'
-        document.getElementById('item4').style.color = 'white'
-      }
-      if(factor > breakPoint * 3 && factor < breakPoint * 4 && counter.innerText != "4"){
-        counter.innerText = "4";
-        console.log('4th flip')
-        scrollY(featuresRight, scrollYValue * 3);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item3').style.color = 'white'
-        document.getElementById('item4').style.color = '#faa8ff'
-        document.getElementById('item5').style.color = 'white'
-      }
-      if(factor > breakPoint * 4 && factor < breakPoint * 5 && counter.innerText != "5"){
-        counter.innerText = "5";
-        console.log('5th flip')
-        scrollY(featuresRight, scrollYValue * 4);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item4').style.color = 'white'
-        document.getElementById('item5').style.color = '#faa8ff'
-        document.getElementById('item6').style.color = 'white'
-      }
-      if(factor > breakPoint * 5 && factor < breakPoint * 6 && counter.innerText != "6"){
-        counter.innerText = "6";
-        console.log('6th flip')
-        scrollY(featuresRight, scrollYValue * 5);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item5').style.color = 'white'
-        document.getElementById('item6').style.color = '#faa8ff'
-        document.getElementById('item7').style.color = 'white'
-      }
-      if(factor > breakPoint * 6 && factor < breakPoint * 7 && counter.innerText != "7"){
-        counter.innerText = "7";
-        console.log('7th flip')
-        scrollY(featuresRight, scrollYValue * 6);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item6').style.color = 'white'
-        document.getElementById('item7').style.color = '#faa8ff'
-        document.getElementById('item8').style.color = 'white'
-      }
-      if(factor > breakPoint * 7 && factor < breakPoint * 8 && counter.innerText != "8"){
-        counter.innerText = "8";
-        console.log('8th flip')
-        scrollY(featuresRight, scrollYValue * 7);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item7').style.color = 'white'
-        document.getElementById('item8').style.color = '#faa8ff'
-        document.getElementById('item9').style.color = 'white'
-      }
-      if(factor > breakPoint * 8 && factor < breakPoint * 9 && counter.innerText != "9"){
-        counter.innerText = "9";
-        console.log('9th flip')
-        scrollY(featuresRight, scrollYValue * 8);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item8').style.color = 'white'
-        document.getElementById('item9').style.color = '#faa8ff'
-        document.getElementById('item10').style.color = 'white'
-      }
-      if(factor > breakPoint * 9 && factor < breakPoint * 10 && counter.innerText != "10"){
-        counter.innerText = "10";
-        console.log('10th flip')
-        scrollY(featuresRight, scrollYValue * 9);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item9').style.color = 'white'
-        document.getElementById('item10').style.color = '#faa8ff'
-        document.getElementById('item11').style.color = 'white'
-      }
-      if(factor > breakPoint * 10 && factor < breakPoint * 11 && counter.innerText != "11"){
-        counter.innerText = "11";
-        console.log('11th flip');
-        scrollY(featuresRight, scrollYValue * 10);
-        vLine.style.marginTop = vLineFactor;
-        document.getElementById('item10').style.color = 'white'
-        document.getElementById('item11').style.color = '#faa8ff'
-      }
-  }
-  else if(topOfNextSection < 0){
-    insideContent.style.position = "absolute";
-    insideContent.style.top = "auto";
-    insideContent.style.bottom = 0 - document.getElementById('home').clientHeight * 0.4;
-  }
-  else{
-      insideContent.style.top = "auto";
-      insideContent.style.position = "static";
-  }
-});
-
-</script>
+<canvas id=hero-canvas></canvas>
 
 <div id="overlay">
     <h1>A New XR Engine Approaches</h1>
@@ -366,15 +75,19 @@ window.addEventListener('scroll', () => {
 </div>
 
 <div class="whatIsExokit pt-4" id="featureMain-wrap">
+  <div class=gradient></div>
 
   <div class="row rgbaRow">
-      <div class="col-12 text-center whatIsExokitPusher" style="color: white">
-          <h1>What is Exokit?</h1>
-          <h4 class="font-weight-light">
-            Exokit is an XR engine that runs your code as native.</h4>
-          <div class="featurePusher"></div>
-          <div class="featureTextPusher"></div>
-      </div>
+    <div class="col-12 text-center whatIsExokitPusher" style="color: white">
+      <h1>What is Exokit?</h1>
+      <h4 class="font-weight-light">Exokit is an XR engine that runs your code as native.</h4>
+      <div class="featurePusher"></div>
+      <div class="featureTextPusher"></div>
+    </div>
+  </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
   </div>
 
   <div class="row pt-5 rgbaRow" style="color: white">
@@ -403,6 +116,10 @@ window.addEventListener('scroll', () => {
     </div>
   </div>
 
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
+  </div>
+
   <div class="row pt-5 rgbaRow" style="color: white">
     <div class="col-12">
       <div class="featureTextPusher"></div>
@@ -420,6 +137,10 @@ window.addEventListener('scroll', () => {
     <div class="col-12">
       <div class="featureTextPusher"></div>
     </div>
+  </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
   </div>
 
   <div class="row pt-5 rgbaRow" style="color: white">
@@ -447,100 +168,87 @@ window.addEventListener('scroll', () => {
       </div>
       <div class="col-12">
         <div class="featureTextPusher"></div>
-        <div class="featureTextPusher"></div>
       </div>
   </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
+  </div>
+
+  <div class="row pt-5 rgbaRow" style="color: white">
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
+  </div>
+
+  <div class=gradient2></div>
 </div>
 
 <div class="row exokitFeatures pt-5" id="featuresParent">
-  <div id="featuresInside" style="width: 100vw;">
-    <div class="col-12 text-center pt-5 pb-4">
-      <h1 class="pt-4">Features</h1>
-      <h4 class="font-weight-light pb-3">Exokit is an XR engine that runs your code as native.</h4>
-      <div class="featuresHeaderPusher" style="height: 15vh"></div>
+  <div id="featuresInside" style="width: 100vw; height: 100vh;">
+
+    <div id=features-background></div>
+
+    <canvas id=features-canvas></canvas>
+
+    <div class="col-12 text-center pt-3 pb-4">
+      <!-- <h1 class="pt-4">Features</h1>
+      <div class="featuresHeaderPusher" style="height: 15vh"></div> -->
     </div>
     <div class="col-12" style="min-height: 80vh;">
       <div class="row">
         <div class="col-lg-2 col-md-1 col-sm-12 col-xs-12 text-center mb-5" id="counterCol">
           <h2><span id="featuresCounter">1</span>/11</h2>
         </div>
-        <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
           <div style="display: flex; overflow-x: hidden; min-width: 50vw;" id="featuresLeft">
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/code.svg"></img>
-              <h2>Runs Existing Code</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/code.svg"></img>
+                <div style="display: flex; flex-direction: column;">
+                  <h2>Runs Existing Code</h2>
+                  <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+                </div>
+              </div>
             </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/js-square.svg"></img>
-              <h2>Native Javascript</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/js-square.svg"></img>
+                <div style="display: flex; flex-direction: column;">
+                  <h2>Native Javascript</h2>
+                  <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+                </div>
+              </div>
             </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/rocket.svg"></img>
-              <h2>Hardware Bindings</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/dna.svg"></img>
+                <div style="display: flex; flex-direction: column;">
+                  <h2>Futuristic APIs</h2>
+                  <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+                </div>
+              </div>
             </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/js-square.svg"></img>
-              <h2>Made in Javascript</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/desktop.svg"></img>
-              <h2>Multithreading Reality Tabs</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/dna.svg"></img>
-              <h2>Futuristic APIs</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/shipping-fast.svg"></img>
-              <h2>Speed Past Legacy</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/code-branch.svg"></img>
-              <h2>Not a Fork</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/puzzle-piece.svg"></img>
-              <h2>Cross Platform</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/boxes.svg"></img>
-              <h2>Package for Stores</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
-            </div>
-            <div class="align-container" style="min-width: 100%; margin-right: 100px;">
-              <img class="img-fluid float-left" style="margin-left: 5vw; margin-right: 5vw; margin-bottom: 20vw;" src="media/gas-pump.svg"></img>
-              <h2>Great on gas</h2>
-              <h4 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h4>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/boxes.svg"></img>
+                <h2>Package for Stores</h2>
+                <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+              </div>
             </div>
           </div>
         </div>
     
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="featuresListCol" style="margin-top: -50px;">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" id="featuresListCol">
           <div class="row">
             <div class="col-2">
               <div class="vLine ml-4 mr-3" id="vLine" style="height: 3vh;"></div>
             </div>
             <div class="col-10" id="featuresRight">
-              <a onclick="clickList(0)"><h5 class="font-weight-light" id="item1">Runs Existing Code</h5></a>
-              <a onclick="clickList(1)"><h5 class="font-weight-light" id="item2">Native Javascript</h5></a>
-              <a onclick="clickList(2)"><h5 class="font-weight-light" id="item3">Hardware Bindings</h5></a>
-              <a onclick="clickList(3)"><h5 class="font-weight-light" id="item4">Made in Javascript</h5></a>
-              <a onclick="clickList(4)"><h5 class="font-weight-light" id="item5">Multithreading Reality Tabs</h5></a>
-              <a onclick="clickList(5)"><h5 class="font-weight-light" id="item6">Futuristic APIs</h5></a>
-              <a onclick="clickList(6)"><h5 class="font-weight-light" id="item7">Speed Past Legacy</h5></a>
-              <a onclick="clickList(7)"><h5 class="font-weight-light" id="item8">Not a Fork</h5></a>
-              <a onclick="clickList(8)"><h5 class="font-weight-light" id="item9">Cross Platform</h5></a>
-              <a onclick="clickList(9)"><h5 class="font-weight-light" id="item10">Package for Stores</h5></a>
-              <a onclick="clickList(10)"><h5 class="font-weight-light" id="item11">Great on gas</h5></a>
+              <a><h5 class="font-weight-light">Runs Existing Code</h5></a>
+              <a><h5 class="font-weight-light">Native Javascript</h5></a>
+              <a><h5 class="font-weight-light">Futuristic APIs</h5></a>
+              <a><h5 class="font-weight-light">Package for Stores</h5></a>
             </div>
           </div>
         </div>
@@ -765,6 +473,325 @@ window.addEventListener('scroll', () => {
       </div>
   </div>
 </footer>
+
+<script src="js/three.min.js"></script>
+<script src="js/Reflector.js"></script>
+<script src="js/GLTFLoader.js"></script>
+<script src="js/skin.js"></script>
+<script src="js/global.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/features.js"></script>
+<script src="js/scroll.js"></script>
+
+<script>
+(() => {
+
+const changeQuotes = () => {
+const json = {
+  "quotes": [
+    {   "picture": "media/sjw.jpg",
+        "person": "- Milo Dianosuraus Rex",
+        "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
+    },
+    {
+        "picture": "media/kylie.jpg",
+        "person": "- Kiley Jenner",
+        "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
+    },
+    {
+        "picture": "media/dude.jpg",
+        "person": "- Steve Harley",
+        "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
+    },
+    {
+        "picture": "media/obama.jpg",
+        "person": "- Barrack Obama",
+        "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
+    },
+
+    {
+        "picture": "media/emukitDemo.png",
+        "person": "- Happy Rabbit",
+        "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
+    },
+    {
+        "picture": "media/favicon.png",
+        "person": "- Bruce Reslzer",
+        "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
+    },
+    {   "picture": "media/exokit.png",
+        "person": "- Great Grandma",
+        "quote": "I remember back in my day we didnt have things like this... #exokit"
+    },
+    {   "picture": "media/whatIsExokit.png",
+        "person": "- Ted Druce",
+        "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
+    }
+  ]
+};
+
+let cards = document.getElementsByClassName('card');
+for (let i = 0; i < cards.length; i++) {
+  if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == json.quotes[i].picture){
+    cards = document.getElementsByClassName('card');
+    cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i+4].picture;
+    cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i+4].person;
+    cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i+4].quote;
+  }
+  else{
+    cards = document.getElementsByClassName('card');
+    cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i].picture;
+    cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i].person;
+    cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i].quote;
+    cards[i].style.hidden = true;
+  }
+}
+};
+
+const changeCompany = (company) => {
+  const mainImg = document.getElementById('madeWithExokitMainImg');
+  const title = document.getElementById('madeWithTitle');
+  const slogan = document.getElementById('madeWithSlogan');
+  const titleSub = document.getElementById('madeWithTitleSub');
+  const project = document.getElementById('madeWithProject');
+  const year = document.getElementById('madeWithYear');
+
+  switch (company) {
+    case 'expanse':
+      mainImg.src = 'media/expanse.png';
+      title.innerHTML = 'The Expanse';
+      slogan.innerHTML = 'Build, Experince & Share the future of social VR.';
+      titleSub.innerHTML = 'The Expanse';
+      project.innerHTML = 'Project: Aurora';
+      year.innerHTML = 'Year 2018 - Now';
+    break;
+    case 'active':
+      mainImg.src = 'media/activeDemoMain.png';
+      title.innerHTML = 'Active Theory';
+      slogan.innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
+      titleSub.innerHTML = 'Active Theory';
+      project.innerHTML = 'Project: xyz';
+      year.innerHTML = 'Year 2018 - Now';
+
+    break;
+    case 'emukit':
+      mainImg.src = 'media/emukitDemo.png';
+      title.innerHTML = 'Emukit';
+      slogan.innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
+      titleSub.innerHTML = 'Emukit';
+      project.innerHTML = 'Project: Nintendo 64 VR Emulation';
+      year.innerHTML = 'Year 2018 - Now';
+    break;
+
+  }
+}
+
+function expandLittleNavbar() {
+  document.getElementById('expandedLittleNavbar').style.height = "100vh"
+  document.getElementById('expandedLittleNavbar').style.visibility = "visible"
+}
+
+ function hideLittleNavbar() {
+  document.getElementById('expandedLittleNavbar').style.height = "0vh"
+  document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
+}
+
+function clickList(num){
+  console.log('click', num);
+  const parent = document.getElementById('featuresParent');
+  const percent = ((parent.offsetHeight / featuresRightChildren.length) * num) + parent.offsetTop;
+  window.scrollTo({
+    top: percent,
+  });
+  _updateScroll();
+}
+
+const featuresLeft = document.getElementById('featuresLeft');
+const featuresRight = document.getElementById('featuresRight');
+const featuresRightChildren = featuresRight.querySelectorAll('a');
+featuresRightChildren.forEach((el, i) => {
+  el.addEventListener('click', () => {
+    clickList(i);
+  });
+});
+
+const easeInOut = (() => {
+  // These values are established by empiricism with tests (tradeoff: performance VS precision)
+  var NEWTON_ITERATIONS = 4;
+  var NEWTON_MIN_SLOPE = 0.001;
+  var SUBDIVISION_PRECISION = 0.0000001;
+  var SUBDIVISION_MAX_ITERATIONS = 10;
+
+  var kSplineTableSize = 11;
+  var kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
+
+  var float32ArraySupported = typeof Float32Array === 'function';
+
+  function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1; }
+  function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
+  function C (aA1)      { return 3.0 * aA1; }
+
+  // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
+  function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT; }
+
+  // Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
+  function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1); }
+
+  function binarySubdivide (aX, aA, aB, mX1, mX2) {
+    var currentX, currentT, i = 0;
+    do {
+      currentT = aA + (aB - aA) / 2.0;
+      currentX = calcBezier(currentT, mX1, mX2) - aX;
+      if (currentX > 0.0) {
+        aB = currentT;
+      } else {
+        aA = currentT;
+      }
+    } while (Math.abs(currentX) > SUBDIVISION_PRECISION && ++i < SUBDIVISION_MAX_ITERATIONS);
+    return currentT;
+  }
+
+  function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
+   for (var i = 0; i < NEWTON_ITERATIONS; ++i) {
+     var currentSlope = getSlope(aGuessT, mX1, mX2);
+     if (currentSlope === 0.0) {
+       return aGuessT;
+     }
+     var currentX = calcBezier(aGuessT, mX1, mX2) - aX;
+     aGuessT -= currentX / currentSlope;
+   }
+   return aGuessT;
+  }
+
+  function LinearEasing (x) {
+    return x;
+  }
+
+  function bezier (mX1, mY1, mX2, mY2) {
+    if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1)) {
+      throw new Error('bezier x values must be in [0, 1] range');
+    }
+
+    if (mX1 === mY1 && mX2 === mY2) {
+      return LinearEasing;
+    }
+
+    // Precompute samples table
+    var sampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
+    for (var i = 0; i < kSplineTableSize; ++i) {
+      sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
+    }
+
+    function getTForX (aX) {
+      var intervalStart = 0.0;
+      var currentSample = 1;
+      var lastSample = kSplineTableSize - 1;
+
+      for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
+        intervalStart += kSampleStepSize;
+      }
+      --currentSample;
+
+      // Interpolate to provide an initial guess for t
+      var dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
+      var guessForT = intervalStart + dist * kSampleStepSize;
+
+      var initialSlope = getSlope(guessForT, mX1, mX2);
+      if (initialSlope >= NEWTON_MIN_SLOPE) {
+        return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
+      } else if (initialSlope === 0.0) {
+        return guessForT;
+      } else {
+        return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
+      }
+    }
+
+    return function BezierEasing (x) {
+      // Because JavaScript number are imprecise, we should guarantee the extremes are right.
+      if (x === 0) {
+        return 0;
+      }
+      if (x === 1) {
+        return 1;
+      }
+      return calcBezier(getTForX(x), mY1, mY2);
+    };
+  };
+  return bezier(1, 0, 0, 1);
+})();
+
+const _updateScroll = () => {
+  function scrollX(elem , positionX){
+    elem.scrollLeft = positionX;
+  }
+  function scrollY(elem, positionY) {
+    elem.scrollTo({
+      top: positionY,
+      // behavior: 'smooth'
+    });
+  }
+  function smooth(n) {
+    const fract = n % 1;
+    n = Math.floor(n) + easeInOut(fract);
+    return n;
+  }
+
+  const parent = document.getElementById('featuresParent');
+  const nextSection = document.getElementById('madeWithExokit');
+  const insideContent = document.getElementById('featuresInside');
+  const vLine = document.getElementById('vLine');
+
+  const distanceFromTop = (parent.offsetTop - window.scrollY);
+  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight);
+  const counter = document.getElementById('featuresCounter');
+
+  const bodyBox = document.body.getBoundingClientRect();
+  const parentBox = parent.getBoundingClientRect();
+  const parentBoxAbs = {
+    top: parentBox.top - bodyBox.top,
+    height: parentBox.height,
+  };
+  const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
+
+  const breakPoint = 1.0 / (featuresRightChildren.length+1);
+  const scrollYValue = 80;
+  const vLineFactor = (factor * featuresRight.clientHeight) + "px";
+  const containers = document.getElementsByClassName('align-container');
+
+  let totalWidth = 0;
+  for (let i = 0; i < containers.length; i++){
+    totalWidth += containers[i].offsetWidth;
+  }
+
+  for (let i = 0; i < featuresRightChildren.length; i++) {
+    featuresRightChildren[i].querySelector('h5').classList.remove('active');
+  }
+  if (distanceFromTop <= 0 && topOfNextSection > 0) {
+    scrollX(featuresLeft, Math.floor(smooth(factor * featuresRightChildren.length) / featuresRightChildren.length * totalWidth));
+    insideContent.style.top = "0";
+    insideContent.style.position = "fixed";
+    for (let i = 0; i < featuresRightChildren.length; i++) {
+      if (factor >= breakPoint*i && factor < breakPoint*(i+1)){
+        scrollY(featuresRight, i * scrollYValue);
+        vLine.style.marginTop = vLineFactor;
+        featuresRightChildren[i].querySelector('h5').classList.add('active');
+        break;
+      }
+    }
+  } else if (topOfNextSection < 0) {
+    insideContent.style.position = 'absolute';
+    insideContent.style.top = '';
+    insideContent.style.bottom = 0;
+  } else {
+    insideContent.style.position = 'absolute';
+    insideContent.style.top = 0;
+    insideContent.style.bottom = '';
+  }
+};
+window.addEventListener('scroll', _updateScroll);
+
+})();
+</script>
 
 </body>
 </html>

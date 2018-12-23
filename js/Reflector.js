@@ -263,7 +263,7 @@ THREE.Reflector.ReflectorShader = {
 
 		'	vec4 base = texture2DProj( tDiffuse, vUv );',
 		'	vec3 addColorC;',
-		'	if (base.r > 0.1 || base.g > 0.1 || base.b > 0.1) {addColorC = addColor;} else {addColorC = vec3(0.0);}',
+		'	if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = addColor;} else {addColorC = vec3(0.0);}',
 		'	gl_FragColor = vec4( blendOverlay( base.rgb, color ) + addColorC, 1.0 );',
 
 		'}'

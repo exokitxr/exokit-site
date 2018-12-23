@@ -1,4 +1,6 @@
-let renderer, scene, camera, iframe, container, engineMesh, meteorMesher;
+(() => {
+
+let renderer, scene, camera, iframe, mouse, container, avatarMesh, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -11,7 +13,7 @@ const localRaycaster = new THREE.Raycaster();
 
 function init() {
   renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById('canvas'),
+    canvas: document.getElementById('hero-canvas'),
     antialias: true,
     alpha: true,
   });
@@ -91,13 +93,12 @@ function init() {
   })();
   container.add(groundMesh);
 
-  const avatarMesh = (() => {
+  avatarMesh = (() => {
     const DEFAULT_SKIN_URL = 'img/skin.png';
 
     const mesh = skin({
       limbs: true,
     });
-    mesh.position.y += 0.18;
     mesh.castShadow = true;
     /* {
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
@@ -151,29 +152,145 @@ function init() {
   })();
   container.add(avatarMesh);
 
+  mloMesh = (() => {
+    const object = new THREE.Object3D();
+    object.lightwear = null;
+    object.control = null;
+    object.lightpack = null;
+
+    const loader = new THREE.GLTFLoader().setPath( 'models/' );
+    loader.load( 'mlo.glb', function ( o ) {
+
+      o = o.scene;
+      o.traverse(e => {
+        e.castShadow = true;
+      });
+
+      const scale = 1 / 18;
+      const offsetY = (22 + 13.5/2 - 8/2)*scale;
+
+      for (let i = 0; i < o.children.length; i++) {
+        const child = o.children[i];
+        if (/^lightwear$/i.test(child.name)) {
+          object.lightwear = child;
+          child.position.y = 1.6 - offsetY;
+
+          /* const frustumMesh = (() => {
+            const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+            positions = geometry.attributes.position.array;
+            for (let i = 0; i < positions.length; i += 3) {
+              if (positions[i+2] < 0) {
+                positions[i+0] *= 0.5;
+                positions[i+1] *= 0.5;
+              }
+              positions[i+2] += 1/2 + 0.3;
+              positions[i+1] *= 2/3;
+            }
+
+            const material = new THREE.MeshPhongMaterial({
+              // color: 0x7e57c2,
+              color: 0xec407a,
+              opacity: 0.5,
+              transparent: true,
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            return mesh;
+          })();
+          child.add(frustumMesh); */
+        } else if (/^control$/i.test(child.name)) {
+          object.control = child;
+          child.visible = false;
+        } else if (/^lightpack$/i.test(child.name)) {
+          object.lightpack = child;
+          child.position.set(-0.28, -0.7, 0);
+          // child.rotation.x = -Math.PI/2;
+          child.rotation.x = -Math.PI/2;
+          child.rotation.z = Math.PI/2;
+          child.rotation.order = 'YXZ';
+          // child.visible = false;
+        }
+      }
+
+      o.position.set(0, offsetY, 0);
+      // o.scale.set(0.15, 0.15, 0.15);
+      // o.updateMatrixWorld();
+      object.add(o);
+
+    }, undefined, function ( e ) {
+
+      console.error( e );
+
+    } );
+
+    return object;
+  })();
+  container.add(mloMesh);
+
   engineMesh = (() => {
     const object = new THREE.Object3D();
     object.basePosition = new THREE.Vector3(-1, 0, -1);
     object.nextUpdateTime = 0;
     object.exobotMeshes = [];
 
-    const loader = new THREE.ColladaLoader();
-    loader.load('models/car_engine.dae', o => {
+    const loader = new THREE.GLTFLoader().setPath( 'models/' );
+    loader.load( 'engine.glb', function ( o ) {
+
       o = o.scene;
       o.traverse(e => {
         e.castShadow = true;
       });
 
-      o.position.set(0, -0.2, 0);
-      o.scale.set(0.2, 0.2, 0.2);
+      o.position.set(0, 0.15, 0);
+      o.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(0, 0, 1)
+      );
+      o.scale.set(0.15, 0.15, 0.15);
+      o.updateMatrixWorld();
       object.add(o);
-    });
+
+    }, undefined, function ( e ) {
+
+      console.error( e );
+
+    } );
 
     return object;
   })();
   container.add(engineMesh);
 
-  const mouse = {
+  exobotMesh = (() => {
+    const object = new THREE.Object3D();
+    object.rotation.order = 'YXZ';
+    object.basePosition = new THREE.Vector3(-1, 1.5, -1);
+    object.scale.set(0.2, 0.2, 0.2);
+
+    const loader = new THREE.GLTFLoader().setPath( 'models/' );
+    loader.load( 'exobot.glb', function ( o ) {
+
+      o = o.scene;
+      o.traverse(e => {
+        e.castShadow = true;
+      });
+
+      /* o.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(0, 0, 1)
+      ); */
+      o.updateMatrixWorld();
+      object.add(o);
+
+    }, undefined, function ( e ) {
+
+      console.error( e );
+
+    } );
+
+    return object;
+  })();
+  container.add(exobotMesh);
+
+  mouse = {
     x: 0.5,
     y: 0.5,
   };
@@ -184,13 +301,14 @@ function init() {
     t.w = r.w;
   };
   const _updateSkin = () => {
+    const headQuaternion = new THREE.Quaternion()
+      .setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
+      );
     _applyUniformRotation(
-      new THREE.Quaternion()
-        .setFromUnitVectors(
-          new THREE.Vector3(0, 0, -1),
-          new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
-        ),
-        avatarMesh.material.uniforms.headRotation.value
+      headQuaternion,
+      avatarMesh.material.uniforms.headRotation.value
     );
     _applyUniformRotation(
       new THREE.Quaternion()
@@ -221,168 +339,18 @@ function init() {
         avatarMesh.material.uniforms.rightArmRotation.value
     );
     avatarMesh.material.uniforms.theta.value = (mouse.y-0.5)*0.1*Math.PI;
+
+    mloMesh.lightwear &&  mloMesh.lightwear.quaternion
+      .copy(headQuaternion.inverse())
+      .multiply(
+        new THREE.Quaternion()
+          .setFromUnitVectors(
+            new THREE.Vector3(0, 0, -1),
+            new THREE.Vector3(0, 0, 1)
+          )
+      );
   };
   _updateSkin();
-
-  const boxGeometry = (() => {
-    const BAG_SIZE = 1;
-    const BAG_Y_OFFSET = -0.5;
-    const BAG_Z_OFFSET = -0.05;
-
-    const _decomposeObjectMatrixWorld = object => _decomposeMatrix(object.matrixWorld);
-    const _decomposeMatrix = matrix => {
-      const position = new THREE.Vector3();
-      const rotation = new THREE.Quaternion();
-      const scale = new THREE.Vector3();
-      matrix.decompose(position, rotation, scale);
-      return {position, rotation, scale};
-    };
-
-    const zeroVector = new THREE.Vector3(0, 0, 0);
-    const zeroQuaternion = new THREE.Quaternion();
-    const oneVector = new THREE.Vector3(1, 1, 1);
-    const localVector = new THREE.Vector3();
-    const localVector2 = new THREE.Vector3();
-    const localQuaternion = new THREE.Quaternion();
-    const localMatrix = new THREE.Matrix4();
-
-    const lineGeometry = new THREE.CylinderBufferGeometry(BAG_SIZE/100, BAG_SIZE/100, BAG_SIZE, 3, 1);
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(lineGeometry.attributes.position.array.length * 12);
-    geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-    // axis
-    positions.set(
-      lineGeometry.clone().applyMatrix(
-        localMatrix.makeTranslation(-BAG_SIZE/2, 0, -BAG_SIZE/2)
-      ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 0
-    );
-    positions.set(
-      lineGeometry.clone().applyMatrix(
-        localMatrix.makeTranslation(BAG_SIZE/2, 0, -BAG_SIZE/2)
-      ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 1
-    );
-    positions.set(
-      lineGeometry.clone().applyMatrix(
-        localMatrix.makeTranslation(-BAG_SIZE/2, 0, BAG_SIZE/2)
-      ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 2
-    );
-    positions.set(
-      lineGeometry.clone().applyMatrix(
-        localMatrix.makeTranslation(BAG_SIZE/2, 0, BAG_SIZE/2)
-      ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 3
-    );
-    // axis
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(0, 0, 1), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(0, -BAG_SIZE/2, -BAG_SIZE/2)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 4
-    );
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(0, 0, 1), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(0, -BAG_SIZE/2, BAG_SIZE/2)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 5
-    );
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(0, 0, 1), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(0, BAG_SIZE/2, -BAG_SIZE/2)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 6
-    );
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(0, 0, 1), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(0, BAG_SIZE/2, BAG_SIZE/2)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 7
-    );
-    // axis
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(1, 0, 0), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(-BAG_SIZE/2, -BAG_SIZE/2, 0)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 8
-    );
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(1, 0, 0), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(-BAG_SIZE/2, BAG_SIZE/2, 0)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 9
-    );
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(1, 0, 0), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(BAG_SIZE/2, -BAG_SIZE/2, 0)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 10
-    );
-    positions.set(
-      lineGeometry.clone()
-        .applyMatrix(
-          localMatrix.makeRotationFromQuaternion(localQuaternion.setFromAxisAngle(localVector.set(1, 0, 0), Math.PI/2))
-        )
-        .applyMatrix(
-          localMatrix.makeTranslation(BAG_SIZE/2, BAG_SIZE/2, 0)
-        ).attributes.position.array,
-      lineGeometry.attributes.position.array.length * 11
-    );
-    const numLinePositions = lineGeometry.attributes.position.array.length / 3;
-    const indices = new Uint16Array(lineGeometry.index.array.length * 12);
-    for (let i = 0; i < 12; i++) {
-      indices.set(
-        lineGeometry.index.array,
-        lineGeometry.index.array.length * i
-      );
-
-      for (let j = 0; j < lineGeometry.index.array.length; j++) {
-        lineGeometry.index.array[j] += numLinePositions;
-      }
-    }
-    geometry.setIndex(new THREE.BufferAttribute(indices, 1));
-
-    return geometry;
-
-    /* const material = new THREE.MeshBasicMaterial({
-      color: 0x101010,
-      // wireframe: true,
-      // transparent: true,
-    });
-    // material.polygonOffsetFactor = -1;
-    material.polygonOffsetUnits = -10;
-
-    return () => new THREE.Mesh(geometry, material); */
-  })();
 
   /* const boxMesh = (() => {
     // const geometry = new THREE.BoxBufferGeometry(0.3, 0.3, 0.3);
@@ -596,10 +564,6 @@ function init() {
 
   scene.add(container);
 
-  // window.addEventListener('scroll', () => {
-  //   const factor = window.scrollY / window.innerHeight;
-  //   renderer.domElement.style.transform = `scale(${1 + factor})`;
-  // });
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -745,6 +709,14 @@ function animate() {
     }
   });
 
+  const timeBase = 2000;
+  const factor = (now / timeBase) % timeBase;
+  exobotMesh.position
+    .copy(exobotMesh.basePosition)
+    .add(localVector.set(0, Math.sin(factor * Math.PI*2)*0.1, 0))
+    .add(localVector.set((mouse.x - 0.5)*2*2, -(mouse.y - 0.5)*2*2, 0));
+  exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
+
   if (now > meteorMesher.nextUpdateTime) {
     const meteorMesh = _makeMeteorMesh();
     meteorMesher.add(meteorMesh);
@@ -783,42 +755,37 @@ window.addEventListener("scroll", e =>{
 
 window.addEventListener("load", () =>{
   const featuresWrap = document.getElementById('featureMain-wrap');
+  const gradient = featuresWrap.querySelector('.gradient');
   const rgba_JSON = [
     { // blue
-      startFactor: 0,
-      endFactor: 1/6,
+      startFactor: 0/5,
+      endFactor: 1/5,
       color1: "rgb(47, 134, 222)",
       color2: "rgb(142, 76, 170)",
     },
     { // purple
-      startFactor: 1/6,
-      endFactor: 2/6,
+      startFactor: 1/5,
+      endFactor: 2/5,
       color1: "rgb(142, 76, 170)",
       color2: "rgb(222, 122, 20)",
     },
     { //orange
-      startFactor: 2/6,
-      endFactor: 3/6,
+      startFactor: 2/5,
+      endFactor: 3/5,
       color1: "rgb(222, 122, 20)",
       color2: "rgb(240, 5, 5)",
     },
     { //bright green
-      startFactor: 3/6,
-      endFactor: 4/6,
+      startFactor: 3/5,
+      endFactor: 4/5,
       color1: "rgb(240, 5, 5)",
-      color2: "rgb(180, 200, 200)",
+      color2: "rgb(142, 76, 170)",
     }, 
     { //bright green
-      startFactor: 4/6,
-      endFactor: 5/6,
-      color1: "rgb(180, 200, 200)",
-      color2: "rgb(47, 134, 222)",
-    },
-    { //bright green
-      startFactor: 5/6,
-      endFactor: 6/6,
-      color1: "rgb(47, 134, 222)",
-      color2: "rgb(142, 76, 170)",
+      startFactor: 4/5,
+      endFactor: 5/5,
+      color1: "rgb(142, 76, 170)",
+      color2: "#2196f3",
     },
   ];
 
@@ -829,24 +796,41 @@ window.addEventListener("load", () =>{
       top: parentBox.top - bodyBox.top,
       height: parentBox.height,
     };
-    const parentFactor = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1);
+    const parentFactor = Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height - window.innerHeight), 0), 1);
 
-    for (let i = 0; i < rgba_JSON.length-1; i++) {
-      const j = rgba_JSON[i];
-      const j2 = rgba_JSON[i+1];
+    if (parentFactor > 0) {
+      if (parentFactor < 1) {
+        for (let i = 0; i < rgba_JSON.length-1; i++) {
+          const j = rgba_JSON[i];
+          const j2 = rgba_JSON[i+1];
 
-      if (parentFactor >= j.startFactor && parentFactor < j.endFactor) {
-        const lerpFactor = (parentFactor - j.startFactor) / (j.endFactor - j.startFactor);
-        const topColor = new THREE.Color(j.color1).lerp(new THREE.Color(j.color2), lerpFactor).getHexString();
-        const bottomColor = new THREE.Color(j2.color1).lerp(new THREE.Color(j2.color2), lerpFactor).getHexString();
+          if (parentFactor >= j.startFactor && parentFactor <= j.endFactor) {
+            const lerpFactor = (parentFactor - j.startFactor) / (j.endFactor - j.startFactor);
+            const topColor = new THREE.Color(j.color1).lerp(new THREE.Color(j.color2), lerpFactor).getHexString();
+            const bottomColor = new THREE.Color(j2.color1).lerp(new THREE.Color(j2.color2), lerpFactor).getHexString();
 
-        featuresWrap.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
-        featuresWrap.style.backgroundPosition = `0 ${window.pageYOffset - parentBoxAbs.top}px`;
-        featuresWrap.style.backgroundSize = `auto ${window.innerHeight}px`;
-        break;
+            gradient.style.background = `linear-gradient(to bottom, #${topColor} 0%, #${bottomColor} 100%)`;
+            break;
+          }
+        }
+        gradient.style.position = 'fixed';
+        gradient.style.top = 0;
+        gradient.style.bottom = '';
+      } else {
+        gradient.style.position = 'absolute';
+        gradient.style.top = '';
+        gradient.style.bottom = 0;
+        gradient.style.background = `linear-gradient(${rgba_JSON[rgba_JSON.length-1].color1} 0%, ${rgba_JSON[rgba_JSON.length-1].color2} 100%)`;
       }
+    } else {
+      gradient.style.position = 'absolute';
+      gradient.style.top = 0;
+      gradient.style.bottom = '';
+      gradient.style.background = `linear-gradient(to bottom, #2f86de 0%, #8e4caa 100%)`;
     }
   };
   _tick();
   window.addEventListener("scroll", _tick);
 });
+
+})();

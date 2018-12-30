@@ -50,5 +50,13 @@ body{
 }
 
 .md-nav__link:hover{
+  color: #e137ff;
+}
+
+.md-typeset a{
   color: #9c27b0;
+}
+
+.md-typeset a:hover{
+  color: #e137ff;
 }

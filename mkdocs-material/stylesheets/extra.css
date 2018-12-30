@@ -20,3 +20,27 @@
 .md-footer-copyright {
   padding: 1.8rem 0;
 }
+@font-face {
+  font-family: 'Bison';
+  src: url('../../fonts/Bison-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bozon';
+  src: url('../../fonts/ROHH - Bozon Regular.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Bozon';
+  src: url('../../fonts/ROHH - Bozon Bold.otf') format('opentype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Bozon';
+  src: url('../../fonts/ROHH - Bozon Light.otf') format('opentype');
+  font-weight: 300;
+}
+
+
+body{
+  font-family: Bozon;
+}

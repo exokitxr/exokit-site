@@ -44,3 +44,11 @@
 body{
   font-family: Bozon;
 }
+
+.md-nav__link--active{
+  color: #9c27b0;
+}
+
+.md-nav__link:hover{
+  color: #9c27b0;
+}

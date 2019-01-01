@@ -66,6 +66,24 @@ body{
   padding-bottom: 12px;
 }
 
+.downloadBtn{
+  border: solid 1px #9c27b0;
+  padding: 5px;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #9c27b0;
+  cursor: pointer;
+}
+
+.downloadBtn:hover{
+  background-color: #9c27b0;
+  border: solid 1px #9c27b0;
+  padding: 5px;
+  border-radius: 20px;
+  font-size: 15px;
+  color: white;
+}
+
 img{
   margin: 0 auto;
 }

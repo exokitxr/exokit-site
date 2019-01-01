@@ -65,3 +65,7 @@ body{
   border-bottom: solid 2px #9c27b0;
   padding-bottom: 12px;
 }
+
+img{
+  margin: 0 auto;
+}

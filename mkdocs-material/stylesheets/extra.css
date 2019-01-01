@@ -40,7 +40,6 @@
   font-weight: 300;
 }
 
-
 body{
   font-family: Bozon;
 }
@@ -59,4 +58,9 @@ body{
 
 .md-typeset a:hover{
   color: #e137ff;
+}
+
+.md-tabs__link--active{
+  border-bottom: solid 2px #9c27b0;
+  padding-bottom: 12px;
 }

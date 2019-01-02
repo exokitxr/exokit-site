@@ -21,7 +21,7 @@
   </div>
 
   <div id="littleNavbar">
-    <h5 onclick="expandLittleNavbar()"class="mt-1" style="cursor: pointer">Home<i class="fas fa-angle-down ml-2"></i></h5>
+    <h5 id="openLittleNav" class="mt-1" style="cursor: pointer">Home<i class="fas fa-angle-down ml-2"></i></h5>
   </div>
 
 </nav>
@@ -48,7 +48,7 @@
         <a href="contact.html"><h5 class="font-weight-light">Contact</h5></a>
       </div>
       <div class="col-12 mb-4">
-        <i onclick="hideLittleNavbar()" class="fas fa-times fa-2x" style="margin-bottom: 5vh; cursor: pointer;"></i>
+        <i id="closeLittleNav" class="fas fa-times fa-2x" style="margin-bottom: 5vh; cursor: pointer;"></i>
       </div>
     </div>
 </div>
@@ -595,15 +595,17 @@ const changeCompany = (company) => {
   }
 }
 
-function expandLittleNavbar() {
+const openLittleNav = document.getElementById('openLittleNav');
+openLittleNav.addEventListener('click', () => {
   document.getElementById('expandedLittleNavbar').style.height = "100vh"
   document.getElementById('expandedLittleNavbar').style.visibility = "visible"
-}
+});
 
- function hideLittleNavbar() {
+const closeLittleNav = document.getElementById('closeLittleNav');
+closeLittleNav.addEventListener('click', () => {
   document.getElementById('expandedLittleNavbar').style.height = "0vh"
   document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
-}
+});
 
 function clickList(num){
   console.log('click', num);

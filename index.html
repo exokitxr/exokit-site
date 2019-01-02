@@ -377,10 +377,10 @@
       <div class="row w-100 text-center mt-3">
           <div class="col-3"></div>
           <div class="col-3">
-            <i class="fas fa-arrow-left fa-2x quoteArrow" onclick="changeQuotes()"></i>
+            <i id="quoteBack" class="fas fa-arrow-left fa-2x quoteArrow"></i>
           </div>
           <div class="col-3">
-            <i class="fas fa-arrow-right fa-2x quoteArrow" onclick="changeQuotes()"></i>
+            <i id="quoteNext" class="fas fa-arrow-right fa-2x quoteArrow"></i>
           </div>
           <div class="col-3"></div>
         </div>
@@ -486,67 +486,76 @@
 <script>
 (() => {
 
-const changeQuotes = () => {
-const json = {
-  "quotes": [
-    {   "picture": "media/sjw.jpg",
-        "person": "- Milo Dianosuraus Rex",
-        "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
-    },
-    {
-        "picture": "media/kylie.jpg",
-        "person": "- Kiley Jenner",
-        "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
-    },
-    {
-        "picture": "media/dude.jpg",
-        "person": "- Steve Harley",
-        "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
-    },
-    {
-        "picture": "media/obama.jpg",
-        "person": "- Barrack Obama",
-        "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
-    },
+const quotes_JSON = {
+"quotes": [
+  {   "picture": "media/sjw.jpg",
+      "person": "- Milo Dianosuraus Rex",
+      "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
+  },
+  {
+      "picture": "media/kylie.jpg",
+      "person": "- Kiley Jenner",
+      "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
+  },
+  {
+      "picture": "media/dude.jpg",
+      "person": "- Steve Harley",
+      "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
+  },
+  {
+      "picture": "media/obama.jpg",
+      "person": "- Barrack Obama",
+      "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
+  },
 
-    {
-        "picture": "media/emukitDemo.png",
-        "person": "- Happy Rabbit",
-        "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
-    },
-    {
-        "picture": "media/favicon.png",
-        "person": "- Bruce Reslzer",
-        "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
-    },
-    {   "picture": "media/exokit.png",
-        "person": "- Great Grandma",
-        "quote": "I remember back in my day we didnt have things like this... #exokit"
-    },
-    {   "picture": "media/whatIsExokit.png",
-        "person": "- Ted Druce",
-        "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
+  {
+      "picture": "media/emukitDemo.png",
+      "person": "- Happy Rabbit",
+      "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
+  },
+  {
+      "picture": "media/favicon.png",
+      "person": "- Bruce Reslzer",
+      "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
+  },
+  {   "picture": "media/exokit.png",
+      "person": "- Great Grandma",
+      "quote": "I remember back in my day we didnt have things like this... #exokit"
+  },
+  {   "picture": "media/introExokit.png",
+      "person": "- Ted Druce",
+      "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
+  }]
+};
+
+const flipQuotes = () => {
+  let cards = document.getElementsByClassName('card');
+  for (let i = 0; i < cards.length; i++) {
+    if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == quotes_JSON.quotes[i].picture){
+      cards = document.getElementsByClassName('card');
+      cards[i].getElementsByClassName('quotesPic')[0].src = quotes_JSON.quotes[i+4].picture;
+      cards[i].getElementsByClassName('quotePerson')[0].innerHTML = quotes_JSON.quotes[i+4].person;
+      cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = quotes_JSON.quotes[i+4].quote;
     }
-  ]
+    else{
+      cards = document.getElementsByClassName('card');
+      cards[i].getElementsByClassName('quotesPic')[0].src = quotes_JSON.quotes[i].picture;
+      cards[i].getElementsByClassName('quotePerson')[0].innerHTML = quotes_JSON.quotes[i].person;
+      cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = quotes_JSON.quotes[i].quote;
+      cards[i].style.hidden = true;
+    }
+  }
 };
 
-let cards = document.getElementsByClassName('card');
-for (let i = 0; i < cards.length; i++) {
-  if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == json.quotes[i].picture){
-    cards = document.getElementsByClassName('card');
-    cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i+4].picture;
-    cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i+4].person;
-    cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i+4].quote;
-  }
-  else{
-    cards = document.getElementsByClassName('card');
-    cards[i].getElementsByClassName('quotesPic')[0].src = json.quotes[i].picture;
-    cards[i].getElementsByClassName('quotePerson')[0].innerHTML = json.quotes[i].person;
-    cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = json.quotes[i].quote;
-    cards[i].style.hidden = true;
-  }
-}
-};
+const quoteBack = document.getElementById('quoteBack');
+quoteBack.addEventListener('click', () => {
+  flipQuotes();
+});
+
+const quoteNext = document.getElementById('quoteNext');
+quoteNext.addEventListener('click', () => {
+  flipQuotes();
+});
 
 const changeCompany = (company) => {
   const mainImg = document.getElementById('madeWithExokitMainImg');

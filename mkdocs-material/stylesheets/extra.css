@@ -56,6 +56,8 @@ p, h5{
   color: #e137ff;
 }
 
+
+
 .md-typeset a{
   color: #9c27b0;
 }
@@ -64,10 +66,15 @@ p, h5{
   color: #e137ff;
 }
 
+.md-tabs__link{
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 12px;
+}
+
 .md-tabs__link--active{
   border-bottom: solid 2px #9c27b0;
   padding-bottom: 12px;
-  font-size: 18px;
 }
 
 .downloadBtn{
@@ -90,7 +97,6 @@ img{
 
 .md-sidebar--primary{
   background-color: rgba(128, 128, 128, 0.06);
-  border-left: 2px solid;
 }
 
 .md-main__inner{
@@ -102,4 +108,8 @@ img{
 
 .md-typeset h1{
   margin-bottom: 0;
+}
+
+.md-main__inner{
+  margin-left: 0;
 }

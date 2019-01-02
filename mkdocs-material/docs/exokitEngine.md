@@ -4,26 +4,26 @@ title: Exokit Engine
 sidebar_label: Exokit Engine
 ---
 
-### Exokit is a native VR and AR Engine for JavaScript.
+## Exokit is a native VR and AR Engine for JavaScript.
  
 This project enables developers to build XR experiences using the same code that runs on the web. Exokit engine is written on top of Node and emulates a web browser, providing native hooks for WebGL, WebXR, WebAudio, and other APIs used in immersive experiences.
 
-Exokit targets the following platforms:
-* Desktop VR (Steam compatible)
-* Mobile AR (ARKit / ARCore)
-* Magic Leap
-* Mobile VR (Daydream / Gear VR)
+### Exokit targets the following platforms:
+- Desktop VR (Steam compatible)
+- Mobile AR (ARKit / ARCore)
+- Magic Leap
+- Mobile VR (Daydream / Gear VR)
 
-Since Exokit supports anything that runs on the web, it powers experiences built with:
-* Three.js
-* Unity
-* Pixi.js
-* Babylon.js
-* AFrame
-* Custom WebGL frameworks
-* WebAssembly, TypeScript, and any language that transpiles to JavaScript.
+### Since Exokit supports anything that runs on the web, it powers experiences built with:
+- Three.js
+- Unity
+- Pixi.js
+- Babylon.js
+- AFrame
+- Custom WebGL frameworks
+- WebAssembly, TypeScript, and any language that transpiles to JavaScript.
 
-### Subscribe to our Email list to be notified when we launch! http://eepurl.com/dFiLMz
+## Subscribe to our Email list to be notified when we launch! http://eepurl.com/dFiLMz
 
 > Exokit Engine is an HTML/Javascript engine that runs regular web sites, but only supports 3D via WebGL/WebXR.
 > A window in Exokit is just the contents of a WebGL `<canvas>`.
@@ -60,7 +60,7 @@ The result is Exokit, the fastest, smallest, and most flexible 3D browser engine
 
 Additionally, we don't know which way the magical winds of mixed reality will blow. That's why Exokit is uniquely written in Javascript, so we are free to add API's and hardware support in a weekend, as we did for Magic Leap.
 
-# Why should I use it?
+## Why should I use it?
 
 - You want your WebGL/WebXR to run fast.
 - You want the hot new web APIs.
@@ -68,22 +68,22 @@ Additionally, we don't know which way the magical winds of mixed reality will bl
 - You want a lightweight browser as a hackable node module.
 - You want to combine the web with a 3D engine like Unity.
 
-# So it's written from scratch?
+## So it's written from scratch?
 
 Yes.
 
 We use an npm module for HTML parsing, then resurrected an old OpenGL binding from GitHub, took WebAudio extracted out of Chrome, and so on. We glued it together and wrote a custom binding for the HTML and Javascript that powers your web site.
 
-# What platforms are supported?
+## What platforms are supported?
 
 Exokit Browser is just Javascript with some C++ bindings to libraries, such as OpenGL, FFmpeg, Skia, OpenVR, and others (see [here](http://docs.webmr.io/docs/techIntegrations.html)). It builds on Windows, OSX, Linux, and binds to Vive, Oculus, Leap Motion, Magic Leap, as well as keyboard/mouse.
   
-# How far along is the project?
+## How far along is the project?
 
 Not 1.0. We need to improve site support and testing more until we call it.
 
 If you have a site that doesn't work, there's high chance it's a silly corner case. We encourage you to [file an issue](https://github.com/webmixedreality/exokit/issues/new) so we can have a look!
 
-# Can I use it?
+## Can I use it?
 
 Sure! It's [open source on GitHub](https://github.com/webmixedreality/exokit). You can also embed it since [it's a node module](https://github.com/webmixedreality/exokit/blob/master/package.json).

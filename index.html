@@ -295,13 +295,13 @@
 
     <div class="row mb-5">
       <div class="col-4">
-          <img onclick="changeCompany('active')" class="madeWithExokitSubImg img-fluid" src="media/activeTheory.png"></img>
+          <img id="company1" class="madeWithExokitSubImg img-fluid" src="media/activeTheory.png"></img>
         </div>
       <div class="col-4">
-          <img onclick="changeCompany('expanse')" class="madeWithExokitSubImg img-fluid" src="media/expanse.png"></img>
+          <img id="company2" class="madeWithExokitSubImg img-fluid" src="media/expanse.png"></img>
         </div>
       <div class="col-4">
-          <img onclick="changeCompany('emukit')" class="madeWithExokitSubImg img-fluid" src="media/emukit.png"></img>
+          <img id="company3" class="madeWithExokitSubImg img-fluid" src="media/emukit.png"></img>
       </div>
     </div>
 
@@ -555,6 +555,21 @@ quoteBack.addEventListener('click', () => {
 const quoteNext = document.getElementById('quoteNext');
 quoteNext.addEventListener('click', () => {
   flipQuotes();
+});
+
+const company1 = document.getElementById('company1');
+company1.addEventListener('click', () => {
+  changeCompany('active')
+});
+
+const company2 = document.getElementById('company2');
+company2.addEventListener('click', () => {
+  changeCompany('expanse')
+});
+
+const company3 = document.getElementById('company3');
+company3.addEventListener('click', () => {
+  changeCompany('emukit')
 });
 
 const changeCompany = (company) => {

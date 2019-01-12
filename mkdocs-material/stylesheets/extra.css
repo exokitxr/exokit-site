@@ -43,13 +43,17 @@
 h1, h2, h3, h4{
   font-family: Roboto;
 }
-p, h5{
+p, h5, li{
   font-family: Bozon;
 }
 
 .md-nav__link--active{
   color: #9c27b0;
   text-decoration: underline;
+}
+
+.md-typeset code{
+  color: #e137ff;
 }
 
 .md-nav__link:hover{
@@ -119,6 +123,14 @@ img{
 
 .md-sidebar--secondary{
   background-color: white;
+}
+
+.md-typeset h1{
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.md-typeset blockquote{
+  color: rgba(0, 0, 0, 0.87);
 }
 
 @media only screen and (max-width: 959px) {

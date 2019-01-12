@@ -20,31 +20,12 @@
 .md-footer-copyright {
   padding: 1.8rem 0;
 }
-@font-face {
-  font-family: 'Bison';
-  src: url('../../fonts/Bison-Bold.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Bozon';
-  src: url('../../fonts/ROHH - Bozon Regular.otf') format('opentype');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Bozon';
-  src: url('../../fonts/ROHH - Bozon Bold.otf') format('opentype');
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'Bozon';
-  src: url('../../fonts/ROHH - Bozon Light.otf') format('opentype');
-  font-weight: 300;
-}
 
 h1, h2, h3, h4{
   font-family: Roboto;
 }
 p, h5, li{
-  font-family: Bozon;
+  font-family: Roboto;
 }
 
 .md-nav__link--active{
@@ -88,6 +69,7 @@ p, h5, li{
   font-size: 12px;
   color: #9c27b0;
   cursor: pointer;
+  box-shadow: 0px 1px 5px 0px grey;
 }
 
 .downloadBtn:hover{
@@ -127,6 +109,7 @@ img{
 
 .md-typeset h1{
   color: rgba(0, 0, 0, 0.87);
+  font-weight: 400;
 }
 
 .md-typeset blockquote{

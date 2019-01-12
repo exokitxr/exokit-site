@@ -108,6 +108,9 @@
             
               <span class="md-header-nav__topic">
                 Exokit
+                <span style="margin-left: 50px">
+                  <a class="downloadBtn" href="https://github.com/webmixedreality/exokit">Download</a>
+                </span>
               </span>
               <span class="md-header-nav__topic">
                 sdk
@@ -936,13 +939,12 @@
 <p>Exokit includes additional support for interfacing with hardware like Magic Leap and Leap Motion.</p>
 <p>These are generally exposed on the <code>browser</code> object.</p>
 <p>For example, for Electron texture streaming:</p>
-<div class="codehilite"><pre><span></span>const electron = await browser.electron.createElectron();
+<pre class="codehilite"><code>const electron = await browser.electron.createElectron();
 const browserWindow = await electron.createBrowserWindow();
-browserWindow.loadURL(&#39;https://google.com/&#39;);
-browserWindow.on(&#39;paint&#39;, message =&gt; {
+browserWindow.loadURL('https://google.com/');
+browserWindow.on('paint', message =&gt; {
   // ...
-});
-</pre></div>
+});</code></pre>
 
 <p><strong>Read more at</strong>: <a href="../nativeAPIs/">Native APIs</a></p>
                 
@@ -1036,6 +1038,10 @@ browserWindow.on(&#39;paint&#39;, message =&gt; {
       <script src="../assets/javascripts/application.905597d0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="/mkdocs-material/material/assets/javascripts/BenchGraph.js"></script>
+      
+        <script src="/mkdocs-material/material/assets/javascripts/Chart.bundle.min.js"></script>
       
     
     

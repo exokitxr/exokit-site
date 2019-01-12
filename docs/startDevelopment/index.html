@@ -108,6 +108,9 @@
             
               <span class="md-header-nav__topic">
                 Exokit
+                <span style="margin-left: 50px">
+                  <a class="downloadBtn" href="https://github.com/webmixedreality/exokit">Download</a>
+                </span>
               </span>
               <span class="md-header-nav__topic">
                 startDevelopment
@@ -818,23 +821,20 @@
                 
                 
                 <p>The main project repository is at <a href="https://github.com/webmixedreality/exokit"><code>webmixedreality/exokit</code></a>. You can clone it the regular way:</p>
-<div class="codehilite"><pre><span></span>git clone https://github.com/webmixedreality/exokit.git
-</pre></div>
+<pre class="codehilite"><code>git clone https://github.com/webmixedreality/exokit.git</code></pre>
 
 <blockquote>
 <p>Note: Exokit Engine and Exokit Browser both run off of the same codebase.</p>
 </blockquote>
 <h2 id="install-and-build">Install and build<a class="headerlink" href="#install-and-build" title="Permanent link">&para;</a></h2>
 <p>All of the Exokit depedencies and native code can be build with <code>npm install</code>:</p>
-<div class="codehilite"><pre><span></span>npm install
-</pre></div>
+<pre class="codehilite"><code>npm install</code></pre>
 
 <h2 id="linux-dependencies">Linux dependencies<a class="headerlink" href="#linux-dependencies" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Linux additionally requires that you install some local dependencies. For <code>debian</code>/<code>ubuntu</code> they are:
-<div class="codehilite"><pre><span></span>apt-get install -y \
-  build-essential wget python libglfw3-dev libglew-dev libfreetype6-dev libfontconfig1-dev uuid-dev libxcursor-dev libxinerama-dev libxi-dev libasound2-dev libexpat1-dev
-</pre></div></p>
+<pre class="codehilite"><code>apt-get install -y \
+  build-essential wget python libglfw3-dev libglew-dev libfreetype6-dev libfontconfig1-dev uuid-dev libxcursor-dev libxinerama-dev libxi-dev libasound2-dev libexpat1-dev</code></pre></p>
 </blockquote>
 <h4 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h4>
 <ol>
@@ -846,12 +846,10 @@
 <p>Exokit Engine is just a node module, so you can run it with node.</p>
 </blockquote>
 <p>From the <code>exokit</code> git clone directory, do:</p>
-<div class="codehilite"><pre><span></span>node .
-</pre></div>
+<pre class="codehilite"><code>node .</code></pre>
 
 <p>This will start the Exokit Engine CLI.</p>
-<div class="codehilite"><pre><span></span>[x] // enter code here
-</pre></div>
+<pre class="codehilite"><code>[x] // enter code here</code></pre>
 
 <p>Here, you can enter:</p>
 <ul>
@@ -865,15 +863,13 @@
 </blockquote>
 <h2 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h2>
 <p>Exokit has a logging mode enabled by the <code>-l</code> flag:</p>
-<div class="codehilite"><pre><span></span>exokit -l https://emukit.webmr.io/
-</pre></div>
+<pre class="codehilite"><code>exokit -l https://emukit.webmr.io/</code></pre>
 
 <p>The logs go in <code>$HOME/.exokit/log.txt</code>. For window that generally means <code>C:\username\.exokit\log.txt</code>.</p>
 <h2 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h2>
 <p>You can use the regular Node debugging tools to debug Exokit Engine.</p>
 <p>To start Exokit in inspector mode from the <code>exokit</code> git clone directory:</p>
-<div class="codehilite"><pre><span></span>node --inspect .
-</pre></div>
+<pre class="codehilite"><code>node --inspect .</code></pre>
 
 <p>After the above you should be able to use <code>chrome://inspect</code> in the Chrome browser to connect to the <code>node</code> running Exokit Engine. You can use this to:</p>
 <ol>
@@ -886,8 +882,7 @@
 
 <h4 id="wait-for-attach">Wait for attach<a class="headerlink" href="#wait-for-attach" title="Permanent link">&para;</a></h4>
 <p>You may also be interested in starting Exokit Engine so that it doesn't run until you get a chance to attach the inspector. For that you can use:</p>
-<div class="codehilite"><pre><span></span>node --inspect-brk .
-</pre></div>
+<pre class="codehilite"><code>node --inspect-brk .</code></pre>
 
 <h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
 <p>See something? Please do <a href="https://github.com/webmixedreality/exokit/issues">file an issue</a>!</p>
@@ -987,6 +982,10 @@
       <script src="../assets/javascripts/application.905597d0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="/mkdocs-material/material/assets/javascripts/BenchGraph.js"></script>
+      
+        <script src="/mkdocs-material/material/assets/javascripts/Chart.bundle.min.js"></script>
       
     
     

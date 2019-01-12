@@ -108,6 +108,9 @@
             
               <span class="md-header-nav__topic">
                 Exokit
+                <span style="margin-left: 50px">
+                  <a class="downloadBtn" href="https://github.com/webmixedreality/exokit">Download</a>
+                </span>
               </span>
               <span class="md-header-nav__topic">
                 MagicLeapAPI
@@ -1740,11 +1743,10 @@
 </ul>
 <h4 id="mlhandupdatefingers-float32array2543"><code>MLHandUpdate.fingers : Float32Array[2][5][4][3]</code><a class="headerlink" href="#mlhandupdatefingers-float32array2543" title="Permanent link">&para;</a></h4>
 <p>The detected hand finger bone positions. The order is right-handed, left-to-right, bottom-to-top:</p>
-<div class="codehilite"><pre><span></span>handUpdate.bones[0][0][0] // left (0) thumb (0) base (0) as a Float32Array(3) vector
+<pre class="codehilite"><code>handUpdate.bones[0][0][0] // left (0) thumb (0) base (0) as a Float32Array(3) vector
 handUpdate.bones[1][0][2] // right (1) thumb (0) tip (2) as a Float32Array(3) vector
 handUpdate.bones[1][1][3] // right (1) pointer (1) tip (3) as a Float32Array(3) vector
-handUpdate.bones[0][4][3] // left (0) pinkie (4) tip (3) as a Float32Array(3) vector
-</pre></div>
+handUpdate.bones[0][4][3] // left (0) pinkie (4) tip (3) as a Float32Array(3) vector</code></pre>
 
 <h4 id="mlhandupdategesture-string"><code>MLHandUpdate.gesture : String</code><a class="headerlink" href="#mlhandupdategesture-string" title="Permanent link">&para;</a></h4>
 <p>The current gesture pose of the hand. One of:</p>
@@ -1892,6 +1894,10 @@ handUpdate.bones[0][4][3] // left (0) pinkie (4) tip (3) as a Float32Array(3) ve
       <script src="../assets/javascripts/application.905597d0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="/mkdocs-material/material/assets/javascripts/BenchGraph.js"></script>
+      
+        <script src="/mkdocs-material/material/assets/javascripts/Chart.bundle.min.js"></script>
       
     
     

@@ -95,10 +95,6 @@ img{
   margin: 0 auto;
 }
 
-.md-sidebar--primary{
-  background-color: rgba(128, 128, 128, 0.06);
-}
-
 .md-main__inner{
   padding-top: 0;
 }
@@ -109,7 +105,18 @@ img{
 .md-typeset h1{
   margin-bottom: 0;
 }
+.md-main__inner:before{
+  background-color: grey
+}
 
-.md-main__inner{
-  margin-left: 0;
+.md-container{
+  background-color: rgba(128, 128, 128, 0.04);
+}
+
+.md-content{
+  background-color: white;
+}
+
+.md-sidebar--secondary{
+  background-color: white;
 }

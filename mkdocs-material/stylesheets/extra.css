@@ -120,3 +120,12 @@ img{
 .md-sidebar--secondary{
   background-color: white;
 }
+
+@media only screen and (max-width: 959px) {
+  .md-header-nav__button{
+    padding-top: 1.1rem;
+  }
+}
+
+
+

@@ -139,5 +139,9 @@ google_analytics:
   - !!python/object/apply:os.getenv ["GOOGLE_ANALYTICS_KEY"]
   - auto
 
-extra_css:
+extra_css: 
   - '/mkdocs-material/stylesheets/extra.css'
+
+extra_javascript:
+  - '/mkdocs-material/material/assets/javascripts/BenchGraph.js'
+  - '/mkdocs-material/material/assets/javascripts/Chart.bundle.min.js'

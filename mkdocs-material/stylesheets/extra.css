@@ -20,3 +20,107 @@
 .md-footer-copyright {
   padding: 1.8rem 0;
 }
+
+h1, h2, h3, h4{
+  font-family: Roboto;
+}
+p, h5, li{
+  font-family: Roboto;
+}
+
+.md-nav__link--active{
+  color: #9c27b0;
+  text-decoration: underline;
+}
+
+.md-typeset code{
+  color: #e137ff;
+}
+
+.md-nav__link:hover{
+  color: #e137ff;
+}
+
+
+
+.md-typeset a{
+  color: #9c27b0;
+}
+
+.md-typeset a:hover{
+  color: #e137ff;
+}
+
+.md-tabs__link{
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 12px;
+}
+
+.md-tabs__link--active{
+  border-bottom: solid 2px #9c27b0;
+  padding-bottom: 12px;
+}
+
+.downloadBtn{
+  border: solid 1px #9c27b0;
+  padding: 7px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #9c27b0;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px 0px grey;
+}
+
+.downloadBtn:hover{
+  background-color: #9c27b0;
+  color: white;
+}
+
+img{
+  margin: 0 auto;
+}
+
+.md-main__inner{
+  padding-top: 0;
+}
+.md-nav__title{
+  font-size: 16px;
+}
+
+.md-typeset h1{
+  margin-bottom: 0;
+}
+.md-main__inner:before{
+  background-color: grey
+}
+
+.md-container{
+  background-color: rgba(128, 128, 128, 0.04);
+}
+
+.md-content{
+  background-color: white;
+}
+
+.md-sidebar--secondary{
+  background-color: white;
+}
+
+.md-typeset h1{
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 400;
+}
+
+.md-typeset blockquote{
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@media only screen and (max-width: 959px) {
+  .md-header-nav__button{
+    padding-top: 1.1rem;
+  }
+}
+
+
+

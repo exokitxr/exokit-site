@@ -59,7 +59,6 @@ p, h5, li{
 
 .md-tabs__link--active{
   border-bottom: solid 2px #9c27b0;
-  padding-bottom: 12px;
 }
 
 .downloadBtn{
@@ -69,7 +68,6 @@ p, h5, li{
   font-size: 12px;
   color: #9c27b0;
   cursor: pointer;
-  box-shadow: 0px 1px 5px 0px grey;
 }
 
 .downloadBtn:hover{

@@ -62,13 +62,11 @@ theme:
 extra:
   social:
     - type: globe
-      link: http://struct.cc
+      link: http://webmr.io
     - type: github-alt
-      link: https://github.com/squidfunk
+      link: https://github.com/webmixedreality/exokit 
     - type: twitter
-      link: https://twitter.com/squidfunk
-    - type: linkedin
-      link: https://linkedin.com/in/squidfunk
+      link: https://twitter.com/webmixedreality
 
 # Extensions
 markdown_extensions:

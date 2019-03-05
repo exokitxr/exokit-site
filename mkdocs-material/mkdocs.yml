@@ -124,7 +124,8 @@ nav:
       - Develop with Exokit Engine: devExokitEngine.md
     - Reality Tabs:
       - Introduction: realityTabsIntro.md
-    - Reality Tab Examples:
+      - 3rd Party Support: realityTabs3rdPartySupport.md
+    - Reality Tabs Examples:
       - Kitchen Sink: realityTabsKitchenSink.md
       - Tutorial: realityTabsTutorial.md
       - Exobot: realityTabsExobot.md
@@ -142,7 +143,7 @@ nav:
       - Radar: realityTabsRadar.md
       - Image Tracking: realityTabsImageTracking.md
       - Microphone: realityTabsMicrophone.md
-   - Web APIs:
+    - Web APIs:
       - Web APIs: webAPIs.md
       - Experimental Web APIs: experimentalWebAPIs.md
     - Native APIs:

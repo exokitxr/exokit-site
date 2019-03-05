@@ -84,7 +84,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#prerequisites" tabindex="1" class="md-skip">
+      <a href="#overview" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -681,8 +681,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-reality-tabs" title="What are Reality Tabs" class="md-nav__link">
+    What are Reality Tabs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reality-tab-use-cases" title="Reality Tab Use Cases" class="md-nav__link">
+    Reality Tab Use Cases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-explanation" title="Technical Explanation" class="md-nav__link">
+    Technical Explanation
   </a>
   
 </li>
@@ -695,6 +716,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../realityTabs3rdPartySupport/" title="3rd Party Support" class="md-nav__link">
+      3rd Party Support
+    </a>
   </li>
 
         
@@ -713,10 +746,46 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
     
     <label class="md-nav__link" for="nav-2-5">
-      Web APIs
+      Reality Tabs Examples
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
       <label class="md-nav__title" for="nav-2-5">
+        Reality Tabs Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../realityTabsKitchenSink/" title="Kitchen Sink" class="md-nav__link">
+      Kitchen Sink
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Web APIs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
         Web APIs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -758,13 +827,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
     
-    <label class="md-nav__link" for="nav-2-6">
+    <label class="md-nav__link" for="nav-2-7">
       Native APIs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-6">
+      <label class="md-nav__title" for="nav-2-7">
         Native APIs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -883,8 +952,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-reality-tabs" title="What are Reality Tabs" class="md-nav__link">
+    What are Reality Tabs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reality-tab-use-cases" title="Reality Tab Use Cases" class="md-nav__link">
+    Reality Tab Use Cases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-explanation" title="Technical Explanation" class="md-nav__link">
+    Technical Explanation
   </a>
   
 </li>
@@ -908,16 +998,32 @@
                 
                   <h1>Introduction</h1>
                 
-                <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p><code>./exokit.cmd yourURL</code></p>
-<div class="codehilite"><pre><span></span>let avocado = new Entity()
-avocado.add(new GLTFShape(&quot;models/avocado.gltf&quot;))
-avocado.add(new Transform({ 
-    position: new Vector3(3, 1, 3), 
-    scale: new Vector3(10, 10, 10)
-    }))
-engine.addEntity(avocado)
-</pre></div>
+                <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The earliest records of “reality tabs” are from an issue from March and a tweet from April 2018: </p>
+<p><a href="https://twitter.com/webmixedreality/status/991035161797058560"><img style="display: block !important" src="https://i.imgur.com/2549u5A.png" width=auto, height=300 alt="Reality Tabs tweet April 2018"/></a>
+<a href="https://github.com/webmixedreality/exokit/issues/8"><img style="display: block !important" src="https://i.imgur.com/qaeyEKu.png" width=auto, height=300 alt="Reality Tabs mentioned in March 2018 github issue"/></a></p>
+<p>In many ways, Reality Tabs is the natural progression from current web browser tabs:</p>
+<p><img style="display: block !important" src="https://i.imgur.com/4FS6fC8.jpg" width=auto, height=300 alt="Too many browser tabs"/></p>
+<h2 id="what-are-reality-tabs">What are Reality Tabs<a class="headerlink" href="#what-are-reality-tabs" title="Permanent link">&para;</a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cd_DEwCDF6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Reality Tabs <strong>ARE</strong>:<br />
+* seperate user windows <br />
+* web pages running in parallel <br />
+* occupying the same 3d space <br />
+* highly performant and optimized to run in parallel   </p>
+<p>Reality Tabs <strong>ARE NOT</strong>:<br />
+* intrinsically interactive   </p>
+<h2 id="reality-tab-use-cases">Reality Tab Use Cases<a class="headerlink" href="#reality-tab-use-cases" title="Permanent link">&para;</a></h2>
+<p>Reality Tabs open a world of possibilites for creative use cases.</p>
+<p>You can use Reality Tabs for:<br />
+* multiple 3d XR sites running in parallel <br />
+* seperate XR sites communicating with eachother<br />
+* multiple XR sites running in the same 3d space <br />
+* XR bots that are constantly running<br />
+* much more, be creative!  </p>
+<h2 id="technical-explanation">Technical Explanation<a class="headerlink" href="#technical-explanation" title="Permanent link">&para;</a></h2>
+<p>Reality Tabs are seperate user windows. Each Reality Tab renders at the same time in their own context before being composited into the display/headset/what have you. <a href="https://github.com/webmixedreality/exokit/pull/760">Previously this was done synchornously</a>, one window at a time, switching GL contexts to the correct one.</p>
                 
                   
                 
@@ -953,13 +1059,13 @@ engine.addEntity(avocado)
           </a>
         
         
-          <a href="../webAPIs/" title="Web APIs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../realityTabs3rdPartySupport/" title="3rd Party Support" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Web APIs
+                3rd Party Support
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

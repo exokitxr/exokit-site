@@ -124,6 +124,7 @@ nav:
       - Develop with Exokit Engine: devExokitEngine.md
     - Reality Tabs:
       - Introduction: realityTabsIntro.md
+      - Technical Explanation: realityTabsTechnicalExplanation.md
       - 3rd Party Support: realityTabs3rdPartySupport.md
     - Reality Tabs Examples:
       - Kitchen Sink: realityTabsKitchenSink.md

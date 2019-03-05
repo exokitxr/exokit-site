@@ -122,6 +122,11 @@ nav:
       - Exokit Command Line Flags: exokitCommandLineFlags.md
     - Guides:
       - Develop with Exokit Engine: devExokitEngine.md
+    - Reality Tabs:
+      - Introduction: realityTabsIntro.md
+      - 3rd Party Support: realityTabs3rdPartySupport.md
+    - Reality Tabs Examples:
+      - Kitchen Sink: realityTabsKitchenSink.md
     - Web APIs:
       - Web APIs: webAPIs.md
       - Experimental Web APIs: experimentalWebAPIs.md

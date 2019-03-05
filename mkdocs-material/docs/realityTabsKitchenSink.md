@@ -11,7 +11,7 @@ The "Kitchen Sink" reality tabs example is a showcase of a few of the Magic Leap
 
 ## Magic Leap API 
 
-The following are how the example utilizes Exokit's [Magic Leap API](MagicLeapAPI).
+The following are how the example utilizes Exokit's [Magic Leap API](../MagicLeapAPI).
 
 - Enabling
 ```

@@ -31,17 +31,17 @@ Reality Tabs **ARE NOT**:
 
 ## Reality Tab Use Cases
 
-Use cases for Reality Tabs are plenty.
+Reality Tabs open a world of possibilites for creative use cases.
 
 You can use Reality Tabs for:  
-* multiple 3d XR sites running at the same time   
-* multiple XR sites running in the same 3d space  
+* multiple 3d XR sites running in parallel   
+* seperate XR sites communicating with eachother  
+* multiple XR sites running in the same 3d space   
+* XR bots that are constantly running  
+* much more, be creative!  
 
 
 ## Technical Explanation 
 
 Reality Tabs are seperate user windows. Each Reality Tab renders at the same time in their own context before being composited into the display/headset/what have you. [Previously this was done synchornously](https://github.com/webmixedreality/exokit/pull/760), one window at a time, switching GL contexts to the correct one.
-
-  
-
 

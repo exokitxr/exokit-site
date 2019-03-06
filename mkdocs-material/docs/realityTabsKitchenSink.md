@@ -4,8 +4,7 @@ title:
 sidebar_label: 
 ---
 
-<video src="https://i.imgur.com/RHBqg1R.mp4" width='100%' controls></video>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RUDqv6uO7Ac" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The "Kitchen Sink" reality tabs example is a showcase of a few of the Magic Leap APIs: meshing, eye-tracking, plane-tracking, hand-tracking, just about everything but the kitchen sink!
 

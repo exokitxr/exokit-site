@@ -1,128 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://webmr.io/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/exokitEngine/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/exokitEngine/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/benchmarks/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/benchmarks/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/architecture/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/architecture/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/techIntegrations/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/techIntegrations/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/installation/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/installation/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/useExokitEngine/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/useExokitEngine/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/exokitApps/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/exokitApps/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/contribute/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/contribute/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/support/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/support/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/sdk/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/sdk/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/startDevelopment/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/startDevelopment/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/exokitCommandLine/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/exokitCommandLine/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/exokitCommandLineFlags/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/exokitCommandLineFlags/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/devExokitEngine/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/devExokitEngine/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/realityTabsIntro/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/realityTabsIntro/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/realityTabs3rdPartySupport/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/realityTabs3rdPartySupport/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/realityTabsKitchenSink/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/realityTabsKitchenSink/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/webAPIs/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/webAPIs/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/experimentalWebAPIs/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/experimentalWebAPIs/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/nativeAPIs/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/nativeAPIs/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/MagicLeapAPI/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/MagicLeapAPI/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/nativeFutureIntegrations/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/nativeFutureIntegrations/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/terms/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/terms/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://webmr.io/privacy/</loc>
-     <lastmod>2019-03-18</lastmod>
+     <loc>https://exokit.org/privacy/</loc>
+     <lastmod>2019-03-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -22,7 +22,7 @@
 site_name: Exokit
 # site_description: A Material Design theme for MkDocs
 # site_author: Martin Donath
-site_url: https://webmr.io/
+site_url: https://exokit.org/
 
 # Repository
 # repo_name: squidfunk/mkdocs-material
@@ -62,9 +62,9 @@ theme:
 extra:
   social:
     - type: globe
-      link: http://webmr.io
+      link: http://exokit.org
     - type: github-alt
-      link: https://github.com/webmixedreality/exokit 
+      link: https://github.com/webmixedreality/exokit
     - type: twitter
       link: https://twitter.com/webmixedreality
 
@@ -143,7 +143,7 @@ google_analytics:
   - !!python/object/apply:os.getenv ["GOOGLE_ANALYTICS_KEY"]
   - auto
 
-extra_css: 
+extra_css:
   - '/mkdocs-material/stylesheets/extra.css'
 
 extra_javascript:

@@ -5,7 +5,7 @@ sidebar_label: Exokit Engine
 ---
 
 ## Exokit is a native VR and AR Engine for JavaScript.
- 
+
 This project enables developers to build XR experiences using the same code that runs on the web. Exokit engine is written on top of Node and emulates a web browser, providing native hooks for WebGL, WebXR, WebAudio, and other APIs used in immersive experiences.
 
 ### Exokit targets the following platforms:
@@ -31,9 +31,9 @@ This project enables developers to build XR experiences using the same code that
 Exokit Engine is primarily intended for AR/VR/Mixed Reality applications. It is _not_ based on another browser, specifically it is not a fork of Blink, Gecko, Webkit, or Trident.
 
 <img style="display: block !important" src="https://cdn.rawgit.com/webmixedreality/webmr-docs/media-upload/website/static/media/exokitmediacopy/exokitisnt.gif" width=300, height=auto alt="Cross out other browsers to make it clear this is not a fork"/>
- 
+
 ## Exokit is an Exobrowser.
- 
+
 **Exobrowser** _n._
 -	A web browser turned inside-out with its engine written in Javascript, so the browser is a site.
 - This site in turn is the browser; it has full access to bindings.
@@ -43,7 +43,7 @@ Exokit Engine is primarily intended for AR/VR/Mixed Reality applications. It is 
 ## 2D Support
 
 Exokit throws away support for legacy web technology that is not used in mixed reality. This is due to the fact that Exokit is a post-screen Exobrowser engine, it also is a big reason that it runs VR/AR so well.
-  
+
 ## Why another browser?
 
 > Chrome and Firefox are great! Solid at 3D and mixed reality too!
@@ -76,8 +76,8 @@ We use an npm module for HTML parsing, then resurrected an old OpenGL binding fr
 
 ## What platforms are supported?
 
-Exokit Browser is just Javascript with some C++ bindings to libraries, such as OpenGL, FFmpeg, Skia, OpenVR, and others (see [here](http://docs.webmr.io/docs/techIntegrations.html)). It builds on Windows, OSX, Linux, and binds to Vive, Oculus, Leap Motion, Magic Leap, as well as keyboard/mouse.
-  
+Exokit Browser is just Javascript with some C++ bindings to libraries, such as OpenGL, FFmpeg, Skia, OpenVR, and others (see [here](http://exokit.org/docs/techIntegrations.html)). It builds on Windows, OSX, Linux, and binds to Vive, Oculus, Leap Motion, Magic Leap, as well as keyboard/mouse.
+
 ## How far along is the project?
 
 Not 1.0. We need to improve site support and testing more until we call it.

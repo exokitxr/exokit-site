@@ -58,6 +58,6 @@ The site may also listen for regular keyboard/mouse events to create an XR sessi
 
 There's a full [WebXR example](https://github.com/webmixedreality/exokit/blob/master/examples/hello_xr.html) for you to play with on GitHub.
 
-You can see more Exokit Apps [here!](http://docs.webmr.io/docs/exokitApps.html)
+You can see more Exokit Apps [here!](http://exokit.org/docs/exokitApps.html)
 
  <img src="https://cdn.rawgit.com/webmixedreality/webmr-docs/media-upload/website/static/media/exokitmediacopy/WebXRExample.jpg" alt="Gif of example running"/>

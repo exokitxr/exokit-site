@@ -8,7 +8,7 @@ sidebar_label: Support
 At our [GitHub repo](https://github.com/webmixedreality/exokit) browse and sumbit [issues](https://github.com/webmixedreality/exokit/issues) or [pull requests](https://github.com/webmixedreality/exokit/pulls) for bugs you find or any new features you may want implemented. Be sure to check out [how to contribute.](${docUrl('contribute.html')})
 
 ## Stay Updated
-We post announcements and updates to our [blog](https://webmr.io/blog).
+We post announcements and updates to our [blog](https://exokit.org/blog).
 
 Follow Exokit on [Twitter](https://twitter.com/webmixedreality).
 

@@ -20,8 +20,8 @@ app.post('/sendEmail', bodyParser.json(), (req, res) =>{
     const mailOptions = {
       from: `"${req.body.fName} ${req.body.lName}, ${req.body.email}`,
       to: 'Exokit, hello@webmr.io',
-      subject: 'New inquiry from new.webmr.io',
-      text: req.body.message + "\n\n" + 
+      subject: 'New inquiry from exokit.org',
+      text: req.body.message + "\n\n" +
       "Company: " + req.body.company + "\n\n" +
       "Name: " + req.body.fName + " " + req.body.lName + "\n\n" +
       "Sender Email: " + req.body.email
@@ -38,7 +38,7 @@ app.post('/sendEmail', bodyParser.json(), (req, res) =>{
     console.log('email info does not meet needs')
   }
 
-  
+
 });
 
 http.createServer(app)

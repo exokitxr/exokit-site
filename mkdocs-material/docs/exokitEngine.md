@@ -76,7 +76,7 @@ We use an npm module for HTML parsing, then resurrected an old OpenGL binding fr
 
 ## What platforms are supported?
 
-Exokit Browser is just Javascript with some C++ bindings to libraries, such as OpenGL, FFmpeg, Skia, OpenVR, and others (see [here](http://exokit.org/docs/techIntegrations.html)). It builds on Windows, OSX, Linux, and binds to Vive, Oculus, Leap Motion, Magic Leap, as well as keyboard/mouse.
+Exokit Browser is just Javascript with some C++ bindings to libraries, such as OpenGL, FFmpeg, Skia, OpenVR, and others (see [here](https://exokit.org/docs/techIntegrations.html)). It builds on Windows, OSX, Linux, and binds to Vive, Oculus, Leap Motion, Magic Leap, as well as keyboard/mouse.
 
 ## How far along is the project?
 

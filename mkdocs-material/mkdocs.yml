@@ -62,7 +62,7 @@ theme:
 extra:
   social:
     - type: globe
-      link: http://exokit.org
+      link: https://exokit.org
     - type: github-alt
       link: https://github.com/webmixedreality/exokit
     - type: twitter

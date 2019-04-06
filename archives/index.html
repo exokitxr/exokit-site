@@ -1,0 +1,528 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en"
+      data-is-home="false"
+      data-is-mobile="false"
+      data-supports-vr="false"
+      data-supports-touch="false"
+      data-site-base-url="https://exokit.org"
+      data-site-root-path="/"
+      data-site-home-url="https://exokit.org/"
+      data-lib-home-url="https://exokit.org/"
+      data-title="{title} | Exokit"
+      data-is-spa="false"
+      data-ga-id=""
+  <head>
+    <title>Exokit</title>
+    
+
+<script>
+  var host = window.location.protocol + '//' + window.location.hostname;
+  if (window.location.protocol === 'http:' &&
+      window.location.hostname === 'https://exokit.org') {
+    window.location.href = 'https:' + window.location.href.substring(6);
+  }
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="description" content="Native VR/AR/XR engine for JavaScript">
+    <meta name="keywords" content="webvr,webvr framework,webvr demos,webvr sites,vr javascript,vr framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="canonical" href="https://exokit.org">
+    <link href="/style/fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600" rel="stylesheet">
+    <meta property="fb:app_id" content="">
+    <meta property="og:title" content="Exokit">
+    <meta property="og:site_name" content="Exokit">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exokit.org">
+    <meta property="og:description" content="Native VR/AR/XR engine for JavaScript">
+    <meta property="og:image" content="http://exokit.org/images/card.jpg?v2">
+    <meta property="og:image:secure_url" content="https://exokit.org/images/card.jpg?v2">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@exokitXR">
+    <meta name="twitter:creator" content="@exokitXR">
+    <meta name="twitter:title" content="Exokit">
+    <meta name="twitter:description" content="Native VR/AR/XR engine for JavaScript">
+    <meta name="twitter:image" content="http://exokit.org/images/card.jpg?v2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="black">
+    <link rel="icon" sizes="192x192" href="https://exokit.org/images/exokit-logo-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="https://exokit.org/images/exokit-logo-152.png">
+    <link rel="alternate" type="application/rss+xml" title="Feed" href="https://exokit.org/feed.xml">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('create', '', 'auto', 'managers');
+
+  ga('send', 'pageview');
+  ga('managers.send', 'pageview');
+
+  ga('send', 'event', 'pageload.querystring', window.location.search);
+  ga('managers.send', 'event', 'pageload.querystring', window.location.search);
+
+  ga('send', 'event', 'pageload.hash', window.location.hash);
+  ga('managers.send', 'event', 'pageload.hash', window.location.hash);
+
+  ga('send', 'event', 'supports.getVRDevices', 'getVRDevices' in navigator);
+  ga('managers.send', 'event', 'supports.getVRDevices', 'getVRDevices' in navigator);
+
+  ga('send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+  ga('managers.send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+
+  ga('send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+  ga('managers.send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+</script>
+
+
+    
+      <script src="/js/compat.js"></script>
+    
+
+    
+      <link rel="stylesheet" href="/css/secondary.css">
+    
+
+    
+      <!-- Search. -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"/>
+      <link rel="stylesheet" href="/css/search.css">
+    
+  </head>
+
+  <body data-page-layout="" data-page-type="">
+    <main id="main" class="main">
+
+
+
+
+<!-- Homepage examples bar. -->
+<aside class="sidebar">
+  <div class="sidebar__wrap">
+    <div class="sidebar__wrap__inner">
+
+      <!-- Wordmark. -->
+      <header id="header" class="header">
+        <a id="logo" class="logo borderless-links" href="/">
+          <span class="logo__wordmark">Exokit</span>
+        </a>
+      </header>
+
+      <!-- Get Started for Mobile. -->
+      <a href="/docs/" class="mobile-get-started nav-link get-started">
+        Get Started
+      </a>
+
+      <div class="list examples-list blog-list">
+        <h2 class="page-title"><a href="/blog">Blog</a></h2>
+        <ul id="examplesSubnav"
+            class="subnav examples-subnav borderless-links">
+          
+          <li class="example-item">
+            <a class="subnav-link" href="blog/introducing-exokit/" title="Introducing Exokit: A Javascript Web Engine for the Post Screen Era">Introducing Exokit: A Javascript Web Engine for the Post Screen Era</a>
+          </li>
+        </ul>
+      </div>
+
+        <!-- Documentation list. -->
+        <div class="list examples-list">
+          <ul id="examplesSubnav"
+
+
+          <div class="list">
+
+            
+              
+
+
+              <!-- Section title. -->
+              <li class="example-item">
+              <h2 class="page-title">
+                <p class="section-title-link">Introduction</p>
+              </h2>
+              </li>
+
+              <!-- Section links. -->
+              <ol class="subnav section-subnav">
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/introduction/"
+                       class="subnav-link">
+                      Introduction
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/introduction/installation.html"
+                       class="subnav-link">
+                      Exokit Installation
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/introduction/useExokitEngine.html"
+                       class="subnav-link">
+                      Using the Exokit Engine
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/introduction/vr-headsets-and-webvr-browsers.html"
+                       class="subnav-link">
+                      VR Headsets & WebVR Browsers
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/introduction/faq.html"
+                       class="subnav-link">
+                      FAQ
+                    </a>
+                  </li>
+                
+              </ol>
+            
+              
+
+
+              <!-- Section title. -->
+              <li class="example-item">
+              <h2 class="page-title">
+                <p class="section-title-link">Overview</p>
+              </h2>
+              </li>
+
+              <!-- Section links. -->
+              <ol class="subnav section-subnav">
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/overview/exokitEngine.html"
+                       class="subnav-link">
+                      Exokit Engine
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/overview/benchmarks.html"
+                       class="subnav-link">
+                      Benchmarks
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/overview/architecture.html"
+                       class="subnav-link">
+                      Architecture
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/overview/techIntegrations.html"
+                       class="subnav-link">
+                      Tech Integrations
+                    </a>
+                  </li>
+                
+              </ol>
+            
+              
+
+
+              <!-- Section title. -->
+              <li class="example-item">
+              <h2 class="page-title">
+                <p class="section-title-link">Guides</p>
+              </h2>
+              </li>
+
+              <!-- Section links. -->
+              <ol class="subnav section-subnav">
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/guides/my-first-exokit-app.html"
+                       class="subnav-link">
+                      My First Exokit App
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/guides/building-a-basic-scene.html"
+                       class="subnav-link">
+                      Building a Basic A-Frame Scene
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/guides/hosting-and-publishing.html"
+                       class="subnav-link">
+                      Hosting & Publishing
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/guides/realityTabsKitchenSink.html"
+                       class="subnav-link">
+                      Kitchen Sink Example
+                    </a>
+                  </li>
+                
+              </ol>
+            
+              
+
+
+              <!-- Section title. -->
+              <li class="example-item">
+              <h2 class="page-title">
+                <p class="section-title-link">SDK</p>
+              </h2>
+              </li>
+
+              <!-- Section links. -->
+              <ol class="subnav section-subnav">
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/sdk/sdk.html"
+                       class="subnav-link">
+                      Overview
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/sdk/startDevelopment.html"
+                       class="subnav-link">
+                      Start Development
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/sdk/exokitCommandLine.html"
+                       class="subnav-link">
+                      Command Line
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/sdk/exokitCommandLineFlags.html"
+                       class="subnav-link">
+                      Command Line Flags
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/sdk/realityTabs.html"
+                       class="subnav-link">
+                      Reality Tabs
+                    </a>
+                  </li>
+                
+              </ol>
+            
+              
+
+
+              <!-- Section title. -->
+              <li class="example-item">
+              <h2 class="page-title">
+                <p class="section-title-link">API</p>
+              </h2>
+              </li>
+
+              <!-- Section links. -->
+              <ol class="subnav section-subnav">
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/apis/webAPIs.html"
+                       class="subnav-link">
+                      Web APIs
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/apis/experimentalWebAPIs.html"
+                       class="subnav-link">
+                      Experimental Web APIs
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/apis/nativeAPIs.html"
+                       class="subnav-link">
+                      Native APIs
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/apis/nativeFutureIntegrations.html"
+                       class="subnav-link">
+                      Future Native Integrations
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/apis/MagicLeapAPI.html"
+                       class="subnav-link">
+                      Magic Leap API
+                    </a>
+                  </li>
+                
+              </ol>
+            
+              
+
+
+              <!-- Section title. -->
+              <li class="example-item">
+              <h2 class="page-title">
+                <p class="section-title-link">Legal</p>
+              </h2>
+              </li>
+
+              <!-- Section links. -->
+              <ol class="subnav section-subnav">
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/legal/privacy.html"
+                       class="subnav-link">
+                      Privacy Policy
+                    </a>
+                  </li>
+                
+                  <li class="subnav-item ">
+                    <a href="/docs/legal/terms.html"
+                       class="subnav-link">
+                      Terms & Conditions
+                    </a>
+                  </li>
+                
+              </ol>
+            
+          </div>
+
+        </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</aside>
+
+
+<div class="content content--index home-content">
+  <div class="home-center">
+    <iframe
+      id="exampleIframe" class="example__iframe"
+      width="100%" height="100%"
+      src="https://exokit.org/"
+      allowfullscreen="yes" allowvr="yes" scrolling="no"></iframe>
+  </div>
+
+  <div id="homeContent" class="copy__wrap">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="/docs/introduction">Docs</a>
+      </li>
+      <li class="menu-item">
+        <a href="/faq/">FAQ</a>
+      </li>
+      <!-- <li class="menu-item">
+        <a href="/blog/">Blog</a>
+      </li> -->
+      <li class="menu-item">
+        <a href="/community/">Community</a>
+      </li>
+      <li class="menu-item">
+        <a href="/showcase/">Showcase</a>
+      </li>
+      <li class="menu-item">
+        <a href="https://github.com/exokitxr/exokit">GitHub</a>
+      </li>
+    </ul>
+
+    
+
+    <a href="/docs/introduction/"
+       class="get-started nav-link">
+      Get Started
+    </a>
+    <a href="https://get.exokit.org/"
+       class="get-started nav-link">
+      Download
+    </a>
+
+    <div id="usersContainer">
+      <p>Used by</p>
+      <ul id="users">
+        
+          <li class="user">
+            <a href="https://theexpanse.app/" title="Build, Experince & Share the future of social VR.">
+              <img src="/images/users/theexpanse.svg">
+            </a>
+          </li>
+        
+          <li class="user">
+            <a href="https://xr.activetheory.net/" title="Active Theory is a studio building creative digital experiences. We are pushing the future of web technology.">
+              <img src="/images/users/activetheory.svg">
+            </a>
+          </li>
+        
+          <li class="user">
+            <a href="https://github.com/exokitxr/emukit" title="The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.">
+              <img src="/images/users/emukit.svg">
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+</main>
+
+    
+      <script src="/js/common.js"></script>
+      
+      
+        <script src="/js/docs.js"></script>
+      
+    
+
+    
+      <!-- Algolia search. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script type="text/javascript">
+  var searchConfig = {
+    apiKey: '',
+    indexName: 'exokit',
+    algoliaOptions: {
+      hitsPerPage: 10
+    },
+    debug: false
+  };
+
+  docsearch(Object.assign(searchConfig, {inputSelector: '.docs-search-sidebar .search-field'}));
+  docsearch(Object.assign(searchConfig, {inputSelector: '.docs-search-sidebar-mobile .search-field'}));
+</script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,827 @@
+<html>
+<head>
+  <title>Exokit - Home</title>
+  <link rel="icon" href="media/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style/global.css">
+  <link rel="stylesheet" type="text/css" href="style/index.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body class="home" id="home">
+<nav class="navbar navbar-expand-lg navbar-light pr-5 pl-5">
+  <a class="navbar-brand" href="."><img src="media/logo.svg"><span id="brandName">Exokit</span></a>
+  <div class="collapse navbar-collapse" id="bigNavbar">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link pr-4 pl-4" href="docs/"><h5 class="font-weight-normal">Docs</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="faq/"><h5 class="font-weight-normal">FAQ</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="blog/"><h5 class="font-weight-normal">Blog</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="community/"><h5 class="font-weight-normal">Community</h2></a>
+      <a class="nav-item nav-link pr-4 pl-4" href="showcase/"><h5 class="font-weight-normal">Showcase</h2></a>
+    </div>
+  </div>
+
+  <div id="littleNavbar">
+    <h5 id="openLittleNav" class="mt-1" style="cursor: pointer">Home<i class="fas fa-angle-down ml-2"></i></h5>
+  </div>
+
+</nav>
+
+<div id="expandedLittleNavbar">
+    <div class="row text-center mt-5">
+      <div class="col-12 mt-5 mb-5">
+        <img src="media/logo.svg" style="height: 7vh; width: auto;"></a>
+        <h2 style="font-family: Bison;">Exokit</h2>
+      </div>
+      <div class="col-12 mb-4">
+        <a href="."><h5>Home</h5></a>
+      </div>
+      <div class="col-12 mb-4">
+        <a href="docs/"><h5 class="font-weight-light">Docs</h5></a>
+      </div>
+      <div class="col-12 mb-4">
+        <a href="faq/"><h5 class="font-weight-light">FAQ</h5></a>
+      </div>
+      <div class="col-12 mb-4">
+        <a href="blog/"><h5 class="font-weight-light">Blog</h5></a>
+      </div>
+      <div class="col-12 mb-4">
+        <a href="community/"><h5 class="font-weight-light">Community</h5></a>
+      </div>
+      <div class="col-12 mb-4">
+        <a href="showcase/"><h5 class="font-weight-light">Showcase</h5></a>
+      </div>
+      <div class="col-12 mb-4">
+        <i id="closeLittleNav" class="fas fa-times fa-2x" style="margin-bottom: 5vh; cursor: pointer;"></i>
+      </div>
+    </div>
+</div>
+
+<canvas id=hero-canvas></canvas>
+
+<div id="overlay">
+    <h1>A New XR Engine Approaches</h1>
+    <h2 class="font-weight-light">Run and ship WebXR apps on<br>Magic Leap, Desktop and Mobile.</h2>
+    <div id=heroPusher></div>
+    <div id="overlay-subs">
+      <div class="overlay-sub">
+        <h4>Download release</h4>
+        <a href="https://get.exokit.org/mac"><i class="fab heroDL fa-apple fa-2x p-2"></i></a>
+        <a href="https://get.exokit.org/linux"><i class="fab heroDL fa-linux fa-2x p-2"></i></a>
+        <a href="https://get.exokit.org/windows"><i class="fab heroDL fa-windows fa-2x p-2"></i></a>
+        <a href="https://get.exokit.org/magicleap"><img src="media/magicleap.svg" style="margin-left: 6px; vertical-align: top;"></a>
+      </div>
+      <div class="overlay-sub">
+        <h4>Open source</h4>
+        <a class=button href="https://github.com/exokitxr/exokit">Github</a>
+      </div>
+    </div>
+</div>
+
+<div class="whatIsExokit pt-4" id="featureMain-wrap">
+  <div class=gradient></div>
+
+  <div class="row rgbaRow">
+    <div class="col-12 text-center whatIsExokitPusher" style="color: white">
+      <h1>What is Exokit?</h1>
+      <h4 class="font-weight-light">Exokit is an XR engine that runs your code as native.</h4>
+      <div class="featurePusher"></div>
+      <div class="featureTextPusher"></div>
+    </div>
+  </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
+  </div>
+
+  <div class="row pt-5 rgbaRow" style="color: white">
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
+      <h2 class="featureText pb-4">Power up your WebXR app</h2>
+      <h5 class="featureText text-left font-weight-light">
+        Exokit runs regular HTML+JS WebXR sites. Add hardware bindings, native code, and more with the APIs Exokit gives you access to.</h5>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
+            <i class="featureMain slideItem fab fa-js-square fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.15, ep: 0.35, sv: -10, ev: 0, u: 'vw'}]"></i>
+            <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.15, ep:  0.35, sv: 10, ev: 0, u: 'vw'}]">Javascript</h4>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
+              <i class="featureMain slideItem fab fa-html5 fa-4x p-1" data-animation="[{k: 'translateX', sp: 0.15, ep: 0.35, sv: 50, ev: 0, u: 'vw'}]"></i>
+              <h4 class="featureMain slideItem" data-animation="[{k: 'translateX', sp: 0.15, ep: 0.35, sv: 50, ev: 0, u: 'vw'}]">HTML</h4>
+          </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
+  </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
+  </div>
+
+  <div class="row pt-5 rgbaRow" style="color: white">
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
+        <h2 class="featureText pb-4">Run apps in Exokit</h1>
+        <h5 class="featureText text-left font-weight-light">
+          Run your app in Exokit with a URL. Or, run 5 instances in multiplayer AR. Debug it all with standard DevTools.
+        </h5>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center mt-4">
+      <img class="exokitImg featureMain slideItem" src="media/logo-white.svg" data-animation="[{k: 'translateX', sp: 0.36, ep: 0.5, sv: 10, ev: 0, u: 'vw'}]"></img>
+      <h3 class="featureMain exokitName slideItem" data-animation="[{k: 'translateX', sp: 0.36, ep: 0.5, sv: 10, ev: 0, u: 'vw'}]">Exokit</h3>
+    </div>
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
+  </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
+  </div>
+
+  <div class="row pt-5 rgbaRow" style="color: white">
+      <div class="col-12">
+        <div class="featureTextPusher"></div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
+        <h2 class="featureText pb-4">Cross-platform support with Exokit</h1>
+        <h5 class="featureText text-left font-weight-light">
+          Write your app once, export to run on any of Exokit's supported devices.
+        </h5>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mt-4">
+        <div class="row">
+          <div class="col-lg-4 text-center">
+            <img class="mlImg featureMain slideItem" src="media/ML.png" data-animation="[{k: 'translateX', sp: 0.55, ep: 0.7, sv: 50, ev: 0, u: 'vw'}]"></img>
+          </div>
+          <div class="col-lg-4 text-center">
+            <img class="viveImg featureMain slideItem" src="media/vive.png" data-animation="[{k: 'translateX', sp: 0.50, ep: 0.7, sv: 50, ev: 0, u: 'vw'}]"></img>
+          </div>
+          <div class="col-lg-4 text-center">
+            <img class="oculusImg featureMain slideItem" src="media/oculus.png" data-animation="[{k: 'translateX', sp: 0.45, ep: 0.7, sv: 50, ev: 0, u: 'vw'}]"></img>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="featureTextPusher"></div>
+      </div>
+  </div>
+
+  <div class=vArrow>
+    <img src="assets/chevron.svg">
+  </div>
+
+  <div class="row pt-5 rgbaRow" style="color: white">
+    <div class="col-12">
+      <div class="featureTextPusher"></div>
+    </div>
+  </div>
+
+  <div class=gradient2></div>
+</div>
+
+<div class="row exokitFeatures pt-5" id="featuresParent">
+  <div id="featuresInside" style="width: 100vw; height: 100vh;">
+
+    <div id=features-background></div>
+
+    <canvas id=features-canvas></canvas>
+
+    <div class="col-12 text-center pt-3 pb-4">
+      <!-- <h1 class="pt-4">Features</h1>
+      <div class="featuresHeaderPusher" style="height: 15vh"></div> -->
+    </div>
+    <div class="col-12" style="min-height: 80vh;">
+      <div class="row">
+        <div class="col-lg-2 col-md-1 col-sm-12 col-xs-12 text-center mb-5" id="counterCol">
+          <h2><span id="featuresCounter">1</span>/11</h2>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+          <div style="display: flex; overflow-x: hidden; min-width: 50vw;" id="featuresLeft">
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/code.svg"></img>
+                <div style="display: flex; flex-direction: column;">
+                  <h2>Runs Existing Code</h2>
+                  <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+                </div>
+              </div>
+            </div>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/js-square.svg"></img>
+                <div style="display: flex; flex-direction: column;">
+                  <h2>Native Javascript</h2>
+                  <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+                </div>
+              </div>
+            </div>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/dna.svg"></img>
+                <div style="display: flex; flex-direction: column;">
+                  <h2>Futuristic APIs</h2>
+                  <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+                </div>
+              </div>
+            </div>
+            <div class="align-container">
+              <div class="align-container-inner">
+                <img class="img-fluid float-left" src="media/boxes.svg"></img>
+                <h2>Package for Stores</h2>
+                <h5 class="font-weight-light" style="max-width: 50vw;">Exokit is an XR engine, not a web browser. It's layers of web-powererd realities, not screens floating in space.</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" id="featuresListCol">
+          <div class="row">
+            <div class="col-2">
+              <div class="vLine ml-4 mr-3" id="vLine" style="height: 3vh;"></div>
+            </div>
+            <div class="col-10" id="featuresRight">
+              <a><h5 class="font-weight-light">Runs Existing Code</h5></a>
+              <a><h5 class="font-weight-light">Native Javascript</h5></a>
+              <a><h5 class="font-weight-light">Futuristic APIs</h5></a>
+              <a><h5 class="font-weight-light">Package for Stores</h5></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="featuresBottomSpacer"></div>
+</div>
+
+<div class="row madeWithExokit mt-5" id="madeWithExokit">
+
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
+    <img id="madeWithExokitMainImg" class="img-fluid mb-5" src="media/expanse.png"></img>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 madeWithExokitMain mt-5">
+    <h1>Made with Exokit</h1>
+    <hr>
+
+    <div class="row">
+      <div class="col-6">
+          <h2 id="madeWithTitle">The Expanse</h2>
+        </div>
+        <div class="col-6">
+          <p id="madeWithSlogan">Build, Experince & Share the future of social VR.</p>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-12">
+          <h5 id="madeWithTitleSub">The Expanse</h2>
+      </div>
+      <div class="col-12">
+          <p id="madeWithProject">Project: Aurora</p>
+      </div>
+      <div class="col-12">
+          <p id="madeWithYear">Year 2018 - Now</p>
+      </div>
+    </div>
+
+    <div class="madeWithExokitPusher"></div>
+
+    <h5>Other Projects</h5>
+
+    <div class="row mb-5">
+      <div class="col-4">
+          <img id="company1" class="madeWithExokitSubImg img-fluid" src="media/activeTheory.png"></img>
+        </div>
+      <div class="col-4">
+          <img id="company2" class="madeWithExokitSubImg img-fluid" src="media/expanse.png"></img>
+        </div>
+      <div class="col-4">
+          <img id="company3" class="madeWithExokitSubImg img-fluid" src="media/emukit.png"></img>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row quotes pb-5" style="display:none">
+  <div class="col-12 quotesPusher pl-5 pb-5">
+    <h1>Chatter #exokit</h1>
+    <h4 class="font-weight-light">What are people saying about Exokit?</h5>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+        <div class="card-body shadow">
+          <div class="row">
+            <div class="col-4 align-self-center">
+              <img class="quotesPic" src="media/sjw.jpg"></img>
+            </div>
+            <div class="col-8">
+              <p class="quoteTitle card-text font-weight-light">Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit</p>
+              <small class="quotePerson font-weight-normal">- Milo Dianosuraus Rex</small>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+          <div class="card-body shadow">
+            <div class="row">
+              <div class="col-4 align-self-center">
+                <img class="quotesPic" src="media/kylie.jpg"></img>
+              </div>
+              <div class="col-8">
+                <p class="quoteTitle card-text font-weight-light">hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit</p>
+                <small class="quotePerson font-weight-normal">- Kiley Jenner</small>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+          <div class="card-body shadow">
+            <div class="row">
+              <div class="col-4 align-self-center">
+                <img class="quotesPic" src="media/dude.jpg"></img>
+              </div>
+              <div class="col-8">
+                <p class="quoteTitle card-text font-weight-light">Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit</p>
+                <small class="quotePerson font-weight-normal">- Steve Harley</small>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 pt-3 pb-3">
+      <div class="card shadow">
+          <div class="card-body shadow">
+            <div class="row">
+              <div class="col-4 align-self-center">
+                <img class="quotesPic" src="media/obama.jpg"></img>
+              </div>
+              <div class="col-8">
+                <p class="quoteTitle card-text font-weight-light">During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome.</p>
+                <small class="quotePerson font-weight-normal">- Barrack Obama</small>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row w-100 text-center mt-3">
+          <div class="col-3"></div>
+          <div class="col-3">
+            <i id="quoteBack" class="fas fa-arrow-left fa-2x quoteArrow"></i>
+          </div>
+          <div class="col-3">
+            <i id="quoteNext" class="fas fa-arrow-right fa-2x quoteArrow"></i>
+          </div>
+          <div class="col-3"></div>
+        </div>
+  </div>
+</div>
+
+<div class="row getStarted justify-content-center" style="padding-top: 150px;">
+  <div class="col-12 text-center">
+    <h1>Latest WebXR</h1>
+    <h1>features, today.</h1>
+  </div>
+  <div class="verticalLine"></div>
+  <div class="col-12 text-center pt-0 mt-0">
+    <a href="docs/" title="Documentation"><h5 style="margin-bottom: 150px;">Get Started</h5></a>
+  </div>
+</div>
+
+<footer>
+  <div class="row footer">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
+      <div class="row pl-4">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+          <p>Find Us</p>
+          <br/>
+          <p class="font-weight-light">101 Kensington Steet, Monteral, Canada.</p>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+          <a href="">
+            <p class="font-weight-light">Support</p>
+          </a>
+          <a href="">
+            <p class="font-weight-light">Careers</p>
+          </a>
+          <a href="about.html">
+            <p class="font-weight-light">About</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <a href="">
+              <p class="font-weight-light">Press</p>
+            </a>
+            <a href="">
+              <p class="font-weight-light">Investor</p>
+            </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-5">
+      <div class="row text-center justify-content-center">
+          <form>
+            <div class="form-group form-inline d-inline">
+              <p class="font-weight-light">Sign up for updates.</p>
+              <input type="email" class="form-control emailInput p-3" aria-describedby="email" placeholder="Email">
+              <button type="submit" class="emailButton btn btn-primary inline ml-2 mt-2 mb-2 p-2 pl-4 pr-4">Sign up</button>
+            </div>
+          </form>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-4">
+      <div class="row pl-5">
+        <div class="col-12 pl-0">
+          <p>Find us online</p>
+          <a class="footerLink" href="https://www.twitch.tv/avaer"><i class="fab fa-twitch pt-2 pb-2 pr-2"></i></a>
+          <a class="footerLink" href="https://discordapp.com/invite/Apk6cZN"><i class="fab fa-discord p-2"></i></a>
+          <a class="footerLink" href="https://exokit.slack.com/join/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q"><i class="fab fa-slack p-2"></i></a>
+          <a class="footerLink" href="https://twitter.com/exokitxr"><i class="fab fa-twitter p-2"></i></a>
+        </div>
+        <div class="col-12 pl-0">
+          <div class="row pt-5">
+            <div class="col-6 pl-0">
+              <a href="">
+                <p>Social</p>
+              </a>
+              </div>
+            <div class="col-6">
+              <a href="">
+                <p>Community</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 pt-4">
+        <div class="row">
+          <div class="col-12">
+              <p class="text-center font-weight-light">Copyright &copy; 2019 Exokit Inc.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</footer>
+
+<script src="js/three.min.js"></script>
+<script src="js/Reflector.js"></script>
+<script src="js/GLTFLoader.js"></script>
+<script src="js/skin.js"></script>
+<script src="js/global.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/features.js"></script>
+<script src="js/scroll.js"></script>
+
+<script>
+(() => {
+
+const quotes_JSON = {
+"quotes": [
+  {   "picture": "media/sjw.jpg",
+      "person": "- Milo Dianosuraus Rex",
+      "quote": "Ree, illumanti uses Chrome against the people, free our people from Chrome, this is democracy! #exokit"
+  },
+  {
+      "picture": "media/kylie.jpg",
+      "person": "- Kiley Jenner",
+      "quote": "hehe, check out my latest modeling shoot in VR/AR using this cool app called Exokit xoxo #exokit"
+  },
+  {
+      "picture": "media/dude.jpg",
+      "person": "- Steve Harley",
+      "quote": "Yo my dude, Exokit is the best thing since the commodore 64. I'm telling all my bros! #exokit"
+  },
+  {
+      "picture": "media/obama.jpg",
+      "person": "- Barrack Obama",
+      "quote": "During my stay at the White House, we anaylzed whether or not Exokit was going to take over Chrome."
+  },
+
+  {
+      "picture": "media/emukitDemo.png",
+      "person": "- Happy Rabbit",
+      "quote": "Hop, jump, skip, im a rabbit AND EXOKIT IS AWESOME! xzcvzxcvzxvczx #exokit"
+  },
+  {
+      "picture": "media/favicon.png",
+      "person": "- Bruce Reslzer",
+      "quote": "i love pumping iron in my sick ML headset using exokit, really gets me going ya feel me? #exokit"
+  },
+  {   "picture": "media/exokit.png",
+      "person": "- Great Grandma",
+      "quote": "I remember back in my day we didnt have things like this... #exokit"
+  },
+  {   "picture": "media/introExokit.png",
+      "person": "- Ted Druce",
+      "quote": "Ayy, its a good day to be using exokit in sunny Califonria, amiright folks?"
+  }]
+};
+
+const flipQuotes = () => {
+  let cards = document.getElementsByClassName('card');
+  for (let i = 0; i < cards.length; i++) {
+    if('media/' + cards[i].getElementsByClassName('quotesPic')[0].src.replace(/^.*[\\\/]/, '') == quotes_JSON.quotes[i].picture){
+      cards = document.getElementsByClassName('card');
+      cards[i].getElementsByClassName('quotesPic')[0].src = quotes_JSON.quotes[i+4].picture;
+      cards[i].getElementsByClassName('quotePerson')[0].innerHTML = quotes_JSON.quotes[i+4].person;
+      cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = quotes_JSON.quotes[i+4].quote;
+    }
+    else{
+      cards = document.getElementsByClassName('card');
+      cards[i].getElementsByClassName('quotesPic')[0].src = quotes_JSON.quotes[i].picture;
+      cards[i].getElementsByClassName('quotePerson')[0].innerHTML = quotes_JSON.quotes[i].person;
+      cards[i].getElementsByClassName('quoteTitle')[0].innerHTML = quotes_JSON.quotes[i].quote;
+      cards[i].style.hidden = true;
+    }
+  }
+};
+
+const quoteBack = document.getElementById('quoteBack');
+quoteBack.addEventListener('click', () => {
+  flipQuotes();
+});
+
+const quoteNext = document.getElementById('quoteNext');
+quoteNext.addEventListener('click', () => {
+  flipQuotes();
+});
+
+const company1 = document.getElementById('company1');
+company1.addEventListener('click', () => {
+  changeCompany('active')
+});
+
+const company2 = document.getElementById('company2');
+company2.addEventListener('click', () => {
+  changeCompany('expanse')
+});
+
+const company3 = document.getElementById('company3');
+company3.addEventListener('click', () => {
+  changeCompany('emukit')
+});
+
+const changeCompany = (company) => {
+  const mainImg = document.getElementById('madeWithExokitMainImg');
+  const title = document.getElementById('madeWithTitle');
+  const slogan = document.getElementById('madeWithSlogan');
+  const titleSub = document.getElementById('madeWithTitleSub');
+  const project = document.getElementById('madeWithProject');
+  const year = document.getElementById('madeWithYear');
+
+  switch (company) {
+    case 'expanse':
+      mainImg.src = 'media/expanse.png';
+      title.innerHTML = 'The Expanse';
+      slogan.innerHTML = 'Build, Experince & Share the future of social VR.';
+      titleSub.innerHTML = 'The Expanse';
+      project.innerHTML = 'Project: Aurora';
+      year.innerHTML = 'Year 2018 - Now';
+    break;
+    case 'active':
+      mainImg.src = 'media/activeDemoMain.png';
+      title.innerHTML = 'Active Theory';
+      slogan.innerHTML = 'Active Theory is a studio building creative digital experiences. We are  pushing the future of web technology.';
+      titleSub.innerHTML = 'Active Theory';
+      project.innerHTML = 'Project: XR Experiments';
+      year.innerHTML = 'Year 2018 - Now';
+
+    break;
+    case 'emukit':
+      mainImg.src = 'media/emukitDemo.png';
+      title.innerHTML = 'Emukit';
+      slogan.innerHTML = 'The VR emulator solution is called Emukit and works best with Exokit, a JavaScript web browser for AR and VR environment.';
+      titleSub.innerHTML = 'Emukit';
+      project.innerHTML = 'Project: Nintendo 64 VR Emulation';
+      year.innerHTML = 'Year 2018 - Now';
+    break;
+
+  }
+}
+
+const openLittleNav = document.getElementById('openLittleNav');
+openLittleNav.addEventListener('click', () => {
+  document.getElementById('expandedLittleNavbar').style.height = "100vh"
+  document.getElementById('expandedLittleNavbar').style.visibility = "visible"
+});
+
+const closeLittleNav = document.getElementById('closeLittleNav');
+closeLittleNav.addEventListener('click', () => {
+  document.getElementById('expandedLittleNavbar').style.height = "0vh"
+  document.getElementById('expandedLittleNavbar').style.visibility = "hidden"
+});
+
+function clickList(num){
+  console.log('click', num);
+  const parent = document.getElementById('featuresParent');
+  const percent = ((parent.offsetHeight / featuresRightChildren.length) * num) + parent.offsetTop;
+  window.scrollTo({
+    top: percent,
+  });
+  _updateScroll();
+}
+
+const featuresLeft = document.getElementById('featuresLeft');
+const featuresRight = document.getElementById('featuresRight');
+const featuresRightChildren = featuresRight.querySelectorAll('a');
+featuresRightChildren.forEach((el, i) => {
+  el.addEventListener('click', () => {
+    clickList(i);
+  });
+});
+
+const easeInOut = (() => {
+  // These values are established by empiricism with tests (tradeoff: performance VS precision)
+  var NEWTON_ITERATIONS = 4;
+  var NEWTON_MIN_SLOPE = 0.001;
+  var SUBDIVISION_PRECISION = 0.0000001;
+  var SUBDIVISION_MAX_ITERATIONS = 10;
+
+  var kSplineTableSize = 11;
+  var kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
+
+  var float32ArraySupported = typeof Float32Array === 'function';
+
+  function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1; }
+  function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
+  function C (aA1)      { return 3.0 * aA1; }
+
+  // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
+  function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT; }
+
+  // Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
+  function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1); }
+
+  function binarySubdivide (aX, aA, aB, mX1, mX2) {
+    var currentX, currentT, i = 0;
+    do {
+      currentT = aA + (aB - aA) / 2.0;
+      currentX = calcBezier(currentT, mX1, mX2) - aX;
+      if (currentX > 0.0) {
+        aB = currentT;
+      } else {
+        aA = currentT;
+      }
+    } while (Math.abs(currentX) > SUBDIVISION_PRECISION && ++i < SUBDIVISION_MAX_ITERATIONS);
+    return currentT;
+  }
+
+  function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
+   for (var i = 0; i < NEWTON_ITERATIONS; ++i) {
+     var currentSlope = getSlope(aGuessT, mX1, mX2);
+     if (currentSlope === 0.0) {
+       return aGuessT;
+     }
+     var currentX = calcBezier(aGuessT, mX1, mX2) - aX;
+     aGuessT -= currentX / currentSlope;
+   }
+   return aGuessT;
+  }
+
+  function LinearEasing (x) {
+    return x;
+  }
+
+  function bezier (mX1, mY1, mX2, mY2) {
+    if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1)) {
+      throw new Error('bezier x values must be in [0, 1] range');
+    }
+
+    if (mX1 === mY1 && mX2 === mY2) {
+      return LinearEasing;
+    }
+
+    // Precompute samples table
+    var sampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
+    for (var i = 0; i < kSplineTableSize; ++i) {
+      sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
+    }
+
+    function getTForX (aX) {
+      var intervalStart = 0.0;
+      var currentSample = 1;
+      var lastSample = kSplineTableSize - 1;
+
+      for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
+        intervalStart += kSampleStepSize;
+      }
+      --currentSample;
+
+      // Interpolate to provide an initial guess for t
+      var dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
+      var guessForT = intervalStart + dist * kSampleStepSize;
+
+      var initialSlope = getSlope(guessForT, mX1, mX2);
+      if (initialSlope >= NEWTON_MIN_SLOPE) {
+        return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
+      } else if (initialSlope === 0.0) {
+        return guessForT;
+      } else {
+        return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
+      }
+    }
+
+    return function BezierEasing (x) {
+      // Because JavaScript number are imprecise, we should guarantee the extremes are right.
+      if (x === 0) {
+        return 0;
+      }
+      if (x === 1) {
+        return 1;
+      }
+      return calcBezier(getTForX(x), mY1, mY2);
+    };
+  };
+  return bezier(1, 0, 0, 1);
+})();
+
+const _updateScroll = () => {
+  function scrollX(elem , positionX){
+    elem.scrollLeft = positionX;
+  }
+  function scrollY(elem, positionY) {
+    elem.scrollTo({
+      top: positionY,
+      // behavior: 'smooth'
+    });
+  }
+  function smooth(n) {
+    const fract = n % 1;
+    n = Math.floor(n) + easeInOut(fract);
+    return n;
+  }
+
+  const parent = document.getElementById('featuresParent');
+  const nextSection = document.getElementById('madeWithExokit');
+  const insideContent = document.getElementById('featuresInside');
+  const vLine = document.getElementById('vLine');
+
+  const distanceFromTop = (parent.offsetTop - window.scrollY);
+  const topOfNextSection = (nextSection.offsetTop - window.scrollY) - (window.innerHeight);
+  const counter = document.getElementById('featuresCounter');
+
+  const bodyBox = document.body.getBoundingClientRect();
+  const parentBox = parent.getBoundingClientRect();
+  const parentBoxAbs = {
+    top: parentBox.top - bodyBox.top,
+    height: parentBox.height,
+  };
+  const factor = (Math.min(Math.max((window.pageYOffset - parentBoxAbs.top) / (parentBoxAbs.height), 0), 1));
+
+  const breakPoint = 1.0 / (featuresRightChildren.length+1);
+  const scrollYValue = 80;
+  const vLineFactor = (factor * featuresRight.clientHeight) + "px";
+  const containers = document.getElementsByClassName('align-container');
+
+  let totalWidth = 0;
+  for (let i = 0; i < containers.length; i++){
+    totalWidth += containers[i].offsetWidth;
+  }
+
+  for (let i = 0; i < featuresRightChildren.length; i++) {
+    featuresRightChildren[i].querySelector('h5').classList.remove('active');
+  }
+  if (distanceFromTop <= 0 && topOfNextSection > 0) {
+    scrollX(featuresLeft, Math.floor(smooth(factor * featuresRightChildren.length) / featuresRightChildren.length * totalWidth));
+    insideContent.style.top = "0";
+    insideContent.style.position = "fixed";
+    for (let i = 0; i < featuresRightChildren.length; i++) {
+      if (factor >= breakPoint*i && factor < breakPoint*(i+1)){
+        scrollY(featuresRight, i * scrollYValue);
+        vLine.style.marginTop = vLineFactor;
+        featuresRightChildren[i].querySelector('h5').classList.add('active');
+        break;
+      }
+    }
+  } else if (topOfNextSection < 0) {
+    insideContent.style.position = 'absolute';
+    insideContent.style.top = '';
+    insideContent.style.bottom = 0;
+  } else {
+    insideContent.style.position = 'absolute';
+    insideContent.style.top = 0;
+    insideContent.style.bottom = '';
+  }
+};
+window.addEventListener('scroll', _updateScroll);
+
+})();
+</script>
+
+</body>
+</html>

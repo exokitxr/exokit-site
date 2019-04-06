@@ -1,0 +1,366 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en"
+      data-is-home="false"
+      data-is-mobile="false"
+      data-supports-vr="false"
+      data-supports-touch="false"
+      data-site-base-url="https://exokit.org"
+      data-site-root-path="/"
+      data-site-home-url="https://exokit.org/"
+      data-lib-home-url="https://exokit.org/"
+      data-title="{title} | Exokit"
+      data-is-spa="false"
+      data-ga-id=""
+  <head>
+    <title>Exokit</title>
+    
+
+<script>
+  var host = window.location.protocol + '//' + window.location.hostname;
+  if (window.location.protocol === 'http:' &&
+      window.location.hostname === 'https://exokit.org') {
+    window.location.href = 'https:' + window.location.href.substring(6);
+  }
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="description" content="Native VR/AR/XR engine for JavaScript">
+    <meta name="keywords" content="webvr,webvr framework,webvr demos,webvr sites,vr javascript,vr framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="canonical" href="https://exokit.org">
+    <link href="/style/fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600" rel="stylesheet">
+    <meta property="fb:app_id" content="">
+    <meta property="og:title" content="Exokit">
+    <meta property="og:site_name" content="Exokit">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exokit.org">
+    <meta property="og:description" content="Native VR/AR/XR engine for JavaScript">
+    <meta property="og:image" content="http://exokit.org/images/card.jpg?v2">
+    <meta property="og:image:secure_url" content="https://exokit.org/images/card.jpg?v2">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@exokitXR">
+    <meta name="twitter:creator" content="@exokitXR">
+    <meta name="twitter:title" content="Exokit">
+    <meta name="twitter:description" content="Native VR/AR/XR engine for JavaScript">
+    <meta name="twitter:image" content="http://exokit.org/images/card.jpg?v2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="black">
+    <link rel="icon" sizes="192x192" href="https://exokit.org/images/exokit-logo-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="https://exokit.org/images/exokit-logo-152.png">
+    <link rel="alternate" type="application/rss+xml" title="Feed" href="https://exokit.org/feed.xml">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('create', '', 'auto', 'managers');
+
+  ga('send', 'pageview');
+  ga('managers.send', 'pageview');
+
+  ga('send', 'event', 'pageload.querystring', window.location.search);
+  ga('managers.send', 'event', 'pageload.querystring', window.location.search);
+
+  ga('send', 'event', 'pageload.hash', window.location.hash);
+  ga('managers.send', 'event', 'pageload.hash', window.location.hash);
+
+  ga('send', 'event', 'supports.getVRDevices', 'getVRDevices' in navigator);
+  ga('managers.send', 'event', 'supports.getVRDevices', 'getVRDevices' in navigator);
+
+  ga('send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+  ga('managers.send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+
+  ga('send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+  ga('managers.send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+</script>
+
+
+    
+      <script src="/js/compat.js"></script>
+    
+
+    
+      <link rel="stylesheet" href="/css/secondary.css">
+    
+
+    
+      <!-- Search. -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"/>
+      <link rel="stylesheet" href="/css/search.css">
+    
+  </head>
+
+  <body data-page-layout="" data-page-type="">
+    <main id="main" class="main"><div class="wordmark">
+  <header id="header" class="header">
+    <a id="logo" class="logo" href="/" title="Exokit">
+      <span class="logo__wordmark">Exokit</span>
+    </a>
+  </header>
+
+  
+
+<div class="docs-search-wrapper docs-search-sidebar">
+  <input type="search" class="search-field" placeholder="Search..."></input>
+</div>
+
+</div>
+
+<aside id="sidebar" class="sidebar borderless-links">
+  
+
+<div id="secondary-nav" class="secondary-nav">
+  <header id="header" class="header">
+    <a id="logo" class="logo" href="/" title="Exokit">
+      <span class="logo__wordmark">Exokit</span>
+    </a>
+  </header>
+
+  
+
+<div class="docs-search-wrapper docs-search-sidebar-mobile">
+  <input type="search" class="search-field" placeholder="Search..."></input>
+</div>
+
+
+  <ul id="nav" class="nav">
+    
+      <li  class="nav-item">
+        <a href="/docs/introduction/"
+           class="nav-link nav-link-docs"
+           
+           >
+          <span>Docs</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="/blog/"
+           class="nav-link nav-link-docs current"
+           
+           >
+          <span>Blog</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="/community/"
+           class="nav-link nav-link-docs"
+           
+           >
+          <span>Community</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="/showcase/"
+           class="nav-link nav-link-docs"
+           
+           >
+          <span>Showcase</span>
+        </a>
+      </li>
+    
+      <li  data-slug="github" class="nav-item">
+        <a href="https://github.com/exokitxr/exokit/"
+           class="nav-link nav-link-docs"
+            rel="external"
+            title="Exokit Project Repository">
+          <span>GitHub</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="https://discord.gg/Apk6cZN"
+           class="nav-link nav-link-docs"
+            rel="external"
+           >
+          <span>Discord</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  <div class="list">
+    <h3 class="section-title">Blog Posts</h3>
+    <ul class="subnav section-subnav blog-subnav">
+      
+        <li class="subnav-item ">
+          <a href="/blog/introducing-exokit/"
+             class="subnav-link"
+             title="Introducing Exokit: A Javascript Web Engine for the Post Screen Era">
+            Introducing Exokit: A Javascript Web Engine for the Post Screen Era
+          </a>
+        </li>
+      
+        <li class="subnav-item ">
+          <a href="/blog/helloworld/"
+             class="subnav-link"
+             title="Hello World">
+            Hello World
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</aside>
+
+  <div class="content content--blog copy post">
+    <div class="mobile-header">
+  <a id="sidebar-toggle" href="#" title="Toggle sidebar">&equiv;</a>
+  <h1><a href="/">Exokit</a></h1>
+  <span></span>
+</div>
+
+<script>
+  (function() {
+    var sidebarEl = document.querySelector('#sidebar');
+    var toggleEl = document.querySelector('#sidebar-toggle');
+
+    // Open sidebar on toggle click.
+    toggleEl.addEventListener('click', function () {
+      sidebarEl.classList.add('sidebar-open');
+    });
+
+    // Close sidebar when clicking content.
+    document.body.addEventListener('click', function (evt) {
+      if (evt.target !== toggleEl && !evt.target.closest('#sidebar')) {
+        sidebarEl.classList.remove('sidebar-open');
+      }
+    });
+
+    function closest (el, selector) {
+      var matchesFn;
+      var parent;
+      // Vendor prefix.
+      ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector',
+       'oMatchesSelector'].some(function (fn) {
+          if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+          }
+          return false;
+      });
+      // Traverse parents.
+      while (el) {
+        parent = el.parentElement;
+        if (parent && parent[matchesFn](selector)) { return parent; }
+        el = parent;
+      }
+      return null;
+    }
+  })();
+</script>
+
+
+    <div class="copy__wrap">
+      
+        <h1 class="page__title">Blog</h1>
+
+        
+
+        
+          <article class="post post--listing">
+            <a href="/blog/introducing-exokit/">
+              <h2 class="post__heading">Introducing Exokit: A Javascript Web Engine for the Post Screen Era</h2>
+            </a>
+            <div class="post__metadata">
+  <p class="post__timestamp">Mar 30, 2018</p>
+  
+    <p class="post__author">By Nicholas Loomis</p>
+  
+</div>
+
+
+            
+
+            <a href="/blog/introducing-exokit/" class="post__more">Read more &hellip;</a>
+          </article>
+        
+          <article class="post post--listing">
+            <a href="/blog/helloworld/">
+              <h2 class="post__heading">Hello World</h2>
+            </a>
+            <div class="post__metadata">
+  <p class="post__timestamp">Jan 1, 2018</p>
+  
+    <p class="post__author">By <a class="blog-attribution" href="https://twitter.com/exokitxr">Exokit</a></p>
+  
+</div>
+
+
+            
+
+            <a href="/blog/helloworld/" class="post__more">Read more &hellip;</a>
+          </article>
+        
+
+        <footer class="footer guide-links c">
+          
+          
+          
+          
+        </footer>
+      
+
+      <footer class="footer footnote">
+        <p>Except where otherwise noted, content on this site is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="external">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.</p>
+        
+      </footer>
+    </div>
+
+    
+  </div>
+</div>
+</main>
+
+    
+      <script src="/js/common.js"></script>
+      
+      
+        <script src="/js/docs.js"></script>
+      
+    
+
+    
+      <!-- Algolia search. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script type="text/javascript">
+  var searchConfig = {
+    apiKey: '',
+    indexName: 'exokit',
+    algoliaOptions: {
+      hitsPerPage: 10
+    },
+    debug: false
+  };
+
+  docsearch(Object.assign(searchConfig, {inputSelector: '.docs-search-sidebar .search-field'}));
+  docsearch(Object.assign(searchConfig, {inputSelector: '.docs-search-sidebar-mobile .search-field'}));
+</script>
+
+    
+  </body>
+</html>

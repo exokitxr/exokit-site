@@ -1,0 +1,26 @@
+.contact .forms{
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+.contact input{
+    border-radius: 100px !important;
+    box-shadow: 1px 1px 1px rgb(197, 197, 197);
+}
+
+.contact .contactButton{
+    border-radius: 100px;
+    width: 250px;
+    background-color: #2096A2;
+    border: none;
+}
+.contact .contactSection{
+    position: relative;
+    min-height: 62vh;
+}
+@media only screen and (max-width: 994px) {
+    .contact .theTeam{
+        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+    }
+}

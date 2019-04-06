@@ -1,0 +1,759 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en"
+      data-is-home="false"
+      data-is-mobile="false"
+      data-supports-vr="false"
+      data-supports-touch="false"
+      data-site-base-url="https://exokit.org"
+      data-site-root-path="/"
+      data-site-home-url="https://exokit.org/"
+      data-lib-home-url="https://exokit.org/"
+      data-title="{title} | Exokit"
+      data-is-spa="false"
+      data-ga-id=""
+  <head>
+    <title>Magic Leap API – Exokit</title>
+    
+
+<script>
+  var host = window.location.protocol + '//' + window.location.hostname;
+  if (window.location.protocol === 'http:' &&
+      window.location.hostname === 'https://exokit.org') {
+    window.location.href = 'https:' + window.location.href.substring(6);
+  }
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="webvr,webvr framework,webvr demos,webvr sites,vr javascript,vr framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="canonical" href="https://exokit.org">
+    <link href="/style/fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600" rel="stylesheet">
+    <meta property="fb:app_id" content="">
+    <meta property="og:title" content="Magic Leap API – Exokit">
+    <meta property="og:site_name" content="Exokit">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exokit.org">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="http://exokit.org/images/card.jpg?v2">
+    <meta property="og:image:secure_url" content="https://exokit.org/images/card.jpg?v2">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@exokitXR">
+    <meta name="twitter:creator" content="@exokitXR">
+    <meta name="twitter:title" content="Magic Leap API – Exokit">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="http://exokit.org/images/card.jpg?v2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="black">
+    <link rel="icon" sizes="192x192" href="https://exokit.org/images/exokit-logo-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="https://exokit.org/images/exokit-logo-152.png">
+    <link rel="alternate" type="application/rss+xml" title="Feed" href="https://exokit.org/feed.xml">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('create', '', 'auto', 'managers');
+
+  ga('send', 'pageview');
+  ga('managers.send', 'pageview');
+
+  ga('send', 'event', 'pageload.querystring', window.location.search);
+  ga('managers.send', 'event', 'pageload.querystring', window.location.search);
+
+  ga('send', 'event', 'pageload.hash', window.location.hash);
+  ga('managers.send', 'event', 'pageload.hash', window.location.hash);
+
+  ga('send', 'event', 'supports.getVRDevices', 'getVRDevices' in navigator);
+  ga('managers.send', 'event', 'supports.getVRDevices', 'getVRDevices' in navigator);
+
+  ga('send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+  ga('managers.send', 'event', 'supports.getVRDisplays', 'getVRDisplays' in navigator);
+
+  ga('send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+  ga('managers.send', 'event', 'supports.WEBVRPLUS', 'WEBVRPLUS' in window);
+</script>
+
+
+    
+      <script src="/js/compat.js"></script>
+    
+
+    
+      <link rel="stylesheet" href="/css/secondary.css">
+    
+
+    
+      <!-- Search. -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"/>
+      <link rel="stylesheet" href="/css/search.css">
+    
+  </head>
+
+  <body data-page-layout="docs" data-page-type="api">
+    <main id="main" class="main">
+
+
+<!-- Navigation. -->
+<div class="wordmark">
+  <header id="header" class="header">
+    <a id="logo" class="logo" href="/" title="Exokit">
+      <span class="logo__wordmark">Exokit</span>
+    </a>
+  </header>
+
+  
+
+<div class="docs-search-wrapper docs-search-sidebar">
+  <input type="search" class="search-field" placeholder="Search..."></input>
+</div>
+
+</div>
+
+<aside id="sidebar" class="sidebar borderless-links">
+  
+
+<div id="secondary-nav" class="secondary-nav">
+  <header id="header" class="header">
+    <a id="logo" class="logo" href="/" title="Exokit">
+      <span class="logo__wordmark">Exokit</span>
+    </a>
+  </header>
+
+  
+
+<div class="docs-search-wrapper docs-search-sidebar-mobile">
+  <input type="search" class="search-field" placeholder="Search..."></input>
+</div>
+
+
+  <ul id="nav" class="nav">
+    
+      <li  class="nav-item">
+        <a href="/docs/introduction/"
+           class="nav-link nav-link-docs current nav-link-disabled"
+           
+           >
+          <span>Docs</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="/blog/"
+           class="nav-link nav-link-docs"
+           
+           >
+          <span>Blog</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="/community/"
+           class="nav-link nav-link-docs"
+           
+           >
+          <span>Community</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="/showcase/"
+           class="nav-link nav-link-docs"
+           
+           >
+          <span>Showcase</span>
+        </a>
+      </li>
+    
+      <li  data-slug="github" class="nav-item">
+        <a href="https://github.com/exokitxr/exokit/"
+           class="nav-link nav-link-docs"
+            rel="external"
+            title="Exokit Project Repository">
+          <span>GitHub</span>
+        </a>
+      </li>
+    
+      <li  class="nav-item">
+        <a href="https://discord.gg/Apk6cZN"
+           class="nav-link nav-link-docs"
+            rel="external"
+           >
+          <span>Discord</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  <div class="list">
+
+    
+      
+
+      <!-- Section title. -->
+      <h3 class="section-title docs-section-title section-title-inactive">
+        <p class="section-title-link">Introduction</p>
+      </h3>
+
+      <!-- Section links. -->
+      <ol class="subnav section-subnav">
+        
+          <li class="subnav-item ">
+            <a href="/docs/introduction/"
+               class="subnav-link">
+              Introduction
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/introduction/installation.html"
+               class="subnav-link">
+              Exokit Installation
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/introduction/useExokitEngine.html"
+               class="subnav-link">
+              Using the Exokit Engine
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/introduction/vr-headsets-and-webvr-browsers.html"
+               class="subnav-link">
+              VR Headsets & WebVR Browsers
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/introduction/faq.html"
+               class="subnav-link">
+              FAQ
+            </a>
+          </li>
+        
+      </ol>
+    
+      
+
+      <!-- Section title. -->
+      <h3 class="section-title docs-section-title section-title-inactive">
+        <p class="section-title-link">Overview</p>
+      </h3>
+
+      <!-- Section links. -->
+      <ol class="subnav section-subnav">
+        
+          <li class="subnav-item ">
+            <a href="/docs/overview/exokitEngine.html"
+               class="subnav-link">
+              Exokit Engine
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/overview/benchmarks.html"
+               class="subnav-link">
+              Benchmarks
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/overview/architecture.html"
+               class="subnav-link">
+              Architecture
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/overview/techIntegrations.html"
+               class="subnav-link">
+              Tech Integrations
+            </a>
+          </li>
+        
+      </ol>
+    
+      
+
+      <!-- Section title. -->
+      <h3 class="section-title docs-section-title section-title-inactive">
+        <p class="section-title-link">Guides</p>
+      </h3>
+
+      <!-- Section links. -->
+      <ol class="subnav section-subnav">
+        
+          <li class="subnav-item ">
+            <a href="/docs/guides/my-first-exokit-app.html"
+               class="subnav-link">
+              My First Exokit App
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/guides/building-a-basic-scene.html"
+               class="subnav-link">
+              Building a Basic A-Frame Scene
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/guides/hosting-and-publishing.html"
+               class="subnav-link">
+              Hosting & Publishing
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/guides/realityTabsKitchenSink.html"
+               class="subnav-link">
+              Kitchen Sink Example
+            </a>
+          </li>
+        
+      </ol>
+    
+      
+
+      <!-- Section title. -->
+      <h3 class="section-title docs-section-title section-title-inactive">
+        <p class="section-title-link">SDK</p>
+      </h3>
+
+      <!-- Section links. -->
+      <ol class="subnav section-subnav">
+        
+          <li class="subnav-item ">
+            <a href="/docs/sdk/sdk.html"
+               class="subnav-link">
+              Overview
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/sdk/startDevelopment.html"
+               class="subnav-link">
+              Start Development
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/sdk/exokitCommandLine.html"
+               class="subnav-link">
+              Command Line
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/sdk/exokitCommandLineFlags.html"
+               class="subnav-link">
+              Command Line Flags
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/sdk/realityTabs.html"
+               class="subnav-link">
+              Reality Tabs
+            </a>
+          </li>
+        
+      </ol>
+    
+      
+
+      <!-- Section title. -->
+      <h3 class="section-title docs-section-title section-title-active">
+        <p class="section-title-link">API</p>
+      </h3>
+
+      <!-- Section links. -->
+      <ol class="subnav section-subnav">
+        
+          <li class="subnav-item ">
+            <a href="/docs/apis/webAPIs.html"
+               class="subnav-link">
+              Web APIs
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/apis/experimentalWebAPIs.html"
+               class="subnav-link">
+              Experimental Web APIs
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/apis/nativeAPIs.html"
+               class="subnav-link">
+              Native APIs
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/apis/nativeFutureIntegrations.html"
+               class="subnav-link">
+              Future Native Integrations
+            </a>
+          </li>
+        
+          <li class="subnav-item  subnav-item-current">
+            <a href="/docs/apis/MagicLeapAPI.html"
+               class="subnav-link current">
+              Magic Leap API
+            </a>
+          </li>
+        
+      </ol>
+    
+      
+
+      <!-- Section title. -->
+      <h3 class="section-title docs-section-title section-title-inactive">
+        <p class="section-title-link">Legal</p>
+      </h3>
+
+      <!-- Section links. -->
+      <ol class="subnav section-subnav">
+        
+          <li class="subnav-item ">
+            <a href="/docs/legal/privacy.html"
+               class="subnav-link">
+              Privacy Policy
+            </a>
+          </li>
+        
+          <li class="subnav-item ">
+            <a href="/docs/legal/terms.html"
+               class="subnav-link">
+              Terms & Conditions
+            </a>
+          </li>
+        
+      </ol>
+    
+  </div>
+</aside>
+
+  <!-- Documentation. -->
+  <div class="content content--structured content--api copy">
+    <div class="mobile-header">
+  <a id="sidebar-toggle" href="#" title="Toggle sidebar">&equiv;</a>
+  <h1><a href="/">Exokit</a></h1>
+  <span></span>
+</div>
+
+<script>
+  (function() {
+    var sidebarEl = document.querySelector('#sidebar');
+    var toggleEl = document.querySelector('#sidebar-toggle');
+
+    // Open sidebar on toggle click.
+    toggleEl.addEventListener('click', function () {
+      sidebarEl.classList.add('sidebar-open');
+    });
+
+    // Close sidebar when clicking content.
+    document.body.addEventListener('click', function (evt) {
+      if (evt.target !== toggleEl && !evt.target.closest('#sidebar')) {
+        sidebarEl.classList.remove('sidebar-open');
+      }
+    });
+
+    function closest (el, selector) {
+      var matchesFn;
+      var parent;
+      // Vendor prefix.
+      ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector',
+       'oMatchesSelector'].some(function (fn) {
+          if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+          }
+          return false;
+      });
+      // Traverse parents.
+      while (el) {
+        parent = el.parentElement;
+        if (parent && parent[matchesFn](selector)) { return parent; }
+        el = parent;
+      }
+      return null;
+    }
+  })();
+</script>
+
+
+    <div class="copy__wrap">
+      <div class="page__section docs-header">
+        <p>
+          <a href="/docs/apis/webAPIs.html" class="borderless-link">
+             &rsaquo; API
+          </a>
+        </p>
+      </div>
+      <h1 class="page__title">
+        Magic Leap API
+      </h1>
+
+      
+
+
+
+      <p>The Magic Leap API is exposed to sites under the <code>window.browser.magicleap</code> endpoint. This is inspired by the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API" target="_blank" rel="external">WebExtension API style</a>. It is not a web standard (yet).</p>
+<h2 id="classes"><a href="#classes" class="headerlink" title="Classes"></a>Classes</h2><h3 id="mlmesher"><a href="#mlmesher" class="headerlink" title="MLMesher"></a><code>MLMesher</code></h3><p>Used to acquire meshing updates from the Magic Leap platform.</p>
+<h4 id="mlmesher-onmesh-function-mlmeshupdate"><a href="#mlmesher-onmesh-function-mlmeshupdate" class="headerlink" title="MLMesher.onmesh : function(MLMeshUpdate[])"></a><code>MLMesher.onmesh : function(MLMeshUpdate[])</code></h4><p>When set, <code>onmesh</code> will be called with an array of <code>MLBufferUpdate</code>. This indicates a change to the world mesh state which should be applied to the scene.</p>
+<h3 id="mlmeshupdate"><a href="#mlmeshupdate" class="headerlink" title="MLMeshUpdate"></a><code>MLMeshUpdate</code></h3><p>A single update to the world mesh.</p>
+<h4 id="mlmeshupdate-type-string"><a href="#mlmeshupdate-type-string" class="headerlink" title="MLMeshUpdate.type : String"></a><code>MLMeshUpdate.type : String</code></h4><p>The type of update. Can be either:</p>
+<ul>
+<li><code>&#39;new&#39;</code>: the mesh should be added to the scene.</li>
+<li><code>&#39;update&#39;</code>: the mesh was previously emitted as <code>new</code> but its data has changed. No action is necessary, but may be desired.</li>
+<li><code>&#39;remove&#39;</code>: the mesh is no longer in scope for the meshing system and should be discarded.</li>
+</ul>
+<h4 id="mlmeshupdate-positionbuffer-webglbuffer"><a href="#mlmeshupdate-positionbuffer-webglbuffer" class="headerlink" title="MLMeshUpdate.positionBuffer : WebGLBuffer"></a><code>MLMeshUpdate.positionBuffer : WebGLBuffer</code></h4><p>The opaque <code>WebGLBuffer</code> for the mesh positions in world space. Represented as three <code>WebGLFloat</code> per vertex. Not in any particular order; indexed by <code>MLMeshUpdate.indexBuffer</code>. Tightly packed stride.</p>
+<h4 id="mlmeshupdate-positionarray-float32array"><a href="#mlmeshupdate-positionarray-float32array" class="headerlink" title="MLMeshUpdate.positionArray : Float32Array"></a><code>MLMeshUpdate.positionArray : Float32Array</code></h4><p>The <code>Float32Array</code> buffer that was uploaded to the <code>positionBuffer</code>.</p>
+<h4 id="mlmeshupdate-normalbuffer-webglbuffer"><a href="#mlmeshupdate-normalbuffer-webglbuffer" class="headerlink" title="MLMeshUpdate.normalBuffer : WebGLBuffer"></a><code>MLMeshUpdate.normalBuffer : WebGLBuffer</code></h4><p>The opaque <code>WebGLBuffer</code> for the mesh normals. Represented as three <code>WebGLFloat</code> per vertex. Not in any particular order; indexed by <code>MLMeshUpdate.indexBuffer</code>. Tightly packed stride.</p>
+<h4 id="mlmeshupdate-normalarray-float32array"><a href="#mlmeshupdate-normalarray-float32array" class="headerlink" title="MLMeshUpdate.normalArray : Float32Array"></a><code>MLMeshUpdate.normalArray : Float32Array</code></h4><p>The <code>Float32Array</code> buffer that was uploaded to the <code>normalBuffer</code>.</p>
+<h4 id="mlmeshupdate-indexbuffer-webglbuffer"><a href="#mlmeshupdate-indexbuffer-webglbuffer" class="headerlink" title="MLMeshUpdate.indexBuffer : WebGLBuffer"></a><code>MLMeshUpdate.indexBuffer : WebGLBuffer</code></h4><p>The opaque <code>WebGLBuffer</code> for the mesh indices for <code>MLMeshUpdate.position</code> and <code>MLMeshUpdate.normal</code>. Represented as three <code>WegGLShort</code> per triangle. Tightly packed stride.</p>
+<h4 id="mlmeshupdate-indexarray-uint16array"><a href="#mlmeshupdate-indexarray-uint16array" class="headerlink" title="MLMeshUpdate.indexArray : Uint16Array"></a><code>MLMeshUpdate.indexArray : Uint16Array</code></h4><p>The <code>Uint16Array</code> buffer that was uploaded to the <code>indexBuffer</code>.</p>
+<h4 id="mlmeshupdate-count-number"><a href="#mlmeshupdate-count-number" class="headerlink" title="MLMeshUpdate.count : Number"></a><code>MLMeshUpdate.count : Number</code></h4><p>The number of indices in <code>MLMeshUpdate.index</code>. Indended to be passed to <code>glDrawElements(GL_TRIANGLES)</code>.</p>
+<h3 id="mleyetracker"><a href="#mleyetracker" class="headerlink" title="MLEyeTracker"></a><code>MLEyeTracker</code></h3><p>Used to get the current 3D eye tracking position from the Magic Leap platform.</p>
+<h4 id="mleyetracker-fixation-mltransform"><a href="#mleyetracker-fixation-mltransform" class="headerlink" title="MLEyeTracker.fixation : MLTransform"></a><code>MLEyeTracker.fixation : MLTransform</code></h4><p>The current location of the eye cursor, as a world transform. This is probably in front of the camera, in the negative Z.</p>
+<h4 id="mleyetracker-eyes-mleye"><a href="#mleyetracker-eyes-mleye" class="headerlink" title="MLEyeTracker.eyes : MLEye"></a><code>MLEyeTracker.eyes : MLEye</code></h4><p>The individual eye locations and statuses. Note that this does not include the eye fixation (cursor); that is contained in <code>fixation</code>.</p>
+<h3 id="mlplanetracker"><a href="#mlplanetracker" class="headerlink" title="MLPlaneTracker"></a><code>MLPlaneTracker</code></h3><p>Used to receive world planes detected by the Magic Leap platform.</p>
+<h4 id="mlplanetracker-onplane-function-mlplaneupdate"><a href="#mlplanetracker-onplane-function-mlplaneupdate" class="headerlink" title="MLPlaneTracker.onplane : function(MLPlaneUpdate[])"></a><code>MLPlaneTracker.onplane : function(MLPlaneUpdate[])</code></h4><p>When set, <code>onplane</code> will be called with an array of <code>MLPlaneUpdate</code>. This indicates an update to the planes detected by the Magic Leap platform.</p>
+<p>An update replaces the preview plane state and may contain an entirely different set of planes than the previous update. Plane identity can be tracked via each <code>MLPlaneUpdate</code>‘s <code>.id</code> property.</p>
+<h3 id="mlplaneupdate"><a href="#mlplaneupdate" class="headerlink" title="MLPlaneUpdate"></a><code>MLPlaneUpdate</code></h3><p>A single plane detected in the world.</p>
+<h4 id="mlplaneupdate-id-string"><a href="#mlplaneupdate-id-string" class="headerlink" title="MLPlaneUpdate.id : String"></a><code>MLPlaneUpdate.id : String</code></h4><p>A unique identifier for this plane. If a plane’s id is the same between updates, then it is an update to a previous plane.</p>
+<h4 id="mlplaneupdate-position-float32array-3"><a href="#mlplaneupdate-position-float32array-3" class="headerlink" title="MLPlaneUpdate.position : Float32Array(3)"></a><code>MLPlaneUpdate.position : Float32Array(3)</code></h4><p>The world position of the center of this plane.</p>
+<h4 id="mlplaneupdate-rotation-float32array-4"><a href="#mlplaneupdate-rotation-float32array-4" class="headerlink" title="MLPlaneUpdate.rotation : Float32Array(4)"></a><code>MLPlaneUpdate.rotation : Float32Array(4)</code></h4><p>The world quaternion of the direction of this plane. Apply this quaternion to the vector <code>(0, 0, 1)</code> to get the plane normal.</p>
+<h4 id="mlplaneupdate-size-float32array-2"><a href="#mlplaneupdate-size-float32array-2" class="headerlink" title="MLPlaneUpdate.size : Float32Array(2)"></a><code>MLPlaneUpdate.size : Float32Array(2)</code></h4><p>The size of the plane in meters.</p>
+<ul>
+<li><code>size[0]</code> is the width (x)</li>
+<li><code>size[1]</code> is the height (y)</li>
+</ul>
+<h3 id="mlhandtracker"><a href="#mlhandtracker" class="headerlink" title="MLHandTracker"></a><code>MLHandTracker</code></h3><p>Used to acquire hand tracking updates from the Magic Leap platform.</p>
+<h4 id="mlhandtracker-onhand-function-mlhandupdate"><a href="#mlhandtracker-onhand-function-mlhandupdate" class="headerlink" title="MLHandTracker.onhand : function(MLHandUpdate[])"></a><code>MLHandTracker.onhand : function(MLHandUpdate[])</code></h4><p>When set, <code>onhand</code> will be called with an array of <code>MLHandUpdate</code>. This indicates an update to the user’s hand pose detected from the sensors on the Magic Leap platform.</p>
+<p>Each hand is identified as either <code>&#39;left&#39;</code> or <code>&#39;right&#39;</code>. An update replaces the previous hand state; if a hand is not present in any given update that means it has not been detected for the given update loop.</p>
+<h3 id="mlhandupdate"><a href="#mlhandupdate" class="headerlink" title="MLHandUpdate"></a><code>MLHandUpdate</code></h3><p>A single update to the user’s tracked hand pose state.</p>
+<h4 id="mlhandupdate-hand-string"><a href="#mlhandupdate-hand-string" class="headerlink" title="MLHandUpdate.hand : String"></a><code>MLHandUpdate.hand : String</code></h4><p>The hand direction detected for this update. Either <code>&#39;left&#39;</code> or <code>&#39;right&#39;</code>.</p>
+<h4 id="mlhandupdate-pointer-mltransform"><a href="#mlhandupdate-pointer-mltransform" class="headerlink" title="MLHandUpdate.pointer : MLTransform?"></a><code>MLHandUpdate.pointer : MLTransform?</code></h4><p>The pointer transform of the hand pose.</p>
+<p>This is a ray starting at the tip of the index finger and pointing in the direction of the finger, but it may be based on other pose keypoints as a substitute.</p>
+<h4 id="mlhandupdate-grip-mltransform"><a href="#mlhandupdate-grip-mltransform" class="headerlink" title="MLHandUpdate.grip : MLTransform?"></a><code>MLHandUpdate.grip : MLTransform?</code></h4><p>The grip transform of the hand pose.</p>
+<p>This is usually a ray starting at the center of the wrist and pointing at the middle finger, but it may be based on other pose keypoints as a substitute.</p>
+<h4 id="mlhandupdate-rotation-float32array-4"><a href="#mlhandupdate-rotation-float32array-4" class="headerlink" title="MLHandUpdate.rotation : Float32Array(4)"></a><code>MLHandUpdate.rotation : Float32Array(4)</code></h4><p>The rotation of the hand pose detected in world space, as a world quaternion. The rotation is defined as pointing in the direction of the base of the middle finger.</p>
+<h4 id="mlhandupdate-wrist-float32array-3-3"><a href="#mlhandupdate-wrist-float32array-3-3" class="headerlink" title="MLHandUpdate.wrist : Float32Array[3][3]"></a><code>MLHandUpdate.wrist : Float32Array[3][3]</code></h4><p>The detected wrist bone position, each as a Float32Array(3) vector vector in world space. The order is:</p>
+<ul>
+<li><code>center</code></li>
+<li><code>radial</code></li>
+<li><code>ulnar</code></li>
+</ul>
+<h4 id="mlhandupdate-fingers-float32array-2-5-4-3"><a href="#mlhandupdate-fingers-float32array-2-5-4-3" class="headerlink" title="MLHandUpdate.fingers : Float32Array[2][5][4][3]"></a><code>MLHandUpdate.fingers : Float32Array[2][5][4][3]</code></h4><p>The detected hand finger bone positions. The order is right-handed, left-to-right, bottom-to-top:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">handUpdate.bones[0][0][0] // left (0) thumb (0) base (0) as a Float32Array(3) vector</span><br><span class="line">handUpdate.bones[1][0][2] // right (1) thumb (0) tip (2) as a Float32Array(3) vector</span><br><span class="line">handUpdate.bones[1][1][3] // right (1) pointer (1) tip (3) as a Float32Array(3) vector</span><br><span class="line">handUpdate.bones[0][4][3] // left (0) pinkie (4) tip (3) as a Float32Array(3) vector</span><br></pre></td></tr></table></figure>
+<h4 id="mlhandupdate-gesture-string"><a href="#mlhandupdate-gesture-string" class="headerlink" title="MLHandUpdate.gesture : String"></a><code>MLHandUpdate.gesture : String</code></h4><p>The current gesture pose of the hand. One of:</p>
+<ul>
+<li><code>null</code> (no gesture detected)</li>
+<li><code>&#39;finger&#39;</code></li>
+<li><code>&#39;fist&#39;</code></li>
+<li><code>&#39;pinch&#39;</code></li>
+<li><code>&#39;thumb&#39;</code></li>
+<li><code>&#39;l&#39;</code></li>
+<li><code>&#39;openHandBack&#39;</code></li>
+<li><code>&#39;ok&#39;</code></li>
+<li><code>&#39;c&#39;</code></li>
+</ul>
+<h5 id="notes"><a href="#notes" class="headerlink" title="Notes:"></a>Notes:</h5><ul>
+<li>A bone may be <code>null</code>, which means it is not currently detected.</li>
+<li>The thumb has one less bone than the other fingers.</li>
+</ul>
+<h3 id="mltransform"><a href="#mltransform" class="headerlink" title="MLTransform"></a><code>MLTransform</code></h3><p>A generic container for position/rotation data in world space.</p>
+<h4 id="mltransform-position-float32array-3"><a href="#mltransform-position-float32array-3" class="headerlink" title="MLTransform.position : Float32Array(3)"></a><code>MLTransform.position : Float32Array(3)</code></h4><p>A three-component world position vector.</p>
+<h4 id="mltransform-rotation-float32array-4"><a href="#mltransform-rotation-float32array-4" class="headerlink" title="MLTransform.rotation : Float32Array(4)"></a><code>MLTransform.rotation : Float32Array(4)</code></h4><p>A four-component world quaternion.</p>
+<h3 id="mleyetracker-1"><a href="#mleyetracker-1" class="headerlink" title="MLEyeTracker"></a><code>MLEyeTracker</code></h3><p>Used to acquire eye tracking updates from the Magic Leap platform.</p>
+<h4 id="mleyetracker-oneye-function-mleye-2"><a href="#mleyetracker-oneye-function-mleye-2" class="headerlink" title="MLEyeTracker.oneye : function(MLEye[2])"></a><code>MLEyeTracker.oneye : function(MLEye[2])</code></h4><p>When set, <code>oneye</code> will be called with an array of <code>MLEyeUpdate</code>. This indicates an update to the user’s detected eye post by the Magic Leap platform.</p>
+<p>Both eyes are present in all updates.</p>
+<h3 id="mleye"><a href="#mleye" class="headerlink" title="MLEye"></a><code>MLEye</code></h3><p>A single eye state as detected by the platform.</p>
+<h3 id="mleye-position-float32array-3"><a href="#mleye-position-float32array-3" class="headerlink" title="MLEye.position : Float32Array(3)"></a><code>MLEye.position : Float32Array(3)</code></h3><p>The world position of the eye origin as a vector.</p>
+<blockquote>
+<p>Do not use this for checking where the eye is looking; that is what <code>fixation</code> is for.</p>
+</blockquote>
+<h3 id="mleye-rotation-float32array-4"><a href="#mleye-rotation-float32array-4" class="headerlink" title="MLEye.rotation : Float32Array(4)"></a><code>MLEye.rotation : Float32Array(4)</code></h3><p>The rotation of the eye origin as a world quaternion.</p>
+<blockquote>
+<p>Do not use this for checking where the eye is looking; that is what <code>fixation</code> is for.</p>
+</blockquote>
+<h3 id="mleye-blink-boolean"><a href="#mleye-blink-boolean" class="headerlink" title="MLEye.blink : Boolean"></a><code>MLEye.blink : Boolean</code></h3><p>Whether this eye is currently closed (<code>true</code>) or open (<code>false</code>).</p>
+<h2 id="endpoints"><a href="#endpoints" class="headerlink" title="Endpoints"></a>Endpoints</h2><h4 id="browser-magicleap-requestmeshing-mlmesher"><a href="#browser-magicleap-requestmeshing-mlmesher" class="headerlink" title="browser.magicleap.RequestMeshing() : MLMesher"></a><code>browser.magicleap.RequestMeshing() : MLMesher</code></h4><p>Returns an instance of <code>MLMesher</code>, which can be used to receive world meshing buffer updates from the Magic Leap platform.</p>
+<h4 id="browser-magicleap-requestplanetracking-mlplanetracker"><a href="#browser-magicleap-requestplanetracking-mlplanetracker" class="headerlink" title="browser.magicleap.RequestPlaneTracking() : MLPlaneTracker"></a><code>browser.magicleap.RequestPlaneTracking() : MLPlaneTracker</code></h4><p>Returns an instance of <code>MLPlaneTracker</code>, which can be used to receive world planes detected by the Magic Leap platform.</p>
+<h4 id="browser-magicleap-requesthandtracking-mlhandtracker"><a href="#browser-magicleap-requesthandtracking-mlhandtracker" class="headerlink" title="browser.magicleap.RequestHandTracking() : MLHandTracker"></a><code>browser.magicleap.RequestHandTracking() : MLHandTracker</code></h4><p>Returns an instance of <code>MLHandTracker</code>, which can be used to receive hand tracking data from the Magic Leap platform.</p>
+<h4 id="browser-magicleap-requesteyetracking-mleyetracker"><a href="#browser-magicleap-requesteyetracking-mleyetracker" class="headerlink" title="browser.magicleap.RequestEyeTracking() : MLEyeTracker"></a><code>browser.magicleap.RequestEyeTracking() : MLEyeTracker</code></h4><p>Returns an instance of <code>MLEyeTracker</code>, which can be used to receive eye tracking data from the Magic Leap platform.</p>
+<h4 id="browser-magicleap-requestdepthpopulation-populatedepth-boolean"><a href="#browser-magicleap-requestdepthpopulation-populatedepth-boolean" class="headerlink" title="browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)"></a><code>browser.magicleap.RequestDepthPopulation(populateDepth : Boolean)</code></h4><p>Sets whether the render loop will populate the depth buffer by using the meshing subsystem.</p>
+<p>This is a fast way of doing world occlusion without any extra code.</p>
+
+
+      <!-- Previous / Next navigation. -->
+      <footer class="footer guide-links c">
+        
+          <span class="float-left">
+            <a href="/docs/apis/nativeFutureIntegrations.html" class="guide-link guide-link-left">← Future Native Integrations </a></span>
+        
+        
+      </footer>
+
+      <footer class="footer footnote">
+  <p>
+    The Exokit project and content on this site are licensed under the <a href="https://github.com/exokitxr/exokit/blob/master/LICENSE" rel="external">MIT License</a>.
+  </p>
+  <p>Found a typo or suggestion for the docs? <br><br> <a href="https://github.com/exokitxr/exokit/edit/master/docs/apis/MagicLeapAPI.md" class="github-file-link" target="_blank" rel="external">Suggest an edit on GitHub</a></p>
+</footer>
+
+    </div>
+
+    <div class="secondary-sidebar">
+      
+
+<div id="table-of-contents" class="nav-list">
+  <p class="section-title docs-section-title">Table of Contents</p>
+
+  <ul class="subnav">
+    
+      <li class="subnav-item">
+        <a class="subnav-link" href="#classes">Classes</a>
+
+        <!-- Nested. -->
+        
+          <ul>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mlmesher">MLMesher</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mlmeshupdate">MLMeshUpdate</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mleyetracker">MLEyeTracker</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mlplanetracker">MLPlaneTracker</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mlplaneupdate">MLPlaneUpdate</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mlhandtracker">MLHandTracker</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mlhandupdate">MLHandUpdate</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mltransform">MLTransform</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mleyetracker-1">MLEyeTracker</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mleye">MLEye</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mleye-position-float32array-3">MLEye.position : Float32Array(3)</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mleye-rotation-float32array-4">MLEye.rotation : Float32Array(4)</a>
+              </li>
+            
+              <li class="subnav-item">
+                <a class="subnav-link" href="#mleye-blink-boolean">MLEye.blink : Boolean</a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li class="subnav-item">
+        <a class="subnav-link" href="#endpoints">Endpoints</a>
+
+        <!-- Nested. -->
+        
+          <ul>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+</div>
+
+      
+
+      <div class="doc-actions">
+        <a class="docs-suggest-edit github-file-link" href="https://github.com/exokitxr/exokit/edit/master/docs/apis/MagicLeapAPI.md" target="_blank" rel="external">Edit Page</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+    
+      <script src="/js/common.js"></script>
+      
+      
+        <script src="/js/docs.js"></script>
+      
+    
+
+    
+      <!-- Algolia search. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script type="text/javascript">
+  var searchConfig = {
+    apiKey: '',
+    indexName: 'exokit',
+    algoliaOptions: {
+      hitsPerPage: 10
+    },
+    debug: false
+  };
+
+  docsearch(Object.assign(searchConfig, {inputSelector: '.docs-search-sidebar .search-field'}));
+  docsearch(Object.assign(searchConfig, {inputSelector: '.docs-search-sidebar-mobile .search-field'}));
+</script>
+
+    
+  </body>
+</html>

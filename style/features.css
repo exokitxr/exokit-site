@@ -1,0 +1,106 @@
+.features .featuresHero{
+    position: relative;
+    min-height: 100vh;
+}
+.features .heroDL:hover{
+    color: rgb(39, 39, 39);
+}
+.features .featuresHeroImg{
+    margin-top: 15vh;
+    margin-left: 5vw;
+    height: 50vh;
+    width: auto;
+}
+.features .notABrowser{
+    color: white;
+    position: relative;
+    min-height: 100vh;
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(-120deg, rgb(20, 132, 163), #00003b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-120deg, rgb(20, 132, 163), #00003b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 95%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+}
+.features .notABrowserText{
+    padding-top: 40vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+}
+.features .notABrowserImg{
+    padding-top: 32vh;
+    padding-right: 5vw;
+    padding-left: 5vw;
+    padding-bottom: 10vh;
+}
+.featuresHeroText{
+    padding-top: 20vh;
+    padding-bottom: 10vh;
+    padding-left: 5vw;
+}
+.features .notAFork{
+    position: relative;
+    min-height: 88vh;
+}
+.features .notAForkText{
+    padding-top: 30vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+}
+.features .futureFeatures{
+    color: white;
+    position: relative;
+    min-height: 95vh;
+    background: #FF416C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(300deg, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(300deg, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+}
+.features .futureFeaturesText{
+    padding-top: 20vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+}
+.features .worksOnAll{
+    position: relative;
+    height: 60vh;
+    min-height: 600px;
+    background-image: url('../media/getStarted.png');
+    background-size: contain;
+}
+.features .verticalLine {
+    border-left: thin solid rgba(0, 0, 0, 0.685);
+    height: 80px;
+}
+@media only screen and (max-width: 994px) {
+    .features .notABrowserText{
+        padding-top: 20vh;
+        padding-bottom: 10vh;
+        padding-left: 10vw;
+    }
+    .features .notABrowserImg{
+        padding-top: 0vh;
+        padding-right: 5vw;
+        padding-left: 5vw;
+        padding-bottom: 10vh;
+    }
+    .featuresHeroText{
+        padding-top: 5vh;
+        padding-bottom: 10vh;
+        padding-left: 10vw;
+    }
+    .features .notAFork{
+        min-height: 75vh;
+    }
+    .features .notAForkText{
+        padding-top: 20vh;
+        padding-bottom: 10vh;
+        padding-left: 10vw;
+    }
+    .features .featuresHeroImg{
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 7vh;
+        height: 50vh;
+    }
+}

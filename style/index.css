@@ -1,0 +1,436 @@
+.home #hero-canvas {
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+}
+
+.home #features-canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    pointer-events: none;
+}
+
+.home #features-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vw;
+    background-color: #FFF;
+    // background-color: #000;
+    /* background-image: linear-gradient(to bottom, #2196f3 0%, #fff 30%); */
+}
+
+.home #counterCol {
+  display: none;
+}
+
+.home #overlay {
+    position: absolute;
+    margin-top: 30vh;
+    margin-left: 50px;
+    width: 40vw; 
+    height: 100%;
+    top: 0; 
+    z-index: 2;
+}
+
+.home .heroDL:hover{
+    color: rgb(39, 39, 39);
+}
+
+.home #heroPusher{
+    margin-bottom: 180px;
+}
+
+.home #overlay-subs {
+  display: flex;
+}
+
+.home #overlay-subs .overlay-sub {
+  padding-right: 4vw;
+}
+
+.home #overlay-subs .overlay-sub .button {
+  display: flex;
+  height: 40px;
+  border: 2px solid #000;
+  border-radius: 1000px;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease-out;
+}
+.home #overlay-subs .overlay-sub .button:hover {
+  background-color: #000;
+  color: #FFF;
+  transition: none;
+}
+
+.home .whatIsExokit{
+    z-index: -4;
+    position: relative;
+    // margin-top: -80px;
+    min-height: 100vh;
+}
+
+.home .whatIsExokitPusher{
+    margin-top: 200px;
+}
+
+.home .whatIsExokitImg{
+    height: auto;
+    width: 50%;
+    position: absolute;
+    bottom: -20;
+    left: 0;
+    color: black;
+}
+
+.home #featureMain-wrap {
+  position: relative;
+}
+
+.home #featureMain-wrap .gradient {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.home #featureMain-wrap .gradient2 {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  height: 30vh;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%); 
+}
+
+.home .mlImg, .home .oculusImg, .home .viveImg{
+    height: 100px;
+    margin-bottom: 100px;
+    width: auto;
+}
+
+.home .exokitImg{
+    height: 60px;
+    width: auto;
+}
+.home .exokitName{
+    font-family: Bison;
+    font-size: 60px;
+}
+
+.home .featureArrow {
+    border-right: thin solid black;
+    height: 80px;
+    width: 50%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.home .featurePusher{
+    padding-top: 35px;
+}
+.home .featureText{
+    width: 75%;
+    margin-left: 10vw;
+    line-height: 1.5;
+}
+.home .featureTextPusher{
+    height: 15vh;
+}
+
+.home .slideTextLeft{
+    animation: moveLeft 1s ease-in;
+}
+.home .slideTextRight{
+    animation: moveRight 1s ease-in;
+}
+
+@keyframes moveLeft {
+    from { margin-left: 1000px; }
+    to { margin-left: 0px; }
+}
+
+@keyframes moveRight {
+    from { margin-left: 0px; }
+    to { margin-left: 1000px; }
+}
+
+.home .exokitFeatures{
+    position: relative;
+    min-height: 400vh;
+    color: #000;
+    background-color: #000;
+}
+
+.home .exokitFeatures ::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;  
+}
+
+.home #featuresLeft img{
+    width: 7vw !important;
+    height: 7vw !important;
+}
+
+.home #featuresLeft .align-container{
+    min-width: 100%;
+    padding-right: 20vw;
+}
+
+.home #featuresLeft .align-container-inner{
+  padding: 2vw;
+  background-color: #000;
+  border-radius: 1vw;
+  color: #FFF;
+}
+
+.home #featuresLeft .align-container img {
+    display: none;
+    margin-right: 3vw;
+}
+
+.home #featuresListCol {
+   padding: 10px;
+   border-top-left-radius: 1vw;
+   border-bottom-left-radius: 1vw;
+}
+
+.home #featuresRight{
+     display: flex;
+     flex-direction: column;
+}
+
+.home #featuresRight h5{
+    display: inline-block;
+    margin: 0;
+    padding: 4px 15px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    cursor: pointer;
+    transition: none;
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.home #featuresRight a h5:hover:not(.active) {
+    border-color: #000;
+    font-weight: 900;
+    transition: none;
+}
+
+.home #featuresRight a h5.active {
+    background-image: linear-gradient(to right, #7e57c2 0%, #512da8 50%);
+    border-color: transparent;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.home .vArrow{
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.home .vLine{
+    border-left: 3px solid #000;
+}
+
+.home .featureArrows{
+    padding-top: 160px;
+}
+
+.home .exokitFeatures .row{
+    width: 100%;
+}
+
+.home .exokitFeature{
+    border-radius: 25px;
+    text-align: center;
+    height: auto;
+    min-height: 400px;
+    background-image: linear-gradient(120deg, rgba(238, 238, 238, 0.70), rgba(238, 238, 238, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.home .madeWithExokit{
+    position: relative;
+    min-height: 70vh;
+    margin-top: 0 !important;
+    padding-top: 10vh;
+    border-top: 1px solid #EEE;
+}
+
+.home .madeWithExokitPusher{
+    margin-top: 50px;
+}
+
+.home #madeWithExokitMainImg{
+    max-height: 60vh;
+    width: auto;
+    border-radius: 30px;
+}
+
+.home .madeWithExokitSubImg{
+    max-height: 20vh;
+    width: auto;
+    cursor: pointer;
+}
+
+.home .quotes{
+    color: white;
+    position: relative;
+    min-height: 90vh;
+    background-image: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+}
+
+.home .quotesPusher{
+    margin-top: 200px;
+}
+
+.home .quotesPic{
+    height: 80px;
+    width: auto;
+    border-radius: 100px;
+}
+.home .quoteArrow{
+    cursor: pointer;
+}
+.home .quoteArrow:hover{
+    color: rgb(207, 207, 207);
+}
+.home .card-body{
+    color: black;
+}
+
+.home .slideCardsLeft{
+    animation: slideCardsLeft 0.5s ease-in;
+}
+
+@keyframes slideCardsLeft {
+    from { margin-left: 0px; }
+    to { margin-left: 1000px; }
+}
+
+.home .shadow {
+    -moz-box-shadow:    100px 100px 100px 100px #ccc;
+    -webkit-box-shadow: 100px 100px 100px 100px #ccc;
+    box-shadow:         100px 100px 100px 100px #ccc;
+  }
+
+.home .getStarted{
+    position: relative;
+    height: 60vh;
+    min-height: 600px;
+    background-image: url('../media/getStarted.png');
+    background-size: contain;
+}
+
+.home .verticalLine {
+    border-left: thin solid rgba(0, 0, 0, 0.685);
+    height: 80px;
+}
+
+@media only screen and (max-width: 800px) {
+    .home #overlay {
+        width: 90vw;
+        margin-top: 14vh;
+        margin-left: 25px;
+    }
+    .home  #overlay h1{
+        font-size: 30px;;
+    }
+    .home  #overlay i{
+        font-size: 25px;
+    }
+    .home  #overlay img{
+        height: 35px;
+        width: auto;
+    }
+    .home  #overlay h2{
+        font-size: 20px;;
+    }
+    .home #heroPusher{
+        margin-bottom: 40px;
+    }
+    .home #hero-canvas{
+        margin-top: 18vh;
+        background-color: #FFF;
+    }
+    .home #featuresInside img{
+        float: none !important;
+        margin-bottom: 20px !important;
+        height: auto !important;
+        width: 35% !important;
+        max-width: 200px !important;
+    }
+    .home #counterCol{
+        display: none;
+    }
+    .home #featuresLeft .align-container{
+        text-align: center;
+    }
+    .home .featuresHeaderPusher{
+        height: 2vh !important;
+    }
+    .home #featuresLeft h4{
+        max-width: 50vh !important;
+    }
+    .home #featuresListCol{
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    .home #heroPusher{
+        margin-bottom: 20px;
+    }
+    .home .exokitFeature{
+        min-height: 90vh;
+    }
+    .home .featuresBottomSpacer{
+        height: 200px;
+    }
+}
+@media only screen and (max-width: 994px) {
+    .home .whatIsExokitImg{
+        width: auto;
+        height: 300px;
+    }
+    .home .quotes{
+        -webkit-clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 100%);
+    }
+    .home .featurePusher{
+        padding-top: 50px;
+    }
+    .home .mlImg, .home .viveImg, .home .oculusImg{
+        margin-bottom: 80px;
+    }
+    .home .oculusImg{
+        margin-bottom: 80px;
+    }
+    .home .featureArrow {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .home .exokitFeature{
+        min-height: 60vh;
+    }
+    .home .featuresSpacer{
+        height: 80px;
+    }
+}

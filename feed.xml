@@ -8,14 +8,14 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
     
     <description>Native VR/AR/XR engine for JavaScript</description>
-    <pubDate>Sat, 06 Apr 2019 20:02:41 GMT</pubDate>
+    <pubDate>Sun, 07 Apr 2019 16:21:44 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>Introducing Exokit: A Javascript Web Engine for the Post Screen Era</title>
       <link>https://exokit.org/blog/introducing-exokit/</link>
       <guid>https://exokit.org/blog/introducing-exokit/</guid>
-      <pubDate>Fri, 30 Mar 2018 05:00:00 GMT</pubDate>
+      <pubDate>Fri, 30 Mar 2018 00:00:00 GMT</pubDate>
       <description>
       
         &lt;h2 id=&quot;the-industry-today&quot;&gt;&lt;a href=&quot;#the-industry-today&quot; class=&quot;headerlink&quot; title=&quot;The Industry Today&quot;&gt;&lt;/a&gt;&lt;strong&gt;The Industry Today&lt;/stro
@@ -43,7 +43,7 @@
       <title>Hello World</title>
       <link>https://exokit.org/blog/helloworld/</link>
       <guid>https://exokit.org/blog/helloworld/</guid>
-      <pubDate>Mon, 01 Jan 2018 06:00:00 GMT</pubDate>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 GMT</pubDate>
       <description>
       
         &lt;h2 id=&quot;hello-world&quot;&gt;&lt;a href=&quot;#hello-world&quot; class=&quot;headerlink&quot; title=&quot;Hello World&quot;&gt;&lt;/a&gt;Hello World&lt;/h2&gt;

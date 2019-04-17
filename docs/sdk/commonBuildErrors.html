@@ -26,7 +26,7 @@
       data-is-spa="false"
       data-ga-id=""
   <head>
-    <title>Introduction – Exokit</title>
+    <title>Common Build Errors – Exokit</title>
     
 
 <script>
@@ -46,7 +46,7 @@
     <link href="/style/fonts.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600" rel="stylesheet">
     <meta property="fb:app_id" content="">
-    <meta property="og:title" content="Introduction – Exokit">
+    <meta property="og:title" content="Common Build Errors – Exokit">
     <meta property="og:site_name" content="Exokit">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://exokit.org">
@@ -56,7 +56,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@exokitXR">
     <meta name="twitter:creator" content="@exokitXR">
-    <meta name="twitter:title" content="Introduction – Exokit">
+    <meta name="twitter:title" content="Common Build Errors – Exokit">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="http://exokit.org/images/card.jpg?v2">
     <meta name="mobile-web-app-capable" content="yes">
@@ -110,7 +110,7 @@
     
   </head>
 
-  <body data-page-layout="docs" data-page-type="introduction">
+  <body data-page-layout="docs" data-page-type="sdk">
     <main id="main" class="main">
 
 
@@ -213,16 +213,16 @@
       
 
       <!-- Section title. -->
-      <h3 class="section-title docs-section-title section-title-active">
+      <h3 class="section-title docs-section-title section-title-inactive">
         <p class="section-title-link">Introduction</p>
       </h3>
 
       <!-- Section links. -->
       <ol class="subnav section-subnav">
         
-          <li class="subnav-item  subnav-item-current">
+          <li class="subnav-item ">
             <a href="/docs/introduction/"
-               class="subnav-link current">
+               class="subnav-link">
               Introduction
             </a>
           </li>
@@ -340,7 +340,7 @@
       
 
       <!-- Section title. -->
-      <h3 class="section-title docs-section-title section-title-inactive">
+      <h3 class="section-title docs-section-title section-title-active">
         <p class="section-title-link">SDK</p>
       </h3>
 
@@ -361,9 +361,9 @@
             </a>
           </li>
         
-          <li class="subnav-item ">
+          <li class="subnav-item  subnav-item-current">
             <a href="/docs/sdk/commonBuildErrors.html"
-               class="subnav-link">
+               class="subnav-link current">
               Common Build Errors
             </a>
           </li>
@@ -468,7 +468,7 @@
 </aside>
 
   <!-- Documentation. -->
-  <div class="content content--structured content--introduction copy">
+  <div class="content content--structured content--sdk copy">
     <div class="mobile-header">
   <a id="sidebar-toggle" href="#" title="Toggle sidebar">&equiv;</a>
   <h1><a href="/">Exokit</a></h1>
@@ -519,140 +519,33 @@
     <div class="copy__wrap">
       <div class="page__section docs-header">
         <p>
-          <a href="/docs/introduction/" class="borderless-link">
-             &rsaquo; Introduction
+          <a href="/docs/sdk/sdk.html" class="borderless-link">
+             &rsaquo; SDK
           </a>
         </p>
       </div>
       <h1 class="page__title">
-        Introduction
+        Common Build Errors
       </h1>
 
       
 
 
 
-      <h2 id="overview"><a href="#overview" class="headerlink" title="Overview"></a>Overview</h2><p>Exokit is an <strong>engine that runs XR experiences made with regular web code</strong>. It emulates a web browser on top of Node.js, providing native hooks for WebGL, WebXR, WebAudio, and other standard APIs for immersive experiences. It works with web pages and your favorite frameworks like A-Frame.</p>
-<p><img class="github-emoji" title="eyeglasses" alt="eyeglasses" src="https://github.githubassets.com/images/icons/emoji/unicode/1f453.png?v8" height="20" width="20"> <strong>Exokit targets the following platforms</strong>:</p>
-<ul>
-<li>Desktop VR (Steam compatible)</li>
-<li>Magic Leap</li>
-<li>Mobile AR (ARKit / ARCore) *</li>
-<li>Mobile VR (Daydream / Gear VR) *</li>
-<li>Standalone VR (Oculus Quest/Go) *</li>
-</ul>
-<p>* not supported yet</p>
-<p><img class="github-emoji" title="electric_plug" alt="electric_plug" src="https://github.githubassets.com/images/icons/emoji/unicode/1f50c.png?v8" height="20" width="20"> <strong>Since Exokit supports anything that runs on the web, it powers experiences built with</strong>:</p>
-<ul>
-<li>Three.js</li>
-<li>Unity</li>
-<li>Pixi.js</li>
-<li>Babylon.js</li>
-<li>A-Frame</li>
-<li>Custom WebGL frameworks</li>
-<li>WebAssembly, TypeScript, and any language that transpiles to JavaScript</li>
-</ul>
-<p><img class="github-emoji" title="thumbsup" alt="thumbsup" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png?v8" height="20" width="20"> <strong>Why Exokit?</strong></p>
-<ul>
-<li>You want your WebGL/WebXR to run fast.</li>
-<li>You want the hot new web APIs.</li>
-<li>You want to add your own integrations – including native – into a browser environment.</li>
-<li>You want a lightweight browser as a hackable node module.</li>
-<li>You want to combine the web with a 3D engine like Unity.</li>
-</ul>
-<p><img class="github-emoji" title="thumbsdown" alt="thumbsdown" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44e.png?v8" height="20" width="20"> <strong>Why not Exokit?</strong></p>
-<ul>
-<li>You’re looking for a traditional “web browser”.</li>
-<li>You don’t care about 3D or mixed reality.</li>
-<li>You’re looking for strict and/or legacy standards support.</li>
-</ul>
-<p><img class="github-emoji" title="book" alt="book" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png?v8" height="20" width="20"> <strong>Manifesto</strong></p>
-<ul>
-<li>The future is immersive. The web is the best application platform. Javascript is the best ecosystem.</li>
-<li>Content should be hardware agnostic. Tomorrow will have different hardware. VR and AR should be compatible.</li>
-<li>It’s not possible to do both 2D and 3D well. We don’t do 2D. We can use an external 2D browser.</li>
-<li>Use your favorite game engine. Exokit is not a game engine.</li>
-<li>Legacy browser design choices don’t make sense in XR.</li>
-<li>Exokit empowers and connect apps, even (especially) if they aren’t designed to cooperate.</li>
-<li>Apps should run in “reality tabs”, layers of reality that blend together.</li>
-</ul>
-<h2 id="examples"><a href="#examples" class="headerlink" title="Examples"></a>Examples</h2><p><a href="https://youtu.be/cd_DEwCDF6U" target="_blank" rel="external"><img alt="Hands Reality Tab" target="_blank" src="https://user-images.githubusercontent.com/29695350/55507781-0e463300-561e-11e9-9b1a-f43b8259d041.gif" height="190" width="32%"></a>
-<a href="https://youtu.be/b-UKSg0QCRE" target="_blank" rel="external"><img alt="Live Reload Magic Leap" target="_blank" src="https://user-images.githubusercontent.com/29695350/55507118-a216ff80-561c-11e9-829e-74d8244571c3.gif" height="190" width="32%"></a>
-<a href="https://youtu.be/O1xA1r5SZUM" target="_blank" rel="external"><img alt="Tutorial Reality Tab" target="_blank" src="https://user-images.githubusercontent.com/29695350/55507125-a3e0c300-561c-11e9-835f-3a26a9e879b5.gif" height="190" width="32%"></a></p>
-<p><a href="https://www.youtube.com/watch?v=m_QntqZmd_Q" target="_blank" rel="external"><img alt="Reality Projection with HTC Vive and Magic Leap" target="_blank" src="https://user-images.githubusercontent.com/29695350/55507271-e60a0480-561c-11e9-87ad-7dc736ba0760.gif" height="190" width="32%"></a>
-<a href="https://youtu.be/i0MXRCNkdB4" target="_blank" rel="external"><img alt="Emukit" target="_blank" src="https://user-images.githubusercontent.com/29695350/55507623-a8f24200-561d-11e9-97a3-194b6b4a1d8b.gif" height="190" width="32%"></a>
-<a href="https://exokit.org/"><img alt="Various Exokit Apps" target="_blank" src="https://user-images.githubusercontent.com/29695350/55506701-ba3a4f00-561b-11e9-9e19-ba808bed7c5a.gif" height="190" width="32%"></a></p>
-<p><em>Find more examples at <a href="../../showcase">the showcase</a>, <a href="https://github.com/exokitxr/exokit/tree/master/examples" target="_blank" rel="external">on GitHub</a>, and on <a href="https://www.youtube.com/channel/UC87Q7_5ooY8FSLwOec52ZPQ" target="_blank" rel="external">YouTube</a>.</em></p>
-<h2 id="getting-started"><a href="#getting-started" class="headerlink" title="Getting Started"></a>Getting Started</h2><h3 id="desktop"><a href="#desktop" class="headerlink" title="Desktop"></a>Desktop</h3><h4><a href="https://get.exokit.org" target="_blank" rel="external">Download for current OS</a></h4>
-
-<h4 id="run-a-webxr-site-desktop"><a href="#run-a-webxr-site-desktop" class="headerlink" title="Run a WebXR site (desktop)"></a>Run a WebXR site (desktop)</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">exokit https://aframe.io/a-painter/ <span class="comment"># start A-Painter in Exokit</span></span><br></pre></td></tr></table></figure>
-<h3 id="magic-leap"><a href="#magic-leap" class="headerlink" title="Magic Leap"></a>Magic Leap</h3><h4><a href="https://get.exokit.org/magicleap" target="_blank" rel="external">Download for Magic Leap</a></h4>
-
-<h4 id="run-magic-leap-device"><a href="#run-magic-leap-device" class="headerlink" title="Run (Magic Leap device)"></a>Run (Magic Leap device)</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mldb connect 192.168.0.10:1131 <span class="comment"># mldb needs to be connected; see MLDB documentation</span></span><br><span class="line">mldb install -u exokit.mpk <span class="comment"># downloaded or built package</span></span><br><span class="line">mldb launch com.webmr.exokit -v <span class="string">"ARGS=node --experimental-worker . file:///package/examples/hello_ml.html"</span> <span class="comment"># or URL to load</span></span><br><span class="line">mldb <span class="built_in">log</span> exokit:*</span><br></pre></td></tr></table></figure>
-<h3 id="local-development"><a href="#local-development" class="headerlink" title="Local Development"></a>Local Development</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/exokitxr/exokit.git</span><br><span class="line"><span class="built_in">cd</span> exokit</span><br><span class="line">npm install</span><br><span class="line">node . &lt;url&gt; <span class="comment"># or node . -h for home</span></span><br></pre></td></tr></table></figure>
-<p>The <a href="./installation.html">Installation</a> page provides more options for getting started with Exokit.</p>
-<h2 id="architecture"><a href="#architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>Exokit is a Javascript <a href="https://nodejs.org" target="_blank" rel="external">Node.js</a> module.</p>
-<p>C++ bindings hook into WebGL, WebXR, Magic Leap, Leap Motion, and various other device APIs.</p>
-<p><code>const {window} = require(&#39;exokit&#39;)()</code> to get an immersive browser in another project.</p>
-<p>Exokit runs on Windows, macOS, Linux (x64), Linux (ARM64), and Magic Leap (ARM64).</p>
-<h2 id="web-api-support"><a href="#web-api-support" class="headerlink" title="Web API support"></a>Web API support</h2><ul>
-<li>HTTP/S</li>
-<li>HTML5</li>
-<li><code>&lt;script&gt;</code></li>
-<li>DOM</li>
-<li>WebGL</li>
-<li>WebXR</li>
-<li>WebVR</li>
-<li>WebRTC</li>
-<li>Canvas2D</li>
-<li>WebSocket</li>
-<li>Web Workers</li>
-<li><code>&lt;img&gt;</code>, <code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code></li>
-<li>WebAudio</li>
-<li>Keyboard/Mouse events</li>
-<li>Gamepad API</li>
-<li><code>&lt;iframe&gt;</code></li>
-<li><del>HTML layout</del></li>
-<li><del>HTML rendering</del></li>
-<li><del>CSS</del></li>
-<li><del>Legacy APIs</del></li>
-</ul>
-<h2 id="hardware-bindings"><a href="#hardware-bindings" class="headerlink" title="Hardware bindings"></a>Hardware bindings</h2><ul>
-<li>OpenGL</li>
-<li>OpenVR (Steam VR)</li>
-<li>Magic Leap</li>
-<li>Leap Motion</li>
-</ul>
-<h2 id="license"><a href="#license" class="headerlink" title="License"></a>License</h2><p>This program is free software and is distributed under an <a href="LICENSE.html">MIT License</a>.</p>
-<h2 id="off-you-go"><a href="#off-you-go" class="headerlink" title="Off You Go!"></a>Off You Go!</h2><p>If it’s your first time here, here’s a plan for success for getting into
-Exokit:</p>
-<ol>
-<li><p>For inspiration, check out what other people have built with Exokit on the
-<a href="https://exokit.org/blog/">Weekly Blog</a> or <a href="https://webvr.directory" target="_blank" rel="external">WebVR Directory</a>.</p>
-</li>
-<li><p>Read through the documentation to get a grasp.</p>
-</li>
-<li><p>Stay in Touch:</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://join.slack.com/t/exokit/shared_invite/enQtNDI3NjcxNzYwMDIxLWU2NmFmOTEzMzk4NWNiYjRhMjVkYzcyNjg5YjUyMzZkYWM1ZGI4M2IwYWZiMjNlMTJjMDlkM2U3Y2JiNTc2M2Q" target="_blank" rel="external">Join our Slack</a> for development.</li>
-<li><a href="https://discord.gg/Apk6cZN" target="_blank" rel="external">Join our Discord</a> for hanging out.</li>
-<li><a href="https://twitter.com/exokitxr" target="_blank" rel="external">Follow @exokitxr on Twitter</a> for updates.</li>
-</ul>
-<ol start="4">
-<li>Get involved! Check out the <a href="https://github.com/exokitxr/exokit/CONTRIBUTING.md" target="_blank" rel="external">Contributing Guide</a> for how to get started.</li>
-</ol>
-<p>And it really helps to have dig into the fundamentals on JavaScript and
-three.js. Have fun!</p>
+      <p>This doc covers common errors when building the Exokit engine and their solutions.</p>
+<h3 id="error-cannot-find-module-39-build-release-vm-one-node-39"><a href="#error-cannot-find-module-39-build-release-vm-one-node-39" class="headerlink" title="Error: Cannot find module &#39;./build/Release/vm_one.node&#39;"></a><code>Error: Cannot find module &#39;./build/Release/vm_one.node&#39;</code></h3><p>There was a build failure that was ignored and <code>node_modules</code> contains the failure. Wipe <code>node_modules</code> and try to build again.</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules</span><br><span class="line">npm cache clean</span><br></pre></td></tr></table></figure>
 
 
       <!-- Previous / Next navigation. -->
       <footer class="footer guide-links c">
         
+          <span class="float-left">
+            <a href="/docs/sdk/startDevelopment.html" class="guide-link guide-link-left">← Start Development </a></span>
+        
         
           <span class="float-right">
-            <a href="/docs/introduction/installation.html" class="guide-link guide-link-right">Exokit Installation →</a></span>
+            <a href="/docs/sdk/exokitCommandLine.html" class="guide-link guide-link-right">Command Line →</a></span>
         
       </footer>
 
@@ -660,7 +553,7 @@ three.js. Have fun!</p>
   <p>
     The Exokit project and content on this site are licensed under the <a href="https://github.com/exokitxr/exokit/blob/master/LICENSE" rel="external">MIT License</a>.
   </p>
-  <p>Found a typo or suggestion for the docs? <br><br> <a href="https://github.com/exokitxr/exokit/edit/master/docs/introduction/index.md" class="github-file-link" target="_blank" rel="external">Suggest an edit on GitHub</a></p>
+  <p>Found a typo or suggestion for the docs? <br><br> <a href="https://github.com/exokitxr/exokit/edit/master/docs/sdk/commonBuildErrors.md" class="github-file-link" target="_blank" rel="external">Suggest an edit on GitHub</a></p>
 </footer>
 
     </div>
@@ -673,113 +566,13 @@ three.js. Have fun!</p>
 
   <ul class="subnav">
     
-      <li class="subnav-item">
-        <a class="subnav-link" href="#overview">Overview</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#examples">Examples</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#getting-started">Getting Started</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-              <li class="subnav-item">
-                <a class="subnav-link" href="#desktop">Desktop</a>
-              </li>
-            
-              <li class="subnav-item">
-                <a class="subnav-link" href="#magic-leap">Magic Leap</a>
-              </li>
-            
-              <li class="subnav-item">
-                <a class="subnav-link" href="#local-development">Local Development</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#architecture">Architecture</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#web-api-support">Web API support</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#hardware-bindings">Hardware bindings</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#license">License</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
-      <li class="subnav-item">
-        <a class="subnav-link" href="#off-you-go">Off You Go!</a>
-
-        <!-- Nested. -->
-        
-          <ul>
-            
-          </ul>
-        
-      </li>
-    
   </ul>
 </div>
 
       
 
       <div class="doc-actions">
-        <a class="docs-suggest-edit github-file-link" href="https://github.com/exokitxr/exokit/edit/master/docs/introduction/index.md" target="_blank" rel="external">Edit Page</a>
+        <a class="docs-suggest-edit github-file-link" href="https://github.com/exokitxr/exokit/edit/master/docs/sdk/commonBuildErrors.md" target="_blank" rel="external">Edit Page</a>
         
       </div>
     </div>

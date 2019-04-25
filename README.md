@@ -1,6 +1,6 @@
 # exokitxr.github.io
 
-Hosted static Exokit site. See the [exokit-site repo](https://github.com/exokitxr/exokit-site).
+Hosted static Exokit site. See the [exokit-site repo](https://github.com/exokitxr/exokit-site). Automatically deployed by @exo-bot.
 
 <h1> Deployment </h1>
 

@@ -533,13 +533,16 @@
 
 
       <h2 id="overview"><a href="#overview" class="headerlink" title="Overview"></a>Overview</h2><p>Exokit is an <strong>engine that runs XR experiences made with regular web code</strong>. It emulates a web browser on top of Node.js, providing native hooks for WebGL, WebXR, WebAudio, and other standard APIs for immersive experiences. It works with web pages and your favorite frameworks like A-Frame.</p>
-<p><img class="github-emoji" title="eyeglasses" alt="eyeglasses" src="https://github.githubassets.com/images/icons/emoji/unicode/1f453.png?v8" height="20" width="20"> <strong>Exokit targets the following platforms</strong>:</p>
+<p><img class="github-emoji" title="eyeglasses" alt="eyeglasses" src="https://github.githubassets.com/images/icons/emoji/unicode/1f453.png?v8" height="20" width="20"> <strong>Exokit currently targets the following platforms</strong>:</p>
 <ul>
-<li>Desktop VR (Steam compatible)</li>
+<li>OpenVR Desktop VR (Steam compatible)</li>
+<li>Oculus Desktop (Oculus Rift/Rift S)</li>
+<li>Oculus Mobile (Oculus Quest/Go, GearVR)</li>
 <li>Magic Leap</li>
-<li>Mobile AR (ARKit / ARCore) *</li>
-<li>Mobile VR (Daydream / Gear VR) *</li>
-<li>Standalone VR (Oculus Quest/Go) *</li>
+<li>iOS ARKit *</li>
+<li>Android ARCore *</li>
+<li>Google VR (Daydream / Cardboard / Mirage Solo) *</li>
+<li>any XR device, start a <a href="https://github.com/exokitxr/exokit/compare" target="_blank" rel="external">pull request</a> with a native binding if it isn’t listed here! *</li>
 </ul>
 <p>* not supported yet</p>
 <p><img class="github-emoji" title="electric_plug" alt="electric_plug" src="https://github.githubassets.com/images/icons/emoji/unicode/1f50c.png?v8" height="20" width="20"> <strong>Since Exokit supports anything that runs on the web, it powers experiences built with</strong>:</p>
@@ -620,6 +623,8 @@
 <h2 id="hardware-bindings"><a href="#hardware-bindings" class="headerlink" title="Hardware bindings"></a>Hardware bindings</h2><ul>
 <li>OpenGL</li>
 <li>OpenVR (Steam VR)</li>
+<li>Oculus</li>
+<li>Oculus Mobile</li>
 <li>Magic Leap</li>
 <li>Leap Motion</li>
 </ul>

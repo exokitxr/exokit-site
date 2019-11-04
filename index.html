@@ -197,6 +197,28 @@ body {
 
 .home #overlay-subs {
   display: flex;
+  margin-bottom: 3vw;
+}
+
+.home .overlay-sub h4 {
+  margin: 0;
+  margin-bottom: 0.5vw;
+  /* font-size: 15px; */
+}
+
+.home .overlay-sub .links {
+  display: flex;
+  align-items: center;
+}
+.home .overlay-sub .links .link.i + .link.i {
+  margin-left: 8px;
+}
+.home .overlay-sub .links .link.i i {
+  font-size: 32px;
+}
+.home .overlay-sub .links .link.img img {
+  width: 44px;
+  height: 44px;
 }
 
 .home #overlay-subs .overlay-sub {
@@ -643,6 +665,7 @@ header .nav i {
 }
 header .right {
   margin-left: auto;
+  margin-right: 15px;
 }
 header .button {
   padding: 8px 14px;
@@ -679,17 +702,6 @@ input[type=text]
   border-radius: 8px;
   font-family: inherit;
   font-size: inherit;
-  outline: none;
-}
-.button {
-  display: inline-block;
-  margin-right: 15px;
-  padding: 7px 15px;
-  border: 0;
-  border-radius: 8px;
-  color: #FFF;
-  text-decoration: none;
-  cursor: pointer;
   outline: none;
 }
 /* .button:hover {
@@ -1183,15 +1195,18 @@ table tr {
 
 <div id="overlay">
   <h1>Build a metaverse you own</h1>
-  <h2 class="font-weight-light">Run and ship WebXR apps on<br>Magic Leap, Desktop and Mobile.</h2>
+  <h2 class="font-weight-light">Tools for virutal worlds in the browser. Works on all headsets.</h2>
   <div id=heroPusher></div>
   <div id="overlay-subs">
     <div class="overlay-sub">
-      <h4>Download release</h4>
-      <a href="https://get.webmr.io/mac"><i class="fab heroDL fa-apple fa-2x p-2"></i></a>
-      <a href="https://get.webmr.io/linux"><i class="fab heroDL fa-linux fa-2x p-2"></i></a>
-      <a href="https://get.webmr.io/windows"><i class="fab heroDL fa-windows fa-2x p-2"></i></a>
-      <a href="https://get.webmr.io/magicleap"><img src="media/magicleap.svg" style="margin-left: 6px; vertical-align: top;"></a>
+      <h4>Works on</h4>
+      <div class=links>
+        <a href="https://get.webmr.io/mac" class="link i"><i class="fab heroDL fa-apple fa-2x p-2"></i></a>
+        <a href="https://get.webmr.io/linux" class="link i"><i class="fab heroDL fa-linux fa-2x p-2"></i></a>
+        <a href="https://get.webmr.io/windows" class="link i"><i class="fab heroDL fa-windows fa-2x p-2"></i></a>
+        <a href="https://get.webmr.io/magicleap" class="link img"><img src="media/oculus.svg"></a>
+        <a href="https://get.webmr.io/magicleap" class="link img"><img src="media/magicleap.svg"></a>
+      </div>
     </div>
     <div class="overlay-sub">
       <h4>Open source</h4>

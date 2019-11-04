@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "sudo $(which node) index.js",
+    "build": "cd menu && react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +19,6 @@
   },
   "homepage": "https://github.com/modulesio/exokit-site#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "nodemailer": "^4.7.0"
+    "express": "^4.17.1"
   }
 }

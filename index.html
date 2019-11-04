@@ -10,7 +10,7 @@
 
 /* global.css */
 
-@font-face {
+/* @font-face {
     font-family: 'Bison';
     src: url('../fonts/Bison-Bold.ttf') format('truetype');
 }
@@ -28,7 +28,7 @@
     font-family: 'Bozon';
     src: url('../fonts/ROHH - Bozon Light.otf') format('opentype');
     font-weight: 300;
-}
+} */
   
 html {
     overflow-x: hidden;
@@ -98,7 +98,7 @@ body {
 .footer{
     padding-top: 5vh;
     color: white;
-    min-height: 30vh;
+    min-height: 25vh;
     background: #232526;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #414345, #17191a);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #414345, #17191a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -641,6 +641,20 @@ header .nav i {
   padding: 0 7px;
   padding-top: 2px;
 }
+header .right {
+  margin-left: auto;
+}
+header .button {
+  padding: 8px 14px;
+  background: linear-gradient(to right, #4776e6, #8e54e9);
+  color: #FFF;
+  font-weight: 600;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+header .button:hover {
+  filter: brightness(75%);
+}
 header > .login-form {
   display: flex;
   margin-left: auto;
@@ -1065,6 +1079,88 @@ table colgroup col:nth-child(3) {
 table tr {
   background-color: #f2f3f5;
 }
+.tiles {
+  display: flex;
+}
+.tiles .tile {
+  position: relative;
+  margin-right: 2vw;
+  background-color: #FFF;
+  --color: #7e57c2;
+}
+.tiles .tile:hover {
+  --color: #ef5350;
+  color: var(--color);
+  /* background-color: #CCC; */
+}
+/* .tiles .tile:nth-child(1) {
+  --color: #7e57c2;
+}
+.tiles .tile:nth-child(2) {
+  --color: #5c6bc0;
+}
+.tiles .tile:nth-child(3) {
+  --color: #ff7043;
+}
+.tiles .tile:nth-child(4) {
+  --color: #ef5350;
+}
+.tiles .tile:nth-child(5) {
+  --color: #66bb6a;
+} */
+.tiles .tile:hover {
+}
+.tiles .tile .wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 6vw;
+  height: 7.5vw;
+  padding: 0.7vw;
+  overflow: hidden;
+}
+.tiles .tile::before {
+  transform: skew(-30deg, 0);
+  position: absolute;
+  top: -10px;
+  left: 3px;
+  right: -3px;
+  height: 10px;
+  background-color: var(--color);
+  content: '';
+}
+.tiles .tile::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 5px solid var(--color);
+  content: '';
+}
+/* .tiles .tile::after {
+  transform: skew(0, -45deg);
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  width: 10px;
+  height: 100%;
+  background-color: #CCC;
+  content: '';
+} */
+.tiles .tile h3 {
+  margin: 0;
+  text-transform: uppercase;
+}
+.tiles .tile i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: auto;
+  font-size: 3vw;
+}
+.tiles .tile p {
+}
   </style>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
@@ -1078,28 +1174,62 @@ table tr {
   <a class="nav">Avatars</a>
   <a class="nav">Builder</a>
   <a class="nav">Land</a>
-  <a class="nav" id="developers-dropdown">Docs<i class="fal fa-chevron-down"></i></a>
+  <a class="nav">P2P</a>
+  <a class="nav">Docs<i class="fal fa-chevron-down"></i></a>
+  <a class="button right" href="https://github.com/sponsors/modulesio">Sponsor on GitHub</a>
 </header>
 
 <canvas id=hero-canvas></canvas>
 
 <div id="overlay">
-    <h1>A New XR Engine Approaches</h1>
-    <h2 class="font-weight-light">Run and ship WebXR apps on<br>Magic Leap, Desktop and Mobile.</h2>
-    <div id=heroPusher></div>
-    <div id="overlay-subs">
-      <div class="overlay-sub">
-        <h4>Download release</h4>
-        <a href="https://get.webmr.io/mac"><i class="fab heroDL fa-apple fa-2x p-2"></i></a>
-        <a href="https://get.webmr.io/linux"><i class="fab heroDL fa-linux fa-2x p-2"></i></a>
-        <a href="https://get.webmr.io/windows"><i class="fab heroDL fa-windows fa-2x p-2"></i></a>
-        <a href="https://get.webmr.io/magicleap"><img src="media/magicleap.svg" style="margin-left: 6px; vertical-align: top;"></a>
-      </div>
-      <div class="overlay-sub">
-        <h4>Open source</h4>
-        <a class=button href="https://github.com/webmixedreality/exokit">Github</a>
-      </div>
+  <h1>Build a metaverse you own</h1>
+  <h2 class="font-weight-light">Run and ship WebXR apps on<br>Magic Leap, Desktop and Mobile.</h2>
+  <div id=heroPusher></div>
+  <div id="overlay-subs">
+    <div class="overlay-sub">
+      <h4>Download release</h4>
+      <a href="https://get.webmr.io/mac"><i class="fab heroDL fa-apple fa-2x p-2"></i></a>
+      <a href="https://get.webmr.io/linux"><i class="fab heroDL fa-linux fa-2x p-2"></i></a>
+      <a href="https://get.webmr.io/windows"><i class="fab heroDL fa-windows fa-2x p-2"></i></a>
+      <a href="https://get.webmr.io/magicleap"><img src="media/magicleap.svg" style="margin-left: 6px; vertical-align: top;"></a>
     </div>
+    <div class="overlay-sub">
+      <h4>Open source</h4>
+      <a class=button href="https://github.com/webmixedreality/exokit">Github</a>
+    </div>
+  </div>
+  <div class=tiles>
+    <a href="#" class=tile>
+      <div class=wrap>
+        <h3>Browser</h3>
+        <i class="fas fa-layer-group"></i>
+      </div>
+    </a>
+    <a href="#" class=tile>
+      <div class=wrap>
+        <h3>Avatars</h3>
+        <i class="fas fa-user-ninja"></i>
+      </div>
+    </a>
+    <a href="#" class=tile>
+      <div class=wrap>
+        <h3>Builder</h3>
+        <i class="fas fa-tools"></i>
+      </div>
+    </a>
+    <a href="#" class=tile>
+      <div class=wrap>
+        <h3>Land</h3>
+        <i class="fas fa-mountains"></i>
+      </div>
+    </a>
+    <a href="#" class=tile>
+      <div class=wrap>
+        <h3>P2P</h3>
+        <i class="fas fa-user-headset"></i>
+      </div>
+    </a>
+  </div>
 </div>
 
 <script src="https://kit.fontawesome.com/0735724151.js"></script>

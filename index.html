@@ -225,21 +225,6 @@ body {
   padding-right: 4vw;
 }
 
-.home #overlay-subs .overlay-sub .button {
-  display: flex;
-  height: 40px;
-  border: 2px solid #000;
-  border-radius: 1000px;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.2s ease-out;
-}
-.home #overlay-subs .overlay-sub .button:hover {
-  background-color: #000;
-  color: #FFF;
-  transition: none;
-}
-
 .home .whatIsExokit{
     z-index: -4;
     position: relative;
@@ -665,9 +650,29 @@ header .nav i {
 }
 header .right {
   margin-left: auto;
-  margin-right: 15px;
 }
 header .button {
+  margin-right: 15px;
+  transition: all 0.2s ease-out;
+}
+header .button:hover {
+  margin-right: 15px;
+  transition: none;
+}
+header .button:not(.highlight) {
+  display: flex;
+  padding: 8px 14px;
+  border: 2px solid #000;
+  border-radius: 1000px;
+  justify-content: center;
+  align-items: center;
+}
+header .button:not(.highlight):hover {
+  background-color: #000;
+  color: #FFF;
+  transition: none;
+}
+header .button.highlight {
   padding: 8px 14px;
   background: linear-gradient(to right, #4776e6, #8e54e9);
   color: #FFF;
@@ -675,7 +680,7 @@ header .button {
   border-radius: 100px;
   text-transform: uppercase;
 }
-header .button:hover {
+header .button.highlight:hover {
   filter: brightness(75%);
 }
 header > .login-form {
@@ -1188,7 +1193,8 @@ table tr {
   <a href="https://land.exokit.org" class="nav">Land</a>
   <a href="https://multiplayer.exokit.org" class="nav">P2P</a>
   <a href="https://docs.exokit.org" class="nav">Docs<i class="fal fa-chevron-down"></i></a>
-  <a href="https://github.com/sponsors/modulesio" class="button right">Sponsor on GitHub</a>
+  <a class="button right" href="https://github.com/exokitxr/exokit">View Source</a>
+  <a href="https://github.com/sponsors/modulesio" class="button highlight">Sponsor on GitHub</a>
 </header>
 
 <canvas id=hero-canvas></canvas>
@@ -1208,10 +1214,6 @@ table tr {
         <div href="https://get.webmr.io/magicleap" class="link img"><img src="media/oculus.svg"></div>
         <div class="link img"><img src="media/magicleap.svg"></div>
       </div>
-    </div>
-    <div class="overlay-sub">
-      <h4>Open source</h4>
-      <a class=button href="https://github.com/exokitxr/exokit">Github</a>
     </div>
   </div>
   <div class=tiles>

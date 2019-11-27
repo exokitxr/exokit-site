@@ -524,7 +524,7 @@ function init() {
     const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
     mesh.position.set(-1, 1.5, -1.5);
 
-    const labelMesh = (() => {
+    /* const labelMesh = (() => {
       const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
       const canvas = document.createElement('canvas');
       canvas.width = 1024;
@@ -546,7 +546,7 @@ function init() {
       mesh.position.y = 0.7;
       return mesh;
     })();
-    mesh.add(labelMesh);
+    mesh.add(labelMesh); */
 
     return mesh;
   })();
@@ -584,7 +584,7 @@ function init() {
     mesh.rotation.y = -0.25*Math.PI;
     mesh.rotation.order = 'YXZ';
 
-    const labelMesh = (() => {
+    /* const labelMesh = (() => {
       const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
       const canvas = document.createElement('canvas');
       canvas.width = 1024;
@@ -606,7 +606,7 @@ function init() {
       mesh.position.y = 0.7;
       return mesh;
     })();
-    mesh.add(labelMesh);
+    mesh.add(labelMesh); */
 
     return mesh;
   })();

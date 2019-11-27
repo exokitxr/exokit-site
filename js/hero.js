@@ -1,5 +1,51 @@
 (() => {
 
+const header = document.getElementById('header');
+const mainSelector = document.getElementById('main-selector');
+mainSelector.addEventListener('focus', () => {
+  mainSelector.classList.add('open');
+});
+mainSelector.addEventListener('blur', () => {
+  mainSelector.classList.remove('open');
+});
+const mainOptions = Array.from(mainSelector.querySelectorAll('.option'));
+for (let i = 0; i < mainOptions.length; i++) {
+  const mainOption = mainOptions[i];
+  mainOption.addEventListener('click', e => {
+    if (!header.classList.contains(`main-${i+1}`)) {
+      for (let i = 0; i < mainOptions.length; i++) {
+        header.classList.remove(`main-${i+1}`);
+        mainOptions[i].classList.remove('open');
+      }
+      mainOption.classList.add('open');
+      mainSelector.blur();
+      mainSelector.dispatchEvent(new CustomEvent('blur'));
+      header.classList.add(`main-${i+1}`);
+
+      if (channelConnection) {
+        channelConnection.disconnect();
+        channelConnection = null;
+      }
+      if (landConnection) {
+        landConnection.disconnect();
+        landConnection = null;
+      }
+
+      switch (i) {
+        case 0: {
+          break;
+        }
+        case 1: {
+          break;
+        }
+        case 2: {
+          break;
+        }
+      }
+    }
+  });
+}
+
 let renderer, scene, camera, iframe, mouse, container, avatarMesh, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();

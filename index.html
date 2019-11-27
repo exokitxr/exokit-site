@@ -1234,15 +1234,17 @@ table tr {
 <body class="home" id="home">
 
 <header id=header>
-  <a href="https://exokit.org">
-    <img class=icon src="logo.svg"/>
-  </a>
-  <a href="https://browser.exokit.org" class="nav" id="explore-dropdown">Home</a>
-  <a href="https://avatars.exokit.org" class="nav">Avatars</a>
-  <a href="https://web.exokit.org" class="nav">Builder</a>
-  <a href="https://land.exokit.org" class="nav">Land</a>
-  <a href="https://multiplayer.exokit.org" class="nav">Rooms</a>
-  <a href="https://docs.exokit.org" class="nav">Docs<i class="fal fa-chevron-down"></i></a>
+  <div class=main-selector tabindex=-1 id=main-selector>
+    <nav class=target>
+      <img src="logo.svg" class="icon">
+      <i class="fas fa-chevron-down"></i>
+    </nav>
+    <div class=options>
+      <nav class="option open">Home</nav>
+      <nav class=option>Multiplayer</nav>
+      <nav class=option>Land</nav>
+    </div>
+  </div>
   <a class="button right" href="https://github.com/exokitxr/exokit">View Source</a>
   <a href="https://github.com/sponsors/modulesio" class="button highlight">Sponsor on GitHub</a>
 </header>

@@ -673,6 +673,75 @@ header > .login-form.phase-3 > .phaseless-content
 {
   display: none;
 }
+.main-selector {
+  outline: none;
+}
+.main-selector:hover .target,
+.main-selector .options .option:hover
+{
+  background-color: #42a5f5;
+  color: #FFF;
+}
+.main-selector:active .target,
+.main-selector.open .target,
+.main-selector .options .option:active,
+.main-selector .options .option.open
+{
+  background-color: #1e88e5;
+  color: #FFF;
+}
+.main-selector:hover .target .icon,
+.main-selector.open .target .icon
+{
+  filter: invert(1);
+}
+.main-selector .target .icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 20px;
+}
+.main-selector .options {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 300px;
+  background-color: #FFF;
+  color: #000;
+  flex-direction: column;
+}
+.main-selector .options .option {
+  padding: 15px;
+}
+.main-selector:not(.open) .options {
+  display: none;
+}
+header nav {
+  display: flex;
+  height: 100%;
+  padding: 0 10px;
+  letter-spacing: 0.9px;
+  align-items: center;
+}
+header nav span {
+  display: flex;
+  height: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  align-items: center;
+  text-transform: uppercase;
+}
+header nav.selected span {
+  background-color: #5c6bc0;
+  color: #FFF;
+  cursor: default;
+}
+header nav:not(.selected):not([disabled]):hover {
+  cursor: pointer;
+}
+header nav:not(.selected):hover span {
+  background-color: #EEE;
+}
 input[type=email],
 input[type=text]
 {

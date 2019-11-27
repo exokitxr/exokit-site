@@ -21,27 +21,6 @@ for (let i = 0; i < mainOptions.length; i++) {
       mainSelector.blur();
       mainSelector.dispatchEvent(new CustomEvent('blur'));
       header.classList.add(`main-${i+1}`);
-
-      if (channelConnection) {
-        channelConnection.disconnect();
-        channelConnection = null;
-      }
-      if (landConnection) {
-        landConnection.disconnect();
-        landConnection = null;
-      }
-
-      switch (i) {
-        case 0: {
-          break;
-        }
-        case 1: {
-          break;
-        }
-        case 2: {
-          break;
-        }
-      }
     }
   });
 }

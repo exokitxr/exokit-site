@@ -1144,16 +1144,18 @@ table tr {
 .tiles {
   display: flex;
   position: absolute;
-  margin-top: 30vh;
-  margin-left: 50px;
-  width: 40vw;
-  bottom: 50px;
+  padding: 50px;
+  left: 0;
+  right: 0;
+  /* width: 40vw; */
+  bottom: 0;
 }
 .tiles .tile {
   position: relative;
   margin-right: 2vw;
   background-color: #FFF;
   --color: #7e57c2;
+  z-index: 1;
 }
 .tiles .tile:hover {
   --color: #ef5350;
@@ -1228,6 +1230,20 @@ table tr {
 }
 .tiles .tile p {
 }
+.tiles .tile:hover ~ .background {
+  opacity: 1;
+  bottom: 0;
+}
+.tiles .background {
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: #000;
+  opacity: 0;
+  transition: all 0.1s ease-out;
+}
   </style>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
@@ -1300,6 +1316,7 @@ table tr {
       <i class="fas fa-user-headset"></i>
     </div>
   </a>
+  <div class=background></div>
 </div>
 
 <script src="https://kit.fontawesome.com/0735724151.js"></script>

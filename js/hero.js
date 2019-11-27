@@ -715,7 +715,7 @@ window.addEventListener("scroll", e =>{
   }
 })
 
-window.addEventListener("load", () =>{
+/* window.addEventListener("load", () =>{
   const featuresWrap = document.getElementById('featureMain-wrap');
   const gradient = featuresWrap.querySelector('.gradient');
   const rgba_JSON = [
@@ -793,6 +793,6 @@ window.addEventListener("load", () =>{
   };
   _tick();
   window.addEventListener("scroll", _tick);
-});
+}); */
 
 })();

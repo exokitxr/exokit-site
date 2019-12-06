@@ -1,4 +1,9 @@
-(() => {
+import './three.min.js';
+import './Reflector.js';
+import Avatar from 'https://avatars.exokit.org/avatars.js';
+import ModelLoader from 'https://model-loader.exokit.org/model-loader.js';
+
+(async () => {
 
 const header = document.getElementById('header');
 const mainSelector = document.getElementById('main-selector');
@@ -36,7 +41,7 @@ const localLine = new THREE.Line3();
 const localLine2 = new THREE.Line3();
 const localRaycaster = new THREE.Raycaster();
 
-function init() {
+// function init() {
   renderer = new THREE.WebGLRenderer({
     canvas: document.getElementById('hero-canvas'),
     antialias: true,
@@ -118,45 +123,24 @@ function init() {
   })();
   container.add(groundMesh);
 
-  avatarMesh = (() => {
+  const model = await ModelLoader.loadModelUrl('./miku.vrm');
+  const rig = new Avatar(model, {
+    fingers: true,
+    hair: true,
+    visemes: true,
+    // decapitate: possessRig,
+    // microphoneMediaStream,
+    // debug: !newModel,
+  });
+  container.add(rig.model);
+
+  /* avatarMesh = (() => {
     const DEFAULT_SKIN_URL = 'img/skin.png';
 
     const mesh = skin({
       limbs: true,
     });
     mesh.castShadow = true;
-    /* {
-      const quaternion = new THREE.Quaternion().setFromUnitVectors(
-        new THREE.Vector3(0, 0, -1).normalize(),
-        new THREE.Vector3(0, -1, -2).normalize()
-      );
-      mesh.material.uniforms.headRotation.value.x = quaternion.x;
-      mesh.material.uniforms.headRotation.value.y = quaternion.y;
-      mesh.material.uniforms.headRotation.value.z = quaternion.z;
-      mesh.material.uniforms.headRotation.value.w = quaternion.w;
-    }
-    {
-      const quaternion = new THREE.Quaternion().setFromUnitVectors(
-        new THREE.Vector3(0, -1, 0).normalize(),
-        new THREE.Vector3(0.5, 1, 2).normalize()
-      );
-      mesh.material.uniforms.leftArmRotation.value.x = quaternion.x;
-      mesh.material.uniforms.leftArmRotation.value.y = quaternion.y;
-      mesh.material.uniforms.leftArmRotation.value.z = quaternion.z;
-      mesh.material.uniforms.leftArmRotation.value.w = quaternion.w;
-    }
-    {
-      const quaternion = new THREE.Quaternion().setFromUnitVectors(
-        new THREE.Vector3(0, -1, 0).normalize(),
-        new THREE.Vector3(0, -0.9, 1).normalize()
-      );
-      mesh.material.uniforms.rightArmRotation.value.x = quaternion.x;
-      mesh.material.uniforms.rightArmRotation.value.y = quaternion.y;
-      mesh.material.uniforms.rightArmRotation.value.z = quaternion.z;
-      mesh.material.uniforms.rightArmRotation.value.w = quaternion.w;
-    } */
-
-    // const uniforms = THREE.UniformsUtils.clone(skin.SKIN_SHADER.uniforms);
 
     new Promise((accept, reject) => {
       const skinImg = new Image();
@@ -175,7 +159,7 @@ function init() {
 
     return mesh;
   })();
-  container.add(avatarMesh);
+  container.add(avatarMesh); */
 
   engineMesh = (() => {
     const object = new THREE.Object3D();
@@ -210,7 +194,7 @@ function init() {
   })();
   container.add(engineMesh);
 
-  exobotMesh = (() => {
+  const exobotMesh = (() => {
     const object = new THREE.Object3D();
     object.rotation.order = 'YXZ';
     object.basePosition = new THREE.Vector3(-1, 1.5, -1);
@@ -245,7 +229,7 @@ function init() {
     x: 0.5,
     y: 0.5,
   };
-  const _applyUniformRotation = (r, t) => {
+  /* const _applyUniformRotation = (r, t) => {
     t.x = r.x;
     t.y = r.y;
     t.z = r.z;
@@ -291,7 +275,7 @@ function init() {
     );
     avatarMesh.material.uniforms.theta.value = (mouse.y-0.5)*0.1*Math.PI;
   };
-  _updateSkin();
+  _updateSkin(); */
 
   const boxGeometry = (() => {
     const BAG_SIZE = 1;
@@ -318,7 +302,7 @@ function init() {
     const lineGeometry = new THREE.CylinderBufferGeometry(BAG_SIZE/100, BAG_SIZE/100, BAG_SIZE, 3, 1);
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(lineGeometry.attributes.position.array.length * 12);
-    geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     // axis
     positions.set(
       lineGeometry.clone().applyMatrix(
@@ -673,18 +657,16 @@ function init() {
       new THREE.Vector3(0, 0, -1),
       new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
     );
-    _updateSkin();
+    // _updateSkin();
   });
   window.addEventListener('resize', e => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     _setCamera();
   });
+// }
 
-  focused = true;
-}
-
-init();
+// init();
 
 const _makeExobotMesh = (() => {
   const geometry = new THREE.PlaneBufferGeometry(0.3, 0.3);
@@ -845,16 +827,16 @@ function animate() {
 
 renderer.setAnimationLoop(animate);
 
-window.addEventListener("scroll", e =>{
+/* window.addEventListener("scroll", e =>{
   if(window.scrollY > window.innerHeight){
     renderer.setAnimationLoop(null);
   }
   else{
     renderer.setAnimationLoop(animate);
   }
-})
+});
 
-/* window.addEventListener("load", () =>{
+window.addEventListener("load", () =>{
   const featuresWrap = document.getElementById('featureMain-wrap');
   const gradient = featuresWrap.querySelector('.gradient');
   const rgba_JSON = [

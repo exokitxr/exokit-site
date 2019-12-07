@@ -148,10 +148,10 @@ const localColor = new THREE.Color();
   const width = 10;
   const height = 10;
   const depth = 10;
-  const colorTargetSize = 256;
+  const colorTargetSize = 64;
   const voxelSize = 0.1;
   const marchCubesTexSize = 2048;
-  const fov = 120;
+  const fov = 90;
   const aspect = 1;
   const raycastNear = 0.1;
   const raycastFar = 100;
@@ -437,7 +437,11 @@ const localColor = new THREE.Color();
     depth: raycastDepth,
     onRender: _renderRaycaster,
   });
-  // xrRaycaster.updateView([0, 0, 0], [0, 0, 0, 1]);
+  xrRaycaster.updateView([-0.5, 0.5, -1],
+    new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI*0.2)
+      .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI*0.1))
+      .toArray()
+  );
   const xrChunker = new XRChunker();
   xrChunker.addEventListener('addchunk', e => {
     const {data: chunk} = e;
@@ -740,27 +744,10 @@ const localColor = new THREE.Color();
     container.remove(chunk.object);
   });
   xrChunker.updateTransform(
-    [-1, 1, -1],
+    [-1, 1, -2],
     [0, 0, 0, 1],
     [2, 2, 2]
   );
-
-  setInterval(() => {
-    gpuParticlesMesh.update();
-    xrChunker.updateMesh(async () => {
-      // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
-      xrRaycaster.updateTexture();
-      await XRRaycaster.nextFrame();
-      xrRaycaster.updateDepthBuffer();
-      xrRaycaster.updatePointCloudBuffer();
-      return {
-        width: xrRaycaster.width,
-        voxelSize,
-        marchCubesTexSize,
-        pointCloudBuffer: xrRaycaster.getPointCloudBuffer(),
-      };
-    });
-  }, 50);
 
   const gpuParticlesMeshMaterial = (() => {
     const depthVsh = `
@@ -1552,6 +1539,21 @@ function animate() {
       meteorMesher.remove(meteorMesh);
       return false;
     }
+  });
+
+  gpuParticlesMesh.update();
+  xrChunker.updateMesh(async () => {
+    // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
+    xrRaycaster.updateTexture();
+    await XRRaycaster.nextFrame();
+    xrRaycaster.updateDepthBuffer();
+    xrRaycaster.updatePointCloudBuffer();
+    return {
+      width: xrRaycaster.width,
+      voxelSize,
+      marchCubesTexSize,
+      pointCloudBuffer: xrRaycaster.getPointCloudBuffer(),
+    };
   });
 
   renderer.render(scene, camera);

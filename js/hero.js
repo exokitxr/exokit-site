@@ -437,6 +437,7 @@ const localColor = new THREE.Color();
     depth: raycastDepth,
     onRender: _renderRaycaster,
   });
+  // xrRaycaster.updateView([0, 0, 0], [0, 0, 0, 1]);
   const xrChunker = new XRChunker();
   xrChunker.addEventListener('addchunk', e => {
     const {data: chunk} = e;
@@ -739,7 +740,7 @@ const localColor = new THREE.Color();
     container.remove(chunk.object);
   });
   xrChunker.updateTransform(
-    [-1, 0, -1],
+    [-1, 1, -1],
     [0, 0, 0, 1],
     [2, 2, 2]
   );

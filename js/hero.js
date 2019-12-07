@@ -404,11 +404,11 @@ const localColor = new THREE.Color();
         },
         uSelectedParcel: {
           type: 'v4',
-          value: new THREE.Vector4(),
+          value: new THREE.Vector4(-8, -8, 8, 8),
         },
         uSelectedColor: {
           type: 'c',
-          value: new THREE.Color().setHex(0x29b6f6),
+          value: new THREE.Color().setHex(0x5c6bc0),
         },
         uAnimation: {
           type: 'f',

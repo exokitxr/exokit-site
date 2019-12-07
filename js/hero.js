@@ -852,7 +852,7 @@ const localColor = new THREE.Color();
     };
     return mesh;
   })();
-  container.add(gpuParticlesMesh);
+  // container.add(gpuParticlesMesh);
 
   engineMesh = (() => {
     const object = new THREE.Object3D();
@@ -1541,7 +1541,7 @@ function animate() {
     }
   });
 
-  gpuParticlesMesh.update();
+  // gpuParticlesMesh.update();
   xrChunker.updateMesh(async () => {
     // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
     xrRaycaster.updateTexture();

@@ -164,6 +164,52 @@ const localColor = new THREE.Color();
       model.position.z = -20;
       container.add(model);
     }
+    let x = -3;
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_FlameThrower_01.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = x++;
+      model.position.y = 1;
+      model.position.z = -2;
+      container.add(model);
+    }
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_AssaultRifle_02.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = x++;
+      model.position.y = 1;
+      model.position.z = -2;
+      container.add(model);
+    }
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Shotgun_01.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = x++;
+      model.position.y = 1;
+      model.position.z = -2;
+      container.add(model);
+    }
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Flashbang_01.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = x++;
+      model.position.y = 1;
+      model.position.z = -2;
+      container.add(model);
+    }
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_HuntingRifle_01.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = x++;
+      model.position.y = 1;
+      model.position.z = -2;
+      container.add(model);
+    }
   })();
 
   function mod(a, n) {
@@ -1475,7 +1521,7 @@ const localColor = new THREE.Color();
       // wireframe: true,
     });
     const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(2, 2, 0)), material);
-    mesh.position.set(-3, 1.5, -1.5);
+    mesh.position.set(-4, 1.5, -2.5);
 
     /* const labelMesh = (() => {
       const geometry = new THREE.PlaneBufferGeometry(1, 0.2);

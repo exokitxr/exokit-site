@@ -105,7 +105,7 @@ const localColor = new THREE.Color();
     container.add(directionalLight);
   }
 
-  const groundMesh = (() => {
+  const floorMesh = (() => {
     const geometry = new THREE.PlaneBufferGeometry(100, 100);
     const material = new THREE.MeshPhongMaterial({
       color: 0xCCCCCC,
@@ -121,7 +121,7 @@ const localColor = new THREE.Color();
 
     return mesh;
   })();
-  container.add(groundMesh);
+  container.add(floorMesh);
 
   const model = await ModelLoader.loadModelUrl('./miku.vrm');
   const rig = new Avatar(model, {

@@ -45,7 +45,7 @@ const raycastNear = 0.1;
 const raycastFar = 100;
 const raycastDepth = 3;
 
-let renderer, scene, camera, iframe, mouse, container, avatarMesh, engineMesh, meteorMesher;
+let renderer, scene, camera, iframe, mouse, container, avatarMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
@@ -1359,9 +1359,9 @@ const localColor = new THREE.Color();
   })();
   // container.add(gpuParticlesMesh);
 
-  engineMesh = (() => {
+  const engineMesh = (() => {
     const object = new THREE.Object3D();
-    object.basePosition = new THREE.Vector3(-1, 0, -1);
+    object.basePosition = new THREE.Vector3(-3, 0, 0);
     object.nextUpdateTime = 0;
     object.exobotMeshes = [];
 

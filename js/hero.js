@@ -1,4 +1,5 @@
 import './three.min.js';
+import './BufferGeometryUtils.js';
 import './Reflector.js';
 import Avatar from 'https://avatars.exokit.org/avatars.js';
 import ModelLoader from 'https://model-loader.exokit.org/model-loader.js';
@@ -308,16 +309,79 @@ const localColor = new THREE.Color();
     },
   });
 
+  const volumeTargetGeometry = (() => {
+    const edgeWidth = 0.01;
+    const edgeGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries([
+      new THREE.BoxBufferGeometry(edgeWidth, 0.4, edgeWidth)
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.1, 0)),
+      new THREE.BoxBufferGeometry(edgeWidth, 0.4, edgeWidth)
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0, 1))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0.1)),
+      new THREE.BoxBufferGeometry(edgeWidth, 0.4, edgeWidth)
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(1, 0, 0))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0.1, 0, 0)),
+    ]);
+    const portalTargetGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries([
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, 0.5, 0)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, -1, 0))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, -0.5, 0)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 1))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, 0.5, 1)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(1, 0, 0))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0.5, 0.5, 0)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(1, 0, 0))))
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 1))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0.5, 0.5, 1)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 1))))
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0, -1, 0))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, -0.5, 1)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(1, 0, 0))))
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, -1, 0))))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0.5, -0.5, 0)),
+      edgeGeometry.clone()
+        .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(-1, 1, 0).normalize(), new THREE.Vector3(1, -1, 0).normalize())))
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0.5, -0.5, 1)),
+    ]);
+    return THREE.BufferGeometryUtils.mergeBufferGeometries([
+      portalTargetGeometry
+        .clone()
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, -0.5)),
+      new THREE.BoxBufferGeometry(0.1, edgeWidth, edgeWidth),
+      new THREE.BoxBufferGeometry(edgeWidth, 0.05, edgeWidth).applyMatrix(new THREE.Matrix4().makeTranslation(0, 0.05/2, 0)),
+      new THREE.BoxBufferGeometry(edgeWidth, edgeWidth, 0.05).applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, -0.05/2)),
+    ]);
+  })();
+  const volumeMaterial = new THREE.MeshBasicMaterial({
+    color: new THREE.Color(0x333333),
+    /* transparent: true,
+    opacity: 0.1, */
+  });
+  const _makeVolumeMesh = () => {
+    const mesh = new THREE.Mesh(volumeTargetGeometry, volumeMaterial);
+    mesh.frustumCulled = false;
+    return mesh;
+  };
+
   const raycasterCamera = new THREE.PerspectiveCamera();
   const _hideUiMeshes = () => {
     const oldGpuParticlesMeshVisible = gpuParticlesMesh.visible;
     gpuParticlesMesh.visible = false;
     const unhideXrChunks = xrChunker.chunks.map(chunk => {
+      const oldVolumeMeshVisible = chunk.volumeMesh.visible;
+      chunk.volumeMesh.visible = false;
       const oldVoxelsMeshVisible = chunk.voxelsMesh.visible;
       chunk.voxelsMesh.visible = false;
       const oldMarchCubesMeshVisible = chunk.marchCubesMesh.visible;
       chunk.marchCubesMesh.visible = false;
       return () => {
+        chunk.volumeMesh.visible = oldVolumeMeshVisible;
         chunk.voxelsMesh.visible = oldVoxelsMeshVisible;
         chunk.marchCubesMesh.visible = oldMarchCubesMeshVisible;
       };
@@ -367,6 +431,10 @@ const localColor = new THREE.Color();
     const {data: chunk} = e;
 
     container.add(chunk.object);
+
+    const volumeMesh = _makeVolumeMesh();
+    chunk.object.add(volumeMesh);
+    chunk.volumeMesh = volumeMesh;
 
     const potentialsTexture = new THREE.DataTexture(null, (width+1)*(height+1)*(depth+1), 1, THREE.LuminanceFormat, THREE.FloatType, THREE.UVMapping, THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping, THREE.NearestFilter, THREE.NearestFilter);
     chunk.potentialsTexture = potentialsTexture;

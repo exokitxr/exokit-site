@@ -2,6 +2,7 @@ import './three.min.js';
 import './Reflector.js';
 import Avatar from 'https://avatars.exokit.org/avatars.js';
 import ModelLoader from 'https://model-loader.exokit.org/model-loader.js';
+import {XRRaycaster, XRChunker} from 'https://spatial-engine.exokit.org/spatial-engine.js';
 
 (async () => {
 
@@ -35,11 +36,9 @@ let renderer, scene, camera, iframe, mouse, container, avatarMesh, engineMesh, m
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
 const localVector3 = new THREE.Vector3();
-const localCoord = new THREE.Vector2();
-const localPlane = new THREE.Plane();
-const localLine = new THREE.Line3();
-const localLine2 = new THREE.Line3();
+const localMatrix = new THREE.Matrix4();
 const localRaycaster = new THREE.Raycaster();
+const localColor = new THREE.Color();
 
 // function init() {
   renderer = new THREE.WebGLRenderer({
@@ -134,32 +133,655 @@ const localRaycaster = new THREE.Raycaster();
   });
   container.add(rig.model);
 
-  /* avatarMesh = (() => {
-    const DEFAULT_SKIN_URL = 'img/skin.png';
+  const width = 10;
+  const height = 10;
+  const depth = 10;
+  const colorTargetSize = 256;
+  const voxelSize = 0.1;
+  const marchCubesTexSize = 2048;
+  const fov = 60;
+  const aspect = 1;
+  const raycastNear = 0.1;
+  const raycastFar = 300;
+  const raycastDepth = 3;
 
-    const mesh = skin({
-      limbs: true,
+  const depthMaterial = (() => {
+    const depthVsh = `
+      // uniform float uAnimation;
+      // attribute float typex;
+      // varying vec3 vPosition;
+      void main() {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
+      }
+    `;
+    const depthFsh = `
+      uniform float uNear;
+      uniform float uFar;
+
+      /* vec4 encodePixelDepth( float v ) {
+        vec4 enc = vec4(1.0, 255.0, 65025.0, 16581375.0) * v;
+        enc = fract(enc);
+        // enc -= enc.xyzw * vec4(1.0/255.0,1.0/255.0,1.0/255.0,1.0/255.0);
+        return enc;
+      } */
+      // const float infinity = 1./0.;
+      vec4 encodePixelDepth( float v ) {
+        float x = fract(v);
+        v -= x;
+        v /= 255.0;
+        float y = fract(v);
+        v -= y;
+        v /= 255.0;
+        float z = fract(v);
+        /* v -= y;
+        v /= 255.0;
+        float w = fract(v);
+        float w = 0.0;
+        if (x == 0.0 && y == 0.0 && z == 0.0 && w == 0.0) {
+          return vec4(0.0, 0.0, 0.0, 1.0);
+        } else { */
+          return vec4(x, y, z, 0.0);
+        // }
+      }
+      void main() {
+        float originalZ = uNear + gl_FragCoord.z / gl_FragCoord.w * (uFar - uNear);
+        gl_FragColor = encodePixelDepth(originalZ);
+      }
+    `;
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uNear: {
+          type: 'f',
+          value: 0,
+        },
+        uFar: {
+          type: 'f',
+          value: 0,
+        },
+      },
+      vertexShader: depthVsh,
+      fragmentShader: depthFsh,
+      // transparent: true,
     });
-    mesh.castShadow = true;
+  })();
 
-    new Promise((accept, reject) => {
-      const skinImg = new Image();
-      skinImg.crossOrigin = 'Anonymous';
-      skinImg.src = DEFAULT_SKIN_URL;
-      skinImg.onload = () => {
-        accept(skinImg);
+  const voxelsGeometry = (() => {
+    const cubeGeometry = new THREE.BoxBufferGeometry(voxelSize, voxelSize, voxelSize)
+      .toNonIndexed();
+    const cubeBarycentrics = new Float32Array(cubeGeometry.attributes.position.array.length/3*4);
+    for (let i = 0; i < cubeBarycentrics.length/(2*6); i++) {
+      cubeBarycentrics[i*12] = 0;
+      cubeBarycentrics[i*12+1] = 1;
+
+      cubeBarycentrics[i*12+2] = 0;
+      cubeBarycentrics[i*12+3] = 0;
+
+      cubeBarycentrics[i*12+4] = 1;
+      cubeBarycentrics[i*12+5] = 1;
+
+      cubeBarycentrics[i*12+6] = 0;
+      cubeBarycentrics[i*12+7] = 0;
+
+      cubeBarycentrics[i*12+8] = 1;
+      cubeBarycentrics[i*12+9] = 0;
+
+      cubeBarycentrics[i*12+10] = 1;
+      cubeBarycentrics[i*12+11] = 1;
+    }
+    cubeGeometry.setAttribute('barycentric', new THREE.BufferAttribute(cubeBarycentrics, 2));
+    const positions = new Float32Array(cubeGeometry.attributes.position.array.length*width*height*depth);
+    const barycentrics = new Float32Array(cubeGeometry.attributes.barycentric.array.length*width*height*depth);
+    const coords = new Float32Array(cubeGeometry.attributes.position.array.length*width*height*depth);
+    const positionCenters = new Float32Array(cubeGeometry.attributes.position.array.length*width*height*depth);
+    let i = 0;
+    for (let x = 0; x < width; x++) {
+      for (let y = 0; y < height; y++) {
+        for (let z = 0; z < depth; z++) {
+          const newCubeGeometry = cubeGeometry.clone()
+            .applyMatrix(localMatrix.makeTranslation(x*voxelSize, y*voxelSize, z*voxelSize));
+          positions.set(newCubeGeometry.attributes.position.array, i*newCubeGeometry.attributes.position.array.length);
+          barycentrics.set(newCubeGeometry.attributes.barycentric.array, i*newCubeGeometry.attributes.barycentric.array.length);
+          const offset = Float32Array.from([x, y, z]);
+          for (let j = 0; j < newCubeGeometry.attributes.position.array.length/3; j++) {
+            coords.set(offset, i*newCubeGeometry.attributes.position.array.length + j*3);
+          }
+          const center = Float32Array.from([x*voxelSize + 0.5*voxelSize, y*voxelSize + 0.5*voxelSize, z*voxelSize + 0.5*voxelSize]);
+          for (let j = 0; j < newCubeGeometry.attributes.position.array.length/3; j++) {
+            positionCenters.set(center, i*newCubeGeometry.attributes.position.array.length + j*3);
+          }
+          i++;
+        }
+      }
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('barycentric', new THREE.BufferAttribute(barycentrics, 2));
+    geometry.setAttribute('coord', new THREE.BufferAttribute(coords, 3));
+    geometry.setAttribute('positionCenter', new THREE.BufferAttribute(positionCenters, 3));
+    return geometry;
+  })();
+  const marchCubesMaterial = new THREE.ShaderMaterial({
+    uniforms: {},
+    vertexShader: `\
+      attribute vec3 barycentric;
+      varying vec3 vPosition;
+      varying vec3 vBC;
+      void main() {
+        vBC = barycentric;
+        vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+        vPosition = modelViewPosition.xyz;
+        gl_Position = projectionMatrix * modelViewPosition;
+      }
+    `,
+    fragmentShader: `\
+      uniform sampler2D uCameraTex;
+      varying vec3 vPosition;
+      varying vec3 vBC;
+
+      vec3 color = vec3(0.984313725490196, 0.5490196078431373, 0.0);
+      vec3 lightDirection = vec3(0.0, 0.0, 1.0);
+
+      float edgeFactor() {
+        vec3 d = fwidth(vBC);
+        vec3 a3 = smoothstep(vec3(0.0), d*1.5, vBC);
+        return min(min(a3.x, a3.y), a3.z);
+      }
+
+      void main() {
+        float barycentricFactor = (0.2 + (1.0 - edgeFactor()) * 0.8);
+        vec3 xTangent = dFdx( vPosition );
+        vec3 yTangent = dFdy( vPosition );
+        vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
+        float lightFactor = dot(faceNormal, lightDirection);
+        gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 0.5 + barycentricFactor * 0.5);
+        // gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 1.0);
+      }
+    `,
+    // side: THREE.BackSide,
+    /* polygonOffset: true,
+    polygonOffsetFactor: -1,
+    polygonOffsetUnits: -4, */
+    transparent: true,
+    // depthWrite: false,
+    extensions: {
+      derivatives: true,
+    },
+  });
+
+  const raycasterCamera = new THREE.PerspectiveCamera();
+  const _hideUiMeshes = () => {
+    const oldGpuParticlesMeshVisible = gpuParticlesMesh.visible;
+    gpuParticlesMesh.visible = false;
+    const unhideXrChunks = xrChunker.chunks.map(chunk => {
+      const oldVoxelsMeshVisible = chunk.voxelsMesh.visible;
+      chunk.voxelsMesh.visible = false;
+      const oldMarchCubesMeshVisible = chunk.marchCubesMesh.visible;
+      chunk.marchCubesMesh.visible = false;
+      return () => {
+        chunk.voxelsMesh.visible = oldVoxelsMeshVisible;
+        chunk.marchCubesMesh.visible = oldMarchCubesMeshVisible;
       };
-      skinImg.onerror = err => {
-        reject(err);
-      };
-    })
-      .then(skinImg => {
-        mesh.setImage(skinImg);
+    });
+
+    return () => {
+      gpuParticlesMesh.visible = oldGpuParticlesMeshVisible;
+      for (let i = 0; i < unhideXrChunks.length; i++) {
+        unhideXrChunks[i]();
+      }
+    };
+  };
+  const _renderRaycaster = ({target, near, far, matrixWorld, projectionMatrix}) => {
+    const unhideUiMeshes = _hideUiMeshes();
+
+    raycasterCamera.near = near;
+    raycasterCamera.far = far;
+    raycasterCamera.matrixWorld.fromArray(matrixWorld).decompose(raycasterCamera.position, raycasterCamera.quaternion, raycasterCamera.scale);
+    raycasterCamera.projectionMatrix.fromArray(projectionMatrix);
+
+    scene.overrideMaterial = depthMaterial;
+    depthMaterial.uniforms.uNear.value = near;
+    depthMaterial.uniforms.uFar.value = far;
+    renderer.setRenderTarget(target);
+    renderer.setClearColor(localColor.set(0, 0, 0), 1);
+    renderer.render(scene, raycasterCamera);
+    scene.overrideMaterial = null;
+    renderer.setClearColor(localColor.set(0, 0, 0), 0);
+
+    unhideUiMeshes();
+
+    renderer.setRenderTarget(null);
+  };
+  const xrRaycaster = new XRRaycaster({
+    width: colorTargetSize,
+    height: colorTargetSize,
+    renderer,
+    fov,
+    aspect,
+    near: raycastNear,
+    far: raycastFar,
+    depth: raycastDepth,
+    onRender: _renderRaycaster,
+  });
+  const xrChunker = new XRChunker();
+  xrChunker.addEventListener('addchunk', e => {
+    const {data: chunk} = e;
+
+    container.add(chunk.object);
+
+    const potentialsTexture = new THREE.DataTexture(null, (width+1)*(height+1)*(depth+1), 1, THREE.LuminanceFormat, THREE.FloatType, THREE.UVMapping, THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping, THREE.NearestFilter, THREE.NearestFilter);
+    chunk.potentialsTexture = potentialsTexture;
+    const voxelsMaterial = (() => {
+      const voxelsVsh = `
+        attribute vec3 coord;
+        attribute vec2 barycentric;
+        uniform sampler2D uPotentialsTex;
+        // varying float vPotential;
+        varying vec2 vBC;
+        varying vec3 vPosition;
+        void main() {
+          float ux = (coord.x + coord.y*${((width+1)*(depth+1)).toFixed(8)} + coord.z*${(width+1).toFixed(8)} + 0.5) / ${((width+1)*(height+1)*(depth+1)).toFixed(8)};
+          vec2 uv = vec2(ux, 0.5);
+          float potential = texture2D(uPotentialsTex, uv).r;
+          vBC = barycentric;
+          if (potential > 0.0) {
+            vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+            vPosition = modelViewPosition.xyz;
+            gl_Position = projectionMatrix * modelViewPosition;
+          } else {
+            gl_Position = vec4(0.0);
+          }
+        }
+      `;
+      const voxelsFsh = `
+        // varying float vPotential;
+        varying vec2 vBC;
+        varying vec3 vPosition;
+
+        vec3 color = vec3(0.984313725490196, 0.5490196078431373, 0.0);
+        vec3 lightDirection = vec3(0.0, 0.0, 1.0);
+
+        float edgeFactor() {
+          float f = 0.0;
+          if (vBC.x <= 0.02) {
+            f = max(1.0, f);
+          } else {
+            f = max(1.0 - (vBC.x-0.02)/0.02, f);
+          }
+          if (vBC.x >= 0.98) {
+            f = max(1.0, f);
+          } else {
+            f = max((vBC.x-0.96)/0.02, f);
+          }
+          if (vBC.y <= 0.02) {
+            f = max(1.0, f);
+          } else {
+            f = max(1.0 - (vBC.y-0.02)/0.02, f);
+          }
+          if (vBC.y >= 0.98) {
+            f = max(1.0, f);
+          } else {
+            f = max((vBC.y-0.96)/0.02, f);
+          }
+          return f;
+        }
+
+        void main() {
+          float barycentricFactor = (0.2 + edgeFactor() * 0.8);
+          vec3 xTangent = dFdx( vPosition );
+          vec3 yTangent = dFdy( vPosition );
+          vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
+          float lightFactor = dot(faceNormal, lightDirection);
+          gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 0.5 + barycentricFactor * 0.5);
+          // gl_FragColor = vBC;
+          // gl_FragColor.a = 1.0;
+          // gl_FragColor = vec4(color, vPotential);
+        }
+      `;
+      return new THREE.ShaderMaterial({
+        uniforms: {
+          uPotentialsTex: {
+            type: 't',
+            value: potentialsTexture,
+          },
+        },
+        vertexShader: voxelsVsh,
+        fragmentShader: voxelsFsh,
+        transparent: true,
+        // depthWrite: false,
+        extensions: {
+          derivatives: true,
+        },
       });
+    })();
+    chunk.voxelsMaterial = voxelsMaterial;
+    /* const voxelsTexturedMaterial = (() => {
+      const voxelsVsh = `
+        attribute vec3 coord;
+        attribute vec3 positionCenter;
+        uniform sampler2D uPotentialsTex;
+        uniform sampler2D uCameraTex;
+        // varying float vPotential;
+        varying vec3 vPosition;
+        varying vec4 vColor;
+        void main() {
+          float ux = (coord.x + coord.y*${((width+1)*(depth+1)).toFixed(8)} + coord.z*${(width+1).toFixed(8)} + 0.5) / ${((width+1)*(height+1)*(depth+1)).toFixed(8)};
+          vec2 voxelUv = vec2(ux, 0.5);
+          float potential = texture2D(uPotentialsTex, voxelUv).r;
+          if (potential > 0.0) {
+            vec4 projectionPositionCenter = projectionMatrix * modelViewMatrix * vec4(positionCenter, 1.0);
+            vec3 screenPosition = (projectionPositionCenter.xyz/projectionPositionCenter.w)/2.0+0.5;
+            vec2 uv = screenPosition.xy;
+            vColor = texture2D(uCameraTex, uv);
+            // vColor = vec4(1.0, 0.0, 1.0, 1.0);
 
+            vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+            vPosition = modelViewPosition.xyz;
+            gl_Position = projectionMatrix * modelViewPosition;
+          } else {
+            gl_Position = vec4(0.0);
+          }
+        }
+      `;
+      const voxelsFsh = `
+        uniform sampler2D uCameraTex;
+        // varying float vPotential;
+        varying vec3 vPosition;
+        varying vec4 vColor;
+
+        vec3 lightDirection = vec3(0.0, 0.0, 1.0);
+
+        void main() {
+          vec3 xTangent = dFdx( vPosition );
+          vec3 yTangent = dFdy( vPosition );
+          vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
+          float lightFactor = dot(faceNormal, lightDirection);
+
+          gl_FragColor.rgb = vColor.rgb * lightFactor;
+          gl_FragColor.a = 1.0;
+        }
+      `;
+      return new THREE.ShaderMaterial({
+        uniforms: {
+          uPotentialsTex: {
+            type: 't',
+            value: potentialsTexture,
+          },
+          uCameraTex: {
+            type: 't',
+            value: cameraTarget.texture,
+          },
+        },
+        vertexShader: voxelsVsh,
+        fragmentShader: voxelsFsh,
+        // transparent: true,
+        extensions: {
+          derivatives: true,
+        },
+      });
+    })();
+    chunk.voxelsTexturedMaterial = voxelsTexturedMaterial; */
+
+    const voxelsMesh = (() => {
+      const geometry = voxelsGeometry;
+      const material = voxelsMaterial;
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.visible = false;
+      mesh.frustumCulled = false;
+      mesh.needsUpload = false;
+      mesh.update = potentials => {
+        potentialsTexture.image.data = potentials;
+
+        mesh.visible = true;
+
+        mesh.needsUpload = true;
+        potentialsTexture.needsUpdate = true;
+        potentialsTexture.onUpdate = () => {
+          mesh.needsUpload = false;
+          potentialsTexture.onUpdate = null;
+        };
+      };
+      return mesh;
+    })();
+    voxelsMesh.visible = false;
+    chunk.object.add(voxelsMesh);
+    chunk.voxelsMesh = voxelsMesh;
+
+    /* const marchCubesRenderTarget = new THREE.WebGLRenderTarget(marchCubesTexSize, marchCubesTexSize, {
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBAFormat,
+      // type: THREE.FloatType,
+      depthBuffer: true,
+      stencilBuffer: false,
+    });
+
+    const marchCubesTexturedMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        uMarchCubesTex: {
+          type: 't',
+          value: marchCubesRenderTarget.texture,
+        },
+      },
+      vertexShader: `\
+        attribute vec3 barycentric;
+        attribute vec2 uv2;
+        varying vec2 vUv;
+        void main() {
+          vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_Position = projectionMatrix * modelViewPosition;
+          vUv = uv2;
+        }
+      `,
+      fragmentShader: `\
+        uniform sampler2D uMarchCubesTex;
+        varying vec2 vUv;
+
+        void main() {
+          gl_FragColor = texture2D(uMarchCubesTex, vUv);
+          gl_FragColor.rgb += 0.2;
+          gl_FragColor.a = 1.0;
+        }
+      `,
+      transparent: true,
+    });
+    chunk.marchCubesTexturedMaterial = marchCubesTexturedMaterial; */
+    const marchCubesMesh = (() => {
+      const geometry = new THREE.BufferGeometry();
+      const material = marchCubesMaterial;
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.scale.set(1, 1, 1).multiplyScalar(voxelSize);
+      mesh.frustumCulled = false;
+      mesh.visible = false;
+      mesh.needsUpload = false;
+      mesh.update = (positions, barycentrics, uvs, uvs2) => {
+        if (positions.length > 0) {
+          const positionsAttribute = new THREE.BufferAttribute(positions, 3);
+          geometry.setAttribute('position', positionsAttribute);
+          geometry.setAttribute('barycentric', new THREE.BufferAttribute(barycentrics, 3));
+          geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+          geometry.setAttribute('uv2', new THREE.BufferAttribute(uvs2, 2));
+
+          mesh.needsUpload = true;
+          positionsAttribute.onUploadCallback = () => {
+            mesh.needsUpload = false;
+            positionsAttribute.onUploadCallback = null;
+          };
+
+          mesh.visible = true;
+
+          /* if (meshingTextureSwitchWrap.classList.contains('on')) {
+            const unhideUiMeshes = _hideUiMeshes();
+
+            renderer.setRenderTarget(marchCubesRenderTarget);
+            renderer.autoClear = false;
+            renderer.render(marchCubesRenderScene, camera);
+            renderer.autoClear = true;
+
+            unhideUiMeshes();
+            renderer.setRenderTarget(null);
+          } */
+        } else {
+          mesh.visible = false;
+        }
+      };
+      return mesh;
+    })();
+    marchCubesMesh.visible = false;
+    chunk.object.add(marchCubesMesh);
+    chunk.marchCubesMesh = marchCubesMesh;
+
+    /* const marchCubesRenderMesh = (() => {
+      const {geometry} = marchCubesMesh;
+      const material = marchCubesRenderMaterial;
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.copy(chunk.object.position);
+      mesh.scale.copy(marchCubesMesh.scale);
+      mesh.frustumCulled = false;
+      return mesh;
+    })();
+    const marchCubesRenderScene = new THREE.Scene();
+    marchCubesRenderScene.add(marchCubesRenderMesh); */
+
+    chunk.addEventListener('update', e => {
+      const {data: {potentials, positions, barycentrics, uvs, uvs2}} = e;
+      // voxelsMesh.update(potentials);
+      marchCubesMesh.update(positions, barycentrics, uvs, uvs2);
+    });
+  });
+  xrChunker.addEventListener('removechunk', e => {
+    const {data: chunk} = e;
+
+    chunk.potentialsTexture.dispose();
+    chunk.marchCubesMesh.geometry.dispose();
+    chunk.voxelsMaterial.dispose();
+    chunk.voxelsTexturedMaterial.dispose();
+    chunk.marchCubesTexturedMaterial.dispose();
+
+    container.remove(chunk.object);
+  });
+
+  setInterval(() => {
+    gpuParticlesMesh.update();
+    xrChunker.updateView(camera.position.toArray(), camera.quaternion.toArray());
+    xrChunker.updateMesh(async () => {
+      xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
+      xrRaycaster.updateTexture();
+      await XRRaycaster.nextFrame();
+      xrRaycaster.updateDepthBuffer();
+      xrRaycaster.updatePointCloudBuffer();
+      return {
+        width: xrRaycaster.width,
+        voxelSize,
+        marchCubesTexSize,
+        pointCloudBuffer: xrRaycaster.getPointCloudBuffer(),
+      };
+    });
+  }, 50);
+
+  const gpuParticlesMeshMaterial = (() => {
+    const depthVsh = `
+      // uniform float uAnimation;
+      // attribute float typex;
+      // varying vec3 vPosition;
+      uniform mat4 uMatrixWorld;
+      uniform mat4 uProjectionMatrixInverse;
+      uniform vec3 uDirection;
+      uniform sampler2D uDepthTex;
+      uniform float uNear;
+      uniform float uFar;
+      ${XRRaycaster.decodePixelDepthGLSL}
+      void main() {
+        float xFactor = uv.x;
+        float yFactor = uv.y;
+        float z = decodePixelDepth(texture2D(uDepthTex, vec2(xFactor, 1.0-yFactor)));
+
+        vec2 coords = vec2(xFactor * 2. - 1., -yFactor * 2. + 1.);
+        vec3 origin = (uMatrixWorld * uProjectionMatrixInverse * vec4(coords.x, coords.y, ( uNear + uFar ) / ( uNear - uFar ), 1.0)).xyz;
+        vec3 direction = uDirection;
+
+        vec3 p = position + origin + direction * z;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
+      }
+    `;
+    const depthFsh = `
+      // const float infinity = 1./0.;
+      void main() {
+        gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+      }
+    `;
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uMatrixWorld: {
+          type: 'm4',
+          value: new THREE.Matrix4(),
+        },
+        uProjectionMatrixInverse: {
+          type: 'm4',
+          value: new THREE.Matrix4(),
+        },
+        uDirection: {
+          type: 'v3',
+          value: new THREE.Vector3(),
+        },
+        uNear: {
+          type: 'f',
+          value: 0,
+        },
+        uFar: {
+          type: 'f',
+          value: 1,
+        },
+        uDepthTex: {
+          type: 't',
+          value: null,
+        },
+      },
+      vertexShader: depthVsh,
+      fragmentShader: depthFsh,
+      // transparent: true,
+    });
+  })();
+  const gpuParticlesMesh = (() => {
+    const cubeGeometry = new THREE.BoxBufferGeometry(0.01, 0.01, 0.01).toNonIndexed();
+    const positions = new Float32Array(cubeGeometry.attributes.position.array.length*xrRaycaster.width*xrRaycaster.height);
+    const numVecs = cubeGeometry.attributes.position.array.length/3;
+    const uvs = new Float32Array(numVecs*2*colorTargetSize*colorTargetSize);
+
+    let i = 0;
+    for (let x = 0; x < colorTargetSize; x++) {
+      for (let y = 0; y < colorTargetSize; y++) {
+        const xFactor = x / colorTargetSize;
+        const yFactor = y / colorTargetSize;
+
+        positions.set(cubeGeometry.attributes.position.array, i*cubeGeometry.attributes.position.array.length);
+        for (let j = 0; j < numVecs; j++) {
+          uvs[i*numVecs*2 + j*2] = xFactor;
+          uvs[i*numVecs*2 + j*2 + 1] = yFactor;
+        }
+        i++;
+      }
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+    const material = gpuParticlesMeshMaterial;
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.frustumCulled = false;
+    mesh.update = () => {
+      xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
+      xrRaycaster.updateTexture();
+
+      gpuParticlesMeshMaterial.uniforms.uMatrixWorld.value.copy(xrRaycaster.camera.matrixWorld);
+      gpuParticlesMeshMaterial.uniforms.uProjectionMatrixInverse.value.copy(xrRaycaster.camera.projectionMatrixInverse);
+      gpuParticlesMeshMaterial.uniforms.uDirection.value.set(0, 0, -1).transformDirection(xrRaycaster.camera.matrixWorld);
+      gpuParticlesMeshMaterial.uniforms.uNear.value = xrRaycaster.camera.near;
+      gpuParticlesMeshMaterial.uniforms.uFar.value = xrRaycaster.camera.far;
+      gpuParticlesMeshMaterial.uniforms.uDepthTex.value = xrRaycaster.getDepthTexture();
+    };
     return mesh;
   })();
-  container.add(avatarMesh); */
+  container.add(gpuParticlesMesh);
 
   engineMesh = (() => {
     const object = new THREE.Object3D();
@@ -653,10 +1275,14 @@ const localRaycaster = new THREE.Raycaster();
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
 
-    container.quaternion.setFromUnitVectors(
+    camera.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
       new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
     );
+    /* container.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, 0, -1),
+      new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
+    ); */
     // _updateSkin();
   });
   window.addEventListener('resize', e => {
@@ -843,6 +1469,8 @@ function animate() {
   });
 
   renderer.render(scene, camera);
+  xrRaycaster.render();
+  xrChunker.render();
   lastUpdateTime = now;
 }
 renderer.setAnimationLoop(animate);

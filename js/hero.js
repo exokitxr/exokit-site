@@ -76,8 +76,9 @@ const localColor = new THREE.Color();
   // scene.background = new THREE.Color(0xFFFFFF);
 
   camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  // camera.lookAt(new THREE.Vector3());
-  scene.add(camera);
+  const dolly = new THREE.Object3D();
+  dolly.add(camera);
+  scene.add(dolly);
 
   const SCENES = {
     desktop: {
@@ -1792,10 +1793,10 @@ const localColor = new THREE.Color();
       new THREE.Vector3(0, 0, -1),
       new THREE.Vector3((mouse.x-0.5)*0.2, -(mouse.y-0.5)*0.2, -1).normalize()
     ); */
-    container.quaternion.setFromUnitVectors(
+    dolly.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
       new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
-    );
+    ).inverse();
     // _updateSkin();
   });
   window.addEventListener('resize', e => {

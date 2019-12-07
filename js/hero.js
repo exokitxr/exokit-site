@@ -65,6 +65,8 @@ const localColor = new THREE.Color();
   renderer.sortObjects = false;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
+  /* renderer.physicallyCorrectLights = true;
+  renderer.gammaFactor = 2.2; */
 
   // window.browser.magicleap.RequestDepthPopulation(true);
   // renderer.autoClear = false;

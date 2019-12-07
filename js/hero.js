@@ -140,10 +140,10 @@ const localColor = new THREE.Color();
   const colorTargetSize = 256;
   const voxelSize = 0.1;
   const marchCubesTexSize = 2048;
-  const fov = 60;
+  const fov = 120;
   const aspect = 1;
   const raycastNear = 0.1;
-  const raycastFar = 300;
+  const raycastFar = 100;
   const raycastDepth = 3;
 
   const depthMaterial = (() => {
@@ -313,13 +313,13 @@ const localColor = new THREE.Color();
     const edgeWidth = 0.01;
     const edgeGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries([
       new THREE.BoxBufferGeometry(edgeWidth, 0.4, edgeWidth)
-        .applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.1, 0)),
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.4/2, 0)),
       new THREE.BoxBufferGeometry(edgeWidth, 0.4, edgeWidth)
         .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0, 1))))
-        .applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0.1)),
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0.4/2)),
       new THREE.BoxBufferGeometry(edgeWidth, 0.4, edgeWidth)
         .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(1, 0, 0))))
-        .applyMatrix(new THREE.Matrix4().makeTranslation(0.1, 0, 0)),
+        .applyMatrix(new THREE.Matrix4().makeTranslation(0.4/2, 0, 0)),
     ]);
     const portalTargetGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries([
       edgeGeometry.clone()
@@ -722,17 +722,21 @@ const localColor = new THREE.Color();
     chunk.potentialsTexture.dispose();
     chunk.marchCubesMesh.geometry.dispose();
     chunk.voxelsMaterial.dispose();
-    chunk.voxelsTexturedMaterial.dispose();
-    chunk.marchCubesTexturedMaterial.dispose();
+    // chunk.voxelsTexturedMaterial.dispose();
+    // chunk.marchCubesTexturedMaterial.dispose();
 
     container.remove(chunk.object);
   });
+  xrChunker.updateTransform(
+    [-1, 0, -1],
+    [0, 0, 0, 1],
+    [2, 2, 2]
+  );
 
   setInterval(() => {
     gpuParticlesMesh.update();
-    xrChunker.updateView(camera.position.toArray(), camera.quaternion.toArray());
     xrChunker.updateMesh(async () => {
-      xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
+      // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
       xrRaycaster.updateTexture();
       await XRRaycaster.nextFrame();
       xrRaycaster.updateDepthBuffer();
@@ -837,8 +841,8 @@ const localColor = new THREE.Color();
     const mesh = new THREE.Mesh(geometry, material);
     mesh.frustumCulled = false;
     mesh.update = () => {
-      xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
-      xrRaycaster.updateTexture();
+      // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
+      // xrRaycaster.updateTexture();
 
       gpuParticlesMeshMaterial.uniforms.uMatrixWorld.value.copy(xrRaycaster.camera.matrixWorld);
       gpuParticlesMeshMaterial.uniforms.uProjectionMatrixInverse.value.copy(xrRaycaster.camera.projectionMatrixInverse);
@@ -1494,7 +1498,7 @@ function animate() {
     .add(localVector.set((mouse.x - 0.5)*2*2, -(mouse.y - 0.5)*2*2, 0));
   exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
-  rig.inputs.hmd.position.set(0, 1.3, 0);
+  rig.inputs.hmd.position.set(0, 1.33, 0);
   rig.inputs.leftGamepad.position.set(0.3, 0.7, 0.1);
   rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
   rig.inputs.leftGamepad.pointer = 1;

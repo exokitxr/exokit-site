@@ -2004,11 +2004,13 @@ function animate() {
   exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
   if (rig) {
-    rig.inputs.hmd.position.copy(dolly.position).add(localVector.set(0, 1.3, 0));
     rig.inputs.hmd.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
       exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
     );
+    rig.inputs.hmd.position.copy(dolly.position)
+      .add(localVector.set(0, 1.25, 0))
+      .add(localVector.set(0, 0, -0.05).applyQuaternion(rig.inputs.hmd.quaternion));
     rig.inputs.leftGamepad.position.copy(dolly.position).add(localVector.set(0.3, 0.7, 0.1));
     rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
     rig.inputs.leftGamepad.pointer = 1;

@@ -1683,13 +1683,14 @@ const localColor = new THREE.Color();
   })();
   container.add(boxMesh); */
 
+  const portalSize = 3;
   const tabMesh1 = (() => {
     const material = new THREE.MeshBasicMaterial({
       color: 0x000000,
       // wireframe: true,
     });
-    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(2, 2, 0)), material);
-    mesh.position.set(-4, 1.5, -2.5);
+    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(portalSize, portalSize, 0)), material);
+    mesh.position.set(1, 1.5, -4);
 
     /* const labelMesh = (() => {
       const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
@@ -1720,7 +1721,7 @@ const localColor = new THREE.Color();
   container.add(tabMesh1);
 
   const innerMesh = (() => {
-    const geometry = new THREE.PlaneBufferGeometry(2, 2);
+    const geometry = new THREE.PlaneBufferGeometry(portalSize, portalSize);
     const mesh = new THREE.Reflector(geometry, {
       clipBias: 0.003,
       textureWidth: 1024 * window.devicePixelRatio,

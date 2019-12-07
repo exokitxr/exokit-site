@@ -150,6 +150,7 @@ const localColor = new THREE.Color();
     container.add(rig.model);
   })();
   const pedestalMeshes = [];
+  const itemMeshes = [];
   (async () => {
     {
       const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Tree_01.glb';
@@ -181,6 +182,7 @@ const localColor = new THREE.Color();
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
       pedestalMesh.add(model);
+      itemMeshes.push(model);
 
       container.add(pedestalMesh);
       pedestalMeshes.push(pedestalMesh);
@@ -193,6 +195,7 @@ const localColor = new THREE.Color();
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
       pedestalMesh.add(model);
+      itemMeshes.push(model);
 
       container.add(pedestalMesh);
       pedestalMeshes.push(pedestalMesh);
@@ -205,6 +208,7 @@ const localColor = new THREE.Color();
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
       pedestalMesh.add(model);
+      itemMeshes.push(model);
 
       container.add(pedestalMesh);
       pedestalMeshes.push(pedestalMesh);
@@ -217,6 +221,7 @@ const localColor = new THREE.Color();
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
       pedestalMesh.add(model);
+      itemMeshes.push(model);
 
       container.add(pedestalMesh);
       pedestalMeshes.push(pedestalMesh);
@@ -229,6 +234,7 @@ const localColor = new THREE.Color();
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
       pedestalMesh.add(model);
+      itemMeshes.push(model);
 
       container.add(pedestalMesh);
       pedestalMeshes.push(pedestalMesh);

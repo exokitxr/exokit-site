@@ -1971,6 +1971,11 @@ function animate() {
     }
   });
 
+  for (let i = 0; i < itemMeshes.length; i++) {
+    const itemMesh = itemMeshes[i];
+    itemMesh.position.y = Math.sin(((now%5000)/5000 + i/3) * Math.PI*2)*0.2;
+  }
+
   // gpuParticlesMesh.update();
   xrChunker.updateMesh(async () => {
     // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());

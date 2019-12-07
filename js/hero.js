@@ -1780,6 +1780,52 @@ const localColor = new THREE.Color();
 
   scene.add(container);
 
+  const keys = {
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+  };
+  window.addEventListener('keydown', e => {
+    switch (e.which) {
+      case 87: { // W
+        keys.up = true;
+        break;
+      }
+      case 65: { // A
+        keys.left = true;
+        break;
+      }
+      case 83: { // S
+        keys.down = true;
+        break;
+      }
+      case 68: { // D
+        keys.right = true;
+        break;
+      }
+    }
+  });
+  window.addEventListener('keyup', e => {
+    switch (e.which) {
+      case 87: { // W
+        keys.up = false;
+        break;
+      }
+      case 65: { // A
+        keys.left = false;
+        break;
+      }
+      case 83: { // S
+        keys.down = false;
+        break;
+      }
+      case 68: { // D
+        keys.right = false;
+        break;
+      }
+    }
+  });
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
@@ -1932,8 +1978,25 @@ function animate() {
     }
   });
 
-  const timeBase = 2000;
-  const factor = (now / timeBase) % timeBase;
+  const velocity = new THREE.Vector3();
+  const speed = 0.015;
+  if (keys.up) {
+    velocity.z--;
+  }
+  if (keys.down) {
+    velocity.z++;
+  }
+  if (keys.left) {
+    velocity.x--;
+  }
+  if (keys.right) {
+    velocity.x++;
+  }
+  dolly.position.add(velocity.normalize().multiplyScalar(speed));
+  dolly.position.x = Math.min(Math.max(dolly.position.x, -1), 1);
+  dolly.position.z = Math.min(Math.max(dolly.position.z, -0.5), 1);
+
+  const factor = (now/2000) % 2000;
   exobotMesh.position
     .copy(exobotMesh.basePosition)
     .add(localVector.set(0, Math.sin(factor * Math.PI*2)*0.1, 0))
@@ -1941,16 +2004,16 @@ function animate() {
   exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
   if (rig) {
-    rig.inputs.hmd.position.set(0, 1.3, 0);
+    rig.inputs.hmd.position.copy(dolly.position).add(localVector.set(0, 1.3, 0));
     rig.inputs.hmd.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
       exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
     );
-    rig.inputs.leftGamepad.position.set(0.3, 0.7, 0.1);
+    rig.inputs.leftGamepad.position.copy(dolly.position).add(localVector.set(0.3, 0.7, 0.1));
     rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
     rig.inputs.leftGamepad.pointer = 1;
     rig.inputs.leftGamepad.grip = 1;
-    rig.inputs.rightGamepad.position.set(-0.2, 1, 0);
+    rig.inputs.rightGamepad.position.copy(dolly.position).add(localVector.set(-0.2, 1, 0));
     rig.inputs.rightGamepad.position.add(
       new THREE.Vector3(0, 0, -0.3)
         .applyQuaternion(new THREE.Quaternion().setFromUnitVectors(

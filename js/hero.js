@@ -245,7 +245,7 @@ const localColor = new THREE.Color();
     return ((a%n)+n)%n;
   }
   const floorMesh = (() => {
-    const numTiles = 64;
+    const numTiles = 16;
     const numTiles2P1 = 2*numTiles+1;
     const planeBufferGeometry = new THREE.PlaneBufferGeometry(1, 1)
       .applyMatrix(localMatrix.makeScale(0.95, 0.95, 1))
@@ -255,6 +255,7 @@ const localColor = new THREE.Color();
     const numCoords = planeBufferGeometry.attributes.position.array.length;
     const numVerts = numCoords/3;
     const positions = new Float32Array(numCoords*numTiles2P1*numTiles2P1);
+    const centers = new Float32Array(numCoords*numTiles2P1*numTiles2P1);
     const typesx = new Float32Array(numVerts*numTiles2P1*numTiles2P1);
     const typesz = new Float32Array(numVerts*numTiles2P1*numTiles2P1);
     let i = 0;
@@ -263,6 +264,9 @@ const localColor = new THREE.Color();
         const newPlaneBufferGeometry = planeBufferGeometry.clone()
           .applyMatrix(localMatrix.makeTranslation(x, 0, z));
         positions.set(newPlaneBufferGeometry.attributes.position.array, i * newPlaneBufferGeometry.attributes.position.array.length);
+        for (let j = 0; j < newPlaneBufferGeometry.attributes.position.array.length/3; j++) {
+          localVector.set(x, 0, z).toArray(centers, i*newPlaneBufferGeometry.attributes.position.array.length + j*3);
+        }
         let typex = 0;
         if (mod((x + parcelSize/2), parcelSize) === 0) {
           typex = 1/8;
@@ -284,21 +288,33 @@ const localColor = new THREE.Color();
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('center', new THREE.BufferAttribute(centers, 3));
     geometry.setAttribute('typex', new THREE.BufferAttribute(typesx, 1));
     geometry.setAttribute('typez', new THREE.BufferAttribute(typesz, 1));
     /* const geometry = new THREE.PlaneBufferGeometry(300, 300, 300, 300)
       .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0, 1)))); */
     const floorVsh = `
-      // uniform float uAnimation;
+      #define PI 3.1415926535897932384626433832795
+      uniform float uAnimation;
+      attribute vec3 center;
       attribute float typex;
       attribute float typez;
       varying vec3 vPosition;
       varying float vTypex;
       varying float vTypez;
       varying float vDepth;
+
+      float range = 1.0;
+
       void main() {
-        // float radius = sqrt(position.x*position.x + position.z*position.z);
-        vec3 p = vec3(position.x, position.y /*- (1.0 - uAnimation) * radius*/, position.z);
+        float animationRadius = uAnimation * ${numTiles.toFixed(8)};
+        float currentRadius = length(center.xz);
+        float radiusDiff = abs(animationRadius - currentRadius);
+        float height = max((range - radiusDiff)/range, 0.0);
+        height = sin(height*PI/2.0);
+        height *= 0.2;
+        // height = 0.0;
+        vec3 p = vec3(position.x, position.y + height, position.z);
         gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
         vPosition = position + vec3(0.5, 0.0, 0.5);
         vTypex = typex;
@@ -328,6 +344,7 @@ const localColor = new THREE.Color();
           c = uSelectedColor;
         } else {
           c = vec3(0.9);
+          // c = vec3(0.3);
         }
         float add = 0.0;
         if (
@@ -395,7 +412,7 @@ const localColor = new THREE.Color();
         },
         uAnimation: {
           type: 'f',
-          value: 1,
+          value: 0,
         },
       },
       vertexShader: floorVsh,
@@ -744,43 +761,39 @@ const localColor = new THREE.Color();
     window.uvs = uvs;
     circleGeometry.setAttribute('uv2', new THREE.BufferAttribute(uvs, 1));
     const circleMaterial = new THREE.ShaderMaterial({
-      uniforms: {},
+      uniforms: {
+        uAnimation: {
+          type: 'f',
+          value: 0,
+        },
+      },
       vertexShader: `\
+        #define PI 3.1415926535897932384626433832795
+
+        uniform float uAnimation;
         attribute float uv2;
-        // attribute vec3 barycentric;
-        // varying vec3 vPosition;
         varying float vBC;
+        varying float vOpacity;
+
         void main() {
           vBC = uv2;
-          vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-          // vPosition = modelViewPosition.xyz;
-          gl_Position = projectionMatrix * modelViewPosition;
+          vOpacity = 0.5 + 0.5 * (sin(uAnimation*20.0*PI*2.0)+1.0)/2.0;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
       fragmentShader: `\
         uniform sampler2D uCameraTex;
-        // varying vec3 vPosition;
         varying float vBC;
-
-        vec3 color = vec3(0.984313725490196, 0.5490196078431373, 0.0);
-        vec3 lightDirection = vec3(0.0, 0.0, 1.0);
-
-        /* float edgeFactor() {
-          vec3 d = fwidth(vBC);
-          vec3 a3 = smoothstep(vec3(0.0), d*1.5, vBC);
-          return min(min(a3.x, a3.y), a3.z);
-        } */
+        varying float vOpacity;
 
         void main() {
-          vec3 c = vBC > 0.95 ? vec3(${new THREE.Color().setHex(0xef5350).toArray().join(', ')}) : vec3(0.0);
-          gl_FragColor = vec4(c, 1.0);
-          /* float barycentricFactor = (0.2 + (1.0 - edgeFactor()) * 0.8);
-          vec3 xTangent = dFdx( vPosition );
-          vec3 yTangent = dFdy( vPosition );
-          vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
-          float lightFactor = dot(faceNormal, lightDirection);
-          gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 0.5 + barycentricFactor * 0.5); */
-          // gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 1.0);
+          if (vBC > 0.95) {
+            vec3 c = vec3(${new THREE.Color().setHex(0xef5350).toArray().join(', ')});
+            float a = vOpacity;
+            gl_FragColor = vec4(c, a);
+          } else {
+            discard;
+          }
         }
       `,
       side: THREE.DoubleSide,
@@ -805,48 +818,41 @@ const localColor = new THREE.Color();
     skirtGeometry.setAttribute('y', new THREE.BufferAttribute(ys, 1));
     skirtGeometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.5, 0));
     const skirtMaterial = new THREE.ShaderMaterial({
-      uniforms: {},
+      uniforms: {
+        uAnimation: {
+          type: 'f',
+          value: 0,
+        },
+      },
       vertexShader: `\
+        #define PI 3.1415926535897932384626433832795
+
+        uniform float uAnimation;
         attribute float y;
         attribute vec3 barycentric;
-        // varying vec3 vPosition;
-        varying float vBC;
-        varying vec2 vUv;
+        varying float vY;
+        varying float vUv;
+        varying float vOpacity;
         void main() {
-          // vBC = length(position) / ${radius.toFixed(8)};
-          vBC = y;
-          vUv = uv;
-          vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-          // vPosition = modelViewPosition.xyz;
-          gl_Position = projectionMatrix * modelViewPosition;
+          vY = y;
+          vUv = uv.x + uAnimation;
+          vOpacity = 0.5 + 0.5 * (sin(uAnimation*20.0*PI*2.0)+1.0)/2.0;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
       fragmentShader: `\
         #define PI 3.1415926535897932384626433832795
 
         uniform sampler2D uCameraTex;
-        // varying vec3 vPosition;
-        varying float vBC;
-        varying vec2 vUv;
+        varying float vY;
+        varying float vUv;
+        varying float vOpacity;
 
-        vec3 color = vec3(0.984313725490196, 0.5490196078431373, 0.0);
-        vec3 lightDirection = vec3(0.0, 0.0, 1.0);
-
-        /* float edgeFactor() {
-          vec3 d = fwidth(vBC);
-          vec3 a3 = smoothstep(vec3(0.0), d*1.5, vBC);
-          return min(min(a3.x, a3.y), a3.z);
-        } */
+        vec3 c = vec3(${new THREE.Color().setHex(0xef5350).toArray().join(', ')});
 
         void main() {
-          gl_FragColor = vec4(${new THREE.Color().setHex(0xef5350).toArray().join(', ')}, vBC * (0.9 + 0.1 * (sin(vUv.x*PI*2.0/0.02) + 1.0)/2.0 ));
-          /* float barycentricFactor = (0.2 + (1.0 - edgeFactor()) * 0.8);
-          vec3 xTangent = dFdx( vPosition );
-          vec3 yTangent = dFdy( vPosition );
-          vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
-          float lightFactor = dot(faceNormal, lightDirection);
-          gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 0.5 + barycentricFactor * 0.5); */
-          // gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 1.0);
+          float a = vY * (0.9 + 0.1 * (sin(vUv*PI*2.0/0.02) + 1.0)/2.0) * vOpacity;
+          gl_FragColor = vec4(c, a);
         }
       `,
       side: THREE.DoubleSide,
@@ -862,6 +868,7 @@ const localColor = new THREE.Color();
     const skirtMesh = new THREE.Mesh(skirtGeometry, skirtMaterial);
     skirtMesh.frustumCulled = false;
     mesh.add(skirtMesh);
+    mesh.skirtMesh = skirtMesh;
 
     return mesh;
   };
@@ -1971,6 +1978,7 @@ function animate() {
     }
   });
 
+  floorMesh.material.uniforms.uAnimation.value = (now%2000)/2000;
   for (let i = 0; i < itemMeshes.length; i++) {
     const itemMesh = itemMeshes[i];
     itemMesh.position.y = Math.sin(((now%5000)/5000 + i/3) * Math.PI*2)*0.2;

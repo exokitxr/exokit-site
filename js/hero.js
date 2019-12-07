@@ -153,7 +153,7 @@ const localColor = new THREE.Color();
       const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Tree_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = 0.5;
+      model.position.x = 0.2;
       model.position.z = -1;
       container.add(model);
     }
@@ -1092,7 +1092,6 @@ const localColor = new THREE.Color();
       const geometry = voxelsGeometry;
       const material = voxelsMaterial;
       const mesh = new THREE.Mesh(geometry, material);
-      mesh.visible = false;
       mesh.frustumCulled = false;
       mesh.needsUpload = false;
       mesh.update = potentials => {
@@ -1211,8 +1210,11 @@ const localColor = new THREE.Color();
 
     chunk.addEventListener('update', e => {
       const {data: {potentials, positions, barycentrics, uvs, uvs2}} = e;
-      // voxelsMesh.update(potentials);
-      marchCubesMesh.update(positions, barycentrics, uvs, uvs2);
+      if (chunk.object.position.x > -1) {
+        voxelsMesh.update(potentials);
+      } else {
+        marchCubesMesh.update(positions, barycentrics, uvs, uvs2);
+      }
     });
   });
   xrChunker.addEventListener('removechunk', e => {

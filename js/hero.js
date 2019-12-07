@@ -123,16 +123,27 @@ const localColor = new THREE.Color();
   })();
   container.add(floorMesh);
 
-  const model = await ModelLoader.loadModelUrl('./miku.vrm');
-  const rig = new Avatar(model, {
-    fingers: true,
-    hair: true,
-    visemes: true,
-    // decapitate: possessRig,
-    // microphoneMediaStream,
-    // debug: !newModel,
-  });
-  container.add(rig.model);
+  let rig = null;
+  (async () => {
+    const model = await ModelLoader.loadModelUrl('./miku.vrm');
+    rig = new Avatar(model, {
+      fingers: true,
+      hair: true,
+      visemes: true,
+      // decapitate: possessRig,
+      // microphoneMediaStream,
+      // debug: !newModel,
+    });
+    container.add(rig.model);
+  })();
+  (async () => {
+    const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Tree_01.glb';
+    const object = await ModelLoader.loadModelUrl(src);
+    const model = object.scene;
+    model.position.x = 0.5;
+    model.position.z = -1;
+    container.add(model);
+  })();
 
   const width = 10;
   const height = 10;
@@ -1498,26 +1509,28 @@ function animate() {
     .add(localVector.set((mouse.x - 0.5)*2*2, -(mouse.y - 0.5)*2*2, 0));
   exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
-  rig.inputs.hmd.position.set(0, 1.33, 0);
-  rig.inputs.leftGamepad.position.set(0.3, 0.7, 0.1);
-  rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
-  rig.inputs.leftGamepad.pointer = 1;
-  rig.inputs.leftGamepad.grip = 1;
-  rig.inputs.rightGamepad.position.set(-0.2, 1, 0);
-  rig.inputs.rightGamepad.position.add(
-    new THREE.Vector3(0, 0, -0.3)
-      .applyQuaternion(new THREE.Quaternion().setFromUnitVectors(
-        new THREE.Vector3(0, 0, -1),
-        exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
-      ))
-  );
-  rig.inputs.rightGamepad.quaternion.setFromUnitVectors(
-    new THREE.Vector3(0, 0, -1),
-    exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
-  ).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI/2*0.3));
-  rig.inputs.rightGamepad.pointer = 0;
-  rig.inputs.rightGamepad.grip = 1;
-  rig.update();
+  if (rig) {
+    rig.inputs.hmd.position.set(0, 1.33, 0);
+    rig.inputs.leftGamepad.position.set(0.3, 0.7, 0.1);
+    rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
+    rig.inputs.leftGamepad.pointer = 1;
+    rig.inputs.leftGamepad.grip = 1;
+    rig.inputs.rightGamepad.position.set(-0.2, 1, 0);
+    rig.inputs.rightGamepad.position.add(
+      new THREE.Vector3(0, 0, -0.3)
+        .applyQuaternion(new THREE.Quaternion().setFromUnitVectors(
+          new THREE.Vector3(0, 0, -1),
+          exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
+        ))
+    );
+    rig.inputs.rightGamepad.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, 0, -1),
+      exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
+    ).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI/2*0.3));
+    rig.inputs.rightGamepad.pointer = 0;
+    rig.inputs.rightGamepad.grip = 1;
+    rig.update();
+  }
 
   if (now > meteorMesher.nextUpdateTime) {
     const meteorMesh = _makeMeteorMesh();

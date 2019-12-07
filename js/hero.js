@@ -1743,7 +1743,7 @@ const localColor = new THREE.Color();
   })();
   container.add(innerMesh);
 
-  const tabMesh2 = (() => {
+  /* const tabMesh2 = (() => {
     const material = new THREE.MeshBasicMaterial({
       color: 0x000000,
       // wireframe: true,
@@ -1753,33 +1753,9 @@ const localColor = new THREE.Color();
     mesh.rotation.y = -0.25*Math.PI;
     mesh.rotation.order = 'YXZ';
 
-    /* const labelMesh = (() => {
-      const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
-      const canvas = document.createElement('canvas');
-      canvas.width = 1024;
-      canvas.height = 1024 * 0.2;
-      // canvas.style.backgroundColor = 'red';
-      const ctx = canvas.getContext('2d');
-      ctx.font = '140px -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-      ctx.fillText('http://Babylon.js', 0, 150);
-      // window.document.body.appendChild(canvas);
-      const texture = new THREE.Texture(canvas);
-      texture.needsUpdate = true;
-      const material = new THREE.MeshBasicMaterial({
-        map: texture,
-        transparent: true,
-        alphaTest: 0.5,
-        // depthWrite: false,
-      });
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.y = 0.7;
-      return mesh;
-    })();
-    mesh.add(labelMesh); */
-
     return mesh;
   })();
-  container.add(tabMesh2);
+  container.add(tabMesh2); */
 
   meteorMesher = new THREE.Object3D();
   meteorMesher.nextUpdateTime = 0;

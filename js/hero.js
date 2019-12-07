@@ -161,14 +161,19 @@ const localColor = new THREE.Color();
       const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Mountains_Grass_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = -10;
+      model.position.x = 10;
       model.position.z = -20;
       container.add(model);
     }
-    let x = -3;
+    // let x = -3;
+    let angle = 0;
+    const _positionPedestalMesh = pedestalMesh => {
+      pedestalMesh.position.set(0, 0.6, 0)
+        .add(new THREE.Vector3(0, 0, -1.5).applyQuaternion(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI/2-Math.PI*2*0.1*(angle++))));
+    };
     {
       const pedestalMesh = _makePedestalMesh();
-      pedestalMesh.position.set(x++, 1, -2);
+      _positionPedestalMesh(pedestalMesh);
 
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_FlameThrower_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
@@ -180,7 +185,7 @@ const localColor = new THREE.Color();
     }
     {
       const pedestalMesh = _makePedestalMesh();
-      pedestalMesh.position.set(x++, 1, -2);
+      _positionPedestalMesh(pedestalMesh);
 
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_AssaultRifle_02.glb';
       const object = await ModelLoader.loadModelUrl(src);
@@ -192,7 +197,7 @@ const localColor = new THREE.Color();
     }
     {
       const pedestalMesh = _makePedestalMesh();
-      pedestalMesh.position.set(x++, 1, -2);
+      _positionPedestalMesh(pedestalMesh);
 
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Shotgun_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
@@ -204,7 +209,7 @@ const localColor = new THREE.Color();
     }
     {
       const pedestalMesh = _makePedestalMesh();
-      pedestalMesh.position.set(x++, 1, -2);
+      _positionPedestalMesh(pedestalMesh);
 
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Flashbang_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
@@ -216,7 +221,7 @@ const localColor = new THREE.Color();
     }
     {
       const pedestalMesh = _makePedestalMesh();
-      pedestalMesh.position.set(x++, 1, -2);
+      _positionPedestalMesh(pedestalMesh);
 
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_HuntingRifle_01.glb';
       const object = await ModelLoader.loadModelUrl(src);

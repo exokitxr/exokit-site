@@ -147,6 +147,7 @@ const localColor = new THREE.Color();
     });
     container.add(rig.model);
   })();
+  const pedestalMeshes = [];
   (async () => {
     {
       const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Tree_01.glb';
@@ -166,49 +167,64 @@ const localColor = new THREE.Color();
     }
     let x = -3;
     {
+      const pedestalMesh = _makePedestalMesh();
+      pedestalMesh.position.set(x++, 1, -2);
+
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_FlameThrower_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = x++;
-      model.position.y = 1;
-      model.position.z = -2;
-      container.add(model);
+      pedestalMesh.add(model);
+
+      container.add(pedestalMesh);
+      pedestalMeshes.push(pedestalMesh);
     }
     {
+      const pedestalMesh = _makePedestalMesh();
+      pedestalMesh.position.set(x++, 1, -2);
+
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_AssaultRifle_02.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = x++;
-      model.position.y = 1;
-      model.position.z = -2;
-      container.add(model);
+      pedestalMesh.add(model);
+
+      container.add(pedestalMesh);
+      pedestalMeshes.push(pedestalMesh);
     }
     {
+      const pedestalMesh = _makePedestalMesh();
+      pedestalMesh.position.set(x++, 1, -2);
+
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Shotgun_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = x++;
-      model.position.y = 1;
-      model.position.z = -2;
-      container.add(model);
+      pedestalMesh.add(model);
+
+      container.add(pedestalMesh);
+      pedestalMeshes.push(pedestalMesh);
     }
     {
+      const pedestalMesh = _makePedestalMesh();
+      pedestalMesh.position.set(x++, 1, -2);
+
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Flashbang_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = x++;
-      model.position.y = 1;
-      model.position.z = -2;
-      container.add(model);
+      pedestalMesh.add(model);
+
+      container.add(pedestalMesh);
+      pedestalMeshes.push(pedestalMesh);
     }
     {
+      const pedestalMesh = _makePedestalMesh();
+      pedestalMesh.position.set(x++, 1, -2);
+
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_HuntingRifle_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
-      model.position.x = x++;
-      model.position.y = 1;
-      model.position.z = -2;
-      container.add(model);
+      pedestalMesh.add(model);
+
+      container.add(pedestalMesh);
+      pedestalMeshes.push(pedestalMesh);
     }
   })();
 
@@ -702,10 +718,152 @@ const localColor = new THREE.Color();
     return mesh;
   };
 
+  const _makePedestalMesh = () => {
+    const radius = 0.5;
+    const segments = 12;
+    const circleGeometry = new THREE.CircleBufferGeometry(radius, segments)
+      .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2))
+      .applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.5, 0));
+    const uvs = new Float32Array(circleGeometry.attributes.position.array.length/3);
+    for (let i = 0; i < circleGeometry.attributes.position.array.length/3; i++) {
+      uvs[i] = new THREE.Vector2(circleGeometry.attributes.position.array[i*3+0], circleGeometry.attributes.position.array[i*3+2]).length()/radius;
+    }
+    window.uvs = uvs;
+    circleGeometry.setAttribute('uv2', new THREE.BufferAttribute(uvs, 1));
+    const circleMaterial = new THREE.ShaderMaterial({
+      uniforms: {},
+      vertexShader: `\
+        attribute float uv2;
+        // attribute vec3 barycentric;
+        // varying vec3 vPosition;
+        varying float vBC;
+        void main() {
+          vBC = uv2;
+          vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+          // vPosition = modelViewPosition.xyz;
+          gl_Position = projectionMatrix * modelViewPosition;
+        }
+      `,
+      fragmentShader: `\
+        uniform sampler2D uCameraTex;
+        // varying vec3 vPosition;
+        varying float vBC;
+
+        vec3 color = vec3(0.984313725490196, 0.5490196078431373, 0.0);
+        vec3 lightDirection = vec3(0.0, 0.0, 1.0);
+
+        /* float edgeFactor() {
+          vec3 d = fwidth(vBC);
+          vec3 a3 = smoothstep(vec3(0.0), d*1.5, vBC);
+          return min(min(a3.x, a3.y), a3.z);
+        } */
+
+        void main() {
+          vec3 c = vBC > 0.95 ? vec3(${new THREE.Color().setHex(0xef5350).toArray().join(', ')}) : vec3(0.0);
+          gl_FragColor = vec4(c, 1.0);
+          /* float barycentricFactor = (0.2 + (1.0 - edgeFactor()) * 0.8);
+          vec3 xTangent = dFdx( vPosition );
+          vec3 yTangent = dFdy( vPosition );
+          vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
+          float lightFactor = dot(faceNormal, lightDirection);
+          gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 0.5 + barycentricFactor * 0.5); */
+          // gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 1.0);
+        }
+      `,
+      side: THREE.DoubleSide,
+      /* polygonOffset: true,
+      polygonOffsetFactor: -1,
+      polygonOffsetUnits: -4, */
+      transparent: true,
+      // depthWrite: false,
+      extensions: {
+        derivatives: true,
+      },
+    });
+    const mesh = new THREE.Mesh(circleGeometry, circleMaterial);
+    mesh.frustumCulled = false;
+
+    const skirtGeometry = new THREE.CylinderBufferGeometry(radius, radius, radius, segments, 1, true)
+      .applyMatrix(new THREE.Matrix4().makeTranslation(0, radius/2, 0));
+    const ys = new Float32Array(skirtGeometry.attributes.position.array.length/3);
+    for (let i = 0; i < skirtGeometry.attributes.position.array.length/3; i++) {
+      ys[i] = 1-skirtGeometry.attributes.position.array[i*3+1]/radius;
+    }
+    skirtGeometry.setAttribute('y', new THREE.BufferAttribute(ys, 1));
+    skirtGeometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.5, 0));
+    const skirtMaterial = new THREE.ShaderMaterial({
+      uniforms: {},
+      vertexShader: `\
+        attribute float y;
+        attribute vec3 barycentric;
+        // varying vec3 vPosition;
+        varying float vBC;
+        varying vec2 vUv;
+        void main() {
+          // vBC = length(position) / ${radius.toFixed(8)};
+          vBC = y;
+          vUv = uv;
+          vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+          // vPosition = modelViewPosition.xyz;
+          gl_Position = projectionMatrix * modelViewPosition;
+        }
+      `,
+      fragmentShader: `\
+        #define PI 3.1415926535897932384626433832795
+
+        uniform sampler2D uCameraTex;
+        // varying vec3 vPosition;
+        varying float vBC;
+        varying vec2 vUv;
+
+        vec3 color = vec3(0.984313725490196, 0.5490196078431373, 0.0);
+        vec3 lightDirection = vec3(0.0, 0.0, 1.0);
+
+        /* float edgeFactor() {
+          vec3 d = fwidth(vBC);
+          vec3 a3 = smoothstep(vec3(0.0), d*1.5, vBC);
+          return min(min(a3.x, a3.y), a3.z);
+        } */
+
+        void main() {
+          gl_FragColor = vec4(${new THREE.Color().setHex(0xef5350).toArray().join(', ')}, vBC * (0.9 + 0.1 * (sin(vUv.x*PI*2.0/0.02) + 1.0)/2.0 ));
+          /* float barycentricFactor = (0.2 + (1.0 - edgeFactor()) * 0.8);
+          vec3 xTangent = dFdx( vPosition );
+          vec3 yTangent = dFdy( vPosition );
+          vec3 faceNormal = normalize( cross( xTangent, yTangent ) );
+          float lightFactor = dot(faceNormal, lightDirection);
+          gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 0.5 + barycentricFactor * 0.5); */
+          // gl_FragColor = vec4((0.5 + color * barycentricFactor) * lightFactor, 1.0);
+        }
+      `,
+      side: THREE.DoubleSide,
+      /* polygonOffset: true,
+      polygonOffsetFactor: -1,
+      polygonOffsetUnits: -4, */
+      transparent: true,
+      depthWrite: false,
+      extensions: {
+        derivatives: true,
+      },
+    });
+    const skirtMesh = new THREE.Mesh(skirtGeometry, skirtMaterial);
+    skirtMesh.frustumCulled = false;
+    mesh.add(skirtMesh);
+
+    return mesh;
+  };
+
   const raycasterCamera = new THREE.PerspectiveCamera();
   const _hideUiMeshes = () => {
     const oldGpuParticlesMeshVisible = gpuParticlesMesh.visible;
     gpuParticlesMesh.visible = false;
+    const unhidePedestalMeshes = pedestalMeshes.map(pedestalMesh => {
+      const oldPedestalMeshVisible = pedestalMesh.visible;
+      pedestalMesh.visible = false;
+      return () => {
+        pedestalMesh.visible = oldPedestalMeshVisible;
+      };
+    });
     const unhideXrChunks = xrChunker.chunks.map(chunk => {
       const oldVolumeMeshVisible = chunk.volumeMesh.visible;
       chunk.volumeMesh.visible = false;
@@ -722,6 +880,9 @@ const localColor = new THREE.Color();
 
     return () => {
       gpuParticlesMesh.visible = oldGpuParticlesMeshVisible;
+      for (let i = 0; i < unhidePedestalMeshes.length; i++) {
+        unhidePedestalMeshes[i]();
+      }
       for (let i = 0; i < unhideXrChunks.length; i++) {
         unhideXrChunks[i]();
       }

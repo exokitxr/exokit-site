@@ -1137,10 +1137,14 @@ canvas {
   height: 100vh;
   /* background-color: #000; */
 }
-.keys {
+.helper {
   position: absolute;
   bottom: 50px;
   right: 50px;
+  display: flex;
+  user-select: none;
+}
+.keys {
   display: flex;
   flex-direction: column;
 }
@@ -1148,18 +1152,36 @@ canvas {
   display: flex;
 }
 .keys .key {
-  display: flex;
   width: 50px;
   height: 40px;
+}
+.keys .key:empty {
+  visibility: hidden;
+}
+.keys .key,
+.enter-xr-button
+{
+  display: flex;
   margin: 2px;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   border: 3px solid #000;
   border-radius: 7px;
   font-size: 20px;
 }
-.keys .key:empty {
-  visibility: hidden;
+.enter-xr-button {
+  cursor: pointer;
+}
+.enter-xr-button:hover {
+  background-color: #7e57c2;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #FFF;
+}
+.enter-xr-button:active {
+  background-color: #ef5350;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #FFF;
 }
 .tiles {
   display: flex;
@@ -1285,17 +1307,20 @@ canvas {
     </div>
   </div>
 </div>
-<div class=keys>
-  <div class=row>
-    <div class=key></div>
-    <div class=key>W</div>
-    <div class=key></div>
+<div class=helper>
+  <div class=keys>
+    <div class=row>
+      <div class=key></div>
+      <div class=key>W</div>
+      <div class=key></div>
+    </div>
+    <div class=row>
+      <div class=key>A</div>
+      <div class=key>S</div>
+      <div class=key>D</div>
+    </div>
   </div>
-  <div class=row>
-    <div class=key>A</div>
-    <div class=key>S</div>
-    <div class=key>D</div>
-  </div>
+  <nav class=enter-xr-button id=enter-xr-button>Enter XR</nav>
 </div>
 <div class=tiles>
   <a href="https://browser.exokit.org" class=tile>

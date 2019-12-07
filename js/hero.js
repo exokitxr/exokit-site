@@ -1850,6 +1850,10 @@ const localColor = new THREE.Color();
 
     _setCamera();
   });
+  const enterXrButton = document.getElementById('enter-xr-button');
+  enterXrButton.addEventListener('click', () => {
+    console.log('enter xr');
+  });
 // }
 
 // init();

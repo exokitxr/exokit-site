@@ -32,6 +32,19 @@ for (let i = 0; i < mainOptions.length; i++) {
   });
 }
 
+const parcelSize = 16;
+const width = 10;
+const height = 10;
+const depth = 10;
+const colorTargetSize = 64;
+const voxelSize = 0.1;
+const marchCubesTexSize = 2048;
+const fov = 90;
+const aspect = 1;
+const raycastNear = 0.1;
+const raycastFar = 100;
+const raycastDepth = 3;
+
 let renderer, scene, camera, iframe, mouse, container, avatarMesh, engineMesh, meteorMesher;
 
 const localVector = new THREE.Vector3();
@@ -105,23 +118,21 @@ const localColor = new THREE.Color();
     container.add(directionalLight);
   }
 
-  const floorMesh = (() => {
-    const geometry = new THREE.PlaneBufferGeometry(100, 100);
+  const floorBaseMesh = (() => {
+    const geometry = new THREE.PlaneBufferGeometry(100, 100)
+      .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2))
+      .applyMatrix(localMatrix.makeTranslation(0, -0.1, 0));
     const material = new THREE.MeshPhongMaterial({
       color: 0xCCCCCC,
     });
     const mesh = new THREE.Mesh(geometry, material);
-
-    // mesh.position.set(0, 0, 0);
-    mesh.rotation.x = -Math.PI/2;
-    // mesh.scale.set( 100, 100, 100 );
 
     // mesh.castShadow = false;
     mesh.receiveShadow = true;
 
     return mesh;
   })();
-  container.add(floorMesh);
+  container.add(floorBaseMesh);
 
   let rig = null;
   (async () => {
@@ -137,25 +148,290 @@ const localColor = new THREE.Color();
     container.add(rig.model);
   })();
   (async () => {
-    const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Tree_01.glb';
-    const object = await ModelLoader.loadModelUrl(src);
-    const model = object.scene;
-    model.position.x = 0.5;
-    model.position.z = -1;
-    container.add(model);
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Tree_01.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = 0.5;
+      model.position.z = -1;
+      container.add(model);
+    }
+    {
+      const src = 'https://item-models.exokit.org/glb/apocalypse/SM_Generic_Mountains_Grass_01.glb';
+      const object = await ModelLoader.loadModelUrl(src);
+      const model = object.scene;
+      model.position.x = -10;
+      model.position.z = -20;
+      container.add(model);
+    }
   })();
 
-  const width = 10;
-  const height = 10;
-  const depth = 10;
-  const colorTargetSize = 64;
-  const voxelSize = 0.1;
-  const marchCubesTexSize = 2048;
-  const fov = 90;
-  const aspect = 1;
-  const raycastNear = 0.1;
-  const raycastFar = 100;
-  const raycastDepth = 3;
+  function mod(a, n) {
+    return ((a%n)+n)%n;
+  }
+  const floorMesh = (() => {
+    const numTiles = 64;
+    const numTiles2P1 = 2*numTiles+1;
+    const planeBufferGeometry = new THREE.PlaneBufferGeometry(1, 1)
+      .applyMatrix(localMatrix.makeScale(0.95, 0.95, 1))
+      .applyMatrix(localMatrix.makeRotationFromQuaternion(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)))
+      // .applyMatrix(localMatrix.makeTranslation(0, 0.1, 0))
+      .toNonIndexed();
+    const numCoords = planeBufferGeometry.attributes.position.array.length;
+    const numVerts = numCoords/3;
+    const positions = new Float32Array(numCoords*numTiles2P1*numTiles2P1);
+    const typesx = new Float32Array(numVerts*numTiles2P1*numTiles2P1);
+    const typesz = new Float32Array(numVerts*numTiles2P1*numTiles2P1);
+    let i = 0;
+    for (let x = -numTiles; x <= numTiles; x++) {
+      for (let z = -numTiles; z <= numTiles; z++) {
+        const newPlaneBufferGeometry = planeBufferGeometry.clone()
+          .applyMatrix(localMatrix.makeTranslation(x, 0, z));
+        positions.set(newPlaneBufferGeometry.attributes.position.array, i * newPlaneBufferGeometry.attributes.position.array.length);
+        let typex = 0;
+        if (mod((x + parcelSize/2), parcelSize) === 0) {
+          typex = 1/8;
+        } else if (mod((x + parcelSize/2), parcelSize) === parcelSize-1) {
+          typex = 2/8;
+        }
+        let typez = 0;
+        if (mod((z + parcelSize/2), parcelSize) === 0) {
+          typez = 1/8;
+        } else if (mod((z + parcelSize/2), parcelSize) === parcelSize-1) {
+          typez = 2/8;
+        }
+        for (let j = 0; j < numVerts; j++) {
+          typesx[i*numVerts + j] = typex;
+          typesz[i*numVerts + j] = typez;
+        }
+        i++;
+      }
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('typex', new THREE.BufferAttribute(typesx, 1));
+    geometry.setAttribute('typez', new THREE.BufferAttribute(typesz, 1));
+    /* const geometry = new THREE.PlaneBufferGeometry(300, 300, 300, 300)
+      .applyMatrix(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0, 1)))); */
+    const floorVsh = `
+      // uniform float uAnimation;
+      attribute float typex;
+      attribute float typez;
+      varying vec3 vPosition;
+      varying float vTypex;
+      varying float vTypez;
+      varying float vDepth;
+      void main() {
+        // float radius = sqrt(position.x*position.x + position.z*position.z);
+        vec3 p = vec3(position.x, position.y /*- (1.0 - uAnimation) * radius*/, position.z);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
+        vPosition = position + vec3(0.5, 0.0, 0.5);
+        vTypex = typex;
+        vTypez = typez;
+        vDepth = gl_Position.z / ${numTiles.toFixed(8)};
+      }
+    `;
+    const floorFsh = `
+      uniform vec4 uCurrentParcel;
+      uniform vec4 uHoverParcel;
+      uniform vec4 uSelectedParcel;
+      uniform vec3 uSelectedColor;
+      // uniform float uAnimation;
+      varying vec3 vPosition;
+      varying float vTypex;
+      varying float vTypez;
+      varying float vDepth;
+      void main() {
+        vec3 c;
+        float a;
+        if (
+          vPosition.x >= uSelectedParcel.x &&
+          vPosition.z >= uSelectedParcel.y &&
+          vPosition.x <= uSelectedParcel.z &&
+          vPosition.z <= uSelectedParcel.w
+        ) {
+          c = uSelectedColor;
+        } else {
+          c = vec3(0.9);
+        }
+        float add = 0.0;
+        if (
+          vPosition.x >= uHoverParcel.x &&
+          vPosition.z >= uHoverParcel.y &&
+          vPosition.x <= uHoverParcel.z &&
+          vPosition.z <= uHoverParcel.w
+        ) {
+          add = 0.2;
+        } else {
+          vec3 f = fract(vPosition);
+          if (vTypex >= 2.0/8.0) {
+            if (f.x >= 0.8) {
+              add = 0.2;
+            }
+          } else if (vTypex >= 1.0/8.0) {
+            if (f.x <= 0.2) {
+              add = 0.2;
+            }
+          }
+          if (vTypez >= 2.0/8.0) {
+            if (f.z >= 0.8) {
+              add = 0.2;
+            }
+          } else if (vTypez >= 1.0/8.0) {
+            if (f.z <= 0.2) {
+              add = 0.2;
+            }
+          }
+          /* if (
+            vPosition.x >= uCurrentParcel.x &&
+            vPosition.z >= uCurrentParcel.y &&
+            vPosition.x <= uCurrentParcel.z &&
+            vPosition.z <= uCurrentParcel.w
+          ) {
+            add = 0.2;
+          } */
+        }
+        c += add;
+        a = (1.0-vDepth)*0.5;
+        gl_FragColor = vec4(c, a);
+      }
+    `;
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        /* uTex: {
+          type: 't',
+          value: new THREE.Texture(),
+        }, */
+        uCurrentParcel: {
+          type: 'v4',
+          value: new THREE.Vector4(),
+        },
+        uHoverParcel: {
+          type: 'v4',
+          value: new THREE.Vector4(),
+        },
+        uSelectedParcel: {
+          type: 'v4',
+          value: new THREE.Vector4(),
+        },
+        uSelectedColor: {
+          type: 'c',
+          value: new THREE.Color().setHex(0x29b6f6),
+        },
+        uAnimation: {
+          type: 'f',
+          value: 1,
+        },
+      },
+      vertexShader: floorVsh,
+      fragmentShader: floorFsh,
+      transparent: true,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.frustumCulled = false;
+    return mesh;
+  })();
+  floorMesh.position.set(-8, 0, -8);
+  container.add(floorMesh);
+
+  const wallGeometry = (() => {
+    const panelGeometries = [];
+    for (let x = -8; x <= 8; x++) {
+      panelGeometries.push(
+        new THREE.BoxBufferGeometry(0.01, 2, 0.01)
+          .applyMatrix(new THREE.Matrix4().makeTranslation(x, 1, -8))
+      );
+    }
+    for (let h = 0; h <= 2; h++) {
+      panelGeometries.push(
+        new THREE.BoxBufferGeometry(16, 0.01, 0.01)
+          .applyMatrix(new THREE.Matrix4().makeTranslation(0, h, -8))
+      );
+    }
+    return THREE.BufferGeometryUtils.mergeBufferGeometries(panelGeometries);
+  })();
+  const topWallGeometry = wallGeometry.clone()
+    .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, 0, -0.5));
+  const leftWallGeometry = wallGeometry.clone()
+    .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(0, 1, 0), Math.PI/2))
+    .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, 0, -0.5));
+  const rightWallGeometry = wallGeometry.clone()
+    .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2))
+    .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, 0, -0.5));
+  const bottomWallGeometry = wallGeometry.clone()
+    .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(0, 1, 0), Math.PI))
+    .applyMatrix(new THREE.Matrix4().makeTranslation(-0.5, 0, -0.5));
+  THREE.Parcel = function Guardian(extents, distanceFactor, color) {
+    const geometry = (() => {
+      const geometries = [];
+      const [[x1, y1, x2, y2]] = extents;
+      const ax1 = (x1 + 8)/16;
+      const ay1 = (y1 + 8)/16;
+      const ax2 = (x2 + 8)/16;
+      const ay2 = (y2 + 8)/16;
+      for (let x = ax1; x < ax2; x++) {
+        geometries.push(
+          topWallGeometry.clone()
+            .applyMatrix(new THREE.Matrix4().makeTranslation(x*16, 0, ay1*16))
+        );
+        geometries.push(
+          bottomWallGeometry.clone()
+            .applyMatrix(new THREE.Matrix4().makeTranslation(x*16, 0, (ay2-1)*16))
+        );
+      }
+      for (let y = ay1; y < ay2; y++) {
+        geometries.push(
+          leftWallGeometry.clone()
+            .applyMatrix(new THREE.Matrix4().makeTranslation(ax1*16, 0, y*16))
+        );
+        geometries.push(
+          rightWallGeometry.clone()
+            .applyMatrix(new THREE.Matrix4().makeTranslation((ax2-1)*16, 0, y*16))
+        );
+      }
+      return THREE.BufferGeometryUtils.mergeBufferGeometries(geometries);
+    })();
+    const gridVsh = `
+      // varying vec3 vWorldPos;
+      // varying vec2 vUv;
+      varying float vDepth;
+      void main() {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
+        // vUv = uv;
+        // vWorldPos = abs(position);
+        vDepth = gl_Position.z / ${distanceFactor.toFixed(8)};
+      }
+    `;
+    const gridFsh = `
+      // uniform sampler2D uTex;
+      uniform vec3 uColor;
+      // uniform float uAnimation;
+      // varying vec3 vWorldPos;
+      varying float vDepth;
+      void main() {
+        gl_FragColor = vec4(uColor, (1.0-vDepth));
+      }
+    `;
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        uColor: {
+          type: 'c',
+          value: new THREE.Color(color),
+        },
+      },
+      vertexShader: gridVsh,
+      fragmentShader: gridFsh,
+      transparent: true,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.frustumCulled = false;
+    mesh.setColor = c => {
+      mesh.material.uniforms.uColor.value.setHex(c);
+    };
+    return mesh;
+  };
+  const parcelMesh = new THREE.Parcel([[-16, -16, 0, 0]], 10, 0x5c6bc0);
+  container.add(parcelMesh);
 
   const depthMaterial = (() => {
     const depthVsh = `
@@ -449,7 +725,7 @@ const localColor = new THREE.Color();
     container.add(chunk.object);
 
     const volumeMesh = _makeVolumeMesh();
-    chunk.object.add(volumeMesh);
+    // chunk.object.add(volumeMesh);
     chunk.volumeMesh = volumeMesh;
 
     const potentialsTexture = new THREE.DataTexture(null, (width+1)*(height+1)*(depth+1), 1, THREE.LuminanceFormat, THREE.FloatType, THREE.UVMapping, THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping, THREE.NearestFilter, THREE.NearestFilter);
@@ -1198,8 +1474,8 @@ const localColor = new THREE.Color();
       color: 0x000000,
       // wireframe: true,
     });
-    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(1, 1, 0)), material);
-    mesh.position.set(-1, 1.5, -1.5);
+    const mesh = new THREE.Mesh(boxGeometry.clone().applyMatrix(new THREE.Matrix4().makeScale(2, 2, 0)), material);
+    mesh.position.set(-3, 1.5, -1.5);
 
     /* const labelMesh = (() => {
       const geometry = new THREE.PlaneBufferGeometry(1, 0.2);
@@ -1230,7 +1506,7 @@ const localColor = new THREE.Color();
   container.add(tabMesh1);
 
   const innerMesh = (() => {
-    const geometry = new THREE.PlaneBufferGeometry(1, 1);
+    const geometry = new THREE.PlaneBufferGeometry(2, 2);
     const mesh = new THREE.Reflector(geometry, {
       clipBias: 0.003,
       textureWidth: 1024 * window.devicePixelRatio,
@@ -1240,7 +1516,8 @@ const localColor = new THREE.Color();
       recursion: 1
     });
     // mesh.position.set(-1, 1.5, -2.1);
-    mesh.position.set(-1, 1.5, -1.5);
+    // mesh.position.set(-3, 1.5, -1.5);
+    mesh.position.copy(tabMesh1.position);
     /* mesh.rotation.order = 'YXZ';
     mesh.rotation.y = Math.PI; */
     /* const material = new THREE.MeshBasicMaterial({
@@ -1288,52 +1565,6 @@ const localColor = new THREE.Color();
     return mesh;
   })();
   container.add(tabMesh2);
-
-  const assetsMesh = (() => {
-    const object = new THREE.Object3D();
-
-    [
-      {size: new THREE.Vector2(3, 3), position: new THREE.Vector3(0, 1, -2), src: 'assets/Group 57@2x.png'},
-      {size: new THREE.Vector2(5, 5), position: new THREE.Vector3(0, 1, -3), src: 'assets/Group 19@2x.png'},
-      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(0, 2, -1), src: 'assets/Group 17@2x.png'},
-      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 2, -1), src: 'assets/Group 31@2x.png'},
-      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-0.5, 0.5, -1), src: 'assets/Group 31@2x.png'},
-      // {size: new THREE.Vector2(0.5, 0.5), position: new THREE.Vector3(-1, 1.5, -1), src: 'assets/Group 17@2x.png'},
-      // {size: new THREE.Vector2(1, 1), position: new THREE.Vector3(1, 2, -2.5), src: 'assets/Group 174@2x.png'},
-      {size: new THREE.Vector2(1, 1), position: new THREE.Vector3(1, 2, -2.5), src: 'assets/Section 1@2x.png'},
-    ].forEach(({size, position, src}) => {
-      const geometry = new THREE.PlaneBufferGeometry(size.x, size.y);
-      const texture = new THREE.Texture();
-      new Promise((accept, reject) => {
-        const img = new Image();
-        img.crossOrigin = 'Anonymous';
-        img.src = src;
-        img.onload = () => {
-          accept(img);
-        };
-        img.onerror = err => {
-          reject(err);
-        };
-      })
-        .then(img => {
-          texture.image = img;
-          texture.needsUpdate = true;
-        });
-      const material = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.DoubleSide,
-        transparent: true,
-        alphaTest: 0.5,
-      });
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.copy(position);
-      // mesh.castShadow = true;
-      object.add(mesh);
-    });
-
-    return object;
-  })();
-  container.add(assetsMesh);
 
   meteorMesher = new THREE.Object3D();
   meteorMesher.nextUpdateTime = 0;

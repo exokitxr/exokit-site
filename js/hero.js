@@ -1783,14 +1783,19 @@ const localColor = new THREE.Color();
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = e.clientY / window.innerHeight;
 
+    /* camera.position.set(0, 0, 4)
+      .add(new THREE.Vector3(-2, 1, -2)
+        .applyQuaternion(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI*2*0.1 * (mouse.x-0.5)*2))
+        .applyQuaternion(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI*2*0.1 * (mouse.y-0.5)))
+      );
     camera.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, 0, -1),
+      new THREE.Vector3((mouse.x-0.5)*0.2, -(mouse.y-0.5)*0.2, -1).normalize()
+    ); */
+    container.quaternion.setFromUnitVectors(
       new THREE.Vector3(0, 0, -1),
       new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
     );
-    /* container.quaternion.setFromUnitVectors(
-      new THREE.Vector3(0, 0, -1),
-      new THREE.Vector3(-(mouse.x-0.5)*0.5, (mouse.y-0.5)*0.5, -1).normalize()
-    ); */
     // _updateSkin();
   });
   window.addEventListener('resize', e => {
@@ -1935,7 +1940,11 @@ function animate() {
   exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
   if (rig) {
-    rig.inputs.hmd.position.set(0, 1.33, 0);
+    rig.inputs.hmd.position.set(0, 1.3, 0);
+    rig.inputs.hmd.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, 0, -1),
+      exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
+    );
     rig.inputs.leftGamepad.position.set(0.3, 0.7, 0.1);
     rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
     rig.inputs.leftGamepad.pointer = 1;
@@ -1948,10 +1957,8 @@ function animate() {
           exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
         ))
     );
-    rig.inputs.rightGamepad.quaternion.setFromUnitVectors(
-      new THREE.Vector3(0, 0, -1),
-      exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
-    ).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI/2*0.3));
+    rig.inputs.rightGamepad.quaternion.copy(rig.inputs.hmd.quaternion)
+      .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI/2*0.3));
     rig.inputs.rightGamepad.pointer = 0;
     rig.inputs.rightGamepad.grip = 1;
     rig.update();

@@ -13,7 +13,7 @@ THREE.Reflector = function ( geometry, options ) {
 	options = options || {};
 
 	var color = ( options.color !== undefined ) ? new THREE.Color( options.color ) : new THREE.Color( 0x7F7F7F );
-	var addColor = ( options.addColor !== undefined ) ? new THREE.Color( options.addColor ) : new THREE.Color( 0x000000 );
+	var backgroundColor = ( options.backgroundColor !== undefined ) ? new THREE.Color( options.backgroundColor ) : new THREE.Color( 0x000000 );
 	var textureWidth = options.textureWidth || 512;
 	var textureHeight = options.textureHeight || 512;
 	var clipBias = options.clipBias || 0;
@@ -29,7 +29,6 @@ THREE.Reflector = function ( geometry, options ) {
 	var rotationMatrix = new THREE.Matrix4();
 	var lookAtPosition = new THREE.Vector3( 0, 0, - 1 );
 	var clipPlane = new THREE.Vector4();
-	var viewport = new THREE.Vector4();
 
 	var view = new THREE.Vector3();
 	var target = new THREE.Vector3();
@@ -56,18 +55,18 @@ THREE.Reflector = function ( geometry, options ) {
 	var material = new THREE.ShaderMaterial( {
 		uniforms: THREE.UniformsUtils.clone( shader.uniforms ),
 		fragmentShader: shader.fragmentShader,
-		vertexShader: shader.vertexShader
+		vertexShader: shader.vertexShader,
+		transparent: options.transparent,
 	} );
 
-	material.uniforms.tDiffuse.value = renderTarget.texture;
-	material.uniforms.color.value = color;
-	material.uniforms.addColor.value = addColor;
-	material.uniforms.textureMatrix.value = textureMatrix;
+	material.uniforms[ "tDiffuse" ].value = renderTarget.texture;
+	material.uniforms[ "color" ].value = color;
+	material.uniforms[ "textureMatrix" ].value = textureMatrix;
 
 	this.material = material;
-	this.renderOrder = - Infinity; // render first
 
 	this.onBeforeRender = function ( renderer, scene, camera ) {
+		this.onBeforeRender2 && this.onBeforeRender2(renderer, scene, camera);
 
 		if ( 'recursion' in camera.userData ) {
 
@@ -82,16 +81,17 @@ THREE.Reflector = function ( geometry, options ) {
 
 		rotationMatrix.extractRotation( scope.matrixWorld );
 
-		normal.set( 0, 0, -1 );
+		normal.set( 0, 0, 1 );
 		normal.applyMatrix4( rotationMatrix );
 
 		view.subVectors( reflectorWorldPosition, cameraWorldPosition );
 
 		// Avoid rendering when reflector is facing away
 
-		if ( view.dot( normal ) < 0 ) return;
+		if ( view.dot( normal ) > 0 ) return;
 
-		view.copy(cameraWorldPosition);
+		view.reflect( normal ).negate();
+		view.add( reflectorWorldPosition );
 
 		rotationMatrix.extractRotation( camera.matrixWorld );
 
@@ -162,7 +162,9 @@ THREE.Reflector = function ( geometry, options ) {
 		renderer.vr.enabled = false; // Avoid camera modification and recursion
 		renderer.shadowMap.autoUpdate = false; // Avoid re-computing shadows
 
-    renderer.setRenderTarget(renderTarget);
+		renderer.setRenderTarget( renderTarget );
+		renderer.setClearColor(backgroundColor, 1);
+		renderer.clear();
 		renderer.render( scene, virtualCamera );
 
 		renderer.vr.enabled = currentVrEnabled;
@@ -172,17 +174,9 @@ THREE.Reflector = function ( geometry, options ) {
 
 		// Restore viewport
 
-		var bounds = camera.bounds;
+		var viewport = camera.viewport;
 
-		if ( bounds !== undefined ) {
-
-			var size = renderer.getSize();
-			var pixelRatio = renderer.getPixelRatio();
-
-			viewport.x = bounds.x * size.width * pixelRatio;
-			viewport.y = bounds.y * size.height * pixelRatio;
-			viewport.z = bounds.z * size.width * pixelRatio;
-			viewport.w = bounds.w * size.height * pixelRatio;
+		if ( viewport !== undefined ) {
 
 			renderer.state.viewport( viewport );
 
@@ -191,11 +185,20 @@ THREE.Reflector = function ( geometry, options ) {
 		scope.visible = true;
 
 	};
+	this.onAfterRender = (renderer, scene, camera) => {
+    this.onAfterRender2 && this.onAfterRender2(renderer, scene, camera);
+	};
 
 	this.getRenderTarget = function () {
 
 		return renderTarget;
 
+	};
+	this.setColor = newColor => {
+    color = new THREE.Color( newColor );
+	};
+	this.setBackgroundColor = newBackgroundColor => {
+    backgroundColor = new THREE.Color( newBackgroundColor );
 	};
 
 };
@@ -208,22 +211,14 @@ THREE.Reflector.ReflectorShader = {
 	uniforms: {
 
 		'color': {
-			type: 'c',
-			value: null
-		},
-
-		'addColor': {
-			type: 'c',
 			value: null
 		},
 
 		'tDiffuse': {
-			type: 't',
 			value: null
 		},
 
 		'textureMatrix': {
-			type: 'm4',
 			value: null
 		}
 
@@ -244,7 +239,6 @@ THREE.Reflector.ReflectorShader = {
 
 	fragmentShader: [
 		'uniform vec3 color;',
-		'uniform vec3 addColor;',
 		'uniform sampler2D tDiffuse;',
 		'varying vec4 vUv;',
 
@@ -263,11 +257,7 @@ THREE.Reflector.ReflectorShader = {
 		'void main() {',
 
 		'	vec4 base = texture2DProj( tDiffuse, vUv );',
-		'	vec3 addColorC;',
-		'	if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = vec3(vUv.x, 0., vUv.z)*0.1;} else {addColorC = vec3(0.0);}',
-		'	gl_FragColor = vec4( base.rgb + addColorC, 1.0 );',
-		// '	if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = addColor;} else {addColorC = vec3(0.0);}',
-		// '	gl_FragColor = vec4( blendOverlay( base.rgb, color ) + addColorC, 1.0 );',
+		'	gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );',
 
 		'}'
 	].join( '\n' )

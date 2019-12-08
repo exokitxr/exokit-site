@@ -1,6 +1,6 @@
 import './webxr-polyfill.module.js';
 import './HelioWebXRPolyfill.js';
-import './three.min.js';
+import './three.js';
 import './BufferGeometryUtils.js';
 import './Reflector.js';
 import Avatar from 'https://avatars.exokit.org/avatars.js';

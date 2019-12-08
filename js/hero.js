@@ -213,7 +213,7 @@ const itemMeshes = [];
     container.add(pedestalMesh);
     pedestalMeshes.push(pedestalMesh);
   }
-  {
+  /* {
     const pedestalMesh = _makePedestalMesh();
     _positionPedestalMesh(pedestalMesh);
 
@@ -230,7 +230,7 @@ const itemMeshes = [];
 
     container.add(pedestalMesh);
     pedestalMeshes.push(pedestalMesh);
-  }
+  } */
   {
     const pedestalMesh = _makePedestalMesh();
     _positionPedestalMesh(pedestalMesh);
@@ -249,6 +249,7 @@ const itemMeshes = [];
     container.add(pedestalMesh);
     pedestalMeshes.push(pedestalMesh);
   }
+  angle += 2;
   {
     const pedestalMesh = _makePedestalMesh();
     _positionPedestalMesh(pedestalMesh);

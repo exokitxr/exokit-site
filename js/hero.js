@@ -1900,7 +1900,17 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
 
 const _makeExobotMesh = (() => {
   const geometry = new THREE.PlaneBufferGeometry(0.3, 0.3);
-  const texture = new THREE.Texture();
+  const texture = new THREE.Texture(
+    null,
+    THREE.UVWrapping,
+    THREE.ClampToEdgeWrapping,
+    THREE.ClampToEdgeWrapping,
+    THREE.LinearFilter,
+    THREE.LinearMipMapLinearFilter,
+    THREE.RGBAFormat,
+    THREE.UnsignedByteType,
+    16
+  );
   new Promise((accept, reject) => {
     const img = new Image();
     img.crossOrigin = 'Anonymous';
@@ -1918,13 +1928,25 @@ const _makeExobotMesh = (() => {
     });
   const material = new THREE.MeshBasicMaterial({
     map: texture,
+    side: THREE.DoubleSide,
     transparent: true,
-    alphaTest: 0.9,
+    // alphaTest: 0.9,
+    depthWrite: false,
   });
   return () => new THREE.Mesh(geometry, material);
 })();
 const _makeMeteorMaterial = src => {
-  const texture = new THREE.Texture();
+  const texture = new THREE.Texture(
+    null,
+    THREE.UVWrapping,
+    THREE.ClampToEdgeWrapping,
+    THREE.ClampToEdgeWrapping,
+    THREE.LinearFilter,
+    THREE.LinearMipMapLinearFilter,
+    THREE.RGBAFormat,
+    THREE.UnsignedByteType,
+    16
+  );
   new Promise((accept, reject) => {
     const img = new Image();
     img.crossOrigin = 'Anonymous';

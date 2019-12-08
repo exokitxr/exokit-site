@@ -1439,53 +1439,6 @@ const localColor = new THREE.Color();
     x: 0.5,
     y: 0.5,
   };
-  /* const _applyUniformRotation = (r, t) => {
-    t.x = r.x;
-    t.y = r.y;
-    t.z = r.z;
-    t.w = r.w;
-  };
-  const _updateSkin = () => {
-    const headQuaternion = new THREE.Quaternion()
-      .setFromUnitVectors(
-        new THREE.Vector3(0, 0, -1),
-        new THREE.Vector3(-(mouse.x-0.5)*2, (mouse.y-0.5)*2, -1).normalize()
-      );
-    _applyUniformRotation(
-      headQuaternion,
-      avatarMesh.material.uniforms.headRotation.value
-    );
-    _applyUniformRotation(
-      new THREE.Quaternion()
-        .setFromUnitVectors(
-          new THREE.Vector3(0, -1, 0),
-          new THREE.Vector3(0.5 - (mouse.x-0.5)*2, 1 - (mouse.y-0.5)*2, 2).normalize()
-        ).premultiply(
-          new THREE.Quaternion()
-            .setFromUnitVectors(
-              new THREE.Vector3(0, 0, -1),
-              new THREE.Vector3(1, 0, 0)
-            )
-        ),
-        avatarMesh.material.uniforms.leftArmRotation.value
-    );
-    _applyUniformRotation(
-      new THREE.Quaternion()
-        .setFromUnitVectors(
-          new THREE.Vector3(-1, 0, 0),
-          new THREE.Vector3((mouse.x-0.5)*2, 0.5-(mouse.y-0.5)*2, -2).normalize()
-        ).premultiply(
-          new THREE.Quaternion()
-            .setFromUnitVectors(
-              new THREE.Vector3(0, 0, -1),
-              new THREE.Vector3(-1, 0, 0)
-            )
-        ),
-        avatarMesh.material.uniforms.rightArmRotation.value
-    );
-    avatarMesh.material.uniforms.theta.value = (mouse.y-0.5)*0.1*Math.PI;
-  };
-  _updateSkin(); */
 
   const boxGeometry = (() => {
     const BAG_SIZE = 1;
@@ -1635,16 +1588,6 @@ const localColor = new THREE.Color();
     geometry.setIndex(new THREE.BufferAttribute(indices, 1));
 
     return geometry;
-
-    /* const material = new THREE.MeshBasicMaterial({
-      color: 0x101010,
-      // wireframe: true,
-      // transparent: true,
-    });
-    // material.polygonOffsetFactor = -1;
-    material.polygonOffsetUnits = -10;
-
-    return () => new THREE.Mesh(geometry, material); */
   })();
 
   /* const boxMesh = (() => {

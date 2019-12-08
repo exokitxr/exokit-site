@@ -73,6 +73,7 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(localColor.setRGB(1, 1, 1), 1);
   renderer.sortObjects = false;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;

@@ -809,7 +809,7 @@ const _makeVolumeMesh = () => {
 const _makePedestalMesh = () => {
   const radius = 0.5;
   const segments = 12;
-  const color = 0x26c6da; // 0x5c6bc0;
+  const color = 0x29b6f6; // 0x5c6bc0;
   const opacity = 0.5;
   const circleGeometry = new THREE.CircleBufferGeometry(radius, segments)
     .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2))

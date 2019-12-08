@@ -809,6 +809,8 @@ const _makeVolumeMesh = () => {
 const _makePedestalMesh = () => {
   const radius = 0.5;
   const segments = 12;
+  const color = 0x26c6da; // 0x5c6bc0;
+  const opacity = 0.5;
   const circleGeometry = new THREE.CircleBufferGeometry(radius, segments)
     .applyMatrix(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2))
     .applyMatrix(new THREE.Matrix4().makeTranslation(0, -0.5, 0));
@@ -846,8 +848,8 @@ const _makePedestalMesh = () => {
 
       void main() {
         if (vBC > 0.95) {
-          vec3 c = vec3(${new THREE.Color().setHex(0xef5350).toArray().join(', ')});
-          float a = vOpacity;
+          vec3 c = vec3(${new THREE.Color().setHex(color).toArray().join(', ')});
+          float a = vOpacity * ${opacity.toFixed(8)};
           gl_FragColor = vec4(c, a);
         } else {
           discard;
@@ -892,7 +894,7 @@ const _makePedestalMesh = () => {
       varying float vUv;
       varying float vOpacity;
       void main() {
-        vY = y;
+        vY = y * ${opacity.toFixed(8)};
         vUv = uv.x + uAnimation;
         vOpacity = 0.5 + 0.5 * (sin(uAnimation*20.0*PI*2.0)+1.0)/2.0;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
@@ -906,7 +908,7 @@ const _makePedestalMesh = () => {
       varying float vUv;
       varying float vOpacity;
 
-      vec3 c = vec3(${new THREE.Color().setHex(0xef5350).toArray().join(', ')});
+      vec3 c = vec3(${new THREE.Color().setHex(color).toArray().join(', ')});
 
       void main() {
         float a = vY * (0.9 + 0.1 * (sin(vUv*PI*2.0/0.02) + 1.0)/2.0) * vOpacity;

@@ -689,6 +689,16 @@ const localColor = new THREE.Color();
     },
   });
 
+  const cameraSize = 512;
+  const cameraTarget = new THREE.WebGLRenderTarget(cameraSize, cameraSize, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.NearestFilter,
+    format: THREE.RGBAFormat,
+    // type: THREE.FloatType,
+    depthBuffer: true,
+    stencilBuffer: false,
+  });
+
   const volumeTargetGeometry = (() => {
     const edgeWidth = 0.01;
     const edgeGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries([
@@ -958,7 +968,7 @@ const localColor = new THREE.Color();
 
     const potentialsTexture = new THREE.DataTexture(null, (width+1)*(height+1)*(depth+1), 1, THREE.LuminanceFormat, THREE.FloatType, THREE.UVMapping, THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping, THREE.NearestFilter, THREE.NearestFilter);
     chunk.potentialsTexture = potentialsTexture;
-    const voxelsMaterial = (() => {
+    /* const voxelsMaterial = (() => {
       const voxelsVsh = `
         attribute vec3 coord;
         attribute vec2 barycentric;
@@ -1041,8 +1051,8 @@ const localColor = new THREE.Color();
         },
       });
     })();
-    chunk.voxelsMaterial = voxelsMaterial;
-    /* const voxelsTexturedMaterial = (() => {
+    chunk.voxelsMaterial = voxelsMaterial; */
+    const voxelsTexturedMaterial = (() => {
       const voxelsVsh = `
         attribute vec3 coord;
         attribute vec3 positionCenter;
@@ -1107,11 +1117,12 @@ const localColor = new THREE.Color();
         },
       });
     })();
-    chunk.voxelsTexturedMaterial = voxelsTexturedMaterial; */
+    chunk.voxelsTexturedMaterial = voxelsTexturedMaterial;
 
     const voxelsMesh = (() => {
       const geometry = voxelsGeometry;
-      const material = voxelsMaterial;
+      // const material = voxelsMaterial;
+      const material = voxelsTexturedMaterial;
       const mesh = new THREE.Mesh(geometry, material);
       mesh.frustumCulled = false;
       mesh.needsUpload = false;
@@ -1243,8 +1254,8 @@ const localColor = new THREE.Color();
 
     chunk.potentialsTexture.dispose();
     chunk.marchCubesMesh.geometry.dispose();
-    chunk.voxelsMaterial.dispose();
-    // chunk.voxelsTexturedMaterial.dispose();
+    // chunk.voxelsMaterial.dispose();
+    chunk.voxelsTexturedMaterial.dispose();
     // chunk.marchCubesTexturedMaterial.dispose();
 
     container.remove(chunk.object);
@@ -2067,6 +2078,16 @@ function animate() {
     pedestalMesh.skirtMesh.material.uniforms.uAnimation.value = v;
   }
 
+  {
+    const unhideUiMeshes = _hideUiMeshes();
+
+    renderer.setRenderTarget(cameraTarget);
+    renderer.render(scene, camera);
+
+    unhideUiMeshes();
+    renderer.setRenderTarget(null);
+  }
+
   // gpuParticlesMesh.update();
   xrChunker.updateMesh(async () => {
     // xrRaycaster.updateView(camera.position.toArray(), camera.quaternion.toArray());
@@ -2085,6 +2106,7 @@ function animate() {
   renderer.render(scene, camera);
   xrRaycaster.render();
   xrChunker.render();
+
   lastUpdateTime = now;
 }
 renderer.setAnimationLoop(animate);

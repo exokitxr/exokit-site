@@ -62,6 +62,9 @@ const localRaycaster = new THREE.Raycaster();
 const localRay = new THREE.Ray();
 const localColor = new THREE.Color();
 
+const userHeight = 1.7;
+const _getHeightFactor = rigHeight => rigHeight / userHeight;
+
 // function init() {
   renderer = new THREE.WebGLRenderer({
     canvas: document.getElementById('hero-canvas'),
@@ -146,6 +149,7 @@ const localColor = new THREE.Color();
   container.add(floorBaseMesh);
 
   let rig = null;
+  let heightFactor = 1;
   (async () => {
     const model = await ModelLoader.loadModelUrl('./miku.vrm');
     rig = new Avatar(model, {
@@ -157,6 +161,8 @@ const localColor = new THREE.Color();
       // debug: !newModel,
     });
     container.add(rig.model);
+
+    heightFactor = _getHeightFactor(rig.height);
   })();
   const pedestalMeshes = [];
   const itemMeshes = [];
@@ -1961,7 +1967,7 @@ const _makeMeteorMesh = () => {
 let lastUpdateTime = Date.now();
 let lastRattleTime = Date.now();
 let lastRattleDirection = false;
-function animate() {
+function animate(timestamp, frame, referenceSpace) {
   const now = Date.now();
   const timeDiff = now - lastUpdateTime;
 
@@ -2063,7 +2069,7 @@ function animate() {
             const p = localVector2.copy(rawP).sub(container.position).multiplyScalar(heightFactor);
             const q = localQuaternion.copy(orientation);
             const pressed = gamepad.buttons[0].pressed;
-            const lastPressed = lastPresseds[i];
+            // const lastPressed = lastPresseds[i];
             const pointer = gamepad.buttons[0].value;
             const grip = gamepad.buttons[1].value;
             const pad = gamepad.axes[1] <= -0.5 || gamepad.axes[3] <= -0.5;
@@ -2072,13 +2078,13 @@ function animate() {
             const stick = !!gamepad.buttons[3] && gamepad.buttons[3].pressed;
             const a = !!gamepad.buttons[4] && gamepad.buttons[4].pressed;
             const b = !!gamepad.buttons[5] && gamepad.buttons[5].pressed;
-            const lastB = lastBs[i];
+            // const lastB = lastBs[i];
             return {
               rawPosition: rawP,
               position: p,
               quaternion: q,
               pressed,
-              lastPressed,
+              // lastPressed,
               pointer,
               grip,
               pad,
@@ -2087,7 +2093,7 @@ function animate() {
               stick,
               a,
               b,
-              lastB,
+              // lastB,
             };
           } else {
             return null;
@@ -2097,7 +2103,7 @@ function animate() {
         }
       };
       const _updateTeleportMesh = (i, pad, lastPad, position, quaternion, padX, padY, stick) => {
-        const teleportMesh = teleportMeshes[i];
+        /* const teleportMesh = teleportMeshes[i];
         teleportMesh.visible = false;
 
         if (pad) {
@@ -2121,7 +2127,7 @@ function animate() {
           localVector.copy(teleportMesh.position).applyMatrix4(container.matrix).sub(vrCamera.position);
           localVector.y = 0;
           container.position.sub(localVector);
-        }
+        } */
 
         if (padX !== 0 || padY !== 0) {
           localVector.set(padX, 0, padY);
@@ -2148,12 +2154,12 @@ function animate() {
         rig.inputs.leftGamepad.pointer = pointer;
         rig.inputs.leftGamepad.grip = grip;
 
-        _updateTeleportMesh(0, pad, lastPads[0], position, quaternion, 0, 0, false);
+        _updateTeleportMesh(0, pad, false, position, quaternion, 0, 0, false);
 
-        lastPresseds[0] = pressed;
+        /* lastPresseds[0] = pressed;
         lastPads[0] = pad;
         lastBs[0] = b;
-        lastPositions[0].copy(rawPosition);
+        lastPositions[0].copy(rawPosition); */
       }
       const rg = _getGamepad(0);
       if (rg) {
@@ -2165,10 +2171,10 @@ function animate() {
 
         _updateTeleportMesh(1, false, false, position, quaternion, padX, padY, stick);
 
-        lastPresseds[1] = pressed;
+        /* lastPresseds[1] = pressed;
         lastPads[1] = pad;
         lastBs[1] = b;
-        lastPositions[1].copy(rawPosition);
+        lastPositions[1].copy(rawPosition); */
       }
 
       rig.update();

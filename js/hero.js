@@ -192,7 +192,7 @@ const itemMeshes = [];
   // let x = -3;
   let angle = 0;
   const _positionPedestalMesh = pedestalMesh => {
-    pedestalMesh.position.set(0, 0.7, 0)
+    pedestalMesh.position.set(0, 0.51, 0)
       .add(new THREE.Vector3(0, 0, -1.5).applyQuaternion(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI/2-Math.PI*2*0.1*(angle++))));
   };
   {

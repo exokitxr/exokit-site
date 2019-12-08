@@ -1187,6 +1187,7 @@ canvas {
   display: flex;
   position: absolute;
   padding: 50px;
+  padding-top: 200px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1252,6 +1253,16 @@ canvas {
   opacity: 1;
   bottom: 0;
 }
+.tiles .tile:nth-child(1):hover ~ .background .detail:nth-child(1),
+.tiles .tile:nth-child(2):hover ~ .background .detail:nth-child(2),
+.tiles .tile:nth-child(3):hover ~ .background .detail:nth-child(3),
+.tiles .tile:nth-child(4):hover ~ .background .detail:nth-child(4),
+.tiles .tile:nth-child(5):hover ~ .background .detail:nth-child(5),
+.tiles .tile:nth-child(6):hover ~ .background .detail:nth-child(6),
+.tiles .tile:nth-child(7):hover ~ .background .detail:nth-child(7)
+{
+  visibility: visible;
+}
 .tiles .background {
   position: absolute;
   bottom: -10%;
@@ -1261,6 +1272,35 @@ canvas {
   background-color: #000;
   opacity: 0;
   transition: all 0.1s ease-out;
+}
+.tiles .background .detail {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
+  color: #FFF;
+  visibility: hidden;
+}
+.tiles .background .detail i {
+  display: none;
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  color: #222;
+  font-size: 150px;
+}
+.tiles .background h2,
+.tiles .background p {
+  margin: 0;
+  margin-bottom: 15px;
+  z-index: 1;
+}
+.tiles .background h2 {
+  font-size: 30px;
+}
+.tiles .background p {
+  font-size: 16px;
 }
   </style>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -1359,14 +1399,50 @@ canvas {
       <i class="fas fa-vial"></i>
     </div>
   </a>
-  <div class=spacer></div>
+  <!-- <div class=spacer></div> -->
   <a href="https://native.exokit.org" class=tile>
     <div class=wrap>
       <h3>Native</h3>
       <i class="far fa-window-alt"></i>
     </div>
   </a>
-  <div class=background></div>
+  <div class=background>
+    <div class=detail>
+      <i class="fas fa-warehouse-alt"></i>
+      <h2>Builder</h2>
+      <p>Compose WebXR scenes out of models and sites.</p>
+    </div>
+    <div class=detail>
+      <i class="fas fa-user-ninja"></i>
+      <h2>Avatars</h2>
+      <p>Wear and share avatars in front of a mirror.</p>
+    </div>
+    <div class=detail>
+      <i class="fas fa-mountains"></i>
+      <h2>Land</h2>
+      <p>Deploy and explore WebXR parcels in a shared world.</p>
+    </div>
+    <div class=detail>
+      <i class="fas fa-user-headset"></i>
+      <h2>Rooms</h2>
+      <p>Buddy up with friends in a shared private space.</p>
+    </div>
+    <div class=detail>
+      <i class="fas fa-user-astronaut"></i>
+      <h2>Spatial</h2>
+      <p>Tools for sensing and manipulating mixed reality.</p>
+    </div>
+    <div class=detail>
+      <i class="fas fa-vial"></i>
+      <h2>Sandbox</h2>
+      <p>Test out WebXR features in a sandbox environment.</p>
+    </div>
+    <div class=detail>
+      <i class="far fa-window-alt"></i>
+      <h2>Native</h2>
+      <p>A native WebXR browser built from the ground up.</p>
+    </div>
+  </div>
 </div>
 
 <script src="https://kit.fontawesome.com/0735724151.js"></script>

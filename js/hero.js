@@ -502,7 +502,7 @@ const localColor = new THREE.Color();
       // varying vec3 vWorldPos;
       varying float vDepth;
       void main() {
-        gl_FragColor = vec4(uColor, (1.0-vDepth));
+        gl_FragColor = vec4(uColor, (1.0-vDepth)*0.2);
       }
     `;
     const material = new THREE.ShaderMaterial({

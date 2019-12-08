@@ -2,6 +2,9 @@
  * @author Slayvin / http://slayvin.net
  */
 
+const localColor = new THREE.Color();
+const localColor2 = new THREE.Color();
+
 THREE.Reflector = function ( geometry, options ) {
 
 	THREE.Mesh.call( this, geometry );
@@ -162,7 +165,11 @@ THREE.Reflector = function ( geometry, options ) {
 		renderer.shadowMap.autoUpdate = false; // Avoid re-computing shadows
 
 		renderer.setRenderTarget( renderTarget );
+		const oldClearColor = localColor.copy(renderer.getClearColor());
+		const oldClearAlpha = renderer.getClearAlpha();
+		renderer.setClearColor(localColor2.setRGB(0, 0, 0), 1);
 		renderer.render( scene, virtualCamera );
+		renderer.setClearColor(oldClearColor, oldClearAlpha);
 
 		renderer.vr.enabled = currentVrEnabled;
 		renderer.shadowMap.autoUpdate = currentShadowAutoUpdate;

@@ -1,3 +1,5 @@
+import './webxr-polyfill.module.js';
+import './HelioWebXRPolyfill.js';
 import './three.min.js';
 import './BufferGeometryUtils.js';
 import './Reflector.js';

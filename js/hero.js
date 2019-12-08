@@ -47,11 +47,17 @@ const raycastDepth = 3;
 
 let renderer, scene, camera, iframe, mouse, container, avatarMesh, meteorMesher;
 
+const zeroVector = new THREE.Vector3(0, 0, 0);
+const zeroQuaternion = new THREE.Quaternion();
+const oneVector = new THREE.Vector3(1, 1, 1);
 const localVector = new THREE.Vector3();
 const localVector2 = new THREE.Vector3();
 const localVector3 = new THREE.Vector3();
+const localQuaternion = new THREE.Quaternion();
+const localEuler = new THREE.Euler();
 const localMatrix = new THREE.Matrix4();
 const localRaycaster = new THREE.Raycaster();
+const localRay = new THREE.Ray();
 const localColor = new THREE.Color();
 
 // function init() {
@@ -1454,14 +1460,6 @@ const localColor = new THREE.Color();
       return {position, rotation, scale};
     };
 
-    const zeroVector = new THREE.Vector3(0, 0, 0);
-    const zeroQuaternion = new THREE.Quaternion();
-    const oneVector = new THREE.Vector3(1, 1, 1);
-    const localVector = new THREE.Vector3();
-    const localVector2 = new THREE.Vector3();
-    const localQuaternion = new THREE.Quaternion();
-    const localMatrix = new THREE.Matrix4();
-
     const lineGeometry = new THREE.CylinderBufferGeometry(BAG_SIZE/100, BAG_SIZE/100, BAG_SIZE, 3, 1);
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(lineGeometry.attributes.position.array.length * 12);
@@ -1804,9 +1802,85 @@ const localColor = new THREE.Color();
 
     _setCamera();
   });
+
+  let session = null;
+  let possessRig = false;
+  const _setSession = async newSession => {
+    session = newSession;
+
+    const _end = () => {
+      session.removeEventListener('end', _end);
+      session = null;
+
+      clearInterval(loadReferenceSpaceInterval);
+    };
+    session.addEventListener('end', _end);
+
+    let referenceSpace;
+    let referenceSpaceType = '';
+    const _loadReferenceSpace = async () => {
+      const lastReferenceSpaceType = referenceSpaceType;
+      try {
+        referenceSpace = await session.requestReferenceSpace('local-floor');
+        referenceSpaceType = 'local-floor';
+      } catch (err) {
+        referenceSpace = await session.requestReferenceSpace('local');
+        referenceSpaceType = 'local';
+      }
+
+      if (referenceSpaceType !== lastReferenceSpaceType) {
+        console.log(`referenceSpace changed to ${referenceSpaceType}`);
+      }
+    };
+    await _loadReferenceSpace();
+    const loadReferenceSpaceInterval = setInterval(_loadReferenceSpace, 1000);
+
+    await new Promise((accept, reject) => {
+      renderer.vr.setSession(session);
+
+      session.requestAnimationFrame((timestamp, frame) => {
+        renderer.vr.enabled = true;
+        renderer.setAnimationLoop(null);
+        renderer.vr.setAnimationLoop(animate);
+
+        const pose = frame.getViewerPose(referenceSpace);
+        const viewport = session.renderState.baseLayer.getViewport(pose.views[0]);
+        // const width = viewport.width;
+        const height = viewport.height;
+        const fullWidth = (() => {
+          let result = 0;
+          for (let i = 0; i < pose.views.length; i++) {
+            result += session.renderState.baseLayer.getViewport(pose.views[i]).width;
+          }
+          return result;
+        })();
+        renderer.vr.setSession(null);
+        renderer.setSize(fullWidth, height);
+        renderer.setPixelRatio(1);
+        renderer.vr.setSession(session);
+
+        if (typeof FakeXRDisplay !== 'undefined') {
+          fakeXrDisplay = new FakeXRDisplay();
+          camera.projectionMatrix.toArray(fakeXrDisplay.projectionMatrix);
+        }
+
+        accept();
+      });
+    });
+  };
   const enterXrButton = document.getElementById('enter-xr-button');
-  enterXrButton.addEventListener('click', () => {
-    console.log('enter xr');
+  enterXrButton.addEventListener('click', async () => {
+    if (!session) {
+      const newSession = await navigator.xr.requestSession('immersive-vr', {
+        requiredFeatures: ['local-floor'],
+      });
+      await _setSession(newSession);
+    }
+
+    possessRig = true;
+    if (rig) {
+      rig.decapitate();
+    }
   });
 // }
 
@@ -1962,30 +2036,166 @@ function animate() {
   exobotMesh.rotation.z = Math.sin(factor * Math.PI*2/2)*0.2;
 
   if (rig) {
-    rig.inputs.hmd.quaternion.setFromUnitVectors(
-      new THREE.Vector3(0, 0, -1),
-      exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
-    );
-    rig.inputs.hmd.position.copy(dolly.position)
-      .add(localVector.set(0, 1.25, 0))
-      .add(localVector.set(0, 0, -0.05).applyQuaternion(rig.inputs.hmd.quaternion));
-    rig.inputs.leftGamepad.position.copy(dolly.position).add(localVector.set(0.3, 0.7, 0.1));
-    rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
-    rig.inputs.leftGamepad.pointer = 1;
-    rig.inputs.leftGamepad.grip = 1;
-    rig.inputs.rightGamepad.position.copy(dolly.position).add(localVector.set(-0.2, 1, 0));
-    rig.inputs.rightGamepad.position.add(
-      new THREE.Vector3(0, 0, -0.3)
-        .applyQuaternion(new THREE.Quaternion().setFromUnitVectors(
-          new THREE.Vector3(0, 0, -1),
-          exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
-        ))
-    );
-    rig.inputs.rightGamepad.quaternion.copy(rig.inputs.hmd.quaternion)
-      .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI/2*0.3));
-    rig.inputs.rightGamepad.pointer = 0;
-    rig.inputs.rightGamepad.grip = 1;
-    rig.update();
+    if (possessRig) {
+      const vrCameras = renderer.vr.getCamera(camera).cameras;
+      const vrCamera = vrCameras[0];
+      const vrCamera2 = vrCameras[1];
+      vrCamera.matrixWorld.decompose(vrCamera.position, vrCamera.quaternion, vrCamera.scale);
+      vrCamera2.matrixWorld.decompose(vrCamera2.position, vrCamera2.quaternion, vrCamera2.scale);
+      vrCamera.position.add(vrCamera2.position).divideScalar(2);
+      const {inputSources} = session;
+      const gamepads = navigator.getGamepads();
+
+      rig.inputs.hmd.position.copy(vrCamera.position).sub(container.position).multiplyScalar(heightFactor);
+      rig.inputs.hmd.quaternion.copy(vrCamera.quaternion);
+
+      const _getGamepad = i => {
+        const handedness = i === 0 ? 'left' : 'right';
+        const inputSource = inputSources.find(inputSource => inputSource.handedness === handedness);
+        let pose, gamepad;
+        if (inputSource && (pose = frame.getPose(inputSource.gripSpace, referenceSpace)) && (gamepad = inputSource.gamepad || gamepads[i])) {
+          const {transform} = pose;
+          const {position, orientation, matrix} = transform;
+          if (position) {
+            const rawP = localVector.copy(position);
+            const p = localVector2.copy(rawP).sub(container.position).multiplyScalar(heightFactor);
+            const q = localQuaternion.copy(orientation);
+            const pressed = gamepad.buttons[0].pressed;
+            const lastPressed = lastPresseds[i];
+            const pointer = gamepad.buttons[0].value;
+            const grip = gamepad.buttons[1].value;
+            const pad = gamepad.axes[1] <= -0.5 || gamepad.axes[3] <= -0.5;
+            const padX = gamepad.axes[0] !== 0 ? gamepad.axes[0] : gamepad.axes[2];
+            const padY = gamepad.axes[1] !== 0 ? gamepad.axes[1] : gamepad.axes[3];
+            const stick = !!gamepad.buttons[3] && gamepad.buttons[3].pressed;
+            const a = !!gamepad.buttons[4] && gamepad.buttons[4].pressed;
+            const b = !!gamepad.buttons[5] && gamepad.buttons[5].pressed;
+            const lastB = lastBs[i];
+            return {
+              rawPosition: rawP,
+              position: p,
+              quaternion: q,
+              pressed,
+              lastPressed,
+              pointer,
+              grip,
+              pad,
+              padX,
+              padY,
+              stick,
+              a,
+              b,
+              lastB,
+            };
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
+      };
+      const _updateTeleportMesh = (i, pad, lastPad, position, quaternion, padX, padY, stick) => {
+        const teleportMesh = teleportMeshes[i];
+        teleportMesh.visible = false;
+
+        if (pad) {
+          localVector.copy(vrCamera.position).applyMatrix4(localMatrix.getInverse(container.matrix));
+          localEuler.setFromQuaternion(quaternion, 'YXZ');
+
+          for (let i = 0; i < 20; i++, localVector.add(localVector2), localEuler.x = Math.max(localEuler.x - Math.PI*0.07, -Math.PI/2)) {
+            localRay.set(localVector, localVector2.set(0, 0, -1).applyQuaternion(localQuaternion.setFromEuler(localEuler)));
+            const intersection = localRay.intersectPlane(floorPlane, localVector3);
+            if (intersection && intersection.distanceTo(localRay.origin) <= 1) {
+              teleportMesh.position.copy(intersection);
+              localEuler.setFromQuaternion(localQuaternion, 'YXZ');
+              localEuler.x = 0;
+              localEuler.z = 0;
+              teleportMesh.quaternion.setFromEuler(localEuler);
+              teleportMesh.visible = true;
+              break;
+            }
+          }
+        } else if (lastPad) {
+          localVector.copy(teleportMesh.position).applyMatrix4(container.matrix).sub(vrCamera.position);
+          localVector.y = 0;
+          container.position.sub(localVector);
+        }
+
+        if (padX !== 0 || padY !== 0) {
+          localVector.set(padX, 0, padY);
+          const moveLength = localVector.length();
+          if (moveLength > 1) {
+            localVector.divideScalar(moveLength);
+          }
+          const hmdEuler = localEuler.setFromQuaternion(rig.inputs.hmd.quaternion, 'YXZ');
+          localEuler.x = 0;
+          localEuler.z = 0;
+          container.position.sub(localVector.multiplyScalar(walkSpeed * timeDiff * (stick ? 3 : 1) * rig.height).applyEuler(hmdEuler));
+
+          // _updateXrIframeMatrices();
+        }
+      };
+
+      // const wasLastBd = lastBs[0] && lastBs[1];
+
+      const lg = _getGamepad(1);
+      if (lg) {
+        const {rawPosition, position, quaternion, pressed, lastPressed, pointer, grip, pad, b} = lg;
+        rig.inputs.leftGamepad.quaternion.copy(quaternion);
+        rig.inputs.leftGamepad.position.copy(position);
+        rig.inputs.leftGamepad.pointer = pointer;
+        rig.inputs.leftGamepad.grip = grip;
+
+        _updateTeleportMesh(0, pad, lastPads[0], position, quaternion, 0, 0, false);
+
+        lastPresseds[0] = pressed;
+        lastPads[0] = pad;
+        lastBs[0] = b;
+        lastPositions[0].copy(rawPosition);
+      }
+      const rg = _getGamepad(0);
+      if (rg) {
+        const {rawPosition, position, quaternion, pressed, lastPressed, pointer, grip, pad, padX, padY, stick, b} = rg;
+        rig.inputs.rightGamepad.quaternion.copy(quaternion);
+        rig.inputs.rightGamepad.position.copy(position);
+        rig.inputs.rightGamepad.pointer = pointer;
+        rig.inputs.rightGamepad.grip = grip;
+
+        _updateTeleportMesh(1, false, false, position, quaternion, padX, padY, stick);
+
+        lastPresseds[1] = pressed;
+        lastPads[1] = pad;
+        lastBs[1] = b;
+        lastPositions[1].copy(rawPosition);
+      }
+
+      rig.update();
+    } else {
+      rig.inputs.hmd.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, -1),
+        exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
+      );
+      rig.inputs.hmd.position.copy(dolly.position)
+        .add(localVector.set(0, 1.25, 0))
+        .add(localVector.set(0, 0, -0.05).applyQuaternion(rig.inputs.hmd.quaternion));
+      rig.inputs.leftGamepad.position.copy(dolly.position).add(localVector.set(0.3, 0.7, 0.1));
+      rig.inputs.leftGamepad.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2*0.7);
+      rig.inputs.leftGamepad.pointer = 1;
+      rig.inputs.leftGamepad.grip = 1;
+      rig.inputs.rightGamepad.position.copy(dolly.position).add(localVector.set(-0.2, 1, 0));
+      rig.inputs.rightGamepad.position.add(
+        new THREE.Vector3(0, 0, -0.3)
+          .applyQuaternion(new THREE.Quaternion().setFromUnitVectors(
+            new THREE.Vector3(0, 0, -1),
+            exobotMesh.position.clone().sub(rig.inputs.rightGamepad.position).normalize()
+          ))
+      );
+      rig.inputs.rightGamepad.quaternion.copy(rig.inputs.hmd.quaternion)
+        .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI/2*0.3));
+      rig.inputs.rightGamepad.pointer = 0;
+      rig.inputs.rightGamepad.grip = 1;
+      rig.update();
+    }
   }
 
   if (now > meteorMesher.nextUpdateTime) {

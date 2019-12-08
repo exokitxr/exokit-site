@@ -61,6 +61,7 @@ const localMatrix = new THREE.Matrix4();
 const localRaycaster = new THREE.Raycaster();
 const localRay = new THREE.Ray();
 const localColor = new THREE.Color();
+const localColor2 = new THREE.Color();
 
 const userHeight = 1.7;
 const _getHeightFactor = rigHeight => rigHeight / userHeight;
@@ -946,10 +947,12 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
     depthMaterial.uniforms.uNear.value = near;
     depthMaterial.uniforms.uFar.value = far;
     renderer.setRenderTarget(target);
-    renderer.setClearColor(localColor.set(0, 0, 0), 1);
+    const oldClearColor = localColor.copy(renderer.getClearColor());
+    const oldClearAlpha = renderer.getClearAlpha();
+    renderer.setClearColor(localColor2.setRGB(0, 0, 0), 1);
     renderer.render(scene, raycasterCamera);
     scene.overrideMaterial = null;
-    renderer.setClearColor(localColor.set(0, 0, 0), 0);
+    renderer.setClearColor(oldClearColor, oldClearAlpha);
 
     unhideUiMeshes();
 

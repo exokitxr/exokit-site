@@ -1916,6 +1916,28 @@ const _setSession = async newSession => {
   });
 };
 const enterXrButton = document.getElementById('enter-xr-button');
+const noXrButton = document.getElementById('no-xr-button');
+(async () => {
+  let result;
+  if (navigator.xr) {
+    try {
+      await navigator.xr.supportsSession('immersive-vr');
+      result = true;
+    } catch (err) {
+      console.warn(err);
+      result = false;
+    }
+  } else {
+    result = false;
+  }
+  if (result) {
+    console.log('xr available');
+    enterXrButton.style.display = null;
+  } else {
+    console.log('no xr');
+    noXrButton.style.display = null;
+  }
+})();
 enterXrButton.addEventListener('click', async () => {
   if (!session) {
     const newSession = await navigator.xr.requestSession('immersive-vr', {

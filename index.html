@@ -1166,19 +1166,22 @@ canvas {
   padding: 10px;
   justify-content: center;
   align-items: center;
-  border: 3px solid #000;
+  border: 3px solid currentColor;
   border-radius: 7px;
   font-size: 20px;
 }
-.enter-xr-button {
+.enter-xr-button.disabled {
+  color: #ef5350;
+}
+.enter-xr-button:not(.disabled) {
   cursor: pointer;
 }
-.enter-xr-button:hover {
+.enter-xr-button:not(.disabled):hover {
   background-color: #7e57c2;
   border-color: rgba(0, 0, 0, 0.1);
   color: #FFF;
 }
-.enter-xr-button:active {
+.enter-xr-button:not(.disabled):active {
   background-color: #ef5350;
   border-color: rgba(0, 0, 0, 0.1);
   color: #FFF;
@@ -1361,6 +1364,7 @@ canvas {
     </div>
   </div>
   <nav class=enter-xr-button id=enter-xr-button>Enter XR</nav>
+  <nav class="enter-xr-button disabled" id=no-xr-button style="display: none">No XR</nav>
 </div>
 <div class=tiles>
   <a href="https://browser.exokit.org" class=tile>

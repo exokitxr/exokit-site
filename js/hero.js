@@ -120,12 +120,12 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
     const SHADOW_MAP_HEIGHT = 1024;
 
     const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-    directionalLight.position.set(-3, 3, 1);
+    directionalLight.position.set(-3, 3, 1).multiplyScalar(2);
     directionalLight.target.position.set(0, 0, 0);
 
     directionalLight.castShadow = true;
 
-    directionalLight.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 50, 1, 0.1, 1000 ) );
+    directionalLight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera( 50, 1, 0.1, 50 ));
     // directionalLight.shadow.bias = 0.0001;
 
     directionalLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
@@ -140,6 +140,7 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       .applyMatrix(localMatrix.makeTranslation(0, -0.1, 0));
     const material = new THREE.MeshPhongMaterial({
       color: 0xCCCCCC,
+      shininess: 0,
     });
     const mesh = new THREE.Mesh(geometry, material);
 
@@ -154,6 +155,9 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
   let heightFactor = 1;
   (async () => {
     const model = await ModelLoader.loadModelUrl('./miku.vrm');
+    model.scene.traverse(o => {
+      o.castShadow = true;
+    });
     rig = new Avatar(model, {
       fingers: true,
       hair: true,
@@ -175,6 +179,9 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       const model = object.scene;
       model.position.x = 0.2;
       model.position.z = -1;
+      model.traverse(o => {
+        o.castShadow = true;
+      });
       container.add(model);
     }
     {
@@ -198,6 +205,11 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_FlameThrower_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
+      model.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
+      });
       pedestalMesh.add(model);
       itemMeshes.push(model);
 
@@ -211,6 +223,11 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_AssaultRifle_02.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
+      model.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
+      });
       pedestalMesh.add(model);
       itemMeshes.push(model);
 
@@ -224,6 +241,11 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Shotgun_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
+      model.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
+      });
       pedestalMesh.add(model);
       itemMeshes.push(model);
 
@@ -237,6 +259,11 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_Flashbang_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
+      model.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
+      });
       pedestalMesh.add(model);
       itemMeshes.push(model);
 
@@ -250,6 +277,11 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
       const src = 'https://item-models.exokit.org/glb/apocalypse/SK_Wep_HuntingRifle_01.glb';
       const object = await ModelLoader.loadModelUrl(src);
       const model = object.scene;
+      model.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
+      });
       pedestalMesh.add(model);
       itemMeshes.push(model);
 
@@ -438,6 +470,8 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
     });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.frustumCulled = false;
+    // mesh.castShadow = true;
+    // mesh.receiveShadow = true;
     return mesh;
   })();
   floorMesh.position.set(-8, 0, -8);
@@ -1399,8 +1433,10 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
     loader.load( 'engine.glb', function ( o ) {
 
       o = o.scene;
-      o.traverse(e => {
-        e.castShadow = true;
+      o.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
       });
 
       o.position.set(0, 0.15, 0);
@@ -1432,8 +1468,10 @@ const _getHeightFactor = rigHeight => rigHeight / userHeight;
     loader.load( 'exobot.glb', function ( o ) {
 
       o = o.scene;
-      o.traverse(e => {
-        e.castShadow = true;
+      o.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = true;
+        }
       });
 
       /* o.quaternion.setFromUnitVectors(

@@ -264,7 +264,7 @@ THREE.Reflector.ReflectorShader = {
 
 		'	vec4 base = texture2DProj( tDiffuse, vUv );',
 		'	vec3 addColorC;',
-		'	if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = vec3(vUv.x, 0., vUv.z)*0.2;} else {addColorC = vec3(0.0);}',
+		'	if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = vec3(vUv.x, 0., vUv.z)*0.1;} else {addColorC = vec3(0.0);}',
 		'	gl_FragColor = vec4( base.rgb + addColorC, 1.0 );',
 		// '	if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = addColor;} else {addColorC = vec3(0.0);}',
 		// '	gl_FragColor = vec4( blendOverlay( base.rgb, color ) + addColorC, 1.0 );',

@@ -81,17 +81,16 @@ THREE.Reflector = function ( geometry, options ) {
 
 		rotationMatrix.extractRotation( scope.matrixWorld );
 
-		normal.set( 0, 0, 1 );
+		normal.set( 0, 0, -1 );
 		normal.applyMatrix4( rotationMatrix );
 
 		view.subVectors( reflectorWorldPosition, cameraWorldPosition );
 
 		// Avoid rendering when reflector is facing away
 
-		if ( view.dot( normal ) > 0 ) return;
+		if ( view.dot( normal ) < 0 ) return;
 
-		view.reflect( normal ).negate();
-		view.add( reflectorWorldPosition );
+		view.copy(cameraWorldPosition);
 
 		rotationMatrix.extractRotation( camera.matrixWorld );
 
@@ -163,8 +162,6 @@ THREE.Reflector = function ( geometry, options ) {
 		renderer.shadowMap.autoUpdate = false; // Avoid re-computing shadows
 
 		renderer.setRenderTarget( renderTarget );
-		renderer.setClearColor(backgroundColor, 1);
-		renderer.clear();
 		renderer.render( scene, virtualCamera );
 
 		renderer.vr.enabled = currentVrEnabled;
@@ -255,10 +252,10 @@ THREE.Reflector.ReflectorShader = {
 		'}',
 
 		'void main() {',
-
-		'	vec4 base = texture2DProj( tDiffuse, vUv );',
-		'	gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );',
-
+		'  vec4 base = texture2DProj( tDiffuse, vUv );',
+		'  vec3 addColorC;',
+		'  if (base.r > 0.01 || base.g > 0.01 || base.b > 0.01) {addColorC = vec3(vUv.x, 0., vUv.z)*0.1;} else {addColorC = vec3(0.0);}',
+    '  gl_FragColor = vec4( base.rgb + addColorC, 1.0 );',
 		'}'
 	].join( '\n' )
 };

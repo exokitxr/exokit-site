@@ -1010,7 +1010,8 @@ const xrRaycaster = new XRRaycaster({
   depth: raycastDepth,
   onRender: _renderRaycaster,
 });
-xrRaycaster.updateView([-0.5, 0.5, -1],
+xrRaycaster.updateView(
+  [-0.5, 0.5, -1],
   new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI*0.2)
     .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI*0.1))
     .toArray()

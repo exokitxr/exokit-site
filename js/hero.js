@@ -46,6 +46,7 @@ const aspect = 1;
 const raycastNear = 0.1;
 const raycastFar = 100;
 const raycastDepth = 3;
+const walkSpeed = 0.0015;
 
 const zeroVector = new THREE.Vector3(0, 0, 0);
 const zeroQuaternion = new THREE.Quaternion();

@@ -3,9 +3,9 @@ import './HelioWebXRPolyfill.js';
 import './three.js';
 import './BufferGeometryUtils.js';
 import './Reflector.js';
-import Avatar from 'https://avatars.exokit.org/avatars.js';
-import ModelLoader from 'https://model-loader.exokit.org/model-loader.js';
-import {XRRaycaster, XRChunker} from 'https://spatial-engine.exokit.org/spatial-engine.js';
+import Avatar from 'https://avatars.isekai.chat/avatars.js';
+import ModelLoader from 'https://model-loader.isekai.chat/model-loader.js';
+import {XRRaycaster, XRChunker} from 'https://spatial-engine.isekai.chat/spatial-engine.js';
 
 (async () => {
 
